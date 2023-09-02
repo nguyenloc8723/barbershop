@@ -17,8 +17,8 @@
 
     <!-- icons -->
     <link href="{{asset('be/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
-    @viteReactRefresh
-    @vite('resources/js/fe/app_react.jsx')
+{{--    @viteReactRefresh--}}
+{{--    @vite('resources/js/fe/app_react.jsx')--}}
 </head>
 
 <!-- body start -->
@@ -52,6 +52,7 @@
                 <div id="app">
 
                 </div>
+                @yield('content')
                 <!-- end row -->
 
             </div> <!-- container-fluid -->
@@ -88,6 +89,7 @@
 <script src="{{asset('be/assets/libs/feather-icons/feather.min.js')}}"></script>
 
 @include('admin.layout.partials.script')
+@yield('script')
 
 <script src="{{asset('be/assets/js/app.min.js')}}"></script>
 </body>
