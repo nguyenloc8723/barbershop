@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(["prefix" => "admin"],function (){
 //    Route::get('/dashboard', DashboardController::class)->name('route.dashboard');
 //    Route::get('/table', ComboController::class)->name('route.table');
-    Route::resource('/member', ApiMemberController::class);
+//    Route::resource('/member', ApiMemberController::class);
 });
