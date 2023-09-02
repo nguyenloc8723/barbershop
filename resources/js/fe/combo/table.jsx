@@ -6,7 +6,6 @@ function Table() {
             <div className="col-12">
                 <div className="card">
                     <div className="card-body">
-                        {/*<h4 className="mt-0 header-title">Default Example</h4>*/}
 
 
                         <table id="datatable" className="table table-bordered dt-responsive table-responsive nowrap">
