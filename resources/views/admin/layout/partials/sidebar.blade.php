@@ -71,16 +71,22 @@
                 <li class="menu-title mt-2">Apps</li>
 
                 <li>
-                    <a href="apps-calendar.html">
+                    <a href="{{route('route.calendar')}}">
                         <i class="mdi mdi-calendar-blank-outline"></i>
                         <span> Lịch </span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="apps-chat.html">
+                    <a href="{{route('route.chat')}}">
                         <i class="mdi mdi-forum-outline"></i>
                         <span> Chat </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('route.service')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Dịch vụ </span>
                     </a>
                 </li>
 
@@ -96,7 +102,7 @@
                                 <a href="{{route('route.table')}}">Danh sách</a>
                             </li>
                             <li>
-                                <a href="#">Thêm combo</a>
+                                <a href="{{route('route.table')}}">Thêm combo</a>
                             </li>
                         </ul>
                     </div>
