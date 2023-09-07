@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    alert('Quá buồn luôn')
+    // alert('Quá buồn luôn')
     const btnCancel = $('.jquery-btn-cancel');
     const btnShowModal = $('.query-btn-show-modal');
 
@@ -8,7 +8,6 @@ $(document).ready(function () {
 
     // mặc định ẩn bảng modal
     $('.jq-main-modal').hide();
-
     // code code hiển thị ảnh trong modal crud
     fileInput.slideUp();
     fileInput.on('change', function () {
