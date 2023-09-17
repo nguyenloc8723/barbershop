@@ -9,7 +9,7 @@ $(document).ready(function () {
     const actionMethod = $('input[name="actionMethod"]');
 
     // mặc định ẩn bảng modal
-    // $('.jq-main-modal').hide();
+    // $('.jquery-main-modal').hide();
 
     fileInput.slideUp();
     fileInput.on('change', function () {
@@ -32,12 +32,12 @@ $(document).ready(function () {
 
     function showModal(action = true) {
         if (action) {
-            $('.jq-main-modal').show()
+            $('.jquery-main-modal').show()
         } else {
             formModal[0].reset();
             imgContainer.html('');
             actionMethod.val('');
-            $('.jq-main-modal').hide()
+            $('.jquery-main-modal').hide()
         }
     }
 
@@ -52,8 +52,10 @@ $(document).ready(function () {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
             console.log("đây sẽ là hàm update");
+            showModal(false);
         }else {
             console.log("đây sẽ là hàm add");
+            showModal(false);
         }
     })
 

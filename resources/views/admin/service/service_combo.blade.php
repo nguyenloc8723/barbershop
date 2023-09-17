@@ -73,9 +73,9 @@
                                                     </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item js-btn-update" href="#"><i
+                                        <button class="dropdown-item js-btn-update" href="#"><i
                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập
-                                            nhật</a>
+                                            nhật</button>
                                         <a class="dropdown-item btn-delete" href="#"><i
                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Xóa</a>
                                     </div>
@@ -93,7 +93,7 @@
 
 
 
-    <div class="modal fade show jq-main-modal" id="create-modal"  tabIndex="-1"  aria-hidden="true">
+    <div class="modal fade show jquery-main-modal" id="create-modal"  tabIndex="-1"  aria-hidden="true">
         @include('admin.service.create')
     </div>
 @endsection

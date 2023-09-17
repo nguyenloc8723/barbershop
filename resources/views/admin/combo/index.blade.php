@@ -1,4 +1,7 @@
 @extends('admin.layout.master')
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/service.css')}}">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -7,8 +10,8 @@
                     <div class="row justify-content-between">
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-                                <button type="button" class="btn btn-success waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target="#custom-modal"><i
+                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"
+                                        ><i
                                         class="mdi mdi-plus-circle me-1"></i> Thêm combo
                                 </button>
                             </div>
@@ -55,8 +58,8 @@
                                                     </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item btn-update" href="{{route('route.service-combo')}}" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Chi tiết</a>
-                                        <a class="dropdown-item btn-update" href="#" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập nhật</a>
+                                        <a class="dropdown-item" href="{{route('route.service-combo')}}" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Chi tiết</a>
+                                        <button class="dropdown-item js-btn-update" href="#" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập nhật</button>
                                         <a class="dropdown-item btn-delete" href="#" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Xóa</a>
                                     </div>
                                 </div>
@@ -73,7 +76,7 @@
 
 
 
-    <div class="modal fade" id="custom-modal" tabIndex="-1" role="dialog" aria-hidden="true">
+    <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.combo.add')
     </div>
 @endsection
@@ -97,4 +100,8 @@
 
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+
+    <script src="{{asset('js/jsAdmin/combo.js')}}"></script>
 @endsection
+
+

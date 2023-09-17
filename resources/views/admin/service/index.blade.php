@@ -62,9 +62,11 @@
                                                     </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <button class="dropdown-item js-btn-update" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập nhật</button>
+                                        <button class="dropdown-item js-btn-update" data-bs-toggle="modal" data-bs-target="#update-modal"><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập nhật</button>
                                         <a class="dropdown-item btn-delete" href="#" ><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Xóa</a>
                                     </div>
+                                </div>
+                            </td>
                         </tr>
 
                         </tbody>
@@ -77,7 +79,7 @@
 
 
 
-    <div class="modal fade show jq-main-modal" id="create-modal" tabIndex="-1"  aria-hidden="true">
+    <div class="modal fade show jquery-main-modal"  tabIndex="-1"  aria-hidden="true">
 {{--    <div id="" class="modal fade show jq-main-modal" tabindex="-1"--}}
 {{--         style="display: block;" aria-hidden="true">--}}
         @include('admin.service.create')
