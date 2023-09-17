@@ -2,13 +2,15 @@ $(document).ready(function () {
     // alert('Quá buồn luôn')
     const btnCancel = $('.jquery-btn-cancel');
     const btnShowModal = $('.query-btn-show-modal');
-
+    const btnUpdate = $('.js-btn-update');
     const fileInput = $('#service-image');
     const imgContainer = $('.selected-images');
+    const formModal = $('#formModal');
+    const actionMethod = $('input[name="actionMethod"]');
 
     // mặc định ẩn bảng modal
-    $('.jq-main-modal').hide();
-    // code code hiển thị ảnh trong modal crud
+    // $('.jq-main-modal').hide();
+
     fileInput.slideUp();
     fileInput.on('change', function () {
         const fileList = this.files;
@@ -28,11 +30,60 @@ $(document).ready(function () {
         }
     })
 
+    function showModal(action = true) {
+        if (action) {
+            $('.jq-main-modal').show()
+        } else {
+            formModal[0].reset();
+            imgContainer.html('');
+            actionMethod.val('');
+            $('.jq-main-modal').hide()
+        }
+    }
+
 
     btnCancel.on('click', function () {
-        $('.jq-main-modal').hide()
+        showModal(false);
     });
-    btnShowModal.on('click', function (){
-        $('.jq-main-modal').show()
-    });
+    btnShowModal.on('click', showModal);
+
+
+    formModal.on('submit', function (e){
+        e.preventDefault();
+        if (actionMethod.val() === 'update') {
+            console.log("đây sẽ là hàm update");
+        }else {
+            console.log("đây sẽ là hàm add");
+        }
+    })
+
+
+    // dùng tạm dữ liệu fake rồi mấy nữa call API
+    function update() {
+
+        const data = {
+            name: "cắt tóc",
+            price: "10000",
+            slug: 'cat-toc',
+            v1: "???",
+            combo: "1",
+            avatar: ["be/img/user-13.jpg", "be/img/user-14.jpg"],
+        };
+        showModal();
+        $('#service').val(data.name);
+        $('#price').val(data.price);
+        $('#slug').val(data.slug);
+        $('#combo').val(data.combo);
+
+        imgContainer.append(`
+            <div class="item-images">
+            <img src="/public/${data.avatar[0]}"  alt=""/>
+            </div>
+        `)
+    }
+
+    btnUpdate.on('click', function () {
+        actionMethod.val('update')
+        update();
+    })
 });

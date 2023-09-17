@@ -73,7 +73,7 @@
                                                     </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item btn-update" href="#"><i
+                                        <a class="dropdown-item js-btn-update" href="#"><i
                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập
                                             nhật</a>
                                         <a class="dropdown-item btn-delete" href="#"><i
@@ -93,7 +93,7 @@
 
 
 
-    <div class="modal fade show jq-main-modal" id="create-modal" style="display: block;" tabIndex="-1"  aria-hidden="true">
+    <div class="modal fade show jq-main-modal" id="create-modal"  tabIndex="-1"  aria-hidden="true">
         @include('admin.service.create')
     </div>
 @endsection

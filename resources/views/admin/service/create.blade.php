@@ -7,7 +7,7 @@
                         aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <form class="d-flex justify-content-between flex-wrap">
+                <form class="d-flex justify-content-between flex-wrap" id="formModal">
                     <div class="col-xl-6">
                         <div class="mb-3">
                             <label for="name" class="form-label">Tên dịch vụ</label>
@@ -32,10 +32,10 @@
                         @if($segment == 'service')
                             <div class="mb-3">
                                 <label for="name" class="form-label">Combo</label>
-                                <select name="" class="form-control">
+                                <select name="" class="form-control" id="combo">
                                     <option>Chọn combo của bạn</option>
-                                    <option>Tuấn Anh đẹp zai số 2 =)))</option>
-                                    <option>Nhưng khum có ny :(((</option>
+                                    <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
+                                    <option value="2">Nhưng khum có ny :(((</option>
                                 </select>
                             </div>
                         @endif
