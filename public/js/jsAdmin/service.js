@@ -48,21 +48,20 @@ $(document).ready(function () {
     btnShowModal.on('click', showModal);
 
 
-    formModal.on('submit', function (e){
+    formModal.on('submit', function (e) {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
-            console.log("đây sẽ là hàm update");
+            update();
             showModal(false);
-        }else {
+        } else {
             console.log("đây sẽ là hàm add");
             showModal(false);
         }
     })
 
-
-    // dùng tạm dữ liệu fake rồi mấy nữa call API
-    function update() {
-
+    function getDetail(id) {
+        // call ajax get value detail
+        // dùng tạm dữ liệu fake rồi mấy nữa call API
         const data = {
             name: "cắt tóc",
             price: "10000",
@@ -71,7 +70,6 @@ $(document).ready(function () {
             combo: "1",
             avatar: ["be/img/user-13.jpg", "be/img/user-14.jpg"],
         };
-        showModal();
         $('#service').val(data.name);
         $('#price').val(data.price);
         $('#slug').val(data.slug);
@@ -82,10 +80,17 @@ $(document).ready(function () {
             <img src="/public/${data.avatar[0]}"  alt=""/>
             </div>
         `)
+        showModal()
+    }
+
+
+    function update() {
+        // call ajax
+        console.log("đây sẽ là hàm update");
     }
 
     btnUpdate.on('click', function () {
         actionMethod.val('update')
-        update();
+        getDetail();
     })
 });
