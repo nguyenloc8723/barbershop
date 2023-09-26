@@ -26,19 +26,16 @@
                             <input type="text" class="form-control" id="??"/>
                         </div>
 
-                        @php
-                            $segment = request()->segment(2);
-                        @endphp
-                        @if($segment == 'service')
+
                             <div class="mb-3">
-                                <label for="name" class="form-label">Combo</label>
+                                <label for="name" class="form-label">Danh mục</label>
                                 <select name="" class="form-control" id="combo">
-                                    <option>Chọn combo của bạn</option>
+                                    <option>Chọn danh mục</option>
                                     <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
                                     <option value="2">Nhưng khum có ny :(((</option>
                                 </select>
                             </div>
-                        @endif
+
 
                     </div>
 

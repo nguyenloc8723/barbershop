@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('special_requirement');
             $table->boolean('is_consultant');
             $table->boolean('is_accept_take_a_photo');
+            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('stylist_id')->references('id')->on('stylelists');

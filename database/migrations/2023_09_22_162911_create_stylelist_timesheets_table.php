@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('timesheet_id');
             $table->boolean('is_active');
             $table->boolean('is_block');
-            $table->timestamps();
 
             $table->foreign('stylist_id')->references('id')->on('stylelists');
             $table->foreign('timesheet_id')->references('id')->on('timesheet');

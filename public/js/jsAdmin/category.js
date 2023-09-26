@@ -38,7 +38,7 @@ $(document).ready(function (){
 
     function showDetail() {
         actionMethod.val('update');
-        $('input[name="combo"]').val('Tuấn Anh');
+        $('input[name="categoryService"]').val('Tuấn Anh');
         showModal();
     }
 

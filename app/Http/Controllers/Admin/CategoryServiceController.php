@@ -4,21 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
-use App\Models\service;
+use App\Models\service_categories;
 use Illuminate\Http\Request;
 
-class ServiceController extends AdminBaseController
+class CategoryServiceController extends AdminBaseController
 {
-    public $model = service::class;
-    public $pathViews = 'admin.service';
+    public $model = service_categories::class;
+    public $pathViews = 'admin.categoryService';
     public $columns = [
         'id' => 'id',
-        'name' => 'Tên dịch vụ',
-        'price' => 'Giá dịch vụ',
-        'description' => 'Mô tả',
+        'name' => 'Tên danh mục',
         'is_active' => 'Trạng thái hoạt động',
     ];
-
-
 
 }

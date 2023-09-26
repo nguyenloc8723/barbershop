@@ -73,7 +73,7 @@ $(document).ready(function () {
         $('#service').val(data.name);
         $('#price').val(data.price);
         $('#slug').val(data.slug);
-        $('#combo').val(data.combo);
+        $('#categoryService').val(data.combo);
 
         imgContainer.append(`
             <div class="item-images">

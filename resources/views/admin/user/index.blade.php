@@ -7,15 +7,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row ">
-                        <div class="">
+                    <div class="row justify-content-between">
+                        <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-                                <a href="{{route('route.table')}}" class="btn btn-warning"> Quay lại</a>
-                                <button type="button" class="btn btn-success waves-effect waves-light query-btn-show-modal"
-                                        ><i
-                                        class="mdi mdi-plus-circle me-1"></i> Thêm dịch vụ cho combo hiện tại
+                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"
+                                ><i
+                                        class="mdi mdi-plus-circle me-1"></i> Thêm người dùng
                                 </button>
-                                <a href="{{route('route.service')}}" class="btn btn-primary">Tất cả dịch vụ</a>
                             </div>
                         </div>
 
@@ -31,14 +29,12 @@
                 <div class="card-body">
 
 
-                    <table id="datatable"
-                           class="table table-bordered dt-responsive table-responsive nowrap text-center">
+                    <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Tên dịch vụ</th>
-                            <th>Giá dịch vụ</th>
-                            <th>Ảnh</th>
+                            <th>Tên người dùng</th>
+
                             <th>action</th>
                         </tr>
                         </thead>
@@ -46,12 +42,8 @@
 
                         <tr>
                             <td>1</td>
-                            <td>Quá buồn luôn</td>
-                            <td>200 củ khoai</td>
-                            <td class="">
-                                <img src="{{asset('be/img/user-13.jpg')}}"
-                                     class="rounded-circle img-thumbnail avatar-xl">
-                            </td>
+                            <td>Software Engineer</td>
+
                             <td class="text-center">
                                 {{--                                <a href="" class="btn btn-danger">Delete</a>--}}
                                 {{--                                <a href="" class="btn btn-primary ms-1">Update</a>--}}
@@ -73,9 +65,11 @@
                                                     </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
+
                                         <button class="dropdown-item js-btn-update" href="#"><i
                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Cập
-                                            nhật</button>
+                                            nhật
+                                        </button>
                                         <a class="dropdown-item btn-delete" href="#"><i
                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Xóa</a>
                                     </div>
@@ -93,8 +87,8 @@
 
 
 
-    <div class="modal fade show jquery-main-modal" id="create-modal"  tabIndex="-1"  aria-hidden="true">
-        @include('admin.service.create')
+    <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+        @include('admin.user.add')
     </div>
 @endsection
 
@@ -118,5 +112,7 @@
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
-    <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/user.js')}}"></script>
 @endsection
+
+

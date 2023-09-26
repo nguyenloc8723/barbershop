@@ -93,16 +93,16 @@
                 <li>
                     <a href="#email" data-bs-toggle="collapse">
                         <i class="mdi mdi-email-outline"></i>
-                        <span> Combo </span>
+                        <span> Danh mục dịch vụ</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="email">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('route.table')}}">Danh sách</a>
+                                <a href="{{route('route.category')}}">Danh sách</a>
                             </li>
                             <li>
-                                <a href="{{route('route.table')}}">Thêm combo</a>
+                                <a href="{{route('route.category')}}">Thêm danh mục</a>
                             </li>
                         </ul>
                     </div>
@@ -127,9 +127,9 @@
                 </li>
 
                 <li>
-                    <a href="apps-projects.html">
+                    <a href="{{route('route.user')}}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
-                        <span> Projects </span>
+                        <span> Người dùng </span>
                     </a>
                 </li>
 

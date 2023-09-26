@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header bg-light">
-            <h4 class="modal-title" id="myCenterModalLabel">Thêm Combo</h4>
+            <h4 class="modal-title" id="myCenterModalLabel">Thêm người dùng</h4>
             <button type="button" class="btn-close jquery-close"
                     aria-hidden="true"></button>
         </div>
@@ -9,8 +9,8 @@
             <form class="" id="formModal">
                 <div class="">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên combo</label>
-                        <input type="text" class="form-control" name="combo"/>
+                        <label for="name" class="form-label">Tên người dùng</label>
+                        <input type="text" class="form-control" name="user"/>
                     </div>
 
                 </div>
