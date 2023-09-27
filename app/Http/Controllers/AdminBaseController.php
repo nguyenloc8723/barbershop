@@ -14,6 +14,7 @@ class AdminBaseController extends Controller
      */
     public $model;
     public $pathViews;
+    public $route;
     public $fieldImage;
     public $folderImage;
     public $columns = [];
@@ -40,7 +41,6 @@ class AdminBaseController extends Controller
         }else{
             $data = [];
         }
-//        dd($data);
         return view($this->pathViews. '.' . __FUNCTION__,compact('data'))
             ->with('columns', $this->columns);
     }
@@ -58,16 +58,19 @@ class AdminBaseController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $model = new $this->model;
-        $model->fill($request->except('_token'));
-
+        $data = $request->except('_token');
+//        dd($data);
+        $model->fill($data);
+//        dd($model);
         if ($request->hasFile($this->fieldImage)){
             $tmpPath = Storage::put($this->folderImage, $request->{$this->fieldImage});
             $model->{$this->fieldImage} = 'storage/' . $tmpPath;
         }
 
         $model->save();
-        return back()->with('success','Thao tác thành công');
+        return redirect()->route($this->route .'.'. 'index');
     }
 
     /**
@@ -83,9 +86,10 @@ class AdminBaseController extends Controller
      */
     public function edit(string $id)
     {
-        $model = $this->model->findOrFail($id);
-        return view($this->pathViews. '.' . __FUNCTION__,compact('model'));
+        $data = $this->model->findOrFail($id);
+        return view($this->pathViews. '.' . __FUNCTION__, compact('data'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -107,7 +111,7 @@ class AdminBaseController extends Controller
             Storage::delete($oldImage);
 
         }
-        return back()->with('success','Thao tác thành công');
+        return redirect()->route($this->route .'.'. 'index');
     }
 
     /**
@@ -120,7 +124,6 @@ class AdminBaseController extends Controller
         if (Storage::exists($model->{$this->fieldImage})){
             $oldImage = str_replace('storage/', '', $model->{$this->fieldImage});
             Storage::delete($oldImage);
-
         }
     }
 }

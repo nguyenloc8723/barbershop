@@ -14,7 +14,7 @@
         @foreach($columns as $key => $column)
             <td>
                 @if(in_array($key, ['image']))
-                    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fvienthammydiva.vn%2Fwp-content%2Fuploads%2F2022%2F09%2Fgai-xinh-cuoi-17.jpg&tbnid=Kp8UUSz8cnphSM&vet=12ahUKEwiS6-3ku8eBAxUZNd4KHR2NB10QMygkegQIARB6..i&imgrefurl=https%3A%2F%2Fvienthammydiva.vn%2Fgai-xinh-cuoi%2F&docid=bv_mW8ejeZQ3kM&w=800&h=533&q=%E1%BA%A3nh%20g%C3%A1i%20xinh&ved=2ahUKEwiS6-3ku8eBAxUZNd4KHR2NB10QMygkegQIARB6" alt="">
+                    <img src="" alt="">
                 @else
                     {{$item->$key}}
                 @endif
@@ -41,13 +41,13 @@
                                                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <button class="dropdown-item js-btn-update"
-                            data-bs-toggle="modal" data-bs-target="#update-modal">
-                        <i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>
+{{--                    <button class="dropdown-item js-btn-update" data-id="{{$item->id}}">--}}
+{{--                        Cập nhật--}}
+{{--                    </button>--}}
+                    <a href="" class="dropdown-item js-btn-update">
                         Cập nhật
-                    </button>
+                    </a>
                     <a class="dropdown-item btn-delete" href="#">
-                        <i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>
                         Xóa
                     </a>
                 </div>
@@ -55,7 +55,5 @@
         </td>
     </tr>
 @endforeach
-
-
     </tbody>
 </table>

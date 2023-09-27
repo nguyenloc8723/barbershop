@@ -41,7 +41,19 @@ Route::get('/', function () {
 
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
-    Route::get('category', [CategoryServiceController::class, 'index'])->name('route.category');
+
+
+    Route::resource('category', CategoryServiceController::class);
+
+
+
+//    Route::get('category', [CategoryServiceController::class, 'index'])->name('route.category');
+//    Route::post('categoryPort', [CategoryServiceController::class, 'store'])->name('route.categoryPort');
+//    Route::get('get-data/{id}', [CategoryServiceController::class, 'edit'])->name('route.categoryUpdate');
+//    Route::put('save-data/{id}', [CategoryServiceController::class, 'update']);
+
+
+
     Route::resource('member', MemberController::class);
     Route::get('service', [ServiceController::class, 'index'])->name('route.service');
 
