@@ -99,23 +99,7 @@
                     </a>
                 </li>
 
-                {{--                <li>--}}
-                {{--                    <a href="#email" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-email-outline"></i>--}}
-                {{--                        <span> Danh mục dịch vụ</span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="email">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="{{route('route.category')}}">Danh sách</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="{{route('route.category')}}">Thêm danh mục</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
+
 
                 <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
@@ -128,9 +112,7 @@
                             <li>
                                 <a href="{{route('member.index')}}">Danh sách nhân viên</a>
                             </li>
-                            {{--                            <li>--}}
-                            {{--                                <a href="task-details.html">Nhân viên gội đầu</a>--}}
-                            {{--                            </li>--}}
+
                         </ul>
                     </div>
                 </li>
@@ -145,17 +127,30 @@
                 <li>
                     <a href="#contacts" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>
-                        <span> Contacts </span>
+                        <span> Thùng rác </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="contacts">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="contacts-list.html">Members List</a>
+                                <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
                                 <a href="contacts-profile.html">Profile</a>
                             </li>
+                            <li>
+                                <a href="contacts-profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a href="contacts-profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a href="contacts-profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a href="contacts-profile.html">Profile</a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>

@@ -18,8 +18,10 @@
 
     <!-- icons -->
     <link href="{{asset('be/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
-{{--    @viteReactRefresh--}}
-{{--    @vite('resources/js/fe/app_react.jsx')--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 
@@ -90,7 +92,7 @@
 <script src="{{asset('be/assets/libs/jquery.counterup/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/feather-icons/feather.min.js')}}"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('script')
 
 <script src="{{asset('be/assets/js/app.min.js')}}"></script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,22 +47,16 @@ Route::group(["prefix" => "admin"], function () {
     Route::resource('category', CategoryServiceController::class);
 
 
-
-//    Route::get('category', [CategoryServiceController::class, 'index'])->name('route.category');
-//    Route::post('categoryPort', [CategoryServiceController::class, 'store'])->name('route.categoryPort');
-//    Route::get('get-data/{id}', [CategoryServiceController::class, 'edit'])->name('route.categoryUpdate');
-//    Route::put('save-data/{id}', [CategoryServiceController::class, 'update']);
-
-
-
     Route::resource('member', MemberController::class);
     Route::get('service', [ServiceController::class, 'index'])->name('route.service');
-
-
     Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
-
     Route::get('user', [UserController::class, 'index'])->name('route.user');
+
+
+    Route::prefix('trash')->group(function (){
+       Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+    });
 });
 
 

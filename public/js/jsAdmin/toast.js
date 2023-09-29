@@ -1,9 +1,9 @@
 toastr.options = {
-    "closeButton": false,
+    "closeButton": true,
     "debug": false,
-    "newestOnTop": false,
+    "newestOnTop": true,
     "progressBar": true,
-    "positionClass": "toast-top-right",
+    "positionClass": "toast-top-center",
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",

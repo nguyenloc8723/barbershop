@@ -18,13 +18,16 @@ $(document).ready(function () {
         } else {
             formModal[0].reset();
             actionMethod.val('');
+            $('.is_active').empty();
             $('.jquery-main-modal').hide();
         }
     }
 
     btnShow.on('click', showModal);
     btnCancel.on('click', function () {
-        showModal(false)
+
+        showModal(false);
+
     });
 
     // hành động khi click save

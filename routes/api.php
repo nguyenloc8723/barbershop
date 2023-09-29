@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\API\ApiMemberController;
+use App\Http\Controllers\Admin\API\ApiCategoryController;
+
+use App\Http\Controllers\Admin\API\ApiTrashController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(["prefix" => "admin"],function (){
-//    Route::get('/dashboard', DashboardController::class)->name('route.dashboard');
-//    Route::get('/table', CategoryServiceController::class)->name('route.table');
-//    Route::resource('/member', ApiMemberController::class);
+
+
+Route::resource('category', ApiCategoryController::class);
+Route::prefix('trash')->group(function (){
+    Route::get('category', [ApiTrashController::class, 'category']);
+    Route::post('category/{id}', [ApiTrashController::class, 'restore']);
+    Route::Delete('category/{id}', [ApiTrashController::class, 'destroy']);
 });
+
