@@ -3,24 +3,28 @@
 namespace App\Http\Controllers\Admin\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service_categories;
 use Illuminate\Http\Request;
 
-class ApiMemberController extends Controller
+class ApiTrashController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function category()
     {
-        //
+        $data = Service_categories::onlyTrashed()->get();
+        return response()->json($data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function restore(Request $request, $id)
     {
-        //
+        Service_categories::withTrashed()->where('id',$id)
+            ->restore();
+        return response()->json(['success','khôi phục thành công']);
     }
 
     /**
@@ -44,6 +48,8 @@ class ApiMemberController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Service_categories::withTrashed()->where('id',$id)
+            ->forceDelete();
+        return response()->json(['success','khôi phục thành công']);
     }
 }

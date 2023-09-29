@@ -4,6 +4,7 @@
 
     <meta charset="utf-8"/>
     <title>Dashboard | Adminto - Responsive Admin Dashboard Template</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -11,21 +12,24 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('be/assets/images/favicon.ico')}}">
 
+    @yield('link_css')
     <!-- App css -->
-
     <link href="{{asset('be/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style"/>
 
     <!-- icons -->
     <link href="{{asset('be/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
-{{--    @viteReactRefresh--}}
-{{--    @vite('resources/js/fe/app_react.jsx')--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
+
 
 <!-- body start -->
 <body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid"
       data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default'
       data-sidebar-user='true'>
-
+@yield('style')
 <!-- Begin page -->
 <div id="wrapper">
 
@@ -49,9 +53,9 @@
             <!-- Start Content-->
             <div class="container-fluid">
 
-                <div id="app">
+{{--                <div id="app">--}}
 
-                </div>
+{{--                </div>--}}
                 @yield('content')
                 <!-- end row -->
 
@@ -88,7 +92,7 @@
 <script src="{{asset('be/assets/libs/jquery.counterup/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/feather-icons/feather.min.js')}}"></script>
 
-@include('admin.layout.partials.script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('script')
 
 <script src="{{asset('be/assets/js/app.min.js')}}"></script>
