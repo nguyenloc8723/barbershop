@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('category', ApiCategoryController::class);
+
 Route::prefix('trash')->group(function (){
     Route::get('category', [ApiTrashController::class, 'category']);
     Route::post('category/{id}', [ApiTrashController::class, 'restore']);

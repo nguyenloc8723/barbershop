@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking_service extends Model
+class StylistTimeSheet extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'booking_id',
-        'service_id',
+        'stylist_id',
+        'timesheet_id',
+        'is_active',
+        'is_block',
     ];
 }

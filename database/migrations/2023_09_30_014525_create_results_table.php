@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('timesheet', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->integer('hour');
-            $table->integer('minutes');
-            $table->boolean('is_active');
+            $table->integer('booking_id');
+            $table->integer('image');
+
+//            $table->foreign('booking_id')->references('id')->on('bookings');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('timesheets');
+        Schema::dropIfExists('results');
     }
 };

@@ -7,8 +7,17 @@
                         aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <form class="d-flex justify-content-between flex-wrap" id="formModal">
+                <form class="d-flex justify-content-between flex-wrap"
+                      id="formModal" action="" enctype="multipart/form-data">
                     <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Danh mục</label>
+                            <select name="" class="form-control" id="combo">
+                                <option>Chọn danh mục</option>
+                                <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
+                                <option value="2">Nhưng khum có ny :(((</option>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Tên dịch vụ</label>
                             <input type="text" class="form-control" id="service" />
@@ -18,23 +27,23 @@
                             <input type="text" class="form-control" id="price"/>
                         </div>
                         <div class="mb-3">
+                            <label for="name" class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="description"/>
+                        </div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">slug</label>
                             <input type="text" class="form-control" id="slug"/>
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">???</label>
-                            <input type="text" class="form-control" id="??"/>
+                            <label for="name" class="form-label">Trạng thái</label>
+                            <select name="is_active" class="form-control">
+                                <option selected value="1">Hoạt Động</option>
+                                <option value="0">Không Hoạt Động</option>
+                            </select>
                         </div>
 
 
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Danh mục</label>
-                                <select name="" class="form-control" id="combo">
-                                    <option>Chọn danh mục</option>
-                                    <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
-                                    <option value="2">Nhưng khum có ny :(((</option>
-                                </select>
-                            </div>
+
 
                     </div>
 

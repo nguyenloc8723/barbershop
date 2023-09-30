@@ -23,9 +23,9 @@ return new class extends Migration
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('stylist_id')->references('id')->on('stylelists');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('timesheet_id')->references('id')->on('timesheet');
+//            $table->foreign('stylist_id')->references('id')->on('stylists');
+//            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('timesheet_id')->references('id')->on('timesheet');
         });
     }
 
