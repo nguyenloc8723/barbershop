@@ -17,6 +17,7 @@
         <div class="container">
             <div class="row">
                 <!-- Content -->
+                @foreach($data as $item)
                 <div class="col-md-7 mb-30">
                     <div class="section-head mb-15">
                         <div class="section-subtitle">Services</div>
@@ -116,6 +117,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <!-- Sidebar -->
                 <div class="col-md-4 offset-md-1 sidebar-side">
                     <aside class="sidebar blog-sidebar mb-60">
