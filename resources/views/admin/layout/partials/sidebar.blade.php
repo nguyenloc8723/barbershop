@@ -98,6 +98,12 @@
                         <span>Danh mục dịch vụ</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('timesheet.index')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span>Thời gian biểu</span>
+                    </a>
+                </li>
 
 
 
@@ -112,7 +118,9 @@
                             <li>
                                 <a href="{{route('member.index')}}">Danh sách nhân viên</a>
                             </li>
-
+                            <li>
+                                <a href="{{route('member.index')}}">Lịch làm việc</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
