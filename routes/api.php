@@ -23,9 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([],function (){
+    Route::get('get/service',[ApiServiceController::class, 'index']);
     Route::post('post/service',[ApiServiceController::class, 'store']);
-//    Route::get('post/service',[ApiServiceController::class, 'store']);
-
+    Route::get('edit/service/{id}',[ApiServiceController::class, 'show']);
 });
 
 Route::resource('category', ApiCategoryController::class);

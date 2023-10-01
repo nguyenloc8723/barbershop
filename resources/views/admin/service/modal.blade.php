@@ -13,9 +13,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Danh mục</label>
                             <select class="form-control" name="category_id" id="category_id">
-                                <option>Chọn danh mục</option>
-                                <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
-                                <option value="2">Nhưng khum có ny :(((</option>
+
                             </select>
                         </div>
                         <div class="mb-3">
@@ -24,7 +22,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Giá dịch vụ</label>
-                            <input type="text" class="form-control" name="price" id="price"/>
+                            <input type="text" class="form-control" name="price" id="service" />
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Mô tả</label>
@@ -33,9 +31,9 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Trạng thái</label>
-                            <select name="is_active" class="form-control">
-                                <option selected value="1">Hoạt Động</option>
-                                <option value="0">Không Hoạt Động</option>
+                            <select name="is_active" class="form-control" id="is_active">
+{{--                                <option selected value="1">Hoạt Động</option>--}}
+{{--                                <option value="0">Không Hoạt Động</option>--}}
                             </select>
                         </div>
 

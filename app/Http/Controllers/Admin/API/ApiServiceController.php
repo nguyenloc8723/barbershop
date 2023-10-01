@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\API;
 use App\Http\Controllers\Controller;
 use App\Models\ImageService;
 use App\Models\Service;
+use App\Models\Service_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -44,7 +45,8 @@ class ApiServiceController extends Controller
      */
     public function index()
     {
-        //
+        $data = Service::query()->with('images')->get();
+        return response()->json($data);
     }
 
     /**
@@ -83,7 +85,9 @@ class ApiServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dataService = Service::query()->with('images')->where('id',$id)->first();
+        $dataCate = Service_categories::all();
+        return response()->json(['dataService' => $dataService, 'dataCate'=>$dataCate]);
     }
 
     /**
@@ -91,7 +95,7 @@ class ApiServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
