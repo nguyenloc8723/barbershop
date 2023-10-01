@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\TimesheetController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +47,11 @@ Route::group(["prefix" => "admin"], function () {
 
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('timesheets', TimesheetController::class);
+    // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
+    Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
+    Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+
 
 
     Route::resource('member', MemberController::class);
@@ -52,7 +59,7 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
-
+    
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
