@@ -83,6 +83,9 @@
     </div>
 
 @endsection
+<script>
+
+</script>
 
 @section('script')
     <!-- third party js -->

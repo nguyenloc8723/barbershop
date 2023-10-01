@@ -1,34 +1,17 @@
 $(document).ready(function () {
-    // alert('Quá buồn luôn')
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
     const btnCancel = $('.jquery-btn-cancel');
     const btnShowModal = $('.query-btn-show-modal');
     const btnUpdate = $('.js-btn-update');
     const fileInput = $('#service-image');
     const imgContainer = $('.selected-images');
-    const formModal = $('#formModal');
+    let formModal = $('#formModalService');
     const actionMethod = $('input[name="actionMethod"]');
 
     // mặc định ẩn bảng modal
     // $('.jquery-main-modal').hide();
 
-    fileInput.slideUp();
-    fileInput.on('change', function () {
-        const fileList = this.files;
-        imgContainer.html('');
-        for (let i = 0; i < fileList.length; i++) {
-            let file = fileList[i];
-            let render = new FileReader();
-            render.readAsDataURL(file);
-            render.onload = function (e) {
-                let imgUrl = e.target.result;
-                imgContainer.append(`
-                    <div class="item-images">
-                    <img src="${imgUrl}"  alt=""/>
-                    </div>
-                `);
-            }
-        }
-    })
+
 
     function showModal(action = true) {
         if (action) {
@@ -54,10 +37,32 @@ $(document).ready(function () {
             update();
             showModal(false);
         } else {
-            console.log("đây sẽ là hàm add");
+            add();
             showModal(false);
         }
     })
+
+    function add() {
+
+        let formData = new FormData(formModal[0]);
+
+        $.ajax({
+            url: '/api/post/service',
+            method: 'POST',
+            data: formData,
+            processData: false, // Set false để ngăn jQuery xử lý dữ liệu FormData
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+            },
+            success: function (data){
+                console.log(data);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
 
     function getDetail(id) {
         // call ajax get value detail
@@ -92,5 +97,28 @@ $(document).ready(function () {
     btnUpdate.on('click', function () {
         actionMethod.val('update')
         getDetail();
+    })
+
+
+
+
+
+    fileInput.slideUp();
+    fileInput.on('change', function () {
+        const fileList = this.files;
+        imgContainer.html('');
+        for (let i = 0; i < fileList.length; i++) {
+            let file = fileList[i];
+            let render = new FileReader();
+            render.readAsDataURL(file);
+            render.onload = function (e) {
+                let imgUrl = e.target.result;
+                imgContainer.append(`
+                    <div class="item-images">
+                    <img src="${imgUrl}"  alt=""/>
+                    </div>
+                `);
+            }
+        }
     })
 });

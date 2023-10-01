@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
+use App\Http\Controllers\Admin\API\ApiServiceController;
 use App\Http\Controllers\Admin\API\ApiTrashController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group([],function (){
+    Route::post('post/service',[ApiServiceController::class, 'store']);
+//    Route::get('post/service',[ApiServiceController::class, 'store']);
+
+});
 
 Route::resource('category', ApiCategoryController::class);
 
