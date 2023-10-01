@@ -33,7 +33,11 @@
                         <li><a href="{{ route('portfolio') }}" class="dropdown-item"><span>Portfolio</span></a></li>
                         <li><a href="{{ route('team') }}" class="dropdown-item"><span>Team</span></a></li>
                         <li><a href="{{ route('faq') }}" class="dropdown-item"><span>Faq</span></a></li>
+<<<<<<< HEAD
                         <li><a href="" class="dropdown-item"><span>Services Page</span></a></li>
+=======
+                        <li><a href="{{ route('services-page') }}" class="dropdown-item"><span>Services Page</span></a></li>
+>>>>>>> 9318ecf7e7c0cdacb5425e7f410ba660b6d30b99
                         <li><a href="{{ route('team-details') }}" class="dropdown-item"><span>Team Details</span></a></li>
                         <li><a href="{{ route('post') }}" class="dropdown-item"><span>Post Single</span></a></li>
                         <li><a href="{{ route('404') }}" class="dropdown-item"><span>404</span></a></li>

@@ -16,6 +16,7 @@
     <section class="services-1 section-padding">
         <div class="container">
             <div class="row">
+<<<<<<< HEAD
                 @foreach($data as $item)
                 <div class="col-md-4">
                     <div class="item">
@@ -141,6 +142,89 @@
 {{--                        </a>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
+=======
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
+                            <h5>Moustache Trim</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-1"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>
+                            <h5>Face Shave</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-9"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>
+                            <h5>Beard Trim</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-3"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>
+                            <h5>Haircut</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-2"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>
+                            <h5>Clipper Cut</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-6"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>
+                            <h5>Facial & Massage</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-8"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-4"></span>
+                            <h5>Hair Washing</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-4"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-18"></span>
+                            <h5>Hair Dryer</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-18"></span> </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html"> <span class="icon icon-icon-1-10"></span>
+                            <h5>Coloring</h5>
+                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
+                            <div class="shape"> <span class="icon icon-icon-1-10"></span> </div>
+                        </a>
+                    </div>
+                </div>
+>>>>>>> 9318ecf7e7c0cdacb5425e7f410ba660b6d30b99
             </div>
         </div>
     </section>

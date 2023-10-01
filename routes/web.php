@@ -35,11 +35,13 @@ Route::group(["prefix" => "admin"],function (){
     Route::get('/chat', [ChatController::class, 'index'])->name('route.chat');
 });
 
+
 //Route::get('services', function () {
 //    return view('client.display.services');
 //})->name('services');
 Route::get('services', [ServiceController::class,'services'])->name('services');
 Route::get('services-page/{id}', [ServiceController::class,'servicesPage'])->name('services-page');
+
 // client route
 Route::get('/', function () {
     return view('client.display.index');
@@ -74,10 +76,13 @@ Route::get('pricing', function () {
 })->name('pricing');
 
 
-
-//Route::get('services-page', function () {
-//    return view('client.display.services-page');
-//})->name('services-page');
+Route::get('services', function () {
+    return view('client.display.services');
+})->name('services');
+Route::get('services-page', function () {
+    return view('client.display.services-page');
+})->name('services-page');
+>>>>>>> 9318ecf7e7c0cdacb5425e7f410ba660b6d30b99
 Route::get('team', function () {
     return view('client.display.team');
 })->name('team');
