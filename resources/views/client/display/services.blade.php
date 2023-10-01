@@ -16,87 +16,131 @@
     <section class="services-1 section-padding">
         <div class="container">
             <div class="row">
+                @foreach($data as $item)
                 <div class="col-md-4">
                     <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
-                            <h5>Moustache Trim</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-1"></span> </div>
+                        <a href="{{route('services-page', $item)}}">
+                            @if ($item->id == 1)
+                                <span class="icon icon-icon-1-1"></span>
+                            @elseif ($item->id == 2)
+                                <span class="icon icon-icon-1-2"></span>
+                            @elseif ($item->id == 3)
+                                <span class="icon icon-icon-1-3"></span>
+                            @elseif ($item->id == 4)
+                                <span class="icon icon-icon-1-4"></span>
+                            @elseif ($item->id == 5)
+                                <span class="icon icon-icon-1-6"></span>
+                            @elseif ($item->id == 6)
+                                <span class="icon icon-icon-1-8"></span>
+                            @elseif ($item->id == 7)
+                                <span class="icon icon-icon-1-9"></span>
+                            @elseif ($item->id == 8)
+                                <span class="icon icon-icon-1-18"></span>
+                            @elseif ($item->id == 9)
+                                <span class="icon icon-icon-1-10"></span>
+                            @else
+                                <span class="icon icon-icon-1-9"></span>
+                            @endif
+                          A
+                            <div class="shape">
+                                @if ($item->id == 1)
+                                    <span class="icon icon-icon-1-1"></span>
+                                @elseif ($item->id == 2)
+                                    <span class="icon icon-icon-1-2"></span>
+                                @elseif ($item->id == 3)
+                                    <span class="icon icon-icon-1-3"></span>
+                                @elseif ($item->id == 4)
+                                    <span class="icon icon-icon-1-4"></span>
+                                @elseif ($item->id == 5)
+                                    <span class="icon icon-icon-1-6"></span>
+                                @elseif ($item->id == 6)
+                                    <span class="icon icon-icon-1-8"></span>
+                                @elseif ($item->id == 7)
+                                    <span class="icon icon-icon-1-9"></span>
+                                @elseif ($item->id == 8)
+                                    <span class="icon icon-icon-1-18"></span>
+                                @elseif ($item->id == 9)
+                                    <span class="icon icon-icon-1-10"></span>
+                                @else
+                                    <span class="icon icon-icon-1-9"></span>
+                                @endif
+                            </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>
-                            <h5>Face Shave</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-9"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>
-                            <h5>Beard Trim</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-3"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>
-                            <h5>Haircut</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-2"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>
-                            <h5>Clipper Cut</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-6"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>
-                            <h5>Facial & Massage</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-8"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-4"></span>
-                            <h5>Hair Washing</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-4"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-18"></span>
-                            <h5>Hair Dryer</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-18"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-10"></span>
-                            <h5>Coloring</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-10"></span> </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>--}}
+{{--                            <h5>Face Shave</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-9"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>--}}
+{{--                            <h5>Beard Trim</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-3"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>--}}
+{{--                            <h5>Haircut</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-2"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>--}}
+{{--                            <h5>Clipper Cut</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-6"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>--}}
+{{--                            <h5>Facial & Massage</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-8"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-4"></span>--}}
+{{--                            <h5>Hair Washing</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-4"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-18"></span>--}}
+{{--                            <h5>Hair Dryer</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-18"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="services-page.html"> <span class="icon icon-icon-1-10"></span>--}}
+{{--                            <h5>Coloring</h5>--}}
+{{--                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>--}}
+{{--                            <div class="shape"> <span class="icon icon-icon-1-10"></span> </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>

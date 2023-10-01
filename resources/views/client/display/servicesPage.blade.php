@@ -17,21 +17,21 @@
         <div class="container">
             <div class="row">
                 <!-- Content -->
-                @foreach($data as $item)
+
                 <div class="col-md-7 mb-30">
                     <div class="section-head mb-15">
-                        <div class="section-subtitle">Services</div>
-                        <div class="section-title">Haircut</div>
+                        <div class="section-subtitle">{{$model->category_id}}</div>
+                        <div class="section-title">{{$model->name}}</div>
                     </div>
-                    <p>Haircut drana lorem ipsum amet navida haretra nuam enim mi in the obortis esetena silver enes accumsan miss alisuame amet auctor orci donec vitae vehicula risus duise nun sapien accumsan in the mauris speain rutrum asiquam on the miss.</p>
-                    <p class="mb-45">Barber enim mi obortis eset uctus enec accumsan eu usto alisuame amet auctor orci golden vitae ehica risus duise nun sapien accumsan id mauris rutrum nie spaien.</p>
+                    <p>{{$model->description}}</p>
+                    <p class="mb-45">{{$model->description}}</p>
                     <!-- Pricing -->
                     <div class="menu-list mb-10">
                         <div class="item">
                             <div class="flex">
-                                <div class="title">Haircut</div>
+                                <div class="title">{{$model->name}}</div>
                                 <div class="dots"></div>
-                                <div class="price">$20</div>
+                                <div class="price">{{$model->price}}$</div>
                             </div>
                         </div>
                     </div>
@@ -76,48 +76,60 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/1.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/1.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/1.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/2.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/2.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/2.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/3.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/3.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/3.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/4.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/4.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/4.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/5.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/5.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/5.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/6.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"> <img src="client/img/slider/6.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                                    <div class="gallery-img"><img src="client/img/slider/6.jpg"
+                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                @endforeach
+
                 <!-- Sidebar -->
                 <div class="col-md-4 offset-md-1 sidebar-side">
                     <aside class="sidebar blog-sidebar mb-60">
@@ -161,64 +173,73 @@
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
                                 <h5>Moustache Trim</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-1"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-1"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>
                                 <h5>Face Shave</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-9"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-9"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>
                                 <h5>Beard Trim</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-3"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-3"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>
                                 <h5>Haircut</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-2"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-2"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>
                                 <h5>Clipper Cut</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-6"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-6"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>
                                 <h5>Facial & Massage</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-8"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-8"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-4"></span>
                                 <h5>Hair Washing</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-4"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-4"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-18"></span>
                                 <h5>Hair Dryer</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-18"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-18"></span></div>
                             </a>
                         </div>
                         <div class="item mb-0">
                             <a href="services-page.html"> <span class="icon icon-icon-1-10"></span>
                                 <h5>Coloring</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                                <div class="shape"> <span class="icon icon-icon-1-10"></span> </div>
+                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
+                                    aliquam sit sapien.</p>
+                                <div class="shape"><span class="icon icon-icon-1-10"></span></div>
                             </a>
                         </div>
                     </div>
