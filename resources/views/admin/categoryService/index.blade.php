@@ -10,11 +10,15 @@
                     <div class="row justify-content-between">
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-
-                                <button type="button"
-                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i
-                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ
+                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"
+                                ><i
+                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục
                                 </button>
+
+{{--                                <a href="{{route('category.create')}}" class="btn btn-success waves-effect waves-light"--}}
+{{--                                ><i--}}
+{{--                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục--}}
+{{--                                </a>--}}
                             </div>
                         </div>
 
@@ -28,22 +32,23 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                                        <table id="datatable" class="table table-bordered dt-responsive table-responsive
-                                                   nowrap text-center align-content-sm-center">
-                                            <thead>
-                                            <tr class="">
-                                                @foreach($columns as $key => $column)
-                                                    <th>{{$column}}</th>
-                                                @endforeach
-                                                <th>action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="jquery-value">
+{{--                    @include('admin.base.table')--}}
 
+                    <table id="datatable"
+                           class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+                        <thead>
+                        <tr class="">
+                            @foreach($columns as $key => $column)
+                                <th>{{$column}}</th>
+                            @endforeach
+                            <th>action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="jquery-list">
 
+                        </tbody>
+                    </table>
 
-                                            </tbody>
-                                        </table>
                 </div>
             </div>
 
@@ -51,13 +56,11 @@
     </div>
 
 
-
-    <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
-        @include('admin.service.modal')
+    <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+        @include('admin.categoryService.modal')
     </div>
 
 @endsection
-
 
 @section('script')
     <!-- third party js -->
@@ -77,8 +80,10 @@
     <!-- third party js ends -->
 
     <!-- Datatables init -->
-    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
-
-
-    <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+{{--    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>--}}
+{{--    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>--}}
+    <script src="{{asset('js/jsAdmin/category.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
 @endsection
+
+

@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_categories', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_active')->default(true);
+            $table->integer('booking_id');
+            $table->integer('image');
+
+//            $table->foreign('booking_id')->references('id')->on('bookings');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_categories');
+        Schema::dropIfExists('results');
     }
 };

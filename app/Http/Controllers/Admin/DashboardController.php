@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DashboardController extends AdminBaseController
 {
-    public function __invoke(){
+//    public $model = null;
+    public $pathViews = 'admin.dashboard';
 
-        return view('admin.dashboard');
-    }
 }

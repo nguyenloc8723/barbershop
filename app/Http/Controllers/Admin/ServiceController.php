@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
+use App\Models\service;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class ServiceController extends AdminBaseController
 {
-    public function index(){
-        return view('admin.service.index');
-    }
+    public $model = service::class;
+    public $pathViews = 'admin.service';
+    public $columns = [
+        'id' => 'id',
+        'name' => 'Tên dịch vụ',
+        'price' => 'Giá dịch vụ',
+        'description' => 'Mô tả',
+        'is_active' => 'Trạng thái hoạt động',
+    ];
 
-    public function serviceCombo(){
-        return view('admin.service.service_combo');
-    }
+
+
 }

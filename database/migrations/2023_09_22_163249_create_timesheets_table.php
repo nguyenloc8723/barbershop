@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stylelist_timesheets', function (Blueprint $table) {
-            $table->unsignedBigInteger('stylist_id');
-            $table->unsignedBigInteger('timesheet_id');
+        Schema::create('timesheet', function (Blueprint $table) {
+            $table->id();
+            $table->integer('hour');
+            $table->integer('minutes');
             $table->boolean('is_active');
-            $table->boolean('is_block');
             $table->timestamps();
-
-            $table->foreign('stylist_id')->references('id')->on('stylelists');
-            $table->foreign('timesheet_id')->references('id')->on('timesheet');
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stylelist_timesheets');
+        Schema::dropIfExists('timesheet');
     }
 };

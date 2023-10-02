@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_categories', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('booking_id');
+            $table->integer('rating');
+            $table->string('comment');
             $table->timestamps();
-            $table->softDeletes();
+
+//            $table->foreign('booking_id')->references('id')->on('bookings');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_categories');
+        Schema::dropIfExists('reviews');
     }
 };

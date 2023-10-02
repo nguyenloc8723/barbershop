@@ -3,8 +3,8 @@
 @endphp
 @if($segment == 'service')
     <h4 class="page-title-main">Tất cả dịch vụ</h4>
-@elseif($segment == 'service-combo')
-    <h4 class="page-title-main">Dịch vụ theo combo</h4>
+@elseif($segment == 'service-categoryService')
+    <h4 class="page-title-main">Dịch vụ theo danh mục</h4>
 @elseif($segment == 'dashboard')
     <h4 class="page-title-main">Dashboard</h4>
 @elseif($segment == 'calendar')
@@ -12,7 +12,7 @@
 @elseif($segment == 'chat')
     <h4 class="page-title-main">Chat</h4>
 @elseif($segment == 'table')
-    <h4 class="page-title-main">Danh sách combo</h4>
+    <h4 class="page-title-main">Danh sách danh mục</h4>
 @elseif($segment == 'member')
     <h4 class="page-title-main">Danh sách nhân viên</h4>
 @endif
