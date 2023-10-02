@@ -25,7 +25,7 @@ class TrashController extends Controller
             'is_active' => 'Action',
             'is_block' => 'Block',
         ];
-        return view('admin.trash.category')
+        return view('admin.trash.stylistTimeSheets')
             ->with('columns', $columns);
     }
 }

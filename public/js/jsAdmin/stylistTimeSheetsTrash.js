@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const baseUrl = '/api/trash/category';
+    const baseUrl = '/api/trash/styistTimeSheets';
 
 
     function loadTable() {
@@ -14,8 +14,10 @@ $(document).ready(function () {
                         `
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.name}</td>
+                          <td>${item.stylist_id}</td>
+                          <td>${item.timesheet_id}</td>
                           <td>${item.is_active}</td>
+                          <td>${item.is_block}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -67,7 +69,7 @@ $(document).ready(function () {
             success: function (data){
                 loadTable();
                 toastr['success']
-                ('Dữ liệu đã được khôi phục thành công');
+                ('Back up successfully!');
             },
             error: function (error) {
                 console.error()
@@ -85,7 +87,7 @@ $(document).ready(function () {
             success: function (data){
                 loadTable();
                 toastr['success']
-                ('Xóa thành công');
+                ('Delete successfully!');
             },
             error: function (error) {
                 console.error()
