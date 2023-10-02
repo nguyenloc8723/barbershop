@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- Header Banner -->
-    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/2.jpg')}}">
+    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5"
+         data-background="{{asset('client/img/slider/2.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
@@ -20,7 +21,7 @@
 
                 <div class="col-md-7 mb-30">
                     <div class="section-head mb-15">
-                        <div class="section-subtitle">{{$model->category_id}}</div>
+                        <div class="section-subtitle">{{$model->category->name}}</div>
                         <div class="section-title">{{$model->name}}</div>
                     </div>
                     <p>{{$model->description}}</p>
@@ -35,98 +36,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="menu-list mb-10">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Wash and Cut</div>
-                                <div class="dots"></div>
-                                <div class="price">$30</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-10">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Long Hair</div>
-                                <div class="dots"></div>
-                                <div class="price">$25</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-10">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Children Wash & Cut</div>
-                                <div class="dots"></div>
-                                <div class="price">$25</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-45">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Wash and Style</div>
-                                <div class="dots"></div>
-                                <div class="price">$10</div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- Image Gallery -->
                     <div class="row">
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/1.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/1.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
+                        @foreach($model->images as $item)
+                            <div class="col-md-4 gallery-item">
+                                <a href="client/img/slider/1.jpg" title="" class="img-zoom">
+                                    <div class="gallery-box">
+
+                                        <div class="gallery-img"><img src="{{asset($item->url)}}" class="img-fluid mx-auto d-block" alt="work-img">
+                                        </div>
+
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/2.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/2.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/3.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/3.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/4.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/4.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/5.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/5.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 gallery-item">
-                            <a href="client/img/slider/6.jpg" title="" class="img-zoom">
-                                <div class="gallery-box">
-                                    <div class="gallery-img"><img src="{{asset('client/img/slider/6.jpg')}}"
-                                                                  class="img-fluid mx-auto d-block" alt="work-img">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -170,78 +94,58 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
+                        @foreach($data as $item)
                         <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
-                                <h5>Moustache Trim</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-1"></span></div>
+                            <a href="{{route('services-page', $item)}}">
+                                @if ($item->id == 1)
+                                    <span class="icon icon-icon-1-1"></span>
+                                @elseif ($item->id == 2)
+                                    <span class="icon icon-icon-1-2"></span>
+                                @elseif ($item->id == 3)
+                                    <span class="icon icon-icon-1-3"></span>
+                                @elseif ($item->id == 4)
+                                    <span class="icon icon-icon-1-4"></span>
+                                @elseif ($item->id == 5)
+                                    <span class="icon icon-icon-1-6"></span>
+                                @elseif ($item->id == 6)
+                                    <span class="icon icon-icon-1-8"></span>
+                                @elseif ($item->id == 7)
+                                    <span class="icon icon-icon-1-9"></span>
+                                @elseif ($item->id == 8)
+                                    <span class="icon icon-icon-1-18"></span>
+                                @elseif ($item->id == 9)
+                                    <span class="icon icon-icon-1-10"></span>
+                                @else
+                                    <span class="icon icon-icon-1-9"></span>
+                                @endif
+                                <h5>{{$item->name}}</h5>
+                                <p>{{$item->description}}</p>
+                                <div class="shape">
+                                    @if ($item->id == 1)
+                                        <span class="icon icon-icon-1-1"></span>
+                                    @elseif ($item->id == 2)
+                                        <span class="icon icon-icon-1-2"></span>
+                                    @elseif ($item->id == 3)
+                                        <span class="icon icon-icon-1-3"></span>
+                                    @elseif ($item->id == 4)
+                                        <span class="icon icon-icon-1-4"></span>
+                                    @elseif ($item->id == 5)
+                                        <span class="icon icon-icon-1-6"></span>
+                                    @elseif ($item->id == 6)
+                                        <span class="icon icon-icon-1-8"></span>
+                                    @elseif ($item->id == 7)
+                                        <span class="icon icon-icon-1-9"></span>
+                                    @elseif ($item->id == 8)
+                                        <span class="icon icon-icon-1-18"></span>
+                                    @elseif ($item->id == 9)
+                                        <span class="icon icon-icon-1-10"></span>
+                                    @else
+                                        <span class="icon icon-icon-1-9"></span>
+                                    @endif
+                                </div>
                             </a>
                         </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>
-                                <h5>Face Shave</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-9"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>
-                                <h5>Beard Trim</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-3"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>
-                                <h5>Haircut</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-2"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>
-                                <h5>Clipper Cut</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-6"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>
-                                <h5>Facial & Massage</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-8"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-4"></span>
-                                <h5>Hair Washing</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-4"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-18"></span>
-                                <h5>Hair Dryer</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-18"></span></div>
-                            </a>
-                        </div>
-                        <div class="item mb-0">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-10"></span>
-                                <h5>Coloring</h5>
-                                <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan
-                                    aliquam sit sapien.</p>
-                                <div class="shape"><span class="icon icon-icon-1-10"></span></div>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

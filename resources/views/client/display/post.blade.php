@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="6" data-background="client/img/slider/8.jpg">
+    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="6" data-background="{{asset('client/img/slider/8.jpg')}}">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center caption mt-60">
