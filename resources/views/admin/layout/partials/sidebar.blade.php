@@ -85,6 +85,14 @@
                         <span> Chat </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('route.booking')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Booking </span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{route('route.service')}}">
                         <i class="mdi mdi-access-point-network"></i>
@@ -98,12 +106,12 @@
                         <span>Danh mục dịch vụ</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{route('timesheet.index')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span>Thời gian biểu</span>
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="{{route('timesheet.index')}}">--}}
+{{--                        <i class="mdi mdi-access-point-network"></i>--}}
+{{--                        <span>Thời gian biểu</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
 
 

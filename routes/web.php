@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CategoryServiceController;
@@ -57,6 +58,10 @@ Route::group(["prefix" => "admin"], function () {
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
     });
+
+
+    //Booking
+    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
 });
 
 
