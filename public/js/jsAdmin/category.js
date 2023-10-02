@@ -25,7 +25,6 @@ $(document).ready(function () {
 
     btnShow.on('click', showModal);
     btnCancel.on('click', function () {
-
         showModal(false);
 
     });
