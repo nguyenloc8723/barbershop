@@ -42,7 +42,8 @@ class APIBookingController extends Controller
      */
     public function index()
     {
-        $data = Booking::query()->with('images')->get();
+//        $data = Booking::query()->with('images')->get();
+        $data = Booking::all();
         return response()->json($data);
     }
 

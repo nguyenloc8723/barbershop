@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
 use App\Http\Controllers\Admin\API\ApiServiceController;
@@ -26,6 +27,12 @@ Route::group([],function (){
     Route::get('get/service',[ApiServiceController::class, 'index']);
     Route::post('post/service',[ApiServiceController::class, 'store']);
     Route::get('edit/service/{id}',[ApiServiceController::class, 'show']);
+});
+
+Route::group([],function (){
+    Route::get('get/booking',[ApiBookingController::class, 'index']);
+    Route::post('post/booking',[ApiBookingController::class, 'store']);
+    Route::get('edit/booking/{id}',[ApiBookingController::class, 'show']);
 });
 
 Route::resource('category', ApiCategoryController::class);

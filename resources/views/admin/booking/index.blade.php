@@ -80,5 +80,5 @@
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 
-    <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>
 @endsection

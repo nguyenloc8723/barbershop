@@ -1,13 +1,13 @@
 $(document).ready(function () {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
-    const btnCancel = $('.jquery-btn-cancel');
-    const btnShowModal = $('.query-btn-show-modal');
+    // const btnCancel = $('.jquery-btn-cancel');
+    // const btnShowModal = $('.query-btn-show-modal');
     // const btnUpdate = $('.js-btn-update');
     // const fileInput = $('#service-image');
     // const imgContainer = $('.selected-images');
     const listTable = $('#jquery-booking-value');
     // let formModal = $('#formModalService');
-    const actionMethod = $('input[name="actionMethod"]');
+    // const actionMethod = $('input[name="actionMethod"]');
     const urlShow = '/api/get/booking';
     const urlPost = '/api/post/booking';
     const urlShowEdit = '/api/edit/booking';
@@ -18,40 +18,40 @@ $(document).ready(function () {
     // $('.jquery-main-modal').hide();
 
     // Show form để create
-    function showModal(action = true) {
-        if (action) {
-            $('.jquery-main-modal').show()
-        } else {
-            formModal[0].reset();
-            imgContainer.empty();
-            // $('#is_active').html(`
-            //     <option selected value="1">Hoạt Động</option>
-            //     <option value="0">Không Hoạt Động</option>
-            // `);
-            // setValue();
-            // $('#category_id').html(value);
-            actionMethod.val('');
-            $('.jquery-main-modal').hide()
-        }
-    }
+    // function showModal(action = true) {
+    //     if (action) {
+    //         $('.jquery-main-modal').show()
+    //     } else {
+    //         formModal[0].reset();
+    //         imgContainer.empty();
+    //         // $('#is_active').html(`
+    //         //     <option selected value="1">Hoạt Động</option>
+    //         //     <option value="0">Không Hoạt Động</option>
+    //         // `);
+    //         // setValue();
+    //         // $('#category_id').html(value);
+    //         actionMethod.val('');
+    //         $('.jquery-main-modal').hide()
+    //     }
+    // }
 
 
-    btnCancel.on('click', function () {
-        showModal(false);
-    });
-    btnShowModal.on('click', showModal);
-
-
-    formModal.on('submit', function (e) {
-        e.preventDefault();
-        if (actionMethod.val() === 'update') {
-            update();
-            showModal(false);
-        } else {
-            add();
-            showModal(false);
-        }
-    })
+    // btnCancel.on('click', function () {
+    //     showModal(false);
+    // });
+    // btnShowModal.on('click', showModal);
+    //
+    //
+    // formModal.on('submit', function (e) {
+    //     e.preventDefault();
+    //     if (actionMethod.val() === 'update') {
+    //         update();
+    //         showModal(false);
+    //     } else {
+    //         add();
+    //         showModal(false);
+    //     }
+    // })
 
     function loadAll() {
         $.ajax({
@@ -59,6 +59,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 listTable.empty();
                 data.map(item => {
                     listTable.append(`
@@ -72,9 +73,6 @@ $(document).ready(function () {
                             <td>${item.is_consultant}</td>
                             <td>${item.is_accept_take_a_photo}</td>
                             <td>${item.status}</td>
-                            <td>
-                                ${item.is_active}
-                            </td>
                             <td class="text-center">
                                 <div class="btn-group dropdown">
                                     <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none " data-bs-toggle="dropdown" aria-expanded="false">
