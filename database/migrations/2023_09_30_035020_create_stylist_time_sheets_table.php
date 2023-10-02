@@ -16,10 +16,8 @@ return new class extends Migration {
             $table->integer('timesheet_id');
             $table->boolean('is_active');
             $table->boolean('is_block');
-
-//            $table->foreign('stylist_id')->references('id')->on('stylists');
-//            $table->foreign('timesheet_id')->references('id')->on('timesheet');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

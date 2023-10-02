@@ -9,6 +9,7 @@ class StylistTimeSheet extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'stylist_id',
         'timesheet_id',
         'is_active',

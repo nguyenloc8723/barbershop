@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\API\ApiCategoryController;
-
+use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
 use App\Http\Controllers\Admin\API\ApiTrashController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +28,13 @@ Route::prefix('trash')->group(function (){
     Route::get('category', [ApiTrashController::class, 'category']);
     Route::post('category/{id}', [ApiTrashController::class, 'restore']);
     Route::Delete('category/{id}', [ApiTrashController::class, 'destroy']);
+});
+
+Route::resource('stylistTimeSheets', ApiStylistTimeSheetsController::class);
+
+Route::prefix('trash')->group(function (){
+    Route::get('stylistTimeSheets', [ApiTrashController::class, 'stylistTimeSheets']);
+    Route::post('stylistTimeSheets/{id}', [ApiTrashController::class, 'restore']);
+    Route::Delete('stylistTimeSheets/{id}', [ApiTrashController::class, 'destroy']);
 });
 
