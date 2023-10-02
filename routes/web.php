@@ -46,6 +46,7 @@ Route::group(["prefix" => "admin"], function () {
 
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
 
 
     Route::resource('member', MemberController::class);

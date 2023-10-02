@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row justify-content-between">
-                        <div class="col-md-4">
+                        <div class="col-md">
                             <div class="mt-3 mt-md-0">
                                 <h1>Thùng Rác - Stylist's Time Sheets </h1>
                             </div>
@@ -56,7 +56,7 @@
 
     <!-- Datatables init -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script src="{{asset('js/jsAdmin/trash.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/stylistTimeSheetsTrash.js')}}"></script>
     <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
 @endsection
 

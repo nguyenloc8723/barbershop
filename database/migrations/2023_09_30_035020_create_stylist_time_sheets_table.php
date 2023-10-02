@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->integer('stylist_id');
             $table->integer('timesheet_id');
-            $table->boolean('is_active');
-            $table->boolean('is_block');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_block')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

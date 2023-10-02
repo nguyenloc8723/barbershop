@@ -100,7 +100,7 @@ $(document).ready(function () {
     $(document).on('click','.js-btn-update', function (){
         let itemId = $(this).data('id');
         idUpdate = itemId;
-        loadValueDetai(itemId);
+        loadValueDetail(itemId);
     });
     $(document).on('click','.js-btn-delete', function (){
         if (confirm('Bạn có chắc chắn muốn xóa ?')){
@@ -147,7 +147,7 @@ $(document).ready(function () {
             }
         });
     }
-    function loadValueDetai(id) {
+    function loadValueDetail(id) {
         $.ajax({
             url: baseUrl + '/' + id,
             method: 'GET',

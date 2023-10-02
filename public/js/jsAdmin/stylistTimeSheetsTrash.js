@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    const baseUrl = '/api/trash/styistTimeSheets';
+    const baseUrl = '/api/trash/stylistTimeSheets';
 
 
-    function loadTable() {
+    function loadTableStylistTimeSheets() {
         $.ajax({
             url: baseUrl,
             method: 'GET',
@@ -56,7 +56,7 @@ $(document).ready(function () {
         });
     }
 
-    loadTable();
+    loadTableStylistTimeSheets();
 
 
     $(document).on('click','.js-btn-restore', function (){
@@ -67,7 +67,7 @@ $(document).ready(function () {
             method: 'POST',
             dataType: 'json',
             success: function (data){
-                loadTable();
+                loadTableStylistTimeSheets();
                 toastr['success']
                 ('Back up successfully!');
             },
@@ -85,7 +85,7 @@ $(document).ready(function () {
             method: 'DELETE',
             dataType: 'json',
             success: function (data){
-                loadTable();
+                loadTableStylistTimeSheets();
                 toastr['success']
                 ('Delete successfully!');
             },
