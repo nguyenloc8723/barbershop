@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5" data-background="client/img/slider/2.jpg">
+    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/2.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
@@ -76,7 +76,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/1.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/1.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/1.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/2.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/2.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/2.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/3.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/3.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/3.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/4.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/4.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/4.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/5.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/5.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/5.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                         <div class="col-md-4 gallery-item">
                             <a href="client/img/slider/6.jpg" title="" class="img-zoom">
                                 <div class="gallery-box">
-                                    <div class="gallery-img"><img src="client/img/slider/6.jpg"
+                                    <div class="gallery-img"><img src="{{asset('client/img/slider/6.jpg')}}"
                                                                   class="img-fluid mx-auto d-block" alt="work-img">
                                     </div>
                                 </div>
