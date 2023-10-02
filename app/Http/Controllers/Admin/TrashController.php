@@ -16,4 +16,16 @@ class TrashController extends Controller
         return view('admin.trash.category')
             ->with('columns', $columns);
     }
+
+    function Service(){
+        $columns = [
+            'id' => 'id',
+            'name' => 'Tên dịch vụ',
+            'price' => 'Giá dịch vụ',
+            'description' => 'Mô tả',
+            'is_active' => 'Trạng thái hoạt động',
+        ];
+        return view('admin.trash.service')
+            ->with('columns', $columns);
+    }
 }

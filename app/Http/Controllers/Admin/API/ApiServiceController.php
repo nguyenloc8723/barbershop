@@ -9,6 +9,7 @@ use App\Models\Service_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Mockery\Exception;
 
 class ApiServiceController extends Controller
 {
@@ -85,7 +86,10 @@ class ApiServiceController extends Controller
      */
     public function show(string $id)
     {
-        $dataService = Service::query()->with('images')->where('id',$id)->first();
+        $dataService = Service::query()
+            ->with('images')
+            ->where('id',$id)->first();
+
         $dataCate = Service_categories::all();
         return response()->json(['dataService' => $dataService, 'dataCate'=>$dataCate]);
     }
@@ -95,7 +99,45 @@ class ApiServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        try {
+            $slug = Str::slug($request->input('name'));
+//                Log::info($request->input('category_id'));
+            $service = Service::query()->where('id',$id)->update([
+                'category_id' => $request->input('category_id'),
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+                'description' => $request->input('description'),
+                'slug' => $slug,
+                'is_active' => $request->input('is_active'),
+            ]);
+            $idImg = $id;
 
+            $check = false;
+            if ($request->hasFile('files')){
+                $imgService = ImageService::query()
+                    ->where('service_id',$id)
+                    ->get();
+                foreach ($imgService as $item){
+                    $item->delete();
+                }
+
+                $files = $request->file('files');
+                $result = $this->uploadFile('images', $files);
+                foreach ($result as $value){
+//                Log::info($value);
+                    ImageService::create([
+                        'url' => $value['url'],
+                        'service_id' => $idImg,
+                    ]);
+                }
+                $check = true;
+            }
+
+            return response()->json(['success'=>'Cập nhật dịch vụ thành công']);
+        }catch (\Exception $e){
+
+            return response()->json(['success'=>'Có lỗi xảy ra']);
+        }
     }
 
     /**
@@ -103,6 +145,15 @@ class ApiServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Service::find($id);
+        $data->delete();
+        return response()->json(['success','Đã vào thùng rác']);
+    }
+
+    public function getImage(string $id){
+        $dataService = Service::query()
+            ->with('images')
+            ->where('id',$id)->first();
+        return response()->json($dataService);
     }
 }
