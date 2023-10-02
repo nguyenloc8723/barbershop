@@ -1,7 +1,7 @@
 @extends('client.layouts.layout')
 @section('content')
     <!-- Header Banner -->
-    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5" data-background="client/img/slider/18.jpg">
+    <div class="banner-header valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/18.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">

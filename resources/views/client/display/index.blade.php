@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Parallax Image -->
-    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="client/img/slider/23.jpg">
+    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
         <div class="container">
             <div class="row content-justify-center">
                 <div class="col-md-12 text-center">

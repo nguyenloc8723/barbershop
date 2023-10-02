@@ -16,11 +16,12 @@
     <div class="container">
         <!-- Logo -->
         <div class="logo-wrapper">
-            <a class="logo" href="{{ route('index') }}"> <img src="client/img/logo.png" class="logo-img" alt=""> </a>
+            <a class="logo" href="{{ route('index') }}"> <img src="{{asset('client/img/logo.png')}}" class="logo-img" alt=""> </a>
             <!-- <a class="logo" href="index{{ route('index') }}"> <h2>Perukar <span>Barber Shop</span></h2> </a> -->
         </div>
         <!-- Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"><i class="ti-menu"></i></span> </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"><i class="ti-menu"></i></span> </button>
         <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ms-auto">
@@ -33,7 +34,11 @@
                         <li><a href="{{ route('portfolio') }}" class="dropdown-item"><span>Portfolio</span></a></li>
                         <li><a href="{{ route('team') }}" class="dropdown-item"><span>Team</span></a></li>
                         <li><a href="{{ route('faq') }}" class="dropdown-item"><span>Faq</span></a></li>
-                        <li><a href="{{ route('services-page') }}" class="dropdown-item"><span>Services Page</span></a></li>
+
+                        <li><a href="" class="dropdown-item"><span>Services Page</span></a></li>
+
+                        <li><a href="" class="dropdown-item"><span>Services Page</span></a></li>
+
                         <li><a href="{{ route('team-details') }}" class="dropdown-item"><span>Team Details</span></a></li>
                         <li><a href="{{ route('post') }}" class="dropdown-item"><span>Post Single</span></a></li>
                         <li><a href="{{ route('404') }}" class="dropdown-item"><span>404</span></a></li>

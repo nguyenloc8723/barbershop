@@ -8,7 +8,10 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\ClientServiceController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 
 
@@ -44,6 +48,14 @@ Route::group(["prefix" => "admin"], function () {
     });
 
 });
+
+
+
+//Route::get('services', function () {
+//    return view('client.display.services');
+//})->name('services');
+Route::get('services', [ClientServiceController::class,'services'])->name('services');
+Route::get('services-page/{id}', [\App\Http\Controllers\Client\ClientServiceController::class,'servicesPage'])->name('services-page');
 
 // client route
 Route::get('/', function () {
@@ -78,19 +90,11 @@ Route::get('post', function () {
 Route::get('pricing', function () {
     return view('client.display.pricing');
 })->name('pricing');
-Route::get('services', function () {
-    return view('client.display.services');
-})->name('services');
-Route::get('services-page', function () {
-    return view('client.display.services-page');
-})->name('services-page');
 Route::get('team', function () {
     return view('client.display.team');
 })->name('team');
 Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
-
-
 
 

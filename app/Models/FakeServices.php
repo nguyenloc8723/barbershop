@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class FakeServices extends Model
 {
     use HasFactory;
     protected $fillable=[
-       'categor_id',
+        'categor_id',
         'name',
         'price',
         'description',
