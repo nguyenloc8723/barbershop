@@ -1,45 +1,65 @@
 @extends('admin.layout.master')
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/service.css')}}">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="col-md-4">
+                            <div class="mt-3 mt-md-0">
+                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"
+                                ><i
+                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục
+                                </button>
 
+{{--                                <a href="{{route('category.create')}}" class="btn btn-success waves-effect waves-light"--}}
+{{--                                ><i--}}
+{{--                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục--}}
+{{--                                </a>--}}
+                            </div>
+                        </div>
 
-                    <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+{{--                    @include('admin.base.table')--}}
+
+                    <table id="datatable"
+                           class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                         <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                        <tr class="">
+                            @foreach($columns as $key => $column)
+                                <th>{{$column}}</th>
+                            @endforeach
                             <th>action</th>
                         </tr>
                         </thead>
-                        <tbody>
-
-                        <tr>
-                            <td>Brenden Wagner</td>
-                            <td>Software Engineer</td>
-                            <td>San Francisco</td>
-                            <td>28</td>
-                            <td>2011/06/07</td>
-                            <td>$206,850</td>
-                            <td>
-                                <a href="" class="btn btn-danger">Delete</a>
-                                <a href="" class="btn btn-primary ms-1">Update</a>
-                            </td>
-                        </tr>
+                        <tbody id="jquery-list">
 
                         </tbody>
                     </table>
+
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+        @include('admin.categoryService.modal')
+    </div>
+
 @endsection
 
 @section('script')
@@ -61,4 +81,9 @@
 
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+{{--    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>--}}
+    <script src="{{asset('js/jsAdmin/category.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
 @endsection
+
+

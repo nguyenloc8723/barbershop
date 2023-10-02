@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\API\ApiMemberController;
+use App\Http\Controllers\Admin\API\ApiCategoryController;
+
+use App\Http\Controllers\Admin\API\ApiServiceController;
+use App\Http\Controllers\Admin\API\ApiTrashController;
+use App\Http\Controllers\Admin\API\Trash\CategoryController;
+use App\Http\Controllers\Admin\API\Trash\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +23,27 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(["prefix" => "admin"],function (){
-//    Route::get('/dashboard', DashboardController::class)->name('route.dashboard');
-//    Route::get('/table', ComboController::class)->name('route.table');
-//    Route::resource('/member', ApiMemberController::class);
+
+Route::group([],function (){
+    Route::get('get/service',[ApiServiceController::class, 'index']);
+    Route::post('post/service',[ApiServiceController::class, 'store']);
+    Route::get('edit/service/{id}',[ApiServiceController::class, 'show']);
+    Route::post('put/service/{id}',[ApiServiceController::class, 'update']);
+    Route::delete('delete/service/{id}',[ApiServiceController::class, 'destroy']);
+//    Route::get('put/service/{id}',[ApiServiceController::class, 'update']);
+    Route::get('getImg/{id}', [ApiServiceController::class, 'getImage']);
 });
+
+Route::resource('category', ApiCategoryController::class);
+
+Route::prefix('trash')->group(function (){
+    Route::get('category', [CategoryController::class, 'index']);
+    Route::post('category/{id}', [CategoryController::class, 'restore']);
+    Route::Delete('category/{id}', [CategoryController::class, 'destroy']);
+
+    Route::get('service', [ServiceController::class, 'index']);
+    Route::post('service/{id}', [ServiceController::class, 'restore']);
+    Route::Delete('service/{id}', [ServiceController::class, 'destroy']);
+    Route::get('deleteImg/{id}', [ServiceController::class, 'deleteImg']);
+});
+
