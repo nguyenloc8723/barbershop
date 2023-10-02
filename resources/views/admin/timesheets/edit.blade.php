@@ -10,8 +10,9 @@
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-        <form class="d-flex justify-content-between flex-wrap" method="POST" action="{{ route('timesheets.edit', ['id'=>request()->route('id')]) }}" enctype="multipart/form-data">
+        <form class="d-flex justify-content-between flex-wrap" method="POST" action="{{ route('timesheets.update', [$timesheet->id]) }}" enctype="multipart/form-data">
         @csrf      
+        @method('PUT')
         <div class="col-xl-6">
                     <div class="mb-3">
                         <label for="hour" class="form-label">hour</label>

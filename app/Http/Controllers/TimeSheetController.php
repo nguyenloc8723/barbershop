@@ -26,49 +26,54 @@ class TimeSheetController extends Controller
     $request->validate([
         'hour' => 'required|integer',
         'minutes' => 'required|integer',
-        'is_active' => 'boolean',
+        'is_active' => '',
     ]);
-
     Timesheet::create([
         'hour' => $request->input('hour'),
         'minutes' => $request->input('minutes'),   
         
-        'is_active' => $request->has('is_active'),
+        'is_active' => $request->is_active,
     ]);
-    return back();
+    session()->flash('success', 'Thêm mới thành công');
+
+    return redirect()->route('timesheets.index');
 }
 
 
 public function edit(Request $request, $id)
 {
     $timesheet = Timesheet::findOrFail($id);
-    
     return view('admin.timesheets.edit', compact('timesheet'));
+}
+public function update(Request $request, $id){
+    // Validate the request data
+    $timesheet = Timesheet::findOrFail($id);
+
     $request->validate([
         'hour' => 'required|integer',
         'minutes' => 'required|integer',
         'is_active' => 'boolean',
     ]);
 
-    $timesheet = Timesheet::find($id);
+    // Update the Timesheet record
+    $timesheet->update([
+        'hour' => $request->input('hour'),
+        'minutes' => $request->input('minutes'),
+        'is_active' => $request->is_active,
+    ]);
+    session()->flash('success', 'Cập nhật thành công');
 
-    // $timesheet->hour = $request->input('hour');
-    // $timesheet->minutes = $request->input('minutes');
-    // $timesheet->is_active = $request->has('is_active');
-
-    // $timesheet->save();
-    $timesheet->update($request->all());
-
-    return back();
-
-   
+    return redirect()->route('timesheets.index');
 }
+
 
     public function delete($id)
 {
     $timesheet = Timesheet::findOrFail($id);
     $timesheet->delete();
-return back();
+    session()->flash('success', 'Xóa thành công');
+
+    return redirect()->route('timesheets.index');
     // return redirect()->route('admin.timesheets.index')->with('success', 'Timesheet deleted successfully');
 }
 
