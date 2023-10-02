@@ -16,6 +16,7 @@
 
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Tên dịch vụ</label>
                             <input type="text" class="form-control" name="name" id="service" />
@@ -56,7 +57,7 @@
 
                     <div class="w-100 text-center">
                         <button type="submit" class="btn btn-success waves-effect waves-light"
-                                data-bs-dismiss="modal">Save
+                                >Save
                         </button>
                         <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
                                 >Cancel
