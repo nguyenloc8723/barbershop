@@ -28,12 +28,13 @@ class BookingController extends AdminBaseController
         $stylist = Stylist::find(1)->orderBy('name')->get();
     }
     public function getTable(){
-//        $data = Booking::all();
-        $data = Booking::find(1);
+        $data = Booking::query()->with('stylist')->with('')->get();
+//        $data = Booking::find(1);
 //        $id_stylist = $data->stylist_id;
-        $stylist = $data->stylist->name;
+//        $stylist = $data->stylist->name;
 //        dd($stylist,$data);
-        return view($this->pathViews. '.' . 'index',compact('data', 'stylist'))
+//        dd($data);
+        return view($this->pathViews. '.' . 'index',compact('data'))
             ->with('columns', $this->columns);
     }
 //    public $model = [

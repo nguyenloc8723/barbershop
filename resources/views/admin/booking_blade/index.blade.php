@@ -43,7 +43,7 @@
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->user_id}}</td>
-                                <td>{{$stylist->name}}</td>
+                                <td>{{$item->stylist->name}}</td>
                                 <td>{{$item->timesheet_id}}</td>
                                 <td>{{$item->date}}</td>
                                 <td>{{$item->special_requirement}}</td>
