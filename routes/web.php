@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TimesheetController;
+use App\Http\Controllers\SettingController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,7 @@ Route::group(["prefix" => "admin"], function () {
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
     Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+    Route::resource('settings', SettingController::class);
 
 
 

@@ -10,37 +10,66 @@
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            <form class="d-flex justify-content-between flex-wrap" method="POST" action="{{ route('timesheets.store') }}" enctype="multipart/form-data">
+
+
+            <form method="POST" action="{{ route('timesheets.store') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="col-xl-6">
-                    <div class="mb-3">
-                        <label for="hour" class="form-label">hour</label>
-                        <input type="number" class="form-control" id="hour" name="hour"/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="minutes" class="form-label">minutes</label>
-                        <input type="number" class="form-control" id="minutes" name="minutes"/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="is_active" class="form-label">Trạng thái</label>
-                        <select name="is_active" class="form-control" id="is_active">
-                            <option selected value="1">Hoạt Động</option>
-                            <option value="0">Không Hoạt Động</option>
-                        </select>
-                    </div>
+
+                @csrf
+                <div class="container">
+
+                    < <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="hour" class="form-label">hour</label>
+                                <input type="number" class="form-control" id="hour" name="hour" />
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="minutes" class="form-label">minutes</label>
+                                <input type="number" class="form-control" id="minutes" name="minutes" />
+
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="is_active" class="form-label">Trạng thái</label>
+                                <select name="is_active" class="form-control" id="is_active">
+                                    <option selected value="1">Hoạt Động</option>
+                                    <option value="0">Không Hoạt Động</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
+                            > <a href="{{ route('timesheets.index') }}">Cancel</a>
+                        </button>
+                            </div>
                 </div>
-                <div class="w-100 text-center">
-                    <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
-                </div>
-            </form>
+
+
         </div>
+        </form>
     </div>
+</div>
 </div>
 @endsection
 
 @section('script')
 <!-- third party js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".jquery-btn-cancel").click(function () {
+            // Find the closest modal and close it
+            $(this).closest(".modal").modal("hide");
+        });
+    });
+</script>
 
 {{-- <script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>--}}
 {{-- <script src="{{asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>--}}
@@ -58,6 +87,6 @@
 <!-- third party js ends -->
 
 <!-- Datatables init -->
- <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 @endsection

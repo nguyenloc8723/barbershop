@@ -99,6 +99,7 @@
                     </a>
                 </li>
                 <li>
+                <a href="{{route('timesheets.index')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Thời gian biểu</span>
                     </a>
