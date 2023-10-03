@@ -30,7 +30,7 @@ class Booking extends Model
         return $this->belongsTo(Timesheet::class);
     }
     public function stylist(){
-        return $this->belongsTo(Stylist::class);
+        return $this->belongsTo(Stylist::class, 'stylist_id');
     }
     public function review(){
         return $this->hasMany(Reviews::class, 'booking_id');

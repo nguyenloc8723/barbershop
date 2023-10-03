@@ -31,8 +31,8 @@ Route::group([],function (){
 
 Route::group([],function (){
     Route::get('get/booking',[ApiBookingController::class, 'index']);
-    Route::post('post/booking',[ApiBookingController::class, 'store']);
-    Route::get('edit/booking/{id}',[ApiBookingController::class, 'show']);
+//    Route::post('post/booking',[ApiBookingController::class, 'store']);
+//    Route::get('edit/booking/{id}',[ApiBookingController::class, 'show']);
 });
 
 Route::resource('category', ApiCategoryController::class);
