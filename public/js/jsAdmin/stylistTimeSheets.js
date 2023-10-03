@@ -7,6 +7,7 @@ $(document).ready(function () {
     const baseUrl = '/api/stylistTimeSheets';
     const btnUpdate = $('.js-btn-update');
     let idUpdate;
+    const urlShowEdit = '/api/edit/service';
     $('#example').DataTable({
         ajax: baseUrl,
     });
@@ -95,6 +96,54 @@ $(document).ready(function () {
     }
 
     loadTable();
+
+    function getDetail(id) {
+        $.ajax({
+            url: urlShowEdit + '/' + id,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                let valueService = data.dataService;
+                let valueCate = data.dataCate;
+
+                // sử lí dữ liệu danh mục của dịch vụ
+                let isCate = `<select class="form-control" name="category_id" id="category_id">`
+                let resultCate = '';
+                for (let i = 0; i < valueCate.length; i++){
+                    if (valueCate[i].id === valueService.category_id){
+                        resultCate = 'selected';
+                    }
+                    isCate+= `<option value="${valueCate[i].id}" ${resultCate}>${valueCate[i].name}</option>`;
+                }
+                isCate += `</select>`;
+
+                // sử lí dữ liệu is_active
+                let isActive = `<select name="is_active" class="form-control" id="is_active">`
+                let value = ['không hoạt động', 'Hoạt động'];
+                let resultService = '';
+                for (let i = 0; i < value.length; i++){
+                    if (valueService.is_active === 1){
+                        resultService = 'selected';
+                    }
+                    isActive+= `<option value="${i}" ${resultService}>${value[i]}</option>`;
+                }
+                isActive += `</select>`;
+
+
+                $('input[name="stylist_id"]').val(valueService.stylist_id);
+                $('input[name="timesheet_id"]').val(valueService.timesheet_id);
+                $('input[name="is_block"]').val(valueService.is_block);
+
+                $('#is_active').html(isActive);
+
+                showModal();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
 
 
     $(document).on('click','.js-btn-update', function (){
