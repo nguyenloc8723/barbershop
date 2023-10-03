@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->integer('booking_id');
-            $table->integer('image');
+            $table->string('image');
 
 //            $table->foreign('booking_id')->references('id')->on('bookings');
             $table->timestamps();

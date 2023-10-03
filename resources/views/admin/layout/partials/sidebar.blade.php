@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('timesheet.index')}}">
+                    <a href="">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Thời gian biểu</span>
                     </a>
@@ -129,6 +129,12 @@
                     <a href="{{route('route.user')}}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span> Người dùng </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('route.result')}}">
+                        <i class="mdi mdi-briefcase-variant-outline"></i>
+                        <span> Result </span>
                     </a>
                 </li>
 
