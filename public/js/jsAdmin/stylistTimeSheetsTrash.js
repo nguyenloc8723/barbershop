@@ -68,8 +68,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data){
                 loadTableStylistTimeSheets();
-                toastr['success']
-                ('Back up successfully!');
+                toastr['success']('Back up successfully!');
             },
             error: function (error) {
                 console.error()

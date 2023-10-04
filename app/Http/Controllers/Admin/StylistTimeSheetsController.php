@@ -10,12 +10,13 @@ use Illuminate\Http\Request;
 class StylistTimeSheetsController extends AdminBaseController
 {
     public $model = StylistTimeSheet::class;
+    public $route = 'stylistTimeSheets';
     public $pathViews = 'admin.stylistTimeSheets';
     public $columns = [
         'id' => 'ID',
         'stylist_id' => 'ID Stylist',
         'timeshhet_id' => 'ID Time Sheet',
-        'is_active' => 'Action',
+        'is_active' => 'Active',
         'is_block' => 'Block',
     ];
 

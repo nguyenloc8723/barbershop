@@ -22,7 +22,7 @@ class TrashController extends Controller
             'id' => 'ID',
             'stylist_id' => 'ID Stylist',
             'timeshhet_id' => 'ID Time Sheet',
-            'is_active' => 'Action',
+            'is_active' => 'Active',
             'is_block' => 'Block',
         ];
         return view('admin.trash.stylistTimeSheets')

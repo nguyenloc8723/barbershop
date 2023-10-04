@@ -29,9 +29,9 @@ Route::prefix('trash')->group(function (){
     Route::get('category', [ApiTrashController::class, 'category']);
     Route::post('category/{id}', [ApiTrashController::class, 'restore']);
     Route::Delete('category/{id}', [ApiTrashController::class, 'destroy']);
-    Route::get('stylistTimeSheets', [ApiStylistTimeSheetsController::class, 'stylistTimeSheets']);
-    Route::post('stylistTimeSheets/{id}', [ApiStylistTimeSheetsController::class, 'restore']);
-    Route::Delete('stylistTimeSheets/{id}', [ApiStylistTimeSheetsController::class, 'destroy']);
+    Route::get('stylistTimeSheets', [ApiTrashController::class, 'stylistTimeSheets']);
+    Route::post('stylistTimeSheets/{id}', [ApiTrashController::class, 'restoreSTSs']);
+    Route::Delete('stylistTimeSheets/{id}', [ApiTrashController::class, 'destroySTSs']);
 });
 
 
