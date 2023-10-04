@@ -13,4 +13,6 @@ class Booking_service extends Model
         'booking_id',
         'service_id',
     ];
+
+
 }

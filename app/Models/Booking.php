@@ -26,7 +26,7 @@ class Booking extends Model
     public function results(){
         return $this->belongsTo(Results::class);
     }
-    public function timeSheet(){
+    public function timesheet(){
         return $this->belongsTo(Timesheet::class);
     }
     public function stylist(){

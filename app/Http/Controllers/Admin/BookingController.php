@@ -24,19 +24,30 @@ class BookingController extends AdminBaseController
         'status' => 'Trạng thái',
     ];
 
-    public function getDetail(){
-        $stylist = Stylist::find(1)->orderBy('name')->get();
-    }
-    public function getTable(){
-        $data = Booking::query()->with('stylist')->with('')->get();
-//        $data = Booking::find(1);
-//        $id_stylist = $data->stylist_id;
-//        $stylist = $data->stylist->name;
-//        dd($stylist,$data);
+    public function getDetail(string $id){
+//        $stylist = Stylist::find(1)->orderBy('name')->get();
+        $data = Booking::findOrFail($id)
+            ->with('user')
+            ->with('stylist')
+            ->with('timesheet')
+            ->get();
+
 //        dd($data);
-        return view($this->pathViews. '.' . 'index',compact('data'))
+        return view($this->pathViews. '/' . 'detail',compact('data'))
             ->with('columns', $this->columns);
     }
+
+    public function index(){
+        $data = Booking::query()->with('user')->with('stylist')->get();
+        return view($this->pathViews. '/' . __FUNCTION__,compact('data'))
+            ->with('columns', $this->columns);
+    }
+//    public function getDetail(){
+//        $data = Booking::find()->with('stylist')->get();
+//
+//        return view($this->pathViews. '.' . 'detail',compact('data'))
+//            ->with('columns', $this->columns);
+//    }
 //    public $model = [
 //        [
 //            'id' => '1',

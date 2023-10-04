@@ -1,28 +1,28 @@
-@extends('admin.layout.master')
-@section('style')
+{{--@extends('admin.layout.master')--}}
+{{--@section('style')--}}
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
-{{--    <div class="row">--}}
-{{--        <div class="col-12">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row justify-content-between">--}}
-{{--                        <div class="col-md-4">--}}
-{{--                            <div class="mt-3 mt-md-0">--}}
+    {{--    <div class="row">--}}
+    {{--        <div class="col-12">--}}
+    {{--            <div class="card">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <div class="row justify-content-between">--}}
+    {{--                        <div class="col-md-4">--}}
+    {{--                            <div class="mt-3 mt-md-0">--}}
 
-{{--                                <button type="button"--}}
-{{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
-{{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+    {{--                                <button type="button"--}}
+    {{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
+    {{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
+    {{--                                </button>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
 
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
     <div class="row">
         <div class="col-12">
@@ -39,7 +39,6 @@
                         </tr>
                         </thead>
                         <tbody id="jquery-booking-value">
-
 
 
                         </tbody>
@@ -80,5 +79,5 @@
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 
-    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>
+{{--    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>--}}
 @endsection

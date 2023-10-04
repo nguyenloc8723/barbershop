@@ -63,7 +63,9 @@ Route::group(["prefix" => "admin"], function () {
     //Booking
 //    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
 //    Route::resource('booking_blade', BookingController::class);
-    Route::get('booking_blade.index', [BookingController::class, 'getTable' ])->name('route.booking_blade');
+    Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
+    Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+//    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 
 
