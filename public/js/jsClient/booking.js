@@ -1,7 +1,9 @@
 $(document).ready(function () {
+    const showBooking = '/api/stylist/booking';
+    const showTimeSheet = '/api/timeSheet/booking';
     function loadStylist() {
         $.ajax({
-            url: '/api/stylist/booking',
+            url: showBooking,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -36,14 +38,14 @@ $(document).ready(function () {
 
     function timeSheet(id) {
         $.ajax({
-            url: '/api/timeSheet/booking/' + id,
+            url: showTimeSheet+ '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
                 let dataStylist = data.dataStylist;
                 let dataTimeSheet = data.dataTimeSheet;
-                console.log(dataStylist);
-                console.log(dataTimeSheet);
+                // console.log(dataStylist);
+                // console.log(dataTimeSheet);
                 $('.jqr-timesheet').html('');
                 let count = 0;
 
@@ -65,10 +67,8 @@ $(document).ready(function () {
                                     unavailable = "";
                                     break;
                                 }
-                                console.log(index);
                             }
                             timesheet_box += `<div class="box-time_item ${unavailable}" role="presentation">${dataTimeSheet[index].hour}h${dataTimeSheet[index].minutes}</div>`;
-
                         }
                     }
                     timesheet_box += `</div>`;

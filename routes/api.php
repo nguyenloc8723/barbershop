@@ -52,5 +52,7 @@ Route::prefix('trash')->group(function (){
 Route::group([],function (){
     Route::get('stylist/booking', [BookingController::class, 'index']);
     Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
+
+    Route::get('service/booking', [BookingController::class, 'loadService']);
 });
 

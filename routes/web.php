@@ -61,6 +61,7 @@ Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage']
 
 Route::group(["prefix" => "client", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
+    Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
 });
 
 
