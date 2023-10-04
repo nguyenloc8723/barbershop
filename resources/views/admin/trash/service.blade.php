@@ -11,15 +11,6 @@
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
                                 <h1>Thùng Rác</h1>
-{{--                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"--}}
-{{--                                ><i--}}
-{{--                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục--}}
-{{--                                </button>--}}
-
-{{--                                <a href="{{route('category.create')}}" class="btn btn-success waves-effect waves-light"--}}
-{{--                                ><i--}}
-{{--                                        class="mdi mdi-plus-circle me-1"></i> Thêm Danh mục--}}
-{{--                                </a>--}}
                             </div>
                         </div>
 
@@ -33,8 +24,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-{{--                    @include('admin.base.table')--}}
-
                     <table id="example"
                            class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                         <thead>
@@ -79,7 +68,7 @@
     <!-- Datatables init -->
 {{--    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>--}}
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script src="{{asset('js/jsAdmin/trashCategory.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/trashService.js')}}"></script>
     <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
 @endsection
 

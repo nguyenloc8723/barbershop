@@ -11,9 +11,11 @@ class ApiTrashController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function category()
+    public $model;
+    public function index()
     {
-        $data = Service_categories::onlyTrashed()->get();
+        // show các value
+        $data = $this->model::onlyTrashed()->get();
         return response()->json($data);
     }
 
@@ -22,25 +24,9 @@ class ApiTrashController extends Controller
      */
     public function restore(Request $request, $id)
     {
-        Service_categories::withTrashed()->where('id',$id)
+        $this->model::withTrashed()->where('id',$id)
             ->restore();
         return response()->json(['success','khôi phục thành công']);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**
@@ -48,8 +34,8 @@ class ApiTrashController extends Controller
      */
     public function destroy(string $id)
     {
-        Service_categories::withTrashed()->where('id',$id)
+        $this->model::withTrashed()->where('id',$id)
             ->forceDelete();
-        return response()->json(['success','khôi phục thành công']);
+        return response()->json(['success','Xóa thành công']);
     }
 }

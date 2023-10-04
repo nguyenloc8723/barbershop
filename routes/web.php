@@ -56,6 +56,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+        Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
 });
 
