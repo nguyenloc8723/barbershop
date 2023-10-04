@@ -7,4 +7,5 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap">
     <link rel="stylesheet" href="{{asset('client/css/plugins.css')}}" />
     <link rel="stylesheet" href="{{asset('client/css/style.css')}}" />
+    @yield('css')
 </head>

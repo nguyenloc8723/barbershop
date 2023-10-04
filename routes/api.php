@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\API\ApiServiceController;
 use App\Http\Controllers\Admin\API\ApiTrashController;
 use App\Http\Controllers\Admin\API\Trash\CategoryController;
 use App\Http\Controllers\Admin\API\Trash\ServiceController;
+use App\Http\Controllers\Client\API\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,5 +46,11 @@ Route::prefix('trash')->group(function (){
     Route::post('service/{id}', [ServiceController::class, 'restore']);
     Route::Delete('service/{id}', [ServiceController::class, 'destroy']);
     Route::get('deleteImg/{id}', [ServiceController::class, 'deleteImg']);
+});
+
+
+Route::group([],function (){
+    Route::get('stylist/booking', [BookingController::class, 'index']);
+    Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
 });
 

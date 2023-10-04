@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +56,14 @@ Route::group(["prefix" => "admin"], function () {
 //    return view('client.display.services');
 //})->name('services');
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
-Route::get('services-page/{id}', [\App\Http\Controllers\Client\ClientServiceController::class,'servicesPage'])->name('services-page');
+Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
+
+
+Route::group(["prefix" => "client", 'as' => 'client.'], function (){
+    Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
+});
+
+
 
 // client route
 Route::get('/', function () {

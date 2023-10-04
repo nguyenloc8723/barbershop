@@ -136,3 +136,12 @@
 .flex {
     display: flex;
 }
+
+.fix-hed{
+    width: 100%;
+    height: 100px;
+    background: #14100D;
+}
+.section-padding{
+    padding: 25px 0!important;
+}
