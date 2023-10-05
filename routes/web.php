@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\PhoneAuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -110,4 +111,16 @@ Route::get('team', function () {
 Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
+
+Route::get('login1', function () {
+    return view('client.display.login');
+})->name('login1');
+
+Route::get('otp', function () {
+    return view('client.display.otp');
+})->name('otp');
+
+Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
+Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
+Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 
