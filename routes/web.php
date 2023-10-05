@@ -47,6 +47,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::resource('category', CategoryServiceController::class);
     Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
+    Route::resource('user', UserController::class);
 
 
     Route::resource('member', MemberController::class);
@@ -60,6 +61,7 @@ Route::group(["prefix" => "admin"], function () {
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
        Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');
+       Route::get('user', [TrashController::class, 'user'])->name('trash.user');
     });
 });
 

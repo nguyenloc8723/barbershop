@@ -146,7 +146,7 @@
                                 <a href="{{route('trash.stylistTimeSheets')}}">Stylist's Time Sheets</a>
                             </li>
                             <li>
-                                <a href="contacts-profile.html">Profile</a>
+                                <a href="{{route('trash.user')}}">User</a>
                             </li>
                             <li>
                                 <a href="contacts-profile.html">Profile</a>

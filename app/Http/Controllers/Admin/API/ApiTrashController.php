@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\API;
 use App\Http\Controllers\Controller;
 use App\Models\Service_categories;
 use App\Models\StylistTimeSheet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApiTrashController extends Controller
@@ -66,6 +67,23 @@ class ApiTrashController extends Controller
 
     public function restoreSTSs(Request $request, $id){
         StylistTimeSheet::withTrashed()->where('id',$id)->restore();
+        return response()->json(['success','Restore successfully!']);
+    }
+
+    public function user()
+    {
+        $data = User::onlyTrashed()->get();
+        return response()->json($data);
+    }
+
+    public function destroyUser(string $id)
+    {
+        User::withTrashed()->where('id',$id)->forceDelete();
+        return response()->json(['success','Delete successfully!']);
+    }
+
+    public function restoreUser(Request $request, $id){
+        User::withTrashed()->where('id',$id)->restore();
         return response()->json(['success','Restore successfully!']);
     }
 

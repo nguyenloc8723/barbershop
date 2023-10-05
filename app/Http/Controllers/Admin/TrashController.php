@@ -28,4 +28,14 @@ class TrashController extends Controller
         return view('admin.trash.stylistTimeSheets')
             ->with('columns', $columns);
     }
+
+    function user(){
+        $columns = [
+            'id' => 'ID',
+            'name' => 'Name',
+            'phone' => 'Phone Number'
+        ];
+        return view('admin.trash.user')
+            ->with('columns', $columns);
+    }
 }

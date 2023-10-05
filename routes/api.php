@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
+use App\Http\Controllers\Admin\API\ApiUserController;
 use App\Http\Controllers\Admin\API\ApiTrashController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('category', ApiCategoryController::class);
 Route::resource('stylistTimeSheets', ApiStylistTimeSheetsController::class);
+Route::resource('user', ApiUserController::class);
 
 Route::prefix('trash')->group(function (){
     Route::get('category', [ApiTrashController::class, 'category']);
@@ -32,6 +34,9 @@ Route::prefix('trash')->group(function (){
     Route::get('stylistTimeSheets', [ApiTrashController::class, 'stylistTimeSheets']);
     Route::post('stylistTimeSheets/{id}', [ApiTrashController::class, 'restoreSTSs']);
     Route::Delete('stylistTimeSheets/{id}', [ApiTrashController::class, 'destroySTSs']);
+    Route::get('user', [ApiTrashController::class, 'user']);
+    Route::post('user/{id}', [ApiTrashController::class, 'restoreUser']);
+    Route::Delete('user/{id}', [ApiTrashController::class, 'destroyUser']);
 });
 
 
