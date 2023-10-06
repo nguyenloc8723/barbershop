@@ -54,5 +54,6 @@ Route::group([],function (){
     Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
 
     Route::get('service/booking', [BookingController::class, 'loadService']);
+    Route::post('pullRequest/booking', [BookingController::class, 'pullRequest']);
 });
 

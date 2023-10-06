@@ -65,7 +65,6 @@ Route::group(["prefix" => "client", 'as' => 'client.'], function (){
 });
 
 
-
 // client route
 Route::get('/', function () {
     return view('client.display.index');

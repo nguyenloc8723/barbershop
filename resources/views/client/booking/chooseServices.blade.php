@@ -14,13 +14,9 @@
     <section class="info-box section-padding">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-6" id="jqr-displayBooking">
                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;">
-                        <!-- <a href="booking.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
-                        </a> -->
+
                         <span class="text-center">Chọn dịch vụ</span>
                         <div class="note-price" style="color: #fff;">1K = 1000đ</div>
                     </div>
@@ -42,12 +38,8 @@
                             <div class="booking-service__group">
                                 <div class="booking-service__group-title">Chọn xem nhanh theo nhóm</div>
                                 <div class="booking-service__group-wrap">
-                                    <div class="booking-service__group-wrap-item">Cắt gội xả massage</div>
-                                    <div class="booking-service__group-wrap-item">Cắt gội VIP - Paradise</div>
-                                    <div class="booking-service__group-wrap-item">Chuyên sâu SPA Nam</div>
-                                    <div class="booking-service__group-wrap-item">Uốn Hàn Quốc cao cấp</div>
-                                    <div class="booking-service__group-wrap-item">Nhuộm Ý cao cấp</div>
-                                    <div class="booking-service__group-wrap-item">BST Uốn K-Perm </div>
+
+
                                 </div>
                             </div>
                             <div class="box-switch flex items-center mt-2.5 bg-white px-4 py-2.5">
@@ -69,7 +61,7 @@
 
                             <div class="new-affix-v2">
                                 <div class="flex space-between text-center content-step  time-line--active">
-                                    <div class="right button-next pointer btn-inactive" role="presentation">
+                                    <div class="right button-next pointer btn-inactive jqr-clickService jqr-css" role="presentation">
                                         <span>Chọn dịch vụ</span>
                                     </div>
                                 </div>

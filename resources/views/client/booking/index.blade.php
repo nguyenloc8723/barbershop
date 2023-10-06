@@ -2,6 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
+    <link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
     <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 @endsection
 
@@ -13,7 +14,7 @@
     <section class="info-box section-padding">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-6" id="jqr-displayBooking">
                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                     <div class="main-screen">
                         <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
@@ -24,9 +25,10 @@
                                         <path d="M10.0001 12.1209L7.68308 14.4379C8.04548 15.2925 8.09936 16.2466 7.83546 17.1366C7.57157 18.0266 7.00635 18.7971 6.23666 19.316C5.46698 19.835 4.54076 20.0701 3.61675 19.981C2.69274 19.892 1.82847 19.4843 1.17207 18.8279C0.515665 18.1715 0.108001 17.3072 0.0189446 16.3832C-0.0701123 15.4592 0.164983 14.533 0.683938 13.7633C1.20289 12.9936 1.97339 12.4284 2.86339 12.1645C3.75338 11.9006 4.70745 11.9545 5.56208 12.3169L7.88008 9.99988L2.21008 4.33288C2.02428 4.14715 1.87689 3.92663 1.77633 3.68393C1.67577 3.44123 1.62401 3.18109 1.62401 2.91838C1.62401 2.65566 1.67577 2.39552 1.77633 2.15282C1.87689 1.91012 2.02428 1.6896 2.21008 1.50388L2.91808 0.796875L10.0001 7.87988L17.0811 0.797875L17.7891 1.50488C17.9749 1.6906 18.1223 1.91112 18.2228 2.15382C18.3234 2.39652 18.3752 2.65666 18.3752 2.91937C18.3752 3.18209 18.3234 3.44222 18.2228 3.68493C18.1223 3.92763 17.9749 4.14815 17.7891 4.33388L12.1201 9.99988L14.4371 12.3169C15.2917 11.9545 16.2458 11.9006 17.1358 12.1645C18.0258 12.4284 18.7963 12.9936 19.3152 13.7633C19.8342 14.533 20.0693 15.4592 19.9802 16.3832C19.8912 17.3072 19.4835 18.1715 18.8271 18.8279C18.1707 19.4843 17.3064 19.892 16.3824 19.981C15.4584 20.0701 14.5322 19.835 13.7625 19.316C12.9928 18.7971 12.4276 18.0266 12.1637 17.1366C11.8998 16.2466 11.9537 15.2925 12.3161 14.4379L10.0001 12.1199V12.1209ZM4.00008 17.9999C4.53051 17.9999 5.03922 17.7892 5.4143 17.4141C5.78937 17.039 6.00008 16.5303 6.00008 15.9999C6.00008 15.4694 5.78937 14.9607 5.4143 14.5857C5.03922 14.2106 4.53051 13.9999 4.00008 13.9999C3.46965 13.9999 2.96094 14.2106 2.58587 14.5857C2.21079 14.9607 2.00008 15.4694 2.00008 15.9999C2.00008 16.5303 2.21079 17.039 2.58587 17.4141C2.96094 17.7892 3.46965 17.9999 4.00008 17.9999ZM16.0001 17.9999C16.5305 17.9999 17.0392 17.7892 17.4143 17.4141C17.7894 17.039 18.0001 16.5303 18.0001 15.9999C18.0001 15.4694 17.7894 14.9607 17.4143 14.5857C17.0392 14.2106 16.5305 13.9999 16.0001 13.9999C15.4696 13.9999 14.9609 14.2106 14.5859 14.5857C14.2108 14.9607 14.0001 15.4694 14.0001 15.9999C14.0001 16.5303 14.2108 17.039 14.5859 17.4141C14.9609 17.7892 15.4696 17.9999 16.0001 17.9999Z" fill="#3D3D3D"/>
                                     </svg>
                                 </div>
-                                <a href="{{route('client.chooseServices')}}" class="pr-0.5 overflow-hidden whitespace-nowrap overflow-ellipsis w-full text-sm color-111111">
+
+                                <button class="pr-0.5 overflow-hidden whitespace-nowrap overflow-ellipsis w-full text-sm color-111111 jqr-showAllService">
                                     Xem tất cả dịch vụ hấp dẫn
-                                </a>
+                                </button>
                                 <div class="ml-auto w-2.5"  style="margin-left: auto;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
                                         <path d="M5.3335 5L0.333496 10L0.333496 0L5.3335 5Z" fill="black"/>
@@ -36,14 +38,11 @@
                             <div class="block__box">
                                 <div class="mt-4">
                                     <div class="flex flex-wrap -mx-1.5">
-                                        <div class="mx-1.5 mb-2.5 rounded px-1.5 border border-gray-bababa text-sm cursor-default">
-                                            Gội Massage cổ vai gáy &amp; chăm sóc da
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                             <div class="text-sm font-light text-[#11B14B]">
-                                Tổng số tiền anh cần thanh toán:  <span class="font-normal">135K</span>
                             </div>
                         </div>
                         <div class="main-screen__block main-screen__block--active">
@@ -78,12 +77,7 @@
                                             </div>
                                         </div>
                                         <div class="right relative">
-                                            <!-- <div class="btn-action btn-left btn_hide" role="presentation">
-                                                <img src="/static/media/arrowLeft.89338ed8.svg" alt="" class="icon-btn">
-                                            </div>
-                                            <div class="btn-action btn-right" role="presentation">
-                                                <img src="/static/media/arrowRight.e19d4ccb.svg" alt="" class="icon-btn">
-                                            </div> -->
+
                                             <div class="swiper-container swiper-container-initialized swiper-container-horizontal"  style=" overflow: auto">
                                                 <div class="swiper-wrapper jqr-show-stylist" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
 
@@ -94,10 +88,11 @@
                                     <div class="block__box">
                                         <div class="relative" id="datebookId">
                                             <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
-                                                <select class="form-select" style="height: 40px;">
-                                                    <option value="1">Hôm nay, T5 (28/09)</option>
-                                                    <option value="2">Ngày mai, T6 (29/09)</option>
-                                                </select>
+{{--                                                <select class="form-select" style="height: 40px;">--}}
+{{--                                                    <option value="1">Hôm nay, T5 (28/09)</option>--}}
+{{--                                                    <option value="2">Ngày mai, T6 (29/09)</option>--}}
+{{--                                                </select>--}}
+                                                <input type="date" class="form-control" name="date">
                                             </div>
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
@@ -185,38 +180,11 @@
                                                         <div class="box-time_item   " role="presentation">20h20</div>
                                                         <div class="box-time_item unavailable  " role="presentation">20h40</div>
                                                     </div>
-                                                    <div class="swiper-slide box-time_gr" style="width: 101.048px; margin-right: 8px;">
-                                                        <div class="box-time_item unavailable  " role="presentation">21h00</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">21h20</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">21h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr" style="width: 101.048px; margin-right: 8px;">
-                                                        <div class="box-time_item unavailable  " role="presentation">22h00</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">22h20</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">22h40</div>
-                                                    </div>
-                                                    <div class="swiper-slide box-time_gr" style="width: 101.048px; margin-right: 8px;">
-                                                        <div class="box-time_item unavailable  " role="presentation">23h00</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">23h20</div>
-                                                        <div class="box-time_item unavailable  " role="presentation">23h40</div>
-                                                    </div>
+
                                                 </div>
                                                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                                             </div>
-                                            <!-- <button type="button" class="ant-btn ant-btn-circle ant-btn-icon-only swiper_button button_prev">
-                                                <span role="img" aria-label="left" class="anticon anticon-left swiper_button_icon">
-                                                    <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="left" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                                        <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path>
-                                                    </svg>
-                                                </span>
-                                            </button>
-                                            <button type="button" class="ant-btn ant-btn-circle ant-btn-icon-only swiper_button button_next">
-                                                <span role="img" aria-label="right" class="anticon anticon-right swiper_button_icon">
-                                                    <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                                        <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
-                                                    </svg>
-                                                </span>
-                                            </button> -->
+
                                         </div>
                                     </div>
                                     <div id=""></div>
