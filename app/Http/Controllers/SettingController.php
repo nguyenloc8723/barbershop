@@ -10,12 +10,12 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::all();
-        return view('settings.index', compact('settings'));
+        return view('admin.settings.index', compact('settings'));
     }
 
     public function create()
     {
-        return view('settings.create');
+        return view('admin.settings.create');
     }
 
     public function store(Request $request)
@@ -36,35 +36,37 @@ class SettingController extends Controller
     public function edit($id)
     {
         $setting = Setting::findOrFail($id);
-        return view('settings.edit', compact('setting'));
+        return view('admin.settings.edit', compact('setting'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'key' => 'required|unique:settings,key,'.$id,
-            'value' => 'required',
-        ]);
+        // $request->validate([
+        //     'key' => 'required|unique:settings,key,'.$id,
+        //     'value' => 'required',
+        // ]);
 
         $setting = Setting::findOrFail($id);
         $setting->update([
             'key' => $request->input('key'),
             'value' => $request->input('value'),
         ]);
+        
+        session()->flash('success', 'Cập nhật thành công');
+        return redirect()->route('settings.index');    }
 
-        return redirect()->route('settings.index')->with('success', 'Setting updated successfully');
-    }
+    // public function deleteConfirm($id)
+    // {
+    //     $setting = Setting::findOrFail($id);
+    //     return view('settings.delete-confirm', compact('setting'));
+    // }
 
-    public function deleteConfirm($id)
-    {
-        $setting = Setting::findOrFail($id);
-        return view('settings.delete-confirm', compact('setting'));
-    }
-
-    public function destroy($id)
+    public function delete($id)
     {
         $setting = Setting::findOrFail($id);
         $setting->delete();
-        return redirect()->route('settings.index')->with('success', 'Setting deleted successfully');
+        session()->flash('success', 'Xóa thành công');
+
+        return redirect()->route('settings.index');
     }
 }

@@ -38,8 +38,9 @@
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
-                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
-                        </div>
+                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
+                            > <a href="{{ route('timesheets.index') }}">Cancel</a>
+                        </button>                        </div>
                     </div>
                 </div>
             </form>

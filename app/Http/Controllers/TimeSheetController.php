@@ -22,7 +22,6 @@ class TimeSheetController extends Controller
 
     public function store(Request $request)
 {
-    // Validate the request data
     $request->validate([
         'hour' => 'required|integer',
         'minutes' => 'required|integer',
@@ -46,7 +45,6 @@ public function edit(Request $request, $id)
     return view('admin.timesheets.edit', compact('timesheet'));
 }
 public function update(Request $request, $id){
-    // Validate the request data
     $timesheet = Timesheet::findOrFail($id);
 
     $request->validate([
@@ -55,7 +53,6 @@ public function update(Request $request, $id){
         'is_active' => 'boolean',
     ]);
 
-    // Update the Timesheet record
     $timesheet->update([
         'hour' => $request->input('hour'),
         'minutes' => $request->input('minutes'),

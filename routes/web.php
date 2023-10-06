@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BannerController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,9 +53,14 @@ Route::group(["prefix" => "admin"], function () {
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
     Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+   //setting
     Route::resource('settings', SettingController::class);
-
-
+    Route::get('/admin/settings/{id}/delete', [SettingController::class,'delete'])->name('settings.delete');
+    Route::match(['GET', 'POST'],'/admin/settings/{id}/edit', [SettingController::class, 'edit'])->name('settings.edit');
+    //banner
+    Route::resource('banners', BannerController::class)->withTrashed();
+    Route::get('/admin/banners/{id}/delete', [BannerController::class,'delete'])->name('banners.delete');
+    Route::match(['GET', 'POST'],'/admin/banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
 
     Route::resource('member', MemberController::class);
     Route::get('service', [ServiceController::class, 'index'])->name('route.service');

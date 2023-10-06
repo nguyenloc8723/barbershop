@@ -10,12 +10,12 @@
                 <div class="row justify-content-between">
                     <div class="col-md-4">
                         <div class="mt-3 mt-md-0">
-                        <a href="{{ route('settings.create') }}" class="btn btn-primary">Setting</a>
+                            <a href="{{ route('banners.create') }}" class="btn btn-primary">Add Banner</a>
 
 
-                            {{-- <a href="{{route('settings.create')}}" class="btn btn-success waves-effect waves-light"--}}
+                            {{-- <a href="{{route('banners.create')}}" class="btn btn-success waves-effect waves-light"--}}
                             {{-- ><i--}}
-                            {{-- class="mdi mdi-plus-circle me-1"></i> Thêm  setting--}}
+                            {{-- class="mdi mdi-plus-circle me-1"></i> Thêm banner--}}
                             {{-- </a>--}}
                         </div>
                     </div>
@@ -28,7 +28,7 @@
     <div class="alert alert-success">
         {{ session()->get('success') }}
     </div>
-@endif
+    @endif
 
 </div>
 
@@ -40,27 +40,31 @@
                 <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                     <thead>
                         <tr class="">
-                          <th>id</th>
-                          <th>key</th>
-                          <th>value</th>
+                            <th>id</th>
+                            <th>bannerimage</th>
+
                             <th>action</th>
                         </tr>
                     </thead>
                     <tbody id="jquery-list">
-                      
-                    @foreach ($settings as $setting)
-                    <tr>
-                    <td>{{ $setting->id }}</td>
-                    <td>{{ $setting->key }}</td>
-                    <td>{{ $setting->value }}</td>
-                    <td>  <a href="{{ route('settings.edit', ['id' => $setting->id]) }}" class="btn btn-warning">Edit</a>
+
+                        @foreach ($banners as $banner)
+                        <tr>
+                            <td>{{ $banner->id }}</td>
+                            <td>@php
+                                $imagePath = 'storage/' . $banner->image;
+                                @endphp
+                                <img style="height: 300px; width: 400px;" src="{{ asset($imagePath) }}" alt="Banner Image">
+                            </td>
+                            <td> <a href="{{ route('banners.edit', ['id' => $banner->id]) }}" class="btn btn-warning">Edit</a>
 
 
-                    <a href="{{ route('settings.delete', ['id' => $setting->id]) }}" class="btn btn-danger">Delete</a>
-                    </td>
-                    
-                </tr>
-                @endforeach
+                                <a href="{{ route('banners.delete', ['id' => $banner->id]) }}" class="btn btn-danger">Delete</a>
+                            </td>
+
+
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -94,6 +98,6 @@
 <!-- third party js ends -->
 
 <!-- Datatables init -->
- <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 @endsection

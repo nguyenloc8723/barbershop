@@ -6,46 +6,39 @@
 <div class="modal-full-width">
     <div class="modal-content">
         <div class="modal-header bg-light">
-            <h4 class="modal-title" id="myCenterModalLabel">Thêm timesheet</h4>
+            <h4 class="modal-title" id="myCenterModalLabel">Thêm setting</h4>
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
 
 
-            <form method="POST" action="{{ route('timesheets.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('settings.store') }}" enctype="multipart/form-data">
                 @csrf
 
+                
                 <div class="container">
 
-                    <div class="row">
+                    < <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="hour" class="form-label">hour</label>
-                                <input type="number" class="form-control" id="hour" name="hour" />
+                                <label for="key" class="form-label">key</label>
+                                <input type="number" class="form-control" id="key" name="key" />
 
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="minutes" class="form-label">minutes</label>
-                                <input type="number" class="form-control" id="minutes" name="minutes" />
+                                <label for="value" class="form-label">Value</label>
+                                <input type="text" class="form-control" id="value" name="value" />
 
 
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="is_active" class="form-label">Trạng thái</label>
-                                <select name="is_active" class="form-control" id="is_active">
-                                    <option selected value="1">Hoạt Động</option>
-                                    <option value="0">Không Hoạt Động</option>
-                                </select>
-                            </div>
-                        </div>
+                       
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
-                            > <a href="{{ route('timesheets.index') }}">Cancel</a>
+                            > <a href="{{ route('settings.index') }}">Cancel</a>
                         </button>
                             </div>
                 </div>
