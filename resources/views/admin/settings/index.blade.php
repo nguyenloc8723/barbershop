@@ -56,7 +56,7 @@
                     <td>  <a href="{{ route('settings.edit', ['id' => $setting->id]) }}" class="btn btn-warning">Edit</a>
 
 
-                    <a href="{{ route('settings.delete', ['id' => $setting->id]) }}" class="btn btn-danger">Delete</a>
+                    <a onclick="return confirm('Co muon xoa hay khong?')" href="{{ route('settings.delete', ['id' => $setting->id]) }}" class="btn btn-danger">Delete</a>
                     </td>
                     
                 </tr>

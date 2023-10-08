@@ -58,7 +58,7 @@
                     <td>  <a href="{{ route('timesheets.edit', ['id' => $timesheet->id]) }}" class="btn btn-warning">Edit</a>
 
 
-                    <a href="{{ route('timesheets.delete', ['id' => $timesheet->id]) }}" class="btn btn-danger">Delete</a>
+                    <a onclick="return confirm('Co muon xoa hay khong?')" href="{{ route('timesheets.delete', ['id' => $timesheet->id]) }}" class="btn btn-danger">Delete</a>
                     </td>
                     
                 </tr>

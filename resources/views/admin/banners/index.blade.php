@@ -59,7 +59,7 @@
                             <td> <a href="{{ route('banners.edit', ['id' => $banner->id]) }}" class="btn btn-warning">Edit</a>
 
 
-                                <a href="{{ route('banners.delete', ['id' => $banner->id]) }}" class="btn btn-danger">Delete</a>
+                                <a onclick="return confirm('Co muon xoa hay khong?')" href="{{ route('banners.delete', ['id' => $banner->id]) }}" class="btn btn-danger">Delete</a>
                             </td>
 
 
