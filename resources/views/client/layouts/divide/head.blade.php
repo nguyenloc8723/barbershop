@@ -6,7 +6,9 @@
     <title>Perukar Barber Shop</title>
     <link rel="shortcut icon" href="{{asset('client/img/favicon.png')}}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap">
+
     <link rel="stylesheet" href="{{asset('client/css/plugins.css')}}" />
     <link rel="stylesheet" href="{{asset('client/css/style.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('style')
 </head>

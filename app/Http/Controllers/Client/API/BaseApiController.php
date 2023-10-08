@@ -16,18 +16,22 @@ class BaseApiController extends Controller
     public $modelChooService;
     public $imgService;
 
-    public function index(){
+    public function index()
+    {
         $data = $this->model::all();
         return response()->json($data);
     }
 
     // hàm loadService dùng khi chọn dịch vụ cắt
-    public function loadService(){
+    public function loadService()
+    {
         $data = $this->modelChooService::query()->with('service')->get();
         $service = $this->imgService::query()->with('images')->get();
         return response()->json(['data' => $data, 'service' => $service]);
     }
-    public function pullRequest(Request $request){
+
+    public function pullRequest(Request $request)
+    {
         $user = 1;
         Log::info($request->is_accept_take_a_photo);
 //        dd(12);
@@ -43,13 +47,19 @@ class BaseApiController extends Controller
         ]);
         $id = $booking->id;
         $service = $request->arrayIDService;
-        foreach ($service as $value){
+        foreach ($service as $value) {
             Booking_service::create([
                 'booking_id' => $id,
                 'service_id' => $value,
             ]);
         }
-        Log::info($request->all());
+//        Log::info($request->all());
         return response()->json(['success']);
+    }
+
+    public function stylistDetail(string $id){
+        $data = $this->model::query()->where('id',$id)->first();
+//        dd($data);/
+        return response()->json($data);
     }
 }
