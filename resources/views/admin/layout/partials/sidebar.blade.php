@@ -137,6 +137,12 @@
                         <span> Result </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('banner.index')}}">
+                    <i class="bi bi-images"></i>
+                        <span> Setting Banner </span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="#contacts" data-bs-toggle="collapse">
@@ -168,6 +174,7 @@
                         </ul>
                     </div>
                 </li>
+               
 
                 {{--                <li class="menu-title mt-2">Custom</li>--}}
 

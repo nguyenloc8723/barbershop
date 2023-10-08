@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerSettingCtl;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CategoryServiceController;
@@ -55,6 +56,9 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('user', [UserController::class, 'index'])->name('route.user');
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
+    Route::resource('banner', BannerSettingCtl::class);
+    Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'destroy'])->name('destroy.banner');
+    Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
 
 
     Route::prefix('trash')->group(function (){
