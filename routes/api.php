@@ -56,5 +56,6 @@ Route::group([],function (){
 
     Route::get('service/booking', [BookingController::class, 'loadService']);
     Route::post('pullRequest/booking', [BookingController::class, 'pullRequest']);
+    Route::get('booking/success', [BookingController::class, 'bookingDone']);
 });
 

@@ -13,8 +13,7 @@ class ClientBookingController extends Controller
         return view('client.booking.index');
     }
 
-//    public function chooseServices(){
-//        $data = Service::all();
-//        return view('client.booking.chooseServices',compact('data'));
-//    }
+    public function bookingDone(){
+        return view('client.booking.bookingDone');
+    }
 }

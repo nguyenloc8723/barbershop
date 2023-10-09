@@ -304,4 +304,35 @@ textarea {
     justify-content: space-between;
     position: relative;
 }
+/*-----------------------------------------------------------------*/
+.font-semibold {
+    font-weight: 600;
+}
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.pb-6 {
+    padding-bottom: 1.5rem;
+}
+.font-semibold {
+    font-weight: 600;
+}
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.font-normal {
+    font-weight: 400;
+}
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+.jqr-booking-done{
+    border-top: 5px solid #f5eee7;
+}
+.jqr-text{
+    color: #11B14B;
+}
 

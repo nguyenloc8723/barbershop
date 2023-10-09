@@ -15,7 +15,7 @@ class BaseApiController extends Controller
     public $model;
     public $modelChooService;
     public $imgService;
-
+    public $booking;
     public function index()
     {
         $data = $this->model::all();
@@ -34,7 +34,6 @@ class BaseApiController extends Controller
     {
         $user = 1;
         Log::info($request->is_accept_take_a_photo);
-//        dd(12);
         $booking = Booking::create([
             'user_id' => $user,
             'stylist_id' => $request->stylist,
@@ -53,13 +52,13 @@ class BaseApiController extends Controller
                 'service_id' => $value,
             ]);
         }
-//        Log::info($request->all());
         return response()->json(['success']);
     }
 
     public function stylistDetail(string $id){
         $data = $this->model::query()->where('id',$id)->first();
-//        dd($data);/
         return response()->json($data);
     }
+
+
 }

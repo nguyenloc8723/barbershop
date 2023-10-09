@@ -5,8 +5,6 @@ $(document).ready(function () {
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
-    const showAllService = $('.jqr-showAllService');
-    let stylistID = $('.jqr-detail');
 
     let isContentVisible = false;
     $('.jqr-contentStylist').css({
@@ -17,7 +15,6 @@ $(document).ready(function () {
     });
 
 
-    let btnSendService = $('.jqr-clickService');
     let arrayIDService = [];
 
     function loadStylist() {
@@ -26,7 +23,6 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
                 data.map(item => {
                     $('.jqr-show-stylist').append(`
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
@@ -50,11 +46,6 @@ $(document).ready(function () {
     }
     loadStylist();
 
-    // $(document).on('click', '.jqr-detail', function () {
-    //     let idStylist = $(this).data('id')
-    //     messageStylist(idStylist);
-    //     timeSheet(idStylist);
-    // });
     function messageSty(id){
         $.ajax({
             url: stylistDetail + '/' + id,
@@ -362,8 +353,6 @@ $(document).ready(function () {
             success: function (response) {
                 let data = response.data;
                 let imgService = response.service;
-                // console.log(imgService)
-                // console.log(response);
                 let category = '';
                 let countImg = 0;
                 for (let i = 0; i < data.length; i++) {
@@ -550,8 +539,8 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response)
-                toastr['success']('Đặt lịch thành công');
-
+                // toastr['success']('Đặt lịch thành công');
+                window.location.href = 'booking/success';
             },
             error: function (error) {
                 console.error(error);
