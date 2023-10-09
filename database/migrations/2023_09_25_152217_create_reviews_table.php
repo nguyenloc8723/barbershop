@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('comment');
             $table->timestamps();
 
-            $table->foreign('booking_id')->references('id')->on('bookings');
+//            $table->foreign('booking_id')->references('id')->on('bookings');
         });
     }
 
