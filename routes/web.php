@@ -26,24 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
-
-//$object = [
-//    'dashboard' => DashboardController::class,
-//    'user' => UserController::class,
-//    'member' => MemberController::class,
-//];
-
-
-//Route::group(["prefix" => "admin"], function () use ($object) {
-//    foreach ($object as $path => $class) {
-//        Route::resource($path, $class);
-//        Route::get($path, [$class, 'index'])->name('route' . '.' . $path);
-//    }
-//});
 
 
 Route::group(["prefix" => "admin"], function () {
@@ -62,7 +45,9 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+        Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
+
 });
 
 
@@ -80,6 +65,7 @@ Route::get('/', function () {
 Route::get('404', function () {
     return view('client.display.404');
 })->name('404');
+
 
 Route::get('about', function () {
     return view('client.display.about');
@@ -112,15 +98,9 @@ Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
-Route::get('login1', function () {
-    return view('client.display.login');
-})->name('login1');
-
-Route::get('otp', function () {
-    return view('client.display.otp');
-})->name('otp');
 
 Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
 Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
 Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
+
 

@@ -28,22 +28,20 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                                        <table id="datatable" class="table table-bordered dt-responsive table-responsive
-                                                   nowrap text-center align-content-sm-center">
-                                            <thead>
-                                            <tr class="">
-                                                @foreach($columns as $key => $column)
-                                                    <th>{{$column}}</th>
-                                                @endforeach
-                                                <th>action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="jquery-value">
+                    <table id="datatable" class="table table-bordered dt-responsive table-responsive
+                                                  nowrap text-center align-content-sm-center">
+                        <thead>
+                            <tr class="">
+                                @foreach($columns as $key => $column)
+                                    <th>{{$column}}</th>
+                                @endforeach
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jquery-value">
 
-
-
-                                            </tbody>
-                                        </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -54,6 +52,10 @@
 
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.service.modal')
+    </div>
+
+    <div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
+
     </div>
 
 @endsection

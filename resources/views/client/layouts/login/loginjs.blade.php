@@ -45,11 +45,12 @@
     window.onload = function () {
         render();
     };
-    document.getElementById("number").addEventListener("keyup", function(event) {
+    document.getElementById("number").addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
             sendOTP();
         }
     });
+
     function checkEnter(event) {
         if (event.key === "Enter") {
             verify(); // Gọi hàm verify() khi ấn Enter trong ô nhập liệu verificationId
@@ -73,10 +74,6 @@
             $("#successAuth").text("Message sent");
             $("#successAuth").show();
 
-            // setTimeout(function() {
-            //     window.location.href = "/verify-otp";
-            // }, 3000); // Chuyển hướng sau 1 giây (1000 milliseconds)
-            // // Chuyển hướng đến trang xác thực OTP
             window.location.href = "/verify-otp?verificationId=" + confirmationResult.verificationId; // Thay đổi "/verify-otp" thành URL trang xác thực OTP của bạn
         }).catch(function (error) {
             $("#error").text(error.message);
@@ -96,20 +93,6 @@
             $("#error").text(error.message);
             $("#error").show();
         });
-
-
-        // coderesult.confirm(code).then(function (result) {
-        //     var user = result.user;
-        //     console.log(user);
-        //     $("#successOtpAuth").text("Auth is successful");
-        //     $("#successOtpAuth").show();
-        //
-        //     // Chuyển hướng đến trang chủ
-        //     window.location.href = "/"; // Thay đổi "/home" thành URL trang chủ của bạn
-        // }).catch(function (error) {
-        //     $("#error").text(error.message);
-        //     $("#error").show();
-        // });
     }
 
 

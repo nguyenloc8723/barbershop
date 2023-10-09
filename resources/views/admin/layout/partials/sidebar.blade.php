@@ -136,7 +136,7 @@
                                 <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
-                                <a href="contacts-profile.html">Profile</a>
+                                <a href="{{route('trash.service')}}">Dịch vụ</a>
                             </li>
                             <li>
                                 <a href="contacts-profile.html">Profile</a>

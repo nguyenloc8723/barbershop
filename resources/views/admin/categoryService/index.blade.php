@@ -80,7 +80,7 @@
     <!-- third party js ends -->
 
     <!-- Datatables init -->
-{{--    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>--}}
+    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 {{--    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>--}}
     <script src="{{asset('js/jsAdmin/category.js')}}"></script>
     <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
