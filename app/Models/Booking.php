@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'stylist_id',
@@ -21,7 +21,7 @@ class Booking extends Model
     ];
 
     public function service(){
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, 'booking_services');
     }
     public function results(){
         return $this->belongsTo(Results::class);
