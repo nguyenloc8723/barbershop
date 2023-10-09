@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\PhoneAuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -105,5 +106,10 @@ Route::get('team', function () {
 Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
+
+
+Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
+Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
+Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 
 
