@@ -20,11 +20,17 @@ class Booking extends Model
         'status',
     ];
 
-    public function service(){
-        return $this->belongsToMany(Service::class);
+//    public function service(){
+//        return $this->belongsToMany(Service::class);
+//    }
+    // Booking.php
+    public function service()
+    {
+        return $this->belongsToMany(Service::class, 'booking_services', 'booking_id', 'service_id');
     }
+
     public function results(){
-        return $this->belongsTo(Results::class);
+        return $this->hasMany(Results::class);
     }
     public function timesheet(){
         return $this->belongsTo(Timesheet::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Models\Booking;
+use App\Models\Results;
 use App\Models\Stylist;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,24 +25,48 @@ class BookingController extends AdminBaseController
         'status' => 'Trạng thái',
     ];
 
-    public function getDetail(string $id){
+    public function getDetail(string $id)
+    {
+
 //        $stylist = Stylist::find(1)->orderBy('name')->get();
-        $data = Booking::findOrFail($id)
+        $data = Booking::query()->where('id',$id)
             ->with('user')
             ->with('stylist')
             ->with('timesheet')
-            ->get();
+            ->with('service')
+            ->with('results')
+            ->first();
 
 //        dd($data);
-        return view($this->pathViews. '/' . 'detail',compact('data'))
+        return view($this->pathViews . '/' . 'detail', compact('data'))
             ->with('columns', $this->columns);
     }
 
-    public function index(){
+    public function index()
+    {
         $data = Booking::query()->with('user')->with('stylist')->get();
-        return view($this->pathViews. '/' . __FUNCTION__,compact('data'))
+        return view($this->pathViews . '/' . __FUNCTION__, compact('data'))
             ->with('columns', $this->columns);
     }
+
+    public function fileUpload(Request $request, string $id)
+    {
+        if ($request->hasFile("imageFile")) {
+            $files = $request->file("imageFile");
+            foreach ($files as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $result = $file->storeAs('images', $imageName, 'public');
+                Results::create([
+                    'booking_id' => $id,
+                    'image' => $result,
+                ]);
+            }
+
+        }
+        return $this->getDetail($id);
+    }
+
+
 //    public function getDetail(){
 //        $data = Booking::find()->with('stylist')->get();
 //
