@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('stylists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('phone');
             $table->string('excerpt');
             $table->string('image');
-            $table->boolean('is_vip');
-            $table->timestamps();
         });
     }
 

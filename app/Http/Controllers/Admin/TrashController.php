@@ -17,6 +17,7 @@ class TrashController extends Controller
             ->with('columns', $columns);
     }
 
+<<<<<<< HEAD
     function stylistTimeSheets(){
         $columns = [
             'id' => 'ID',
@@ -36,6 +37,17 @@ class TrashController extends Controller
             'phone' => 'Phone Number'
         ];
         return view('admin.trash.user')
+=======
+    function Service(){
+        $columns = [
+            'id' => 'id',
+            'name' => 'Tên dịch vụ',
+            'price' => 'Giá dịch vụ',
+            'description' => 'Mô tả',
+            'is_active' => 'Trạng thái hoạt động',
+        ];
+        return view('admin.trash.service')
+>>>>>>> 8b24b7ffb4ed4d5fd3d2a2972c66a6757f89b72c
             ->with('columns', $columns);
     }
 }
