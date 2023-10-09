@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "b0a77f1ec38e951f5349aa532ef3f3ac",
     "packages": [
         {
             "name": "brick/math",
@@ -972,6 +972,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v10.26.2",
             "source": {
                 "type": "git",
@@ -982,6 +983,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/6e5440f7c518f26b4495e5d7e4796ec239e26df9",
                 "reference": "6e5440f7c518f26b4495e5d7e4796ec239e26df9",
+=======
+            "version": "v10.25.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "6014dd456b414b305fb0b408404efdcec18e64bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6014dd456b414b305fb0b408404efdcec18e64bc",
+                "reference": "6014dd456b414b305fb0b408404efdcec18e64bc",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -1168,6 +1181,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2023-10-03T14:24:20+00:00"
         },
         {
@@ -1182,6 +1196,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/cce65a90e64712909ea1adc033e1d88de8455ffd",
                 "reference": "cce65a90e64712909ea1adc033e1d88de8455ffd",
+=======
+            "time": "2023-09-28T14:08:59+00:00"
+        },
+        {
+            "name": "laravel/prompts",
+            "version": "v0.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/prompts.git",
+                "reference": "b603410e7af1040aa2d29e0a2cdca570bb63e827"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/b603410e7af1040aa2d29e0a2cdca570bb63e827",
+                "reference": "b603410e7af1040aa2d29e0a2cdca570bb63e827",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -1223,9 +1253,15 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/laravel/prompts/tree/v0.1.11"
             },
             "time": "2023-10-03T01:07:35+00:00"
+=======
+                "source": "https://github.com/laravel/prompts/tree/v0.1.9"
+            },
+            "time": "2023-09-26T13:14:20+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "laravel/sanctum",
@@ -1612,6 +1648,7 @@
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
             "version": "3.17.0",
             "source": {
                 "type": "git",
@@ -1622,6 +1659,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/bd4c9b26849d82364119c68429541f1631fba94b",
                 "reference": "bd4c9b26849d82364119c68429541f1631fba94b",
+=======
+            "version": "3.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "4fdf372ca6b63c6e281b1c01a624349ccb757729"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4fdf372ca6b63c6e281b1c01a624349ccb757729",
+                "reference": "4fdf372ca6b63c6e281b1c01a624349ccb757729",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -1686,7 +1735,11 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/thephpleague/flysystem/tree/3.17.0"
+=======
+                "source": "https://github.com/thephpleague/flysystem/tree/3.16.0"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -1698,7 +1751,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-10-05T20:15:05+00:00"
+=======
+            "time": "2023-09-07T19:22:17+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "league/flysystem-local",
@@ -3623,6 +3680,7 @@
         },
         {
             "name": "symfony/http-foundation",
+<<<<<<< HEAD
             "version": "v6.3.5",
             "source": {
                 "type": "git",
@@ -3633,6 +3691,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-foundation/zipball/b50f5e281d722cb0f4c296f908bacc3e2b721957",
                 "reference": "b50f5e281d722cb0f4c296f908bacc3e2b721957",
+=======
+            "version": "v6.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "cac1556fdfdf6719668181974104e6fcfa60e844"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/cac1556fdfdf6719668181974104e6fcfa60e844",
+                "reference": "cac1556fdfdf6719668181974104e6fcfa60e844",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -3680,7 +3750,11 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/http-foundation/tree/v6.3.5"
+=======
+                "source": "https://github.com/symfony/http-foundation/tree/v6.3.4"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -3696,6 +3770,7 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-09-04T21:33:54+00:00"
         },
         {
@@ -3710,6 +3785,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/9f991a964368bee8d883e8d57ced4fe9fff04dfc",
                 "reference": "9f991a964368bee8d883e8d57ced4fe9fff04dfc",
+=======
+            "time": "2023-08-22T08:20:46+00:00"
+        },
+        {
+            "name": "symfony/http-kernel",
+            "version": "v6.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-kernel.git",
+                "reference": "36abb425b4af863ae1fe54d8a8b8b4c76a2bccdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/36abb425b4af863ae1fe54d8a8b8b4c76a2bccdb",
+                "reference": "36abb425b4af863ae1fe54d8a8b8b4c76a2bccdb",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -3793,7 +3884,11 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/http-kernel/tree/v6.3.5"
+=======
+                "source": "https://github.com/symfony/http-kernel/tree/v6.3.4"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -3809,7 +3904,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-09-30T06:37:04+00:00"
+=======
+            "time": "2023-08-26T13:54:49+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "symfony/mailer",
@@ -5274,6 +5373,7 @@
         },
         {
             "name": "symfony/var-dumper",
+<<<<<<< HEAD
             "version": "v6.3.5",
             "source": {
                 "type": "git",
@@ -5284,6 +5384,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/3d9999376be5fea8de47752837a3e1d1c5f69ef5",
                 "reference": "3d9999376be5fea8de47752837a3e1d1c5f69ef5",
+=======
+            "version": "v6.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "2027be14f8ae8eae999ceadebcda5b4909b81d45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/2027be14f8ae8eae999ceadebcda5b4909b81d45",
+                "reference": "2027be14f8ae8eae999ceadebcda5b4909b81d45",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -5338,7 +5450,11 @@
                 "dump"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/var-dumper/tree/v6.3.5"
+=======
+                "source": "https://github.com/symfony/var-dumper/tree/v6.3.4"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -5354,7 +5470,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-09-12T10:11:35+00:00"
+=======
+            "time": "2023-08-24T14:51:05+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5627,6 +5747,90 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "v3.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "bfd0131c146973cab164e50f5cdd8a67cc60cab1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/bfd0131c146973cab164e50f5cdd8a67cc60cab1",
+                "reference": "bfd0131c146973cab164e50f5cdd8a67cc60cab1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "^9|^10",
+                "illuminate/session": "^9|^10",
+                "illuminate/support": "^9|^10",
+                "maximebf/debugbar": "^1.18.2",
+                "php": "^8.0",
+                "symfony/finder": "^6"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench-dusk": "^5|^6|^7|^8",
+                "phpunit/phpunit": "^8.5.30|^9.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facades\\Debugbar"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "support": {
+                "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.9.2"
+            },
+            "funding": [
+                {
+                    "url": "https://fruitcake.nl",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/barryvdh",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-25T18:43:57+00:00"
+        },
         {
             "name": "fakerphp/faker",
             "version": "v1.23.0",
@@ -5947,6 +6151,75 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2023-09-11T17:37:09+00:00"
+<<<<<<< HEAD
+=======
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "v1.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "30f65f18f7ac086255a77a079f8e0dcdd35e828e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/30f65f18f7ac086255a77a079f8e0dcdd35e828e",
+                "reference": "30f65f18f7ac086255a77a079f8e0dcdd35e828e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8",
+                "psr/log": "^1|^2|^3",
+                "symfony/var-dumper": "^4|^5|^6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=7.5.20 <10.0",
+                "twig/twig": "^1.38|^2.7|^3.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "support": {
+                "issues": "https://github.com/maximebf/php-debugbar/issues",
+                "source": "https://github.com/maximebf/php-debugbar/tree/v1.19.0"
+            },
+            "time": "2023-09-19T19:53:10+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "mockery/mockery",
@@ -6298,6 +6571,7 @@
         },
         {
             "name": "phpunit/php-code-coverage",
+<<<<<<< HEAD
             "version": "10.1.7",
             "source": {
                 "type": "git",
@@ -6308,6 +6582,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/355324ca4980b8916c18b9db29f3ef484078f26e",
                 "reference": "355324ca4980b8916c18b9db29f3ef484078f26e",
+=======
+            "version": "10.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "56f33548fe522c8d82da7ff3824b42829d324364"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/56f33548fe522c8d82da7ff3824b42829d324364",
+                "reference": "56f33548fe522c8d82da7ff3824b42829d324364",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -6364,7 +6650,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.7"
+=======
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.6"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -6372,7 +6662,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-10-04T15:34:17+00:00"
+=======
+            "time": "2023-09-19T04:59:03+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6619,6 +6913,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "10.4.1",
             "source": {
                 "type": "git",
@@ -6629,6 +6924,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/62bd7af13d282deeb95650077d28ba3600ca321c",
                 "reference": "62bd7af13d282deeb95650077d28ba3600ca321c",
+=======
+            "version": "10.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "747c3b2038f1139e3dcd9886a3f5a948648b7503"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/747c3b2038f1139e3dcd9886a3f5a948648b7503",
+                "reference": "747c3b2038f1139e3dcd9886a3f5a948648b7503",
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
                 "shasum": ""
             },
             "require": {
@@ -6700,7 +7007,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/10.4.1"
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.3.5"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
             },
             "funding": [
                 {
@@ -6716,7 +7027,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-10-08T05:01:11+00:00"
+=======
+            "time": "2023-09-19T05:42:37+00:00"
+>>>>>>> 04df308956bb84d64da1da1b8c1ee33668e1f08f
         },
         {
             "name": "sebastian/cli-parser",
