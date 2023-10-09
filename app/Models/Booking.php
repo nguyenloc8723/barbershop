@@ -9,6 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'stylist_id',
@@ -20,28 +21,41 @@ class Booking extends Model
         'status',
     ];
 
+
 //    public function service(){
 //        return $this->belongsToMany(Service::class);
 //    }
-    // Booking.php
+
     public function service()
     {
         return $this->belongsToMany(Service::class, 'booking_services', 'booking_id', 'service_id');
     }
+//    public function service(){
+//        return $this->belongsToMany(Service::class, 'booking_services');
+//    }
 
-    public function results(){
+    public function results()
+    {
         return $this->hasMany(Results::class);
     }
-    public function timesheet(){
+
+    public function timesheet()
+    {
         return $this->belongsTo(Timesheet::class);
     }
-    public function stylist(){
+
+    public function stylist()
+    {
         return $this->belongsTo(Stylist::class, 'stylist_id');
     }
-    public function review(){
+
+    public function review()
+    {
         return $this->hasMany(Reviews::class, 'booking_id');
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

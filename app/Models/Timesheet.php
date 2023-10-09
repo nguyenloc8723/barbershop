@@ -16,7 +16,7 @@ class Timesheet extends Model
     ];
 
     public function stylist(){
-        return $this->belongsToMany(Stylist::class);
+        return $this->belongsToMany(Stylist::class, 'stylist_time_sheets');
     }
     public function booking(){
         return $this->hasOne(Booking::class);

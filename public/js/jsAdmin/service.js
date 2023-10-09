@@ -8,15 +8,52 @@ $(document).ready(function () {
     const listTable = $('#jquery-value');
     let formModal = $('#formModalService');
     const actionMethod = $('input[name="actionMethod"]');
+    let idDetail;
     const urlShow = '/api/get/service';
     const urlPost = '/api/post/service';
     const urlShowEdit = '/api/edit/service';
     const urlPut = '/api/put/service';
+    const urlDelete = '/api/delete/service';
     const urlCategory = '/api/category';
 
     // mặc định ẩn bảng modal
     // $('.jquery-main-modal').hide();
 
+    $(document).on('click','.btn-image',function () {
+        let id = $(this).data('id');
+        $.ajax({
+            url: '/api/getImg/' + id,
+            method: 'GET',
+            dataType:'json',
+            success: function (data) {
+                let dataImg = data.images;
+                console.log(dataImg[0].url);
+                $('.js-img').html(`
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                                <h4 class="modal-title" id="myCenterModalLabel">Ảnh của....</h4>
+                                <button type="button" class="btn-close jquery-btn-cancel"
+                             aria-hidden="true"></button>
+                        </div>
+                        <div class="selected-images">
+                            ${dataImg.map(item => `
+                                    <div class="item-images">
+                                        <img src="/storage/${item.url}" width="100px" alt="">
+                                     </div>
+                                        `).join('')}
+                        </div>
+                    </div>
+                   </div>
+                    `).show();
+
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+
+    })
 
     function showModal(action = true) {
         if (action) {
@@ -31,27 +68,47 @@ $(document).ready(function () {
             setValue();
             // $('#category_id').html(value);
             actionMethod.val('');
+            $('.js-img').hide();
             $('.jquery-main-modal').hide()
         }
     }
 
 
-    btnCancel.on('click', function () {
+    $(document).on('click','.jquery-btn-cancel', function () {
         showModal(false);
     });
     btnShowModal.on('click', showModal);
 
 
+    $(document).on('click','.js-btn-update', function () {
+        let id = $(this).data('id');
+        idDetail = id;
+        actionMethod.val('update')
+        getDetail(id);
+    })
+
+    $(document).on('click','.js-btn-delete', function (){
+        if (confirm('Bạn có chắc chắn muốn xóa ?')){
+            idDetail = $(this).data('id');
+            destroy();
+        }
+    });
+
+
     formModal.on('submit', function (e) {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
-            update();
+            update(idDetail);
             showModal(false);
         } else {
             add();
             showModal(false);
         }
     })
+
+
+
+
 
     function loadAll() {
         $.ajax({
@@ -83,7 +140,7 @@ $(document).ready(function () {
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <button class="dropdown-item js-btn-update" data-id="${item.id}">Cập nhật</button>
-                                        <button class="dropdown-item btn-delete" data-id="${item.id}">Xóa</button>
+                                        <button class="dropdown-item js-btn-delete" data-id="${item.id}">Xóa</button>
                                         <button class="dropdown-item btn-image" data-id="${item.id}">Ảnh dịch vụ</button>
                                     </div>
                                 </div>
@@ -99,7 +156,6 @@ $(document).ready(function () {
         });
     }
     loadAll();
-
     function add() {
         let formData = new FormData(formModal[0]);
         $.ajax({
@@ -121,7 +177,6 @@ $(document).ready(function () {
             }
         });
     }
-
     function getDetail(id) {
         $.ajax({
             url: urlShowEdit + '/' + id,
@@ -184,11 +239,11 @@ $(document).ready(function () {
     }
 
 
-    function update(id) {
+    function update() {
         let formData = new FormData(formModal[0]);
         $.ajax({
-           url: urlPut + '/' + id,
-            method: 'PUT',
+           url: urlPut + '/' + idDetail,
+            method: 'post',
             data: formData,
             processData: false,
             contentType: false,
@@ -197,6 +252,8 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data);
+                loadAll();
+                toastr['success']('Cập nhật dịch vụ thành công');
             },
             error: function (error) {
                 console.error(error);
@@ -205,11 +262,23 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click','.js-btn-update', function () {
-        let id = $(this).data('id');
-        actionMethod.val('update')
-        getDetail(id);
-    })
+
+    function destroy() {
+        $.ajax({
+            url: urlDelete +'/' + idDetail,
+            method: 'DELETE',
+            dataType: 'json',
+            success: function (data) {
+                // console.log(data);
+                loadAll();
+                toastr['success']
+                ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
 
 
     fileInput.slideUp();
@@ -263,4 +332,7 @@ $(document).ready(function () {
         });
     }
     setValue();
+
+
+
 });

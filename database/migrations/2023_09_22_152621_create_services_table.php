@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->boolean('is_active');
             $table->timestamps();
-
+            $table->softDeletes();
 //            $table->foreign('category_id')->references('id')->on('service_categories');
         });
     }

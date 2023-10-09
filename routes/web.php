@@ -9,7 +9,11 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\ClientBookingController;
+use App\Http\Controllers\Client\ClientServiceController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,23 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//$object = [
-//    'dashboard' => DashboardController::class,
-//    'user' => UserController::class,
-//    'member' => MemberController::class,
-//];
 
 
-//Route::group(["prefix" => "admin"], function () use ($object) {
-//    foreach ($object as $path => $class) {
-//        Route::resource($path, $class);
-//        Route::get($path, [$class, 'index'])->name('route' . '.' . $path);
-//    }
-//});
 
 
 Route::group(["prefix" => "admin"], function () {
@@ -57,6 +46,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+        Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
 
 
@@ -65,10 +55,65 @@ Route::group(["prefix" => "admin"], function () {
 //    Route::resource('booking_blade', BookingController::class);
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
-    Route::post('booing_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+
 });
 
 
+
+//Route::get('services', function () {
+//    return view('client.display.services');
+//})->name('services');
+Route::get('services', [ClientServiceController::class,'services'])->name('services');
+Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
+
+
+Route::group(["prefix" => "client", 'as' => 'client.'], function (){
+    Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
+    Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
+    Route::get('booking/success', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
+});
+
+
+// client route
+Route::get('/', function () {
+    return view('client.display.index');
+})->name('index');
+Route::get('404', function () {
+    return view('client.display.404');
+})->name('404');
+
+
+Route::get('about', function () {
+    return view('client.display.about');
+})->name('about');
+Route::get('blog', function () {
+    return view('client.display.blog');
+})->name('blog');
+
+Route::get('contact', function () {
+    return view('client.display.contact');
+})->name('contact');
+
+Route::get('faq', function () {
+    return view('client.display.faq');
+})->name('faq');
+
+Route::get('portfolio', function () {
+    return view('client.display.portfolio');
+})->name('portfolio');
+Route::get('post', function () {
+    return view('client.display.post');
+})->name('post');
+Route::get('pricing', function () {
+    return view('client.display.pricing');
+})->name('pricing');
+Route::get('team', function () {
+    return view('client.display.team');
+})->name('team');
+Route::get('team-details', function () {
+    return view('client.display.team-details');
+})->name('team-details');
 
 
