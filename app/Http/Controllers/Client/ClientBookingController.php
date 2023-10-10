@@ -13,7 +13,7 @@ class ClientBookingController extends Controller
         return view('client.booking.index');
     }
 
-    public function bookingDone(){
-        return view('client.booking.bookingDone');
+    public function bookingDone($booking_id){
+        return view('client.booking.bookingDone',compact('booking_id'));
     }
 }

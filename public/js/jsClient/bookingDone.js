@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    toastr['success']('Đặt lịch thành công');
-
+    let booking_id = $('#booking_id').data('booking_id');
     function bookingDone() {
         $.ajax({
-            url: '/api/booking/success',
+            url: '/api/booking/success' +'/' + booking_id,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
@@ -31,4 +30,48 @@ $(document).ready(function () {
         });
     }
     bookingDone();
+
+    $(document).on('click','.jqr-change', function () {
+        console.log('đổi lịch');
+        destroy(booking_id);
+        window.location.href = '/client/booking';
+    });
+
+    $(document).on('click','.jqr-destroy', function () {
+        Swal.fire({
+            title: 'Anh chắc chắn muốn hủy lịch?',
+            text: "Anh sẽ không thể hoàn nguyên điều này!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '',
+                    'Hủy lịch thành công.',
+                    'success'
+                ).then(() => {
+                    window.location.href = '/';
+                });
+                destroy(booking_id);
+            }
+        })
+    });
+
+    function destroy(id) {
+        console.log('Hủy lịch ' + id);
+        $.ajax({
+            url: '/api/booking/destroy' +'/' + id,
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
 });

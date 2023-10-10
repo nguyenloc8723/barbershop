@@ -53,32 +53,32 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 $('.jqr-messageStylist').html(`
-               <div class="stylist-selected">
-                  <div class="stylist__top">
-                     <div class="name">
-                          Stylist: ${data.name}
-                     </div>
-                     </div>
-                         <div class="stylist__listRaiting">
-                             <div class="rating">
-                                 <div class="rating__title">Đánh giá 4.8</div>
-                                     <div class="rating__detail">
-                                         <span>(4.8k khách)</span>
-                                     </div>
-                                     <div class="rating__icon">
-                                         <span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle icon">
-                                             <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                              <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path>
-                                             </svg>
-                                         </span>
+                   <div class="stylist-selected">
+                      <div class="stylist__top">
+                         <div class="name">
+                              Stylist: ${data.name}
+                         </div>
+                         </div>
+                             <div class="stylist__listRaiting">
+                                 <div class="rating">
+                                     <div class="rating__title">Đánh giá 4.8</div>
+                                         <div class="rating__detail">
+                                             <span>(4.8k khách)</span>
+                                         </div>
+                                         <div class="rating__icon">
+                                             <span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle icon">
+                                                 <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                  <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path>
+                                                 </svg>
+                                             </span>
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
-                     </div>
-                  </div>
-               </div>
-        `);
+                      </div>
+                   </div>
+                `);
             },
             error:function (error) {
                 console.error(error);
@@ -538,9 +538,9 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': csrfToken,
             },
             success: function (response) {
-                console.log(response)
+                console.log(response.success)
                 // toastr['success']('Đặt lịch thành công');
-                window.location.href = 'booking/success';
+                window.location.href = 'booking/success/' + response.success;
             },
             error: function (error) {
                 console.error(error);

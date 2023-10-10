@@ -16,6 +16,7 @@ class BaseApiController extends Controller
     public $modelChooService;
     public $imgService;
     public $booking;
+
     public function index()
     {
         $data = $this->model::all();
@@ -44,15 +45,15 @@ class BaseApiController extends Controller
             'is_accept_take_a_photo' => $request->isAcceptTakeAPhoto,
             'status' => 1,
         ]);
-        $id = $booking->id;
+        $bookingDone_id = $booking->id;
         $service = $request->arrayIDService;
         foreach ($service as $value) {
             Booking_service::create([
-                'booking_id' => $id,
+                'booking_id' => $bookingDone_id,
                 'service_id' => $value,
             ]);
         }
-        return response()->json(['success']);
+        return response()->json(['success'=>$bookingDone_id]);
     }
 
     public function stylistDetail(string $id){
@@ -60,5 +61,14 @@ class BaseApiController extends Controller
         return response()->json($data);
     }
 
+    public function bookingDone($id){
+        $data = $this->booking::query()->where('id',$id)->with('service')->first();
+        return response()->json($data);
+    }
 
+    public function bookingDestroy($id){
+        $this->booking::where('id',$id)->delete();
+        Booking_service::where('booking_id',$id)->delete();
+        return response()->json(['success'=>'Xóa thành công']);
+    }
 }
