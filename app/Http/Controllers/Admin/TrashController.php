@@ -17,6 +17,28 @@ class TrashController extends Controller
             ->with('columns', $columns);
     }
 
+
+    function stylistTimeSheets(){
+        $columns = [
+            'id' => 'ID',
+            'stylist_id' => 'ID Stylist',
+            'timeshhet_id' => 'ID Time Sheet',
+            'is_active' => 'Active',
+            'is_block' => 'Block',
+        ];
+        return view('admin.trash.stylistTimeSheets')
+            ->with('columns', $columns);
+    }
+
+    function user()
+    {
+        $columns = [
+            'id' => 'ID',
+            'name' => 'Name',
+            'phone' => 'Phone Number'
+        ];
+        return view('admin.trash.user');
+    }
     function Service(){
         $columns = [
             'id' => 'id',

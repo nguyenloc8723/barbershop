@@ -98,14 +98,13 @@
                         <span>Danh mục dịch vụ</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{route('timesheet.index')}}">
+                    <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
-                        <span>Thời gian biểu</span>
+                        <span>Stylist's Time Sheet</span>
                     </a>
                 </li>
-
-
 
                 <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
@@ -144,10 +143,14 @@
                                 <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
+
+                                <a href="{{route('trash.stylistTimeSheets')}}">Stylist's Time Sheets</a>
+
                                 <a href="{{route('trash.service')}}">Dịch vụ</a>
+
                             </li>
                             <li>
-                                <a href="contacts-profile.html">Profile</a>
+                                <a href="{{route('trash.user')}}">User</a>
                             </li>
                             <li>
                                 <a href="contacts-profile.html">Profile</a>
