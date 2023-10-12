@@ -33,25 +33,34 @@ class BaseApiController extends Controller
 
     public function pullRequest(Request $request)
     {
-        $user = 1;
-        Log::info($request->is_accept_take_a_photo);
-        $booking = Booking::create([
-            'user_id' => $user,
-            'stylist_id' => $request->stylist,
-            'timesheet_id' => $request->time,
-            'date' => $request->date,
-            'special_requirement' => $request->specialRequirement,
-            'is_consultant' => $request->is_consultant,
-            'is_accept_take_a_photo' => $request->isAcceptTakeAPhoto,
-            'status' => 1,
-        ]);
-        $bookingDone_id = $booking->id;
+//        Log::info($request->all());
+        $booking = $request->all();
+
+        $model = new $this->booking;
+        $model->fill($booking);
+        $model->save();
+
+//        $booking = Booking::create([
+//            'user_id' => $user,
+//            'stylist_id' => $request->stylist,
+//            'timesheet_id' => $request->time,
+//            'date' => $request->date,
+//            'special_requirement' => $request->specialRequirement,
+//            'is_consultant' => $request->is_consultant,
+//            'is_accept_take_a_photo' => $request->isAcceptTakeAPhoto,
+//            'status' => $request->status,
+//        ]);
+        $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
+
+
         foreach ($service as $value) {
-            Booking_service::create([
+            $booking_service = new Booking_service;
+            $booking_service->fill([
                 'booking_id' => $bookingDone_id,
                 'service_id' => $value,
             ]);
+            $booking_service->save();
         }
         return response()->json(['success'=>$bookingDone_id]);
     }
@@ -62,12 +71,14 @@ class BaseApiController extends Controller
     }
 
     public function bookingDone($id){
-        $data = $this->booking::query()->where('id',$id)->with('service')->first();
+        $data = $this->booking::query()->where('id',$id)->with('service','timeSheet')->first();
         return response()->json($data);
     }
 
     public function bookingDestroy($id){
+        $this->booking::where('id', $id)->update(['status' => 2]);
         $this->booking::where('id',$id)->delete();
+
         Booking_service::where('booking_id',$id)->delete();
         return response()->json(['success'=>'Xóa thành công']);
     }

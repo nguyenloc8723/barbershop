@@ -5,7 +5,7 @@ $(document).ready(function () {
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
-
+    let countPrice = 0;
     let isContentVisible = false;
     $('.jqr-contentStylist').css({
        'display': 'none',
@@ -101,7 +101,6 @@ $(document).ready(function () {
                 } else {
                     count = Math.floor(dataTimeSheet.length / 3) + 1;
                 }
-
                 let timesheet_box = ``;
                 for (let i = 0; i < count; i++) {
                     timesheet_box += `<div class="swiper-slide box-time_gr" style="width: 101.048px; margin-right: 8px;">`;
@@ -202,6 +201,7 @@ $(document).ready(function () {
                         }
                     }
                 }
+                countPrice = money;
                 function formatCurrency(amount) {
                     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 }
@@ -415,7 +415,7 @@ $(document).ready(function () {
 
         if (!arrayIDService.includes(id)) {
             arrayIDService.push(id);
-        } else {
+        }else {
             let index = arrayIDService.indexOf(id);
             if (index !== -1) {
                 arrayIDService.splice(index, 1);
@@ -426,7 +426,7 @@ $(document).ready(function () {
                 'color': '#000',
             });
         }
-
+        console.log(arrayIDService);
         countSelect = arrayIDService.length;
         if (countSelect === 0) {
             $('.jqr-clickService').css({
@@ -520,15 +520,20 @@ $(document).ready(function () {
         let special_requirement = 1;
         let is_consultant = 1;
         let is_accept_take_a_photo = 1;
+        let status = 1;
+        let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            stylist: stylist,
-            time: time,
-            specialRequirement: special_requirement,
+            user_id: user_id,
+            stylist_id: stylist,
+            timesheet_id: time,
+            price: countPrice,
+            special_requirement: special_requirement,
             is_consultant: is_consultant,
-            isAcceptTakeAPhoto: is_accept_take_a_photo,
+            is_accept_take_a_photo: is_accept_take_a_photo,
             date: date,
             arrayIDService: arrayIDService,
+            status: status
         };
         $.ajax({
             url: pullRequestUrl,

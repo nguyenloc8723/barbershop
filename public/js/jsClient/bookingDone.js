@@ -7,6 +7,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 console.log(response)
+                console.log(response.service)
                 $('.jqr-serviceName').empty();
                 let price = 0;
                 response.service.map(item => {
