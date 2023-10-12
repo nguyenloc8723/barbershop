@@ -27,12 +27,12 @@ class Booking extends Model
         return $this->belongsTo(Results::class);
     }
     public function timeSheet(){
-        return $this->belongsTo(Timesheet::class);
+        return $this->belongsTo(Timesheet::class, 'timesheet_id');
     }
     public function stylist(){
         return $this->belongsTo(Stylist::class);
     }
-    public function review(){
+    public function reviews(){
         return $this->hasMany(Reviews::class, 'booking_id');
     }
     public function user(){

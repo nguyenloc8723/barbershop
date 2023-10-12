@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\LichsucatController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -80,6 +81,11 @@ Route::get('/', function () {
 Route::get('404', function () {
     return view('client.display.404');
 })->name('404');
+// Route::get('lichsucat', function () {
+//     return view('client.display.lichsucat');
+// });
+Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
+Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
 
 
 Route::get('about', function () {
