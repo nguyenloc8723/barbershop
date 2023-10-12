@@ -125,7 +125,8 @@
                                     </div>
 
                                     <div class="kanban-detail">
-                                        <span class="badge bg-danger float-end">Urgent</span>
+{{--                                        <span class="badge bg-danger float-end">Urgent</span>--}}
+                                        <span class="badge float-end bg-{{$item->status == 1 ? "danger" : "success" }}">{{$item->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}</span>
                                         <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->user->name}}</a></h5>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
