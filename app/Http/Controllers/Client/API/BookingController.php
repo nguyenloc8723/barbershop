@@ -26,9 +26,5 @@ class BookingController extends BaseApiController
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
-    public function bookingDone(){
-        $user = 1;
-        $data = $this->booking::query()->where('user_id',$user)->with('service')->first();
-        return response()->json($data);
-    }
+
 }

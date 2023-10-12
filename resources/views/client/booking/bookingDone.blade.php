@@ -12,6 +12,7 @@
     <div class="fix-hed">
 
     </div>
+    <div id="booking_id" data-booking_id="{{$booking_id}}"></div>
     <section class="info-box section-padding">
         <div class="container">
             <div class="row justify-content-center">
@@ -49,11 +50,10 @@
                                 </div>
                             </div>
                             <div class="divide-y divide-gray-300 -my-4">
-                                <button href="" class="block flex item-center w-full py-4">
+                                <button class="block flex item-center w-full py-4 jqr-change">
                                     <div class="flex text-sm font-normal color-111111">Đổi lịch</div>
-
                                 </button>
-                                <button href="" class="block flex item-center w-full py-4">
+                                <button class="block flex item-center w-full py-4 jqr-destroy">
                                     <div class="flex text-sm font-normal color-111111">Hủy lịch</div>
                                 </button>
                             </div>
