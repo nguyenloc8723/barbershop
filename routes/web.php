@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\StylistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,11 +49,16 @@ Route::group(["prefix" => "admin"], function () {
     Route::resource('category', CategoryServiceController::class);
 
 
+
     Route::resource('member', MemberController::class);
     Route::get('service', [ServiceController::class, 'index'])->name('route.service');
     Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
+
+    Route::resource('stylists',StylistController::class);
+    Route::resource('blogs',BlogController::class);
+    
 
 
     Route::prefix('trash')->group(function (){

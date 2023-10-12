@@ -11,9 +11,9 @@ class Stylist extends Model
 
     protected $fillable = [
         'name',
-        'excerpt',
+        'phone',
         'image',
-        'is_vip',
+        // 'is_vip',
     ];
 
     public function timeSheet(){
