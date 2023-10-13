@@ -17,6 +17,21 @@
 
 
 </div>
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if(@session('success'))
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Title!</strong> {{ session('success')}}
+</div>
+@endif
 <br>
 <h2 class="text-center lxc">Hành Trình Tỏa Sáng</h2>
 <div class="container lxc">
@@ -50,17 +65,17 @@
                 </div>
                 <br>
                 <!-- Main -->
-                @foreach($Booking as $bookings)
-                
+
+
                 @if($bookings->status == 1)
                 <div class="row">
                     <h5 class="text-center text-dark" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mời anh/chị đánh giá chất lượng phục vụ</h5>
                     <br>
                     <p class="text-center text-dark">Phản hồi của anh/chị sẽ giúp chúng em cải thiện chất lượng dịch vụ tốt hơn</p>
 
-                    
-                        
-                       
+
+
+
                     <form action="{{route('lichsucat')}}" method="post">
                         @csrf
                         <div class="d-flex justify-content-center">
@@ -78,14 +93,24 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-10">
                                 <textarea name="comment" id="" cols="20" rows="5" class="border border-dark text-dark" required></textarea> <br>
-                                <span class="btn btn-secondary btn-lg" style="width: 100%;"><button type="submit" onclick="autoload()">Lưu đánh giá</button></span>
-                                <button type="reset"><span class="btn btn-warning ">Reset</span></button>
+                                
+
+                                    <span class="btn btn-secondary btn-lg" style="width: 100%;"><button type="submit" onclick="autoload()">Lưu đánh giá</button></span>
+                                    <button type="reset"><span class="btn btn-warning ">Reset</span></button>
+                                    
+                                    
+                
                             </div>
                         </div>
                     </form>
+                    @else
+                    <h5 class="text-center">Anh chị chưa đăng kí dịch vụ nào bên em</h5>
+                    @endif
 
-                   
-                 @foreach($bookings->reviews as $review)
+
+
+
+                    @foreach($bookings->reviews as $review)
                     @if($review->booking_id == $bookings->id)
                     <div class="row">
                         <div class="col-5" style="margin-left: 30px;">
@@ -96,7 +121,7 @@
                                 <b>Stylist:</b> {{$bookings->stylist->name}}
                             </p>
                             <p>
-                                <b>TimeBooking:</b> {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}}
+                                <b>TimeBooking:</b>{{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}}
                             </p>
                             <p>
                                 <b>Stylist:</b> {{$bookings->stylist->name}}
@@ -105,17 +130,14 @@
                                 <b>Rating:</b> {{$review->rating}}⭐
                             </p>
                         </div>
-                      
-                        
+
+
                     </div>
                     @endif
-                    @endforeach
 
+                    @endforeach
                 </div>
-                @else
-                    <h5 class="text-center">Anh chị chưa đăng kí dịch vụ nào bên em</h5>
-                @endif
-                @endforeach
+
             </div>
         </div>
 
@@ -124,13 +146,16 @@
 </div>
 <br>
 
-<script>
-        function autoload(){
-            location.reload();
-        }
-    </script>
+
 
 <script>
+    // 
+    function autoload() {
+        location.reload();
+    }
+
+    // 
+    // 
     $('.stars i').on('click', function() {
         $('.stars span, .stars i').removeClass('active');
 

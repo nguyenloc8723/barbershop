@@ -18,26 +18,40 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = 4;
-        // $result = Results::all();
+        $user = 5;
+
+        $result = Results::all()->pluck('booking_id');
         // dd($result);
-        // $result = Results::pluck('booking_id');
-        // if (!$result) {
+        $bookings = Booking::with('stylist', 'User', 'timeSheet', 'reviews')
+            ->where('user_id', $user)
+            ->orderBy('date', 'desc')
+            ->first();
 
-            $result = Results::all()->pluck('booking_id');
-            // dd($result);
-            $Booking = Booking::with('stylist', 'User', 'timeSheet', 'reviews')
-                ->where('user_id', $user)
-                
-                ->get();
+       
+        // $review = Booking::with('reviews')
+        // ->where('user_id', $user)
+        // ->get();
 
-        return view('client.display.lichsucat', compact('result','Booking'));
+        // // foreach ($review as $key) {
+        // //     dd($key->reviews);
+        // // }
+
+        // dd($review);
+    
+        return view('client.display.lichsucat', compact('result', 'bookings'));
     }
 
     public function create(Request $request)
     {
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'booking_id' => 'required|unique:reviews',
+                'rating' => 'required|between:1,5',
+                'comment' => 'required',
+            ]);
+            Reviews::create($request->all());
+        }
 
-        Reviews::create($request->all());
 
         return redirect()->route('show')
             ->with('success', 'Cảm ơn anh/chị đã đánh giá.');
