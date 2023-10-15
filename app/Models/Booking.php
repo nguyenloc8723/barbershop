@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Booking extends Model
 {
     use HasFactory,SoftDeletes;
-    public $timestamps = false;
+//    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'stylist_id',
