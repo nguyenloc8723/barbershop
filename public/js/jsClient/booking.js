@@ -6,12 +6,22 @@ $(document).ready(function () {
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
     let countPrice = 0;
+    let is_consultant = 1;
+    let is_accept_take_a_photo = 1;
+    let stylist = 0;
+    let countSelect = 0;
+    let time = 0;
     let isContentVisible = false;
+    let is_selectConsultant = true;
+    let is_selectTakePhoto = true;
     $('.jqr-contentStylist').css({
        'display': 'none',
     });
     $('.jqr-messageStylist').css({
         'display': 'none',
+    });
+    $('.jqr-textBase').css({
+
     });
 
 
@@ -298,7 +308,7 @@ $(document).ready(function () {
                                         <div class="mt-2">
                                             <div class="flex item-center " role="presentation">
                                                 <div class="suggestion-salon__text jqr-name">
-                                                    <div>Ngày mai còn rất nhiều giờ trống vào ngày mai, click để đổi sang ngày mai anh nhé!</div>
+                                                    <div>Ngày mai còn rất nhiều giờ trống, click để đổi sang ngày mai bạn nhé!</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,6 +325,24 @@ $(document).ready(function () {
                                     </div>
                                     <div id=""></div>
                                 </div>
+                            </div>
+                            <div class="text-base jqr-textBase">
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-consultant"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Chụp ảnh sau khi cắt</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-accept_take_a_photo"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-acceptTakeAPhoto">Bạn cho phép chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
                             </div>
                         </div>
                     </div>
@@ -402,8 +430,34 @@ $(document).ready(function () {
         });
     }
 
-
-    let countSelect = 0;
+    $(document).on('click','.jqr-consultant',function () {
+        is_selectConsultant = !is_selectConsultant;
+        if (is_selectConsultant){
+            $('.jqr-textConsultant').html(`
+                <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+            `);
+            is_consultant = 1;
+        }else {
+            $('.jqr-textConsultant').html(`
+                <p class="jqr-textConsultant">Bạn không cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+            `);
+            is_consultant = 0;
+        }
+    });
+    $(document).on('click','.jqr-accept_take_a_photo',function () {
+         is_selectTakePhoto = !is_selectTakePhoto;
+        if (is_selectTakePhoto){
+            $('.jqr-acceptTakeAPhoto').html(`
+                <p class="jqr-acceptTakeAPhoto">Bạn cho phép chúng mình chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
+            `);
+            is_accept_take_a_photo = 1;
+        }else {
+            $('.jqr-acceptTakeAPhoto').html(`
+                <p class="jqr-acceptTakeAPhoto">Bạn không cho phép chụp ảnh, không cần thợ lần sau biết.</p>
+            `);
+            is_accept_take_a_photo = 0;
+        }
+    });
     $(document).on('click', '.item__button', function () {
         let id = $(this).data('id');
         $(this).css({
@@ -445,8 +499,6 @@ $(document).ready(function () {
             $('.jqr-clickService').html(`<span>Chọn ${countSelect} dịch vụ</span>`);
         }
     })
-
-    let stylist = 0;
     $(document).on('click', '.jqr-detail', function () {
         stylist = $(this).data('id');
         $('.jqr-messageStylist').css({
@@ -468,9 +520,6 @@ $(document).ready(function () {
         });
         randomStylist();
     });
-
-
-    let time = 0;
     $(document).on('click', '.box-time_item', function () {
         time = $(this).data('id');
         $('.box-time_item').not('.unavailable').css({
@@ -539,9 +588,6 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
-        let special_requirement = 1;
-        let is_consultant = 1;
-        let is_accept_take_a_photo = 1;
         let status = 1;
         let user_id = 1;
         let date = $('input[name="date"]').val();
@@ -550,7 +596,6 @@ $(document).ready(function () {
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,
-            special_requirement: special_requirement,
             is_consultant: is_consultant,
             is_accept_take_a_photo: is_accept_take_a_photo,
             date: date,

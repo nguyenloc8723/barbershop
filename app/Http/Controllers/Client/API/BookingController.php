@@ -51,6 +51,7 @@ class BookingController extends Controller
     public function pullRequest(Request $request)
     {
 //        Log::info($request->all());
+
         $booking = $request->all();
 
         $model = new $this->booking;
