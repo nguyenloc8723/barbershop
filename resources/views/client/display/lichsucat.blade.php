@@ -108,7 +108,9 @@
 
                 @foreach($reviews as $booking)
 
-
+                @foreach($allReviews as $allReview)
+               
+               @if($allReview == $bookings->id)
 
 
                 <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
@@ -135,8 +137,8 @@
                 <br>
 
 
-
-
+               @endif
+                @endforeach
                 @endforeach
             </div>
 

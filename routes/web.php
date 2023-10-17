@@ -68,7 +68,7 @@ Route::group(["prefix" => "admin"], function () {
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
 
-
+// Route::get('booking',[ClientBookingController::class, 'index'])->name('client.booking');
 Route::group(["prefix" => "client", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');

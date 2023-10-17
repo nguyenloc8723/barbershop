@@ -24,7 +24,7 @@ class LichsucatController extends Controller
 
         $result = Results::all()->pluck('booking_id');
         // dd($result);
-        $bookings = Booking::with('stylist', 'User', 'timeSheet')
+        $bookings = Booking::with('stylist', 'User', 'timeSheet', 'reviews')
             ->where('user_id', $user)
             ->orderBy('date', 'desc')
             ->first();
@@ -32,22 +32,24 @@ class LichsucatController extends Controller
 
         $reviews = Booking::with('reviews')
         ->whereIn('user_id', [$user])
+        ->orderBy('date', 'desc')
         ->get();
 
         $allReviews = [];
 
         foreach ($reviews as $booking) {
             foreach ($booking->reviews as $review) {
-                $comment = $review->comment;
-                $rating = $review->rating;
+                
                 $booking_id = $review->booking_id;
-                $allReviews[] = [$comment, $rating, $booking_id];
+                $allReviews[] =  $booking_id;
                 
             }
         }
         
+        // dd($allReviews);
+        
        
-        return view('client.display.lichsucat', compact('result', 'bookings','reviews', 'allReviews'));
+        return view('client.display.lichsucat', compact('result', 'bookings','reviews','allReviews'));
     }
 
     public function create(Request $request)
