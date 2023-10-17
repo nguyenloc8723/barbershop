@@ -137,9 +137,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 // console.log(data);
-               loadTable();
-               toastr['success']
-               ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
+                loadTable();
+                toastr['success']
+                ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
             },
             error: function (error) {
                 console.error(error);
