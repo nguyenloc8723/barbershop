@@ -79,8 +79,7 @@ Route::group([],function (){
     Route::get('booking/destroy/{id}', [BookingController::class, 'bookingDestroy']);
 
     Route::get('booking/success', [BookingController::class, 'bookingDone']);
-
-
+    Route::get('booking/randomStylist', [BookingController::class, 'randomStylist']);
 });
 
 

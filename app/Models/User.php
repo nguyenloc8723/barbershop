@@ -22,7 +22,6 @@ class User extends Authenticatable
         'id',
         'name',
         'phone',
-        'password',
     ];
 
     /**
@@ -46,6 +45,6 @@ class User extends Authenticatable
     ];
 
     public function booking(){
-        return $this->hasMany(Bookings::class);
+        return $this->hasMany(Booking::class);
     }
 }
