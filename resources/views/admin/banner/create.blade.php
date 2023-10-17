@@ -5,14 +5,16 @@
 @section('content')
 
 
-<div class="modal-dialog modal-dialog-centered">
+
+
+            <div class="modal-dialog modal-full-width">
     <div class="modal-content">
         <div class="modal-header bg-light">
-            <h4 class="modal-title" id="myCenterModalLabel">Thêm Banner</h4>
+            <h4 class="modal-title" id="myCenterModalLabel">Thêm dịch vụ</h4>
 
         </div>
         <div class="modal-body">
-            <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="">
                     <div class="mb-3">
@@ -20,17 +22,18 @@
                         <input type="text" class="form-control" name="key"/>
                     </div>
                     <div class="col-xl-6 p-3">
-                        <div class="row text-center">
-                            <input type="file" name="image" id="service-image" multiple />
-                            <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
-                            <span class="show-error text-danger" data-name="files"></span>
-                        </div>
-                        <input type="hidden" name="actionMethod">
-                        <div class="selected-images">
-
-
-                        </div>
+                    <div class="row text-center">
+                        <input type="file" name="image" id="service-image" multiple />
+                        <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
+                        <span class="show-error text-danger" data-name="files"></span>
                     </div>
+                    <input type="hidden" name="actionMethod">
+                    <div class="selected-images">
+
+
+                    </div>
+                </div>
+
                 </div>
                 <input type="hidden" name="actionMethod">
 
@@ -41,12 +44,10 @@
                     </button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
-
-
-
 
 
 

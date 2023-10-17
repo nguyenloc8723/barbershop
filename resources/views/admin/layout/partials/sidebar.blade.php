@@ -138,6 +138,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('review.index')}}">
+                    <i class="bi bi-chat-square-quote"></i>
+                        <span> Reviews </span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('banner.index')}}">
                     <i class="bi bi-images"></i>
                         <span> Setting Banner </span>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\resultsController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
@@ -47,6 +48,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
+    Route::resource('review', ReviewController::class);
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'destroy'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
 
