@@ -4,12 +4,14 @@ $(document).ready(function () {
     const btnCancel = $('.jquery-close');
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
-    const baseUrl = '/api/stylistTimeSheets';
-    const btnUpdate = $('.js-btn-update');
+
+    const urlShow = '/api/get/stylistTimeSheets';
+    const urlPost = '/api/post/stylistTimeSheets';
+    const urlShowEdit = '/api/edit/stylistTimeSheets';
+    const urlDelete = '/api/delete/stylistTimeSheets';
+    const urlPut = '/api/put/stylistTimeSheets';
+    const urlGetValue = '/api/get/getvalue';
     let idUpdate;
-    $('#example').DataTable({
-        ajax: baseUrl,
-    });
 
     // Điều khiển modal
     function showModal(action = true) {
@@ -17,8 +19,12 @@ $(document).ready(function () {
             $('.jquery-main-modal').show();
         } else {
             formModal[0].reset();
+            $('#is_active').html(`
+                <option selected value="1">Hoạt Động</option>
+                <option value="0">Không Hoạt Động</option>
+            `);
+            setValue();
             actionMethod.val('');
-            $('.is_active').empty();
             $('.jquery-main-modal').hide();
         }
     }
@@ -34,17 +40,18 @@ $(document).ready(function () {
     formModal.on('submit', function (e) {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
+            update(idUpdate);
             update();
         } else {
             add();
+            showModal(false);
         }
-        showModal(false);
     })
 
 
     function loadTable() {
         $.ajax({
-            url: baseUrl,
+            url: urlShow,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -99,6 +106,7 @@ $(document).ready(function () {
     $(document).on('click','.js-btn-update', function (){
         let itemId = $(this).data('id');
         idUpdate = itemId;
+        actionMethod.val('update')
         loadValueDetail(itemId);
     });
     $(document).on('click','.js-btn-delete', function (){
@@ -108,14 +116,14 @@ $(document).ready(function () {
         }
     });
 
-
-
     function add() {
-        let formData = formModal.serialize();
+        let formData = new FormData(formModal[0]);
         $.ajax({
-            url: baseUrl,
+            url: urlPost,
             method: 'POST',
             data: formData,
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -132,26 +140,58 @@ $(document).ready(function () {
 
     function destroy() {
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
+            url: urlDelete +'/' + idUpdate,
             method: 'DELETE',
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
                loadTable();
                toastr['success']
-               ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
+               ('Dữ liệu đã được xóa thành công.');
             },
             error: function (error) {
                 console.error(error);
             }
         });
     }
+
     function loadValueDetail(id) {
         $.ajax({
-            url: baseUrl + '/' + id,
+            url: urlShowEdit + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                let valueStylistTimeSheets = data.dataStylistTimeSheets;
+                let valueStylist = data.dataStylist;
+                let valueTimeSheet = data.dataTimeSheet;
+
+                // Stylist
+                let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`
+                let resultStylist = '';
+                for (let i = 0; i < valueStylist.length; i++){
+                    if (valueStylist[i].id === valueStylistTimeSheets.stylist_id){
+                        resultStylist = 'selected';
+                    }
+                    else{
+                        resultStylist = '';
+                    }
+                    isStylist+= `<option value="${valueStylist[i].id}" ${resultStylist}>${valueStylist[i].name}</option>`;
+                }
+                isStylist += `</select>`;
+
+                //TimeSheet
+                let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`
+                let resultTimeSheet = '';
+                for (let i = 0; i < valueTimeSheet.length; i++){
+                    if (valueTimeSheet[i].id === valueStylistTimeSheets.timesheet_id){
+                        resultTimeSheet = 'selected';
+                    }
+                    else{
+                        resultTimeSheet = '';
+                    }
+                    isTimeSheet+= `<option value="${valueTimeSheet[i].id}" ${resultTimeSheet}>${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
+                }
+                isTimeSheet += `</select>`;
+
                 let is_activeSelect = `
                 <label for="" class="form-label">Is_active</label>
                     <select class="form-control" name="is_active">
@@ -159,7 +199,7 @@ $(document).ready(function () {
                 let option = ['Không hoạt động','Hoạt động'];
                 for (let i = 0; i < option.length; i++){
                     let selected = '';
-                    if (data.is_active === 1){
+                    if (valueStylistTimeSheets.is_active === 1){
                         selected = 'selected';
                     }
                     is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
@@ -169,10 +209,10 @@ $(document).ready(function () {
 
                 $('.is_active').html(is_activeSelect);
                 actionMethod.val('update');
-                $('select[name="stylist_id"]').val(data.stylist_id);
-                $('select[name="timesheet_id"]').val(data.timesheet_id);
-                $('select[name="is_active"]').val(data.is_active);
-                $('select[name="is_block"]').val(data.is_block);
+                $('#stylist_id').html(isStylist);
+                $('#timesheet_id').html(isTimeSheet);
+                $('select[name="is_active"]').val(valueStylistTimeSheets.is_active);
+                $('select[name="is_block"]').val(valueStylistTimeSheets.is_block);
                 showModal();
             },
             error: function (xhr, status, error) {
@@ -182,23 +222,21 @@ $(document).ready(function () {
         });
     }
 
-
-
     function update() {
-        let formData = formModal.serialize();
-        // formData.delete('actionMethod');
+        let formData = new FormData(formModal[0]);
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
-            method: 'PUT',
+            url: urlPut +'/' + idUpdate,
+            method: 'post',
             data: formData,
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
             dataType: 'json',
             success: function (data) {
-                showModal(false)
+                showModal(false);
                 loadTable();
-                // console.log(data)
                 toastr['success']('Cập nhật thành công');
             },
             error: function (xhr, status, error) {
@@ -206,4 +244,50 @@ $(document).ready(function () {
             }
         });
     }
+
+    function setValue() {
+        $.ajax({
+            url: urlGetValue,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                let valueStylist = data.dataStylist;
+                let valueTimeSheet = data.dataTimeSheet;
+
+                // Stylist
+                let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`;
+                isStylist += `<option>Choose stylist</option>`
+                for (let i = 0; i < valueStylist.length; i++){
+                    isStylist += `<option value="${valueStylist[i].id}">${valueStylist[i].name}</option>`;
+                }
+                isStylist += `</select>`;
+
+                //TimeSheet
+                let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`;
+                isTimeSheet += `<option>Choose timesheet</option>`;
+                for (let i = 0; i < valueTimeSheet.length; i++){
+                    isTimeSheet += `<option value="${valueTimeSheet[i].id}">${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
+                }
+                isTimeSheet += `</select>`;
+
+                let is_activeSelect = `
+                <label for="" class="form-label">Is_active</label>
+                    <select class="form-control" name="is_active">
+                `;
+                let option = ['Không hoạt động','Hoạt động'];
+                for (let i = 0; i < option.length; i++){
+                    is_activeSelect += `<option value="${i}">${option[i]}</option>`;
+                }
+                is_activeSelect+= `</select>`
+
+                $('.is_active').html(is_activeSelect);
+                $('#stylist_id').html(isStylist);
+                $('#timesheet_id').html(isTimeSheet);
+            },
+            error: function (error) {
+                console.error(error);
+            },
+        });
+    }
+    setValue();
 });

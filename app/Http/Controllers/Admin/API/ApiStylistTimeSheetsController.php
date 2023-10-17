@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\StylistTimeSheet;
+use App\Models\Stylist;
+use App\Models\Timesheet;
 use Illuminate\Http\Request;
 
 class ApiStylistTimeSheetsController extends Controller
@@ -22,9 +24,12 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new StylistTimeSheet;
-        $data->fill($request->except('_token'));
-        $data->save();
+        $stylistTimeSheets = StylistTimeSheet::create([
+            'stylist_id' => $request->input('stylist_id'),
+            'timesheet_id' => $request->input('timesheet_id'),
+            'is_active' => $request->input('is_active'),
+            'is_block' => $request->input('is_block'),
+        ]);
         return response()->json(['success','Created successfully']);
     }
 
@@ -33,9 +38,22 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function show(string $id)
     {
-        $data = StylistTimeSheet::query()->findOrFail($id);
+        $dataStylistTimeSheets = StylistTimeSheet::query()->findOrFail($id);
 
-        return response()->json($data);
+        $dataStylist = Stylist::all();
+
+        $dataTimeSheet = Timesheet::all();
+
+        return response()->json(['dataStylistTimeSheets' => $dataStylistTimeSheets,
+                                 'dataStylist'=>$dataStylist,
+                                 'dataTimeSheet'=>$dataTimeSheet]);
+    }
+    public function getvalue()
+    {
+        $dataStylist = Stylist::all();
+        $dataTimeSheet = Timesheet::all();
+
+        return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
     /**
@@ -43,12 +61,18 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->all();
+        try{
+            $stylistTimeSheets = StylistTimeSheet::query()->where('id',$id)->update([
+                'stylist_id' => $request->input('stylist_id'),
+                'timesheet_id' => $request->input('timesheet_id'),
+                'is_active' => $request->input('is_active'),
+                'is_block' => $request->input('is_block'),
+            ]);
+            return response()->json(['success'=>'Cập nhật thành công']);
+        }catch (\Exception $e){
 
-        $model = StylistTimeSheet::query()->findOrFail($id);
-
-        $model->update($data);
-        return response()->json(['success','Update Successfully']);
+            return response()->json(['success'=>'Không thể cập nhật!']);
+        }
     }
 
     /**

@@ -1,6 +1,11 @@
 @extends('admin.layout.master')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
+    <link rel="stylesheet" href="{{asset('be/assets/libs/spectrum-colorpicker2/spectrum.min.css')}}" >
+    <link rel="stylesheet" href="{{asset('be/assets/libs/flatpickr/flatpickr.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/clockpicker/bootstrap-clockpicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}"/>
 @endsection
 @section('content')
     <div class="row">
@@ -57,6 +62,14 @@
 
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+    <!-- Plugins js-->
+    <script src="{{asset('be/assets/libs/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/spectrum-colorpicker2/spectrum.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+
+    <!-- Init js-->
+    <script src="{{asset('be/assets/js/pages/form-pickers.init.js')}}"></script>
 
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script src="{{asset('js/jsAdmin/stylistTimeSheets.js')}}"></script>
