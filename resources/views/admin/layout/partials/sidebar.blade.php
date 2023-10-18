@@ -85,6 +85,14 @@
                         <span> Chat </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('route.booking_blade')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Booking </span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{route('route.service')}}">
                         <i class="mdi mdi-access-point-network"></i>
@@ -105,7 +113,6 @@
                         <span>Stylist's Time Sheet</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
                         <i class="mdi mdi-clipboard-outline"></i>

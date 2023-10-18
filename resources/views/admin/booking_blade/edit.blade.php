@@ -3,26 +3,26 @@
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row justify-content-between">
-                        <div class="col-md-4">
-                            <div class="mt-3 mt-md-0">
+    {{--    <div class="row">--}}
+    {{--        <div class="col-12">--}}
+    {{--            <div class="card">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <div class="row justify-content-between">--}}
+    {{--                        <div class="col-md-4">--}}
+    {{--                            <div class="mt-3 mt-md-0">--}}
 
-                                <button type="button"
-                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i
-                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ
-                                </button>
-                            </div>
-                        </div>
+    {{--                                <button type="button"--}}
+    {{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
+    {{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
+    {{--                                </button>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
     <div class="row">
         <div class="col-12">
@@ -38,7 +38,9 @@
                             <th>action</th>
                         </tr>
                         </thead>
-                        <tbody id="jquery-value">
+                        <tbody id="jquery-booking-value">
+
+
 
                         </tbody>
                     </table>
@@ -51,11 +53,7 @@
 
 
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
-        @include('admin.service.modal')
-    </div>
-
-    <div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
-
+        @include('admin.booking.modal')
     </div>
 
 @endsection
@@ -82,5 +80,5 @@
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 
-    <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>
 @endsection

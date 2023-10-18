@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
@@ -45,6 +46,12 @@ Route::group([],function (){
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+});
+
+Route::group([],function (){
+    Route::get('get/booking',[ApiBookingController::class, 'index']);
+//    Route::post('post/booking',[ApiBookingController::class, 'store']);
+//    Route::get('edit/booking/{id}',[ApiBookingController::class, 'show']);
 });
 
 Route::resource('category', ApiCategoryController::class);

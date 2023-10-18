@@ -17,6 +17,7 @@ class Stylist extends Model
         'is_vip',
     ];
 
+
     public function timeSheet(){
         return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
     }
