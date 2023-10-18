@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\BookingController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
 
+    Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
 
