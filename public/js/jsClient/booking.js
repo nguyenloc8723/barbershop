@@ -575,6 +575,7 @@ $(document).ready(function () {
             url: '/api/booking/randomStylist',
             method: 'GET',
             success: function (data) {
+                stylist = data.id;
                 messageSty(data.id);
                 $('.jqr-messageStylist').css({
                     'display': 'block',
