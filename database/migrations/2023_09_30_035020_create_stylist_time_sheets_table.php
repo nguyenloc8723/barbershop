@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('stylist_time_sheets', function (Blueprint $table) {
+        Schema::create('stylist_time_sheet', function (Blueprint $table) {
             $table->id();
             $table->integer('stylist_id');
             $table->integer('timesheet_id');
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('stylist_time_sheets');
+        Schema::dropIfExists('stylist_time_sheet');
     }
 };

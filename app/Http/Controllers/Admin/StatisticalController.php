@@ -20,7 +20,7 @@ class StatisticalController extends AdminBaseController
         $notBookedBooking = Booking::where('status', '1')->count();
         $cancelledBooking = Booking::where('status', '2')->count();
         $totalBooking = $bookedBooking + $notBookedBooking + $cancelledBooking;
-        $totalPrice = Booking::sum('price');
+        $totalPrice = Booking::where('status',0)->sum('price');
 
         $today = now()->format('Y-m-d');
         $todayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $today)->count();
@@ -36,6 +36,17 @@ class StatisticalController extends AdminBaseController
         $startOfMonth = now()->startOfMonth()->format('Y-m-d');
         $endOfMonth = now()->endOfMonth()->format('Y-m-d');
         $thisMonthCounts = Results::distinct('booking_id')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+
+        $yesterday = Carbon::yesterday()->format('Y-m-d');
+        $yesterdayCounts = Booking::whereDate('date', $yesterday)->count();
+
+        $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek()->format('Y-m-d');
+        $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek()->format('Y-m-d');
+        $lastWeekCounts = Booking::where('status','1')->whereBetween('date', [$startOfLastWeek, $endOfLastWeek])->count();
+
+        $startOfLastMonth = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d');
+        $endOfLastMonth = Carbon::now()->subMonth()->endOfMonth()->format('Y-m-d');
+        $lastMonthCounts = Booking::whereBetween('date', [$startOfLastMonth, $endOfLastMonth])->count();
 
         $orderSummary = Booking::select(
             DB::raw('DATE(date) as order_date'),
