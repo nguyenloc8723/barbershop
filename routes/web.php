@@ -1,21 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CalendarController;
-use App\Http\Controllers\Admin\ChatController;
-use App\Http\Controllers\Admin\CategoryServiceController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\StylistTimeSheetsController;
-use App\Http\Controllers\Admin\TrashController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Client\ClientBookingController;
-use App\Http\Controllers\Client\ClientServiceController;
-use App\Http\Controllers\Client\PhoneAuthController;
-use Illuminate\Support\Facades\Route;
-
-
-
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +14,46 @@ use Illuminate\Support\Facades\Route;
 
 
 
+use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\CategoryServiceController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StylistTimeSheetsController;
+use App\Http\Controllers\Admin\TrashController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\ClientBookingController;
+use App\Http\Controllers\Client\ClientServiceController;
+use Illuminate\Support\Facades\Route;
 
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
@@ -48,11 +72,13 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
 
 
+
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
 
        Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');
        Route::get('user', [TrashController::class, 'user'])->name('trash.user');
+
 
         Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
@@ -60,9 +86,9 @@ Route::group(["prefix" => "admin"], function () {
 
 
 
-//Route::get('services', function () {
-//    return view('client.display.services');
-//})->name('services');
+Route::get('services', [ClientServiceController::class, 'services'])->name('services');
+Route::get('services-page/{id}', [\App\Http\Controllers\Client\ClientServiceController::class, 'servicesPage'])->name('services-page');
+
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
 
@@ -74,6 +100,7 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
 });
 
 
+
 // client route
 Route::get('/', function () {
     return view('client.display.index');
@@ -81,7 +108,6 @@ Route::get('/', function () {
 Route::get('404', function () {
     return view('client.display.404');
 })->name('404');
-
 
 Route::get('about', function () {
     return view('client.display.about');
@@ -115,8 +141,5 @@ Route::get('team-details', function () {
 })->name('team-details');
 
 
-Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
-Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
-Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 
 
