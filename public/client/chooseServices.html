@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>Choose Services</title>
+        <link rel="shortcut icon" href="img/favicon.png" />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap">
+        <link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css" />
+        <link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
+        <link rel="stylesheet" href="css/plugins.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/booking.css" />
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div class="preloader-bg"></div>
+        <div id="preloader">
+            <div id="preloader-status">
+                <div class="preloader-position loader"> <span></span> </div>
+            </div>
+        </div>
+        <!-- Progress scroll totop -->
+        <div class="progress-wrap cursor-pointer">
+            <svg class="progress-circle svg-content" width="100%" height="100%"
+                viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg" style="background-color: #14100c;">
+            <div class="container">
+                <!-- Logo -->
+                <div class="logo-wrapper">
+                    <a class="logo" href="index.html"> <img src="img/logo.png"
+                            class="logo-img" alt> </a>
+                    <!-- <a class="logo" href="index.html"> <h2>Perukar <span>Barber Shop</span></h2> </a> -->
+                </div>
+                <!-- Button -->
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbar"
+                    aria-controls="navbar" aria-expanded="false"
+                    aria-label="Toggle navigation"> <span
+                        class="navbar-toggler-icon"><i class="ti-menu"></i></span>
+                </button>
+                <!-- Menu -->
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link"
+                                href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="pricing.html">Pricing</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"
+                                role="button" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside"
+                                aria-expanded="false">Pages <i
+                                    class="ti-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="portfolio.html"
+                                        class="dropdown-item"><span>Portfolio</span></a></li>
+                                <li><a href="team.html" class="dropdown-item"><span>Team</span></a></li>
+                                <li><a href="faq.html" class="dropdown-item"><span>Faq</span></a></li>
+                                <li><a href="services-page.html"
+                                        class="dropdown-item"><span>Services
+                                            Page</span></a></li>
+                                <li><a href="team-details.html"
+                                        class="dropdown-item"><span>Team Details</span></a></li>
+                                <li><a href="post.html" class="dropdown-item"><span>Post
+                                            Single</span></a></li>
+                                <li><a href="404.html" class="dropdown-item"><span>404</span></a></li>
+                                <li><a href="coming-soon.html"
+                                        class="dropdown-item"><span>Coming Soon</span></a></li>
+                                <li class="dropdown-submenu dropdown"> <a
+                                        class="dropdown-item dropdown-toggle"
+                                        data-bs-toggle="dropdown"
+                                        data-bs-auto-close="outside"
+                                        aria-expanded="false" href="#"><span>Sub
+                                            Menu <i class="ti-angle-right"></i></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" class="dropdown-item"><span>Dropdown</span></a></li>
+                                        <li><a href="#" class="dropdown-item"><span>Dropdown</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"> <a
+                                class="nav-link dropdown-toggle" href="#"
+                                role="button" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside"
+                                aria-expanded="false">Blog <i
+                                    class="ti-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog.html" class="dropdown-item"><span>Blog
+                                            01</span></a></li>
+                                <li><a href="blog2.html" class="dropdown-item"><span>Blog
+                                            02</span></a></li>
+                                <li><a href="blog3.html" class="dropdown-item"><span>Blog
+                                            03</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Choose services -->
+        <section class="info-box section-padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;">
+                            <a href="booking.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </a>
+                            <span class="text-center">Chọn dịch vụ</span>
+                            <div class="note-price" style="color: #fff;">1K = 1000đ</div>
+                        </div>
+                        <div class="body relative " style="background-color: #fff;">
+                            <div class="floating-service"> </div>
+                            <div class="booking-service">
+                                <div class="booking-service__input-wrap">
+                                    <span class="ant-input-affix-wrapper ant-input-affix-wrapper-lg booking-service__input">
+                                        <span class="ant-input-prefix">
+                                            <span role="img" aria-label="search" tabindex="-1" class="anticon anticon-search booking-service__input-icon">
+                                                <svg viewBox="64 64 896 896" focusable="false" data-icon="search" width="1em" height="1em" fill="currentColor"aria-hidden="true">
+                                                    <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <input placeholder="Tìm kiếm dịch vụ, nhóm dịch vụ" class="ant-input ant-input-lg" type="text" value spellcheck="false" data-ms-editor="true">
+                                    </span>
+                                </div>
+                                <div class="booking-service__group">
+                                    <div class="booking-service__group-title">Chọn xem nhanh theo nhóm</div>
+                                    <div class="booking-service__group-wrap">
+                                        <div class="booking-service__group-wrap-item">Cắt gội xả massage</div>
+                                        <div class="booking-service__group-wrap-item">Cắt gội VIP - Paradise</div>
+                                        <div class="booking-service__group-wrap-item">Chuyên sâu SPA Nam</div>
+                                        <div class="booking-service__group-wrap-item">Uốn Hàn Quốc cao cấp</div>
+                                        <div class="booking-service__group-wrap-item">Nhuộm Ý cao cấp</div>
+                                        <div class="booking-service__group-wrap-item">BST Uốn K-Perm </div>
+                                    </div>
+                                </div>
+                                <div class="box-switch flex items-center mt-2.5 bg-white px-4 py-2.5">
+                                    <div class="text-sm font-medium">Dịch vụ đã chọn: 0 dịch vụ</div>
+                                    <button type="button" role="switch" aria-checked="false" class="ant-switch box-switch__button">
+                                        <div class="ant-switch-handle"></div>
+                                        <span class="ant-switch-inner">
+                                            <div class="box-switch__unChecked content-center-middle">
+                                                <img src="/static/media/close.d8cb54f3.svg" alt>
+                                            </div>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class id="category-1">
+                                    <div class="service">
+                                        <div class="service__category">
+                                            <div class="category__name">Cắt gội xả massage</div>
+                                            <div class="category__number">2 dịch vụ</div>
+                                        </div>
+                                        <div class="service__list">
+                                            <div class="grid gap-4 grid-cols-2">
+                                                <div class="list__item">
+                                                    <div class="item__media pointer " role="presentation">
+                                                        <img src="https://storage.30shine.com/service/combo_booking/701.jpg" alt>
+                                                    </div>
+                                                <div class="absolute top-1 right-1 flex cursor-pointer" role="presentation">
+                                                    <span role="img" aria-label="info-circle" class="anticon anticon-info-circle"  style="font-size: 20px; color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.8); border-radius: 50%;">
+                                                        <svg viewBox="64 64 896 896" focusable="false" class data-icon="info-circle" width="1em"height="1em"fill="currentColor"aria-hidden="true">
+                                                            <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                                            <path d="M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="item__title pointer " role="presentation">ShineCombo cắt gội 10 bước</div>
+                                                <div class="item__description pointer " role="presentation">Đặc sắc nổi tiếng</div>
+                                                <div class="item__price pointer" role="presentation">
+                                                    <div class="meta__price">
+                                                        <span class="meta__newPrice">120K</span>
+                                                        <span class="meta__oldPrice"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="item__button" role="presentation">
+                                                    <img src="/static/media/checked.380e2632.svg" alt="icon">Chọn
+                                                </div>
+                                            </div>
+                                            <div class="list__item">
+                                                <div class="item__media " role="presentation">
+                                                    <img src="https://storage.30shine.com/service/combo_booking/382.jpg" alt>
+                                                </div>
+                                                <div class="item__title " role="presentation">SHINE CUT</div>
+                                                <div class="item__description " role="presentation">
+                                                    Stylist cắt - xả - vuốt sáp tạo kiểu (Không gội &amp; massage)
+                                                </div>
+                                                <div class="item__price " role="presentation">
+                                                    <div class="meta__price">
+                                                        <span class="meta__newPrice">75K</span>
+                                                        <span class="meta__oldPrice"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="item__button " role="presentation">
+                                                    <img src="/static/media/checked.380e2632.svg" alt="icon">Chọn
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class id="category-2">
+                                    <div class="service">
+                                    <div class="service__category">
+                                        <div class="category__name">
+                                            Cắt gội VIP - Paradise
+                                        </div>
+                                        <div class="category__number">
+                                            3 dịch vụ</div>
+                                        </div>
+                                        <div class="service__list">
+                                            <div class="grid gap-4 grid-cols-2">
+                                                <div class="list__item">
+                                                    <div class="item__media pointer " role="presentation">
+                                                        <img src="https://storage.30shine.com/service/combo_booking/930.jpg" alt>
+                                                    </div>
+                                                    <div class="absolute top-1 right-1 flex cursor-pointer" role="presentation">
+                                                        <span role="img" aria-label="info-circle" class="anticon anticon-info-circle" style="font-size: 20px; color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.8); border-radius: 50%;">
+                                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="info-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                                                <path d="M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="item__title pointer " role="presentation">
+                                                        Gội Massage cổ vai gáy &amp; chăm sóc da
+                                                    </div>
+                                                    <div class="item__description pointer " role="presentation">
+                                                        Gội đầu &amp; Massage cổ vai gáy, kết hợp đắp mặt nạ &amp; tẩy da chết căng mịn
+                                                    </div>
+                                                    <div class="item__price pointer" role="presentation">
+                                                        <div class="meta__price">
+                                                            <span class="meta__newPrice">135K</span>
+                                                            <span class="meta__oldPrice">145K</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item__button " role="presentation">
+                                                        <img src="/static/media/checked.380e2632.svg" alt="icon">Chọn
+                                                    </div>
+                                                </div>
+                                                <div class="list__item">
+                                                    <div class="item__media pointer " role="presentation">
+                                                        <img src="https://storage.30shine.com/service/combo_booking/940.jpg" alt>
+                                                    </div>
+                                                    <div class="absolute top-1 right-1 flex cursor-pointer" role="presentation">
+                                                        <span role="img" aria-label="info-circle" class="anticon anticon-info-circle" style="font-size: 20px; color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.8); border-radius: 50%;">
+                                                            <svg viewBox="64 64 896 896" focusable="false"  data-icon="info-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                                                <path d="M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="item__title pointer " role="presentation">
+                                                        Gội Massage 20p
+                                                    </div>
+                                                    <div class="item__description pointer " role="presentation">
+                                                        Gội đầu &amp; Massage thư giãn dưới làn nước mát lạnh sảng khoái (Skinner sấy)
+                                                    </div>
+                                                    <div class="item__price pointer" role="presentation">
+                                                        <div class="meta__price">
+                                                            <span class="meta__newPrice">50K</span>
+                                                            <span class="meta__oldPrice"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item__button " role="presentation">
+                                                        <img src="/static/media/checked.380e2632.svg" alt="icon">Chọn
+                                                    </div>
+                                                </div>
+                                                <div class="list__item">
+                                                    <div class="item__media pointer " role="presentation">
+                                                        <img src="https://storage.30shine.com/service/combo_booking/941.jpg" alt>
+                                                    </div>
+                                                    <div class="absolute top-1 right-1 flex cursor-pointer" role="presentation">
+                                                        <span role="img" aria-label="info-circle" class="anticon anticon-info-circle" style="font-size: 20px; color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.8); border-radius: 50%;">
+                                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="info-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+                                                                <path d="M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="item__title pointer " role="presentation">
+                                                        Vuốt sáp &amp; Sấy tạo kiểu
+                                                    </div>
+                                                    <div class="item__description pointer " role="presentation">
+                                                        Book thêm Stylist vuốt sáp tạo kiểu (dành cho các anh không muốn sấy tóc quá khô &amp; cần tạo kiểu ưng ý)
+                                                    </div>
+                                                    <div class="item__price pointer" role="presentation">
+                                                        <div class="meta__price">
+                                                            <span class="meta__newPrice">10K</span>
+                                                            <span class="meta__oldPrice"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item__button " role="presentation">
+                                                        <img src="/static/media/checked.380e2632.svg" alt="icon">Chọn
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="new-affix-v2">
+                                    <div class="flex space-between text-center content-step  time-line--active">
+                                        <div class="right button-next pointer btn-inactive" role="presentation">
+                                            <span>Chọn dịch vụ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End choose services -->
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="footer-column footer-contact">
+                                <h3 class="footer-title">Contact</h3>
+                                <p class="footer-contact-text">0665 Broadway NY,
+                                    New York 10001
+                                    <br>United States of America
+                                </p>
+                                <div class="footer-contact-info">
+                                    <p class="footer-contact-phone">855 100 4444</p>
+                                    <p class="footer-contact-mail">info@barber.com</p>
+                                </div>
+                                <div class="footer-about-social-list"> <a
+                                        href="#"><i class="ti-instagram"></i></a>
+                                    <a href="#"><i class="ti-twitter"></i></a>
+                                    <a href="#"><i class="ti-youtube"></i></a>
+                                    <a href="#"><i class="ti-facebook"></i></a>
+                                    <a href="#"><i class="ti-pinterest"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 offset-md-1">
+                            <div class="item opening">
+                                <h3 class="footer-title">Work Time</h3>
+                                <ul>
+                                    <li>
+                                        <div class="tit">Monday</div>
+                                        <div class="dots"></div> <span>10:00 -
+                                            20:00</span>
+                                    </li>
+                                    <li>
+                                        <div class="tit">Tuesday</div>
+                                        <div class="dots"></div> <span>10:00 -
+                                            20:00</span>
+                                    </li>
+                                    <li>
+                                        <div class="tit">Thursday</div>
+                                        <div class="dots"></div> <span>10:00 -
+                                            20:00</span>
+                                    </li>
+                                    <li>
+                                        <div class="tit">Friday</div>
+                                        <div class="dots"></div> <span>10:00 -
+                                            20:00</span>
+                                    </li>
+                                    <li>
+                                        <div class="tit">Saturday</div>
+                                        <div class="dots"></div> <span>10:00 -
+                                            20:00</span>
+                                    </li>
+                                    <li>
+                                        <div class="tit">Weekend</div>
+                                        <div class="dots"></div> <span>Closed</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 offset-md-1">
+                            <div class="footer-column footer-explore clearfix">
+                                <h3 class="footer-title">Subscribe</h3>
+                                <div class="row subscribe">
+                                    <div class="col-md-12">
+                                        <p>Subscribe to take advantage of our
+                                            campaigns and gift certificates.</p>
+                                        <form>
+                                            <input type="text" name="search"
+                                                placeholder="Your email"
+                                                required>
+                                            <button>Subscribe</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="footer-bottom-inner">
+                                <p class="footer-bottom-copy-right">2023 © All
+                                    rights reserved. Designed by <a
+                                        href="https://1.envato.market/DuruThemes"
+                                        target="_blank">DuruThemes</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- jQuery -->
+        <script src="js/jquery-3.6.3.min.js"></script>
+        <script src="js/jquery-migrate-3.0.0.min.js"></script>
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <script src="js/imagesloaded.pkgd.min.js"></script>
+        <script src="js/jquery.isotope.v3.0.2.js"></script>
+
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scrollIt.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/jquery.magnific-popup.js"></script>
+        <script src="js/YouTubePopUp.js"></script>
+        <script src="js/select2.js"></script>
+        <script src="js/datepicker.js"></script>
+        <script src="js/smooth-scroll.min.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
+
+    <!-- Mirrored from duruthemes.com/demo/html/perukar/multipage-image/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Aug 2023 07:48:14 GMT -->
+</html>

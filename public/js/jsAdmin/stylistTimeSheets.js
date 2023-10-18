@@ -4,7 +4,7 @@ $(document).ready(function () {
     const btnCancel = $('.jquery-close');
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
-    const baseUrl = '/api/user';
+    const baseUrl = '/api/stylistTimeSheets';
     const btnUpdate = $('.js-btn-update');
     let idUpdate;
     $('#example').DataTable({
@@ -54,8 +54,10 @@ $(document).ready(function () {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.name}</td>
-                          <td>${item.phone}</td>
+                          <td>${item.stylist_id}</td>
+                          <td>${item.timesheet_id}</td>
+                          <td>${item.is_active}</td>
+                          <td>${item.is_block}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -94,7 +96,6 @@ $(document).ready(function () {
 
     loadTable();
 
-
     $(document).on('click','.js-btn-update', function (){
         let itemId = $(this).data('id');
         idUpdate = itemId;
@@ -121,7 +122,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 loadTable();
-                toastr['success']('Thêm mới người dùng thành công');
+                toastr['success']('Thêm mới dữ liệu thành công');
             },
             error: function (error) {
                 console.error(error);
@@ -136,9 +137,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 // console.log(data);
-               loadTable();
-               toastr['success']
-               ('Dữ liệu đã được đưa vào thùng rác! Bạn có thể khôi phục tại đó');
+                loadTable();
+                toastr['success']
+                ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
             },
             error: function (error) {
                 console.error(error);
@@ -168,9 +169,10 @@ $(document).ready(function () {
 
                 $('.is_active').html(is_activeSelect);
                 actionMethod.val('update');
-                $('input[name="name"]').val(data.name);
-                $('input[name="phone"]').val(data.phone);
-                // $('input[name="password"]').val(data.password);
+                $('select[name="stylist_id"]').val(data.stylist_id);
+                $('select[name="timesheet_id"]').val(data.timesheet_id);
+                $('select[name="is_active"]').val(data.is_active);
+                $('select[name="is_block"]').val(data.is_block);
                 showModal();
             },
             error: function (xhr, status, error) {

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,6 @@ class User extends Authenticatable
 
 
     public function booking(){
-        return $this->hasMany(Bookings::class);
+        return $this->hasMany(Booking::class);
     }
 }

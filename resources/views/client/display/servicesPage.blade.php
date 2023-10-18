@@ -44,7 +44,7 @@
                                 <a href="client/img/slider/1.jpg" title="" class="img-zoom">
                                     <div class="gallery-box">
 
-                                        <div class="gallery-img"><img src="{{asset($item->url)}}" class="img-fluid mx-auto d-block" alt="work-img">
+                                        <div class="gallery-img"><img src="{{asset('storage/'.$item->url)}}" class="img-fluid mx-auto d-block" alt="work-img">
                                         </div>
 
                                     </div>

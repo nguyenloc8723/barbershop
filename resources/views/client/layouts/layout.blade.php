@@ -12,6 +12,7 @@
 @include('client.layouts.divide.footer')
 <!-- jQuery -->
 @include('client.layouts.divide.js')
-</body>
 
+@yield('js')
+</body>
 </html>
