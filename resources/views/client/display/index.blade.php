@@ -1,6 +1,7 @@
 @extends('client.layouts.layout')
 
 @section('content')
+
     <!-- Parallax Image -->
     <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
         <div class="container">
@@ -18,6 +19,10 @@
         <div class="arrow bounce text-center">
             <a href="#" data-scroll-nav="1" class=""> <i class="ti-arrow-down"></i> </a>
         </div>
+    </div>
+
+    <div id="user-info">
+        <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
     </div>
     <!-- About -->
     <section class="about section-padding" data-scroll-index="1">

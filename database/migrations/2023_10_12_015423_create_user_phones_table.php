@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fake_services', function (Blueprint $table) {
+        Schema::create('user_phones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->string('images');
-            $table->string('name');
-            $table->decimal('price',10,0);
-            $table->text('description')->nullable();
-            $table->boolean('is_active');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fake_services');
+        Schema::dropIfExists('user_phones');
     }
 };
