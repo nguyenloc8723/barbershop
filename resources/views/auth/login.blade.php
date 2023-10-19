@@ -1,47 +1,56 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('client.layouts.login.head')
+<body>
+<div id="preloader" class="preloader">
+    <div class='inner'>
+        <div class='line1'></div>
+        <div class='line2'></div>
+        <div class='line3'></div>
+    </div>
+</div>
+<section class="fxt-template-animation fxt-template-layout11">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-sm-12 col-12 fxt-bg-color">
+                <div class="fxt-content">
 
-    <form method="POST" action="{{ route('login1') }}">
-        @csrf
+                    <div class="fxt-header">
+                        <a href="" class="fxt-logo"><img src="{{asset('login/img/logo-11.png')}}"
+                                                                      alt="Logo"></a>
+                        <p>Login into your pages account</p>
+                    </div>
+                    <div class="alert alert-danger" id="error" style="display: none;"></div>
+                    <div class="alert alert-success" id="successAuth" style="display: none;"></div>
+                    <div class="fxt-form">
+                        <form  onsubmit="return false;">
+                            <div class="form-group">
+                                <div class="fxt-transformY-50 fxt-transition-delay-1">
+                                    <input type="text" id="number" class="form-control" name="number"
+                                           placeholder="Phone" >
+                                </div>
+                                <div id="recaptcha-container"></div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            </div>
+                            <div class="form-group">
+                                <div class="fxt-transformY-50 fxt-transition-delay-4">
+                                    <button type="button" class="fxt-btn-fill" onclick="sendOTP();">Send Me Phone
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="fxt-footer">
+                        <div class="fxt-transformY-50 fxt-transition-delay-9">
+                            <p>Quay lai website<a href="{{ route('index') }}"
+                                                  class="switcher-text2 inline-text">Back</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+@extends('client.layouts.login.loginjs')
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</body>

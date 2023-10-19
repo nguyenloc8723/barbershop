@@ -22,12 +22,12 @@ class AuthenticatedSessionController extends Controller
 //    }
     public function login()
     {
-        return view('client.display.login');
+        return view('auth.login');
     }
 
     public function otp()
     {
-        return view('client.display.otp');
+        return view('auth.otp');
     }
 
     /**
@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         // Lấy thông tin từ request (số điện thoại)
-        $phoneNumber = $request->input('phone_number'); // Đảm bảo khớp với tên trường trong dữ liệu JSON từ client-side
+        $phoneNumber = $request->input('phone_number');
 
         // Kiểm tra xem số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
         $existingUser = User::where('phone_number', $phoneNumber)->first();
@@ -47,6 +47,7 @@ class AuthenticatedSessionController extends Controller
             $user->phone_number = $phoneNumber;
             // Thêm các trường khác (nếu cần): $user->name = $request->input('name');
             $user->save();
+            $request->session()->regenerate();
             Auth::login($user);
             // Thực hiện các tác vụ bạn cần sau khi tạo tài khoản, ví dụ: đăng nhập người dùng, chuyển hướng, vv.
             return redirect()->route('index')->with('message', 'Tài khoản đã được tạo thành công.');
