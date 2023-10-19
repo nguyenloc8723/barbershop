@@ -10,30 +10,34 @@
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            <form class="d-flex justify-content-between flex-wrap" method="POST" action="{{ route('stylists.store') }}" enctype="multipart/form-data">
+     
+            <form class="add_stylist" method="POST" action="{{ route('stylists.store') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="col-xl-6">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="name" name="name" />
-                        @error('name')
-                        <p>{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="phone" name="phone" />
-                        @error('phone')
-                        <p>{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="input-group">
-                        <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        @error('image')
-                        <p>{{$message}}</p>
-                        @enderror
-                    </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Họ và tên</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" />
+                    @error('name')
+                    <p>{{$message}}</p>
+                    @enderror
+
                 </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Số điện thoại</label> 
+                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter email" />
+                    @error('phone')
+                    <p>{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Avatar</label>
+                    <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" placeholder="Avatar">
+                    @error('image')
+                    <p>{{$message}}</p>
+                    @enderror
+                </div>
+
                 <div style="margin-top: 20px; float:left" class="w-100 text-center">
                     <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Thêm</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
