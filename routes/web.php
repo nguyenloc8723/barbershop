@@ -14,6 +14,7 @@ use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Admin\StatisticalController;
+use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,7 +65,8 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
-    Route::get('statistical', [StatisticalController::class, 'index'])->name('route.statistical');
+    Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
+    // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
 
 
 

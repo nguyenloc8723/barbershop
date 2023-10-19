@@ -110,7 +110,7 @@
                 <li>
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
-                        <span>Stylist's Time Sheet</span>
+                        <span>Lịch làm việc</span>
                     </a>
                 </li>
                 <li>

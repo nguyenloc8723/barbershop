@@ -14,7 +14,7 @@ class StatisticalController extends AdminBaseController
 {
     public $route = 'statistical';
     public $pathViews = 'admin.statistical.index';
-    public function index()
+    public function statistical( Request $request )
     {
         // $bookedBooking = Results::distinct('booking_id')->count();
         $bookedBooking = Booking::where('status',0)->count();
@@ -63,8 +63,32 @@ class StatisticalController extends AdminBaseController
 
 
 
-        $startDate = "2023-10-01"; // Ngày bắt đầu (ví dụ: '2023-10-01')
-        $endDate = "2023-10-05"; // Ngày kết thúc (ví dụ: '2023-10-31')
+        $startDate = $request->input('startDate'); // Ngày bắt đầu (ví dụ: '2023-10-01')
+        $endDate = $request->input('endDate'); // Ngày kết thúc (ví dụ: '2023-10-31')
+
+        $chartBooking = Booking::select(
+            DB::raw('DATE(created_at) as order_date'),
+            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+            DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
+        )
+        ->groupBy('order_date')
+        ->orderBy('order_date', 'asc')
+        ->get();
+
+        $startOfWeek = now()->startOfWeek()->format('Y-m-d');
+        $endOfWeek = now()->endOfWeek()->format('Y-m-d');
+
+        $chart7DaysBooking = Booking::select(
+            DB::raw('DATE(created_at) as order_date'),
+            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+            DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
+        )
+        ->whereBetween(DB::raw('DATE(created_at)'), [$startOfWeek, $endOfWeek])
+        ->groupBy('order_date')
+        ->orderBy('order_date', 'asc')
+        ->get();
 
         $orderSummary = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
@@ -74,7 +98,6 @@ class StatisticalController extends AdminBaseController
             DB::raw('COUNT(id) as booked_total'),
             DB::raw('SUM(CASE WHEN status = 0 THEN price ELSE 0 END) as daily_revenue')
         )
-        // ->whereBetween(DB::raw('DATE(created_at)'), [$startDate, $endDate])
         ->groupBy('order_date')
         ->orderBy('order_date', 'desc')
         ->limit(5)
@@ -82,11 +105,32 @@ class StatisticalController extends AdminBaseController
 
         return view($this->pathViews,
                     compact('totalBooking', 'bookedBooking', 'notBookedBooking', 'cancelledBooking',
-                            'totalPrice','orderSummary',
+                            'totalPrice','orderSummary','chartBooking','chart7DaysBooking',
                             'startOfMonth','endOfMonth','thisMonthTotalPrice',
                             'startOfLastMonth','endOfLastMonth','lastMonthTotalPrice',
                             'today','todayCompletedCounts','todayPendingCounts','todayCanceledCounts','todayTotalPrice',
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
     }
+
+    // public function filler_by_date(){
+
+    //     $from_date = $request->input('startDate');
+    //     $to_date = $request->input('endDate');
+
+    //     // dd(1232434);
+
+    //     $chartBooking = Booking::select(
+    //         DB::raw('DATE(created_at) as order_date'),
+    //         DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+    //         DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+    //         DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
+    //     )
+    //     ->whereBetween(DB::raw('DATE(created_at)'), [$from_date, $to_date])
+    //     ->groupBy('order_date')
+    //     ->orderBy('order_date', 'desc')
+    //     ->get();
+
+    //     return response()->json(['chartBooking'=>$chartBooking]);
+    // }
 
 }
