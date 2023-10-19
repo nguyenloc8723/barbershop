@@ -1,26 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-
-
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ClientBookingController;
@@ -28,6 +15,9 @@ use App\Http\Controllers\Client\ClientServiceController;
 use Illuminate\Support\Facades\Route;
 
 
+
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,6 +74,14 @@ Route::group(["prefix" => "admin"], function () {
 
         Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
+
+    //Booking
+//    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
+//    Route::resource('booking_blade', BookingController::class);
+    Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
+    Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+//    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 
 
