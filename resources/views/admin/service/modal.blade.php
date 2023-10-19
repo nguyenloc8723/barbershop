@@ -8,45 +8,37 @@
             </div>
             <div class="modal-body">
                 <form class="d-flex justify-content-between flex-wrap"
-                      id="formModal" action="" enctype="multipart/form-data">
+                      id="formModalService" action="" enctype="multipart/form-data">
                     <div class="col-xl-6">
                         <div class="mb-3">
                             <label for="name" class="form-label">Danh mục</label>
-                            <select name="" class="form-control" id="combo">
-                                <option>Chọn danh mục</option>
-                                <option value="1">Tuấn Anh đẹp zai số 2 =)))</option>
-                                <option value="2">Nhưng khum có ny :(((</option>
+                            <select class="form-control" name="category_id" id="category_id">
+
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Tên dịch vụ</label>
-                            <input type="text" class="form-control" id="service" />
+                            <input type="text" class="form-control" name="name" id="service" />
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Giá dịch vụ</label>
-                            <input type="text" class="form-control" id="price"/>
+                            <input type="text" class="form-control" name="price" id="service" />
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="description"/>
+                            <input type="text" class="form-control" name="description" id="description"/>
                         </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">slug</label>
-                            <input type="text" class="form-control" id="slug"/>
-                        </div>
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Trạng thái</label>
-                            <select name="is_active" class="form-control">
-                                <option selected value="1">Hoạt Động</option>
-                                <option value="0">Không Hoạt Động</option>
+                            <select name="is_active" class="form-control" id="is_active">
+{{--                                <option selected value="1">Hoạt Động</option>--}}
+{{--                                <option value="0">Không Hoạt Động</option>--}}
                             </select>
                         </div>
 
-
-
-
                     </div>
-
 
                     <div class="col-xl-6 p-3">
                         <div class="row text-center">
@@ -65,14 +57,12 @@
 
                     <div class="w-100 text-center">
                         <button type="submit" class="btn btn-success waves-effect waves-light"
-                                data-bs-dismiss="modal">Save
+                                >Save
                         </button>
                         <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
                                 >Cancel
                         </button>
                     </div>
-
-
                 </form>
             </div>
         </div>

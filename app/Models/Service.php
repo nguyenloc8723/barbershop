@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Service extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
         'id',
@@ -23,7 +24,7 @@ class Service extends Model
         return $this->belongsTo(Service_categories::class,'category_id', 'id');
     }
     public function booking(){
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(Booking::class, 'booking_services');
     }
     public function images(){
         return $this->hasMany(ImageService::class);
