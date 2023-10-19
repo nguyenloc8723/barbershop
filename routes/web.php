@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Admin\BannerSettingCtl;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\Admin\resultsController;
-use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\BannerSettingCtl;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
+use App\Http\Controllers\TimeSheetController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,24 +40,35 @@ Route::group(["prefix" => "admin"], function () {
 
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
+    Route::resource('user', UserController::class);
 
 
     Route::resource('member', MemberController::class);
+    Route::resource('timesheet', TimeSheetController::class);
     Route::get('service', [ServiceController::class, 'index'])->name('route.service');
     Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
+    Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
     Route::resource('review', ReviewController::class);
+    Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
+
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'destroy'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
 
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+
+       Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');
+       Route::get('user', [TrashController::class, 'user'])->name('trash.user');
+
         Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
+
     });
 
 });
@@ -68,11 +81,11 @@ Route::group(["prefix" => "admin"], function () {
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
 
-// Route::get('booking',[ClientBookingController::class, 'index'])->name('client.booking');
+
 Route::group(["prefix" => "client", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
-    Route::get('booking/success', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
+    Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
 });
 
 
@@ -88,6 +101,7 @@ Route::get('404', function () {
 // });
 Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
 Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
+Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
 
 Route::get('about', function () {
@@ -120,5 +134,10 @@ Route::get('team', function () {
 Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
+
+
+Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
+Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
+Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 
 

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Stylist;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +23,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            resultSeeder::class
+            resultSeeder::class,
+            bookingSeeder::class,
+            Stylist::class,
+            timeSheetSeed::class,
+            userSeed::class,
             
         ]);
     }

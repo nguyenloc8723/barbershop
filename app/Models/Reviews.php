@@ -13,6 +13,7 @@ class Reviews extends Model
         'booking_id',
         'rating',
         'comment',
+        'reply'
     ];
 
     public function booking(){

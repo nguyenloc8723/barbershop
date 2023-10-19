@@ -20,8 +20,7 @@ class userSeeder extends Seeder
         $test = [];
         for($i= 1; $i<=10; $i++){
             $test[] = [
-                "name"=>    "Nguyễn Văn A",
-                'password' => Hash::make('12345678')
+                'phone_number' => '012345678'.random_int(1,9),
                 
             ];
         }

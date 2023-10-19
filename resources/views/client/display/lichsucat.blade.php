@@ -129,6 +129,8 @@
                             @foreach($booking->reviews as $review)
                             <h6 style="display: inline-block;"> Rating:</h6> {{$review->rating}}⭐
                             @endforeach
+                            <br>
+                            <a href="{{route('detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
                         </div>
                     </div>
 

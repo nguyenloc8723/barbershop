@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Booking_service;
 use App\Models\Results;
 use App\Models\Reviews;
+use App\Models\Service;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Laravel\Prompts\Table;
+
 use Illuminate\Support\Facades\DB;
 
 class LichsucatController extends Controller
@@ -20,16 +22,26 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = 8;
+        $user = 2;
 
-        $result = Results::all()->pluck('booking_id');
+        // $test = Booking::query()->get();
+        // // // $test= DB::table('bookings')->get();
+        // dd($test);
+        // $result = Results::all()->pluck('booking_id');
         // dd($result);
-        $bookings = Booking::with('stylist', 'User', 'timeSheet', 'reviews')
+        $bookings = Booking::query()->with('stylist', 'User', 'timeSheet', 'reviews')
             ->where('user_id', $user)
             ->orderBy('date', 'desc')
             ->first();
 
+        
+            // dd($bookings);
+    //     $userBookings = User::find($user)->bookings()
+    // ->with('stylist', 'timeSheet', 'reviews')
+    // ->orderBy('date', 'desc')
+    // ->first();
 
+        // dd($bookings);
         $reviews = Booking::with('reviews')
         ->whereIn('user_id', [$user])
         ->orderBy('date', 'desc')
@@ -49,7 +61,7 @@ class LichsucatController extends Controller
         // dd($allReviews);
         
        
-        return view('client.display.lichsucat', compact('result', 'bookings','reviews','allReviews'));
+        return view('client.display.lichsucat', compact('bookings','reviews','allReviews'));
     }
 
     public function create(Request $request)
@@ -68,5 +80,25 @@ class LichsucatController extends Controller
                 return redirect()->route('show')
             ->with('success', 'Cảm ơn anh/chị đã đánh giá.');
             }
+    }
+    public function DeltailHistory(Request $request, $booking_id) {
+
+        $bookings = Booking::with('stylist', 'User', 'timeSheet', 'reviews')
+            ->where('id', $booking_id)
+            ->first();
+
+        $combo = Booking_service::with('service')
+        ->where('booking_id', $booking_id)
+        ->get();
+        // dd($combo);
+        foreach ($combo as $service) {
+            
+        }
+        $reviews = Reviews::where('booking_id', $booking_id)->first();
+        
+        // dd($reviews);
+        
+
+        return view('client.display.detailHistory', compact('bookings', 'reviews', 'combo'));
     }
 }

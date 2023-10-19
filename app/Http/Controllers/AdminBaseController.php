@@ -62,9 +62,7 @@ class AdminBaseController extends Controller
 //        dd($request->all());
         $model = new $this->model;
         $data = $request->except('_token');
-//        dd($data);
         $model->fill($data);
-//        dd($model);
         if ($request->hasFile($this->fieldImage)){
             $tmpPath = Storage::put($this->folderImage, $request->{$this->fieldImage});
             $model->{$this->fieldImage} = 'storage/' . $tmpPath;

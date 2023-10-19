@@ -11,13 +11,13 @@ class Stylist extends Model
 
     protected $fillable = [
         'name',
+        'phone',
         'excerpt',
         'image',
-        'is_vip',
     ];
 
     public function timeSheet(){
-        return $this->belongsToMany(Timesheet::class,'stylist_time_sheets');
+        return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
     }
     public function booking(){
         return $this->hasOne(Booking::class);

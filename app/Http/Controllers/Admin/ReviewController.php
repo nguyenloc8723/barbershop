@@ -16,6 +16,21 @@ class ReviewController extends AdminBaseController
         'id' => 'id',
         'booking_id' => 'Booking_id',
         'rating' => 'Rating',
-        'comment' => 'comment'
+        'comment' => 'comment',
+        'reply' => 'Reply'
     ];
+
+
+
+    public function reply(Request $request, $id){
+        
+        $data = Reviews::where('id', $id)->first();
+        if($request->isMethod('POST')){
+            $data->update($request->all());
+            return redirect()->route('review.index');
+        }
+       
+
+        return view('admin.review.edit', compact('data'));
+    }
 }
