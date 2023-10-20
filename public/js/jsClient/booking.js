@@ -593,7 +593,6 @@ $(document).ready(function () {
         let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            user_id: user_id,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,

@@ -51,10 +51,12 @@ class BookingController extends Controller
     public function pullRequest(Request $request)
     {
 //        Log::info($request->all());
-
+//        $userId = auth()->user()->id;
+        $userId = 1;
         $booking = $request->all();
 
         $model = new $this->booking;
+        $model->user_id = $userId;
         $model->fill($booking);
         $model->save();
 
