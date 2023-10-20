@@ -10,6 +10,7 @@ class CreateBannersTable extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
+            $table->string('key');
             $table->string('image');
             $table->timestamps();
             $table->softDeletes(); // Thêm trường deleted_at

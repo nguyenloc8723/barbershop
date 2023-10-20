@@ -11,7 +11,12 @@ class Banner extends Model
 {
     use HasFactory;
 
-    
-
-    protected $fillable = ['image'];
+    protected $fillable=[
+       'categor_id',
+        'name',
+        'price',
+        'description',
+        'images',
+        'is_active'
+    ];
 }

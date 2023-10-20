@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
-use App\Models\stylelist;
+use App\Models\Stylist;
 
 class MemberController extends AdminBaseController
 {
-    public $model = stylelist::class;
+    public $model = Stylist::class;
     public $pathViews = 'admin.member';
 
 }

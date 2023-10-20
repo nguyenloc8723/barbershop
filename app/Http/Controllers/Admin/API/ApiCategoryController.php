@@ -34,7 +34,6 @@ class ApiCategoryController extends Controller
     public function show(string $id)
     {
         $data = Service_categories::query()->findOrFail($id);
-
         return response()->json($data);
     }
 

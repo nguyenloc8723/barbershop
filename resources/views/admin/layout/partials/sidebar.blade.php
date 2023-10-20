@@ -85,6 +85,14 @@
                         <span> Chat </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('route.booking_blade')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Booking </span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{route('route.service')}}">
                         <i class="mdi mdi-access-point-network"></i>
@@ -98,15 +106,17 @@
                         <span>Danh mục dịch vụ</span>
                     </a>
                 </li>
+
                 <li>
+<<<<<<< HEAD
                 <a href="{{route('timesheets.index')}}">
+=======
+                    <a href="{{route('route.stylistTimeSheets')}}">
+>>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
                         <i class="mdi mdi-access-point-network"></i>
-                        <span>Thời gian biểu</span>
+                        <span>Stylist's Time Sheet</span>
                     </a>
                 </li>
-
-
-
                 <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
                         <i class="mdi mdi-clipboard-outline"></i>
@@ -144,10 +154,14 @@
                                 <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
-                                <a href="contacts-profile.html">Profile</a>
+
+                                <a href="{{route('trash.stylistTimeSheets')}}">Stylist's Time Sheets</a>
+
+                                <a href="{{route('trash.service')}}">Dịch vụ</a>
+
                             </li>
                             <li>
-                                <a href="contacts-profile.html">Profile</a>
+                                <a href="{{route('trash.user')}}">User</a>
                             </li>
                             <li>
                                 <a href="contacts-profile.html">Profile</a>

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
+<<<<<<< HEAD
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -12,6 +13,19 @@
                         <div class="mt-3 mt-md-0">
                             <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create"><i class="mdi mdi-plus-circle me-1"></i> Thêm người dùng
                             </button>
+=======
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="col-md-4">
+                            <div class="mt-3 mt-md-0">
+                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create">
+                                    <i class="mdi mdi-plus-circle me-1">Add user</i>
+                                </button>
+                            </div>
+>>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
                         </div>
                     </div>
 
@@ -21,6 +35,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -29,12 +44,22 @@
 
                 <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                     <thead>
+=======
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="example"
+                           class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+                        <thead>
+>>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
                         <tr>
-                            <th>id</th>
-                            <th>Tên người dùng</th>
-
-                            <th>action</th>
+                            @foreach($columns as $key => $column)
+                                <th class="text-center">{{$column}}</th>
+                            @endforeach
+                            <th class="text-center">Action status</th>
                         </tr>
+<<<<<<< HEAD
                     </thead>
                     <tbody>
 
@@ -68,6 +93,15 @@
 
                     </tbody>
                 </table>
+=======
+                        </thead>
+                        <tbody id="jquery-list">
+
+                        </tbody>
+                    </table>
+
+                </div>
+>>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
             </div>
         </div>
 
@@ -75,6 +109,7 @@
 </div>
 
 
+<<<<<<< HEAD
 
 <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
     @include('admin.user.add')
@@ -97,6 +132,25 @@
 <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
 <!-- third party js ends -->
+=======
+    <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+        @include('admin.user.create');
+    </div>
+
+@endsection
+
+@section('script')
+    <!-- third party js -->
+    <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+    <!-- third party js ends -->
+
+    <!-- Datatables init -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script src="{{asset('js/jsAdmin/user.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
+@endsection
+>>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
 
 <!-- Datatables init -->
 <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
