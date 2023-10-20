@@ -108,11 +108,9 @@
                 </li>
 
                 <li>
-<<<<<<< HEAD
+
                 <a href="{{route('timesheets.index')}}">
-=======
                     <a href="{{route('route.stylistTimeSheets')}}">
->>>>>>> 5e0b1eb5a1612717e697f128308455cb2f7625f3
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Stylist's Time Sheet</span>
                     </a>
