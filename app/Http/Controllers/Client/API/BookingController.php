@@ -30,6 +30,7 @@ class BookingController extends Controller
     {
         $dataStylist = $this->model::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
+        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
