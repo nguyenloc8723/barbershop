@@ -43,7 +43,9 @@
                     </div>
                     <br>
                     <div class="row">
-                        <h6>Tổng tiền:</h6> <h6 class="text-end">{{$bookings->price}} VND</h6>
+                        <div class="col-6"><h6 class="text-star">Tổng tiền:</h6> </div>
+                
+                        <div class="col-6"><h6 class="text-end">{{$bookings->price}} K</h6></div>
                     </div>
                    
                 </div>
