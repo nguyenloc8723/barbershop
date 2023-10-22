@@ -7,32 +7,32 @@
 
 
 
-            <div class="modal-dialog modal-full-width">
+<div class="modal-dialog modal-full-width">
     <div class="modal-content">
         <div class="modal-header bg-light">
             <h4 class="modal-title" id="myCenterModalLabel">Thêm dịch vụ</h4>
 
         </div>
         <div class="modal-body">
-        <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="">
                     <div class="mb-3">
                         <label for="name" class="form-label">Key</label>
-                        <input type="text" class="form-control" name="key"/>
+                        <input type="text" class="form-control" name="key" />
                     </div>
                     <div class="col-xl-6 p-3">
-                    <div class="row text-center">
-                        <input type="file" name="image" id="service-image" multiple />
-                        <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
-                        <span class="show-error text-danger" data-name="files"></span>
-                    </div>
-                    <input type="hidden" name="actionMethod">
-                    <div class="selected-images">
+                        <div class="row text-center">
+                            <input type="file" name="image" accept="image/*" id="service-image"/>
+                            <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
+                            <span class="show-error text-danger" data-name="files"></span>
+                        </div>
+                        <input type="hidden" name="actionMethod">
+                        <div class="selected-images">
 
 
+                        </div>
                     </div>
-                </div>
 
                 </div>
                 <input type="hidden" name="actionMethod">

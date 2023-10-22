@@ -14,7 +14,7 @@
                 <div class="fxt-content">
 
                     <div class="fxt-header">
-                        <a href="login-11.html" class="fxt-logo"><img src="{{asset('login/img/logo-11.png')}}"
+                        <a href="" class="fxt-logo"><img src="{{asset('login/img/logo-11.png')}}"
                                                                       alt="Logo"></a>
                         <p>Login into your pages account</p>
                     </div>

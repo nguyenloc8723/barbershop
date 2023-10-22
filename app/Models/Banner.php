@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Banner extends Model
 {
 
@@ -14,6 +15,7 @@ class Banner extends Model
     protected $fillable = [
         'id',
         'key',
-        'image',
+        'image'
     ];
+
 }

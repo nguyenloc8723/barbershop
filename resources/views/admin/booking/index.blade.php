@@ -1,13 +1,59 @@
-@extends('admin.layout.master')
-@section('style')
+{{--@extends('admin.layout.master')--}}
+{{--@section('style')--}}
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
+    {{--    <div class="row">--}}
+    {{--        <div class="col-12">--}}
+    {{--            <div class="card">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <div class="row justify-content-between">--}}
+    {{--                        <div class="col-md-4">--}}
+    {{--                            <div class="mt-3 mt-md-0">--}}
+
+    {{--                                <button type="button"--}}
+    {{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
+    {{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
+    {{--                                </button>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="datatable" class="table table-bordered dt-responsive table-responsive
+                                                   nowrap text-center align-content-sm-center">
+                        <thead>
+                        <tr class="">
+                            @foreach($columns as $key => $column)
+                                <th>{{$column}}</th>
+                            @endforeach
+                            <th>action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="jquery-booking-value">
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
-
-
+    <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+        @include('admin.booking.modal')
+    </div>
 
 @endsection
 
@@ -33,5 +79,10 @@
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 
+<<<<<<< HEAD
     <script src="{{asset('js/jsAdmin/service.js')}}"></script>
 @endsection
+=======
+{{--    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>--}}
+@endsection
+>>>>>>> 2153bd3b65b3a8788a74bd9b67d1562eb929fb0d

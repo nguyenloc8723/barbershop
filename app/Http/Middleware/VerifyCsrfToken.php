@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        '/process', // Thêm URL cần bỏ qua kiểm tra CSRF ở đây
     ];
 }

@@ -16,6 +16,7 @@ class Stylist extends Model
         'image',
     ];
 
+
     public function timeSheet(){
         return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
     }

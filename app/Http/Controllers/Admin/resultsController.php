@@ -38,7 +38,7 @@ class resultsController extends AdminBaseController
                 if (!$checkResult) {
                     $results[] = [
                         'booking_id' => $bookingData['id'],
-                        'image' => $bookingData['special_requirement']
+                        'image' => 'image'
                     ];
                 }
             }

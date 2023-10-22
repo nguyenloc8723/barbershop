@@ -71,7 +71,7 @@ class BannerSettingCtl extends Controller
             $request->image = uploadFile('image', $request->file('image'));
         }
 
-        $params = $request->except('_token');
+        $params = $request->except('_token', 'image');
         $params['image'] = $request->image;
 
         $customer = Banner::create($params);

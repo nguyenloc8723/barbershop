@@ -30,6 +30,7 @@ class BookingController extends Controller
     {
         $dataStylist = $this->model::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
+        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
@@ -51,10 +52,12 @@ class BookingController extends Controller
     public function pullRequest(Request $request)
     {
 //        Log::info($request->all());
-
+//        $userId = auth()->user()->id;
+        $userId = 1;
         $booking = $request->all();
 
         $model = new $this->booking;
+        $model->user_id = $userId;
         $model->fill($booking);
         $model->save();
 

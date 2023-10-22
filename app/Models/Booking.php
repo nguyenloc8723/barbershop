@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
+
     use HasFactory,SoftDeletes;
 //    public $timestamps = false;
     protected $fillable = [
@@ -24,19 +25,29 @@ class Booking extends Model
     public function service(){
         return $this->belongsToMany(Service::class, 'booking_service');
     }
-    public function results(){
-        return $this->belongsTo(Results::class);
+//    public function service(){
+//        return $this->belongsToMany(Service::class, 'booking_services');
+//    }
+
+    public function results()
+    {
+        return $this->hasMany(Results::class);
     }
+
     public function timeSheet(){
         return $this->belongsTo(Timesheet::class, 'timesheet_id');
     }
-    public function stylist(){
-        return $this->belongsTo(Stylist::class);
+
+    public function stylist()
+    {
+        return $this->belongsTo(Stylist::class, 'stylist_id');
     }
     public function reviews(){
         return $this->hasMany(Reviews::class, 'booking_id');
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
