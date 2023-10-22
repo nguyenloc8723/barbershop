@@ -29,7 +29,7 @@
                             </div>
                             <div class="d-flex mb-3">
                                 <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64"
-                                     src="">
+                                     src="{{asset('client/img/logo.png')}}">
                                 <div class="flex-grow-1">
                                     <h4 class="media-heading mt-0">{{$data->user->name}}</h4>
                                     <span
@@ -91,7 +91,7 @@
                             {{--                                </div>--}}
 
 
-                            <table id="datatable"
+                            <table
                                    class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                                 <thead>
                                 <tr>
@@ -112,8 +112,8 @@
                             </table>
                             @foreach($data->results as $item)
                                 {{--                                    <div class="col">--}}
-                                <img src="/storage/{{$item->image}}"
-                                     style="max-height: 100px; max-width: 100px;" alt="img" srcset="">
+                                <img src="/storage/{{$item->image}}" style="border: 1px solid #000; max-width: 150px; margin: 10px;"
+                                     alt="img" srcset="">
                                 {{--                                    </div>--}}
                             @endforeach
                             <form class="d-flex justify-content-between flex-wrap"
@@ -149,7 +149,6 @@
                                                         class="btn btn-success waves-effect waves-light me-1">
                                                     Save
                                                 </button>
-                                                <button type="button" class="btn btn-info btn-xs" id="sa-warning">Save</button>
 {{--                                                <tr>--}}
 {{--                                                    <td>A confirm dialog, with a function attached to the "Confirm"-button...</td>--}}
 {{--                                                    <td>--}}
@@ -201,25 +200,25 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Comments (6)</h4>
+                        <h4 class="header-title mt-0 mb-3">Comments</h4>
 
                         <div>
 
-                            <div class="d-flex mb-3">
-                                <div class="flex-shrink-0 me-3">
-                                    <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"
-                                                      src="assets/images/users/user-1.jpg"> </a>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">Mat Helme</h5>
-                                    <p class="font-13 text-muted mb-0">
-                                        <a href="" class="text-primary">@Michael</a>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                        ante sollicitudin commodo.
-                                    </p>
-                                    <a href="" class="text-success font-13">Reply</a>
-                                </div>
-                            </div>
+{{--                            <div class="d-flex mb-3">--}}
+{{--                                <div class="flex-shrink-0 me-3">--}}
+{{--                                    <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"--}}
+{{--                                                      src="assets/images/users/user-1.jpg"> </a>--}}
+{{--                                </div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <h5 class="mt-0">Mat Helme</h5>--}}
+{{--                                    <p class="font-13 text-muted mb-0">--}}
+{{--                                        <a href="" class="text-primary">@Michael</a>--}}
+{{--                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque--}}
+{{--                                        ante sollicitudin commodo.--}}
+{{--                                    </p>--}}
+{{--                                    <a href="" class="text-success font-13">Reply</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div>
 
                                 @foreach ($data->review as $item)
@@ -247,21 +246,21 @@
                             </div>
 
 
-                                                        <div class="d-flex mb-3">
-                                                            <div class="flex-shrink-0 me-3">
-                                                                <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"
-                                                                                  src="assets/images/users/user-1.jpg"> </a>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <h5 class="mt-0">Mat Helme</h5>
-                                                                <p class="font-13 text-muted mb-0">
-                                                                    <a href="" class="text-primary">@Michael</a>
-                                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                                                    ante sollicitudin commodo cras purus.
-                                                                </p>
-                                                                <a href="" class="text-success font-13">Reply</a>
-                                                            </div>
-                                                        </div>
+{{--                            <div class="d-flex mb-3">--}}
+{{--                                <div class="flex-shrink-0 me-3">--}}
+{{--                                    <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"--}}
+{{--                                                      src="assets/images/users/user-1.jpg"> </a>--}}
+{{--                                </div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <h5 class="mt-0">Mat Helme</h5>--}}
+{{--                                    <p class="font-13 text-muted mb-0">--}}
+{{--                                        <a href="" class="text-primary">@Michael</a>--}}
+{{--                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque--}}
+{{--                                        ante sollicitudin commodo cras purus.--}}
+{{--                                    </p>--}}
+{{--                                    <a href="" class="text-success font-13">Reply</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
                         </div>
@@ -282,11 +281,14 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            /*border: 1px solid #000;*/
         }
 
+
         .image-preview {
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #000;
         }
     </style>
 @endsection
