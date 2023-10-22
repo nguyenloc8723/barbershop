@@ -16,3 +16,4 @@
 <script src="{{asset('client/js/smooth-scroll.min.js')}}"></script>
 <script src="{{asset('client/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
