@@ -104,7 +104,9 @@ Route::group(["prefix" => "admin"], function () {
 //    Route::resource('booking_blade', BookingController::class);
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
     Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 
