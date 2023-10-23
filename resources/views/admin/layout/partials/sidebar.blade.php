@@ -80,6 +80,24 @@
                 </li>
 
                 <li>
+                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                        <i class="mdi mdi-account-multiple-plus-outline"></i>
+                        <span>Vai trò và quyền </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAuth">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('role')}}">Vai trò</a>
+                            </li>
+                            <li>
+                                <a href="{{route('role')}}">Quyền</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="{{route('route.chat')}}">
                         <i class="mdi mdi-forum-outline"></i>
                         <span> Chat </span>
@@ -108,11 +126,11 @@
                 </li>
 
                 <li>
-
                 <a href="{{route('timesheets.index')}}">
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Stylist's Time Sheet</span>
+                    </a>
                     </a>
                 </li>
                 <li>
@@ -177,35 +195,7 @@
 
                 {{--                <li class="menu-title mt-2">Custom</li>--}}
 
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarAuth" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-account-multiple-plus-outline"></i>--}}
-                {{--                        <span> Auth Pages </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarAuth">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-login.html">Log In</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-register.html">Register</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-recoverpw.html">Recover Password</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-lock-screen.html">Lock Screen</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-confirm-mail.html">Confirm Mail</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-logout.html">Logout</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
+
 
                 {{--                <li>--}}
                 {{--                    <a href="#sidebarExpages" data-bs-toggle="collapse">--}}
