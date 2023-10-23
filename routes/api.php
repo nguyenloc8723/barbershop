@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\API\ApiServiceController;
 use App\Http\Controllers\Admin\API\ApiTrashController;
 use App\Http\Controllers\Admin\API\Trash\CategoryController;
 use App\Http\Controllers\Admin\API\Trash\ServiceController;
+use App\Http\Controllers\Admin\API\ApiDashboardController;
 use App\Http\Controllers\Client\API\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -94,6 +95,13 @@ Route::group([],function (){
 
     Route::get('booking/success', [BookingController::class, 'bookingDone']);
     Route::get('booking/randomStylist', [BookingController::class, 'randomStylist']);
+
+    Route::get('booking/notification/{userId}', [BookingController::class, 'bookingNotification']);
 });
+Route::get('/dailySales', [ApiDashboardController::class, 'dailySales']);
+Route::get('/dataSixMonths', [ApiDashboardController::class, 'dataSixMonths']);
+Route::get('/monthlyRevenue', [ApiDashboardController::class, 'monthlyRevenue']);
+Route::get('/latestStylist', [ApiDashboardController::class, 'latestStylist']);
+Route::get('/latestBooking', [ApiDashboardController::class, 'latestBooking']);
 
 

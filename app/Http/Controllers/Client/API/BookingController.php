@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\Timesheet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -94,5 +95,12 @@ class BookingController extends Controller
         return response()->json(['success'=>'Xóa thành công']);
     }
 
+    public function bookingNotification($userId){
+        $bookings = Booking::with(['timeSheet','stylist'])->where('user_id', $userId)
+                    ->where('status', 1)
+                    ->whereDoesntHave('results')
+                    ->get();
+        return response()->json($bookings);
+    }
 
 }

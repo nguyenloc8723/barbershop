@@ -1,6 +1,7 @@
 <?php
 
 
+
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 
 use App\Http\Controllers\Client\PhoneAuthController;
+// use App\Http\Controllers\BookingController;
+
 use App\Http\Controllers\Admin\StatisticalController;
 
 use Illuminate\Support\Facades\Route;
@@ -61,6 +64,7 @@ require __DIR__.'/auth.php';
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
 
+    Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
     Route::resource('timesheets', TimesheetController::class);

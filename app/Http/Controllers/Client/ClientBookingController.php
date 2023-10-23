@@ -16,4 +16,5 @@ class ClientBookingController extends Controller
     public function bookingDone($booking_id){
         return view('client.booking.bookingDone',compact('booking_id'));
     }
+
 }
