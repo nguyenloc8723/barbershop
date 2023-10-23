@@ -7,16 +7,8 @@
                     <form class="" id="formModal">
                         <div class="">
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" required/>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Phone number</label>
-                                <input type="tel" class="form-control" name="phone" required/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password" required/>
+                                <input type="tel" class="form-control" name="phone_number" required/>
                             </div>
                             <div class="mb-3 is_active">
 

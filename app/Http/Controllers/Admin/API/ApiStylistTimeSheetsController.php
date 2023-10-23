@@ -26,7 +26,7 @@ class ApiStylistTimeSheetsController extends Controller
     {
         $stylistTimeSheets = StylistTimeSheet::create([
             'stylist_id' => $request->input('stylist_id'),
-            'timesheet_id' => $request->input('timesheet_id'),
+            'timesheet_id' => json_decode($request->input('timesheet_id')),
             'is_active' => $request->input('is_active'),
             'is_block' => $request->input('is_block'),
         ]);
@@ -64,7 +64,7 @@ class ApiStylistTimeSheetsController extends Controller
         try{
             $stylistTimeSheets = StylistTimeSheet::query()->where('id',$id)->update([
                 'stylist_id' => $request->input('stylist_id'),
-                'timesheet_id' => $request->input('timesheet_id'),
+                'timesheet_id' => json_decode($request->input('timesheet_id')),
                 'is_active' => $request->input('is_active'),
                 'is_block' => $request->input('is_block'),
             ]);

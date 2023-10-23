@@ -13,8 +13,7 @@ class UserController extends AdminBaseController
     public $pathViews = 'admin.user';
     public $columns = [
         'id' => 'ID',
-        'name' => 'Name',
-        'phone' => 'Phone number'
+        'phone_number' => 'Phone number'
     ];
 
 }

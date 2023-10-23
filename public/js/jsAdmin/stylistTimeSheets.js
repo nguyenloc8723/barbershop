@@ -264,7 +264,6 @@ $(document).ready(function () {
 
                 //TimeSheet
                 let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`;
-                isTimeSheet += `<option>Choose timesheet</option>`;
                 for (let i = 0; i < valueTimeSheet.length; i++){
                     isTimeSheet += `<option value="${valueTimeSheet[i].id}">${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
                 }
@@ -279,10 +278,12 @@ $(document).ready(function () {
                     is_activeSelect += `<option value="${i}">${option[i]}</option>`;
                 }
                 is_activeSelect+= `</select>`
-
+                
                 $('.is_active').html(is_activeSelect);
                 $('#stylist_id').html(isStylist);
                 $('#timesheet_id').html(isTimeSheet);
+
+                $("#timesheet_id").selectize({ maxItems: 100 });
             },
             error: function (error) {
                 console.error(error);
