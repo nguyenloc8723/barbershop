@@ -16,7 +16,7 @@ class ReviewController extends AdminBaseController
         'id' => 'id',
         'booking_id' => 'Booking_id',
         'rating' => 'Rating',
-        'comment' => 'comment',
+        'comment' => 'Comment',
         'reply' => 'Reply'
     ];
 

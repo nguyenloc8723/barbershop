@@ -66,15 +66,15 @@ class BannerSettingCtl extends Controller
             $fileName = time() . '' . $file->getClientOriginalName();
             return $file->storeAS($nameFolder, $fileName, 'public');
         }
-        $model = new $this->model;
+
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $request->image = uploadFile('image', $request->file('image'));
         }
 
-        $params = $request->except('_token', 'image');
+        $params = $request->except('_token');
         $params['image'] = $request->image;
 
-        $customer = Banner::create($params);
+        Banner::create($params);
         return redirect()->route($this->route . '.' . 'index');
     }
 
@@ -119,11 +119,15 @@ class BannerSettingCtl extends Controller
             return view($this->pathViews . '.' . __FUNCTION__, compact('data'));
         
     }
-
+    public function checkDelete(Request $request){
+        $ids = $request->ids;
+        Banner::withTrashed()->whereIn('id', $ids)->forceDelete();
+        return response()->json(["success"=> "Banner delete success"]);
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         // $banner = Banner::where('id', $id)->delete(); Xóa Mềm
         $banner = Banner::withTrashed()->where('id', $id)->forceDelete(); //Xóa cứng đây😁

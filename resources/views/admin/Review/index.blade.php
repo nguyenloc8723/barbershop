@@ -6,16 +6,23 @@
 
 
 <div class="modal-header bg-white">
-    <h4 class="modal-title" id="myCenterModalLabel">Đánh giá và nhận xét của khách hàng</h4>
+    <h4 class="modal-title" id="myCenterModalLabel">Rating and Comment</h4>
 </div>
 <br>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
-                    <thead>
+                <table id="datatable" class="table dt-responsive table-responsive nowrap text-center align-content-sm-center">
+                    <thead class="table-light">
+
                         <tr class="">
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="responsivetableCheck">
+                                    <label class="form-check-label" for="responsivetableCheck"></label>
+                                </div>
+                            </th>
                             @foreach($columns as $key => $column)
                             <th>{{$column}}</th>
                             @endforeach
@@ -25,6 +32,12 @@
                     <tbody>
                         @foreach($data as $item)
                         <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="responsivetableCheck01">
+                                    <label class="form-check-label" for="responsivetableCheck01"></label>
+                                </div>
+                            </th>
                             @foreach($columns as $key => $column)
                             <td>
 
@@ -61,7 +74,7 @@
                     </tbody>
                 </table>
 
-
+                
 
             </div>
         </div>

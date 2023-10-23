@@ -89,10 +89,11 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
+    Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
     Route::resource('review', ReviewController::class);
     Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
 
-    Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'destroy'])->name('destroy.banner');
+    Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
 
 

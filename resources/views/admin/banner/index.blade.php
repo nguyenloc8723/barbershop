@@ -91,37 +91,50 @@
         <div class="card">
             <div class="card-body">
 
-                <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+
+                <a href="#" class="btn btn-warning" id="deleteAllSelect" style="opacity: 0;">Delete</a>
+                <!-- <div class="input-group">
+                    <div class="form-outline">
+                        <input id="search-input" type="search" id="form1" class="form-control" />
+                        <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div> -->
+
+                <table id="" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+
                     <thead>
+
                         <tr class="">
+                            <th><input type="checkbox" name="ids" class="checkbox_ids" id="selectAll_ids" value=""></th>
                             @foreach($columns as $key => $column)
+
                             <th>{{$column}}</th>
                             @endforeach
-                            <th>Trạng thái hoạt động</th>
+                            <!-- <th>Trạng thái hoạt động</th> -->
                             <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $item)
-                        <tr>
 
+                        @foreach($data as $item)
+                        <tr id="banner_ids{{$item->id}}">
+                            <td><input type="checkbox" class="checkbox_ids" name="ids" id="myCheckbox{{$item->id}}" value="{{ $item->id }}"></td>
                             @foreach($columns as $key => $column)
                             <td>
 
                                 @if(in_array($key, ['image']))
+
                                 <img src="{{$item->image? Storage::url($item->image): ''}}" alt="{{$item->image? Storage::url($item->image): ''}}" width="150" height="100">
                                 @else
                                 {{$item->$key}}
                                 @endif
                             </td>
-                            
+
                             @endforeach
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>
+
 
 
                             <td class="text-center">
@@ -186,4 +199,80 @@
 
 
 <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+<script>
+    $(function(e) {
+
+        $("#selectAll_ids").click(function() {
+            $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+
+        });
+        $("#deleteAllSelect").click(function(e) {
+            e.preventDefault();
+            var all_ids = [];
+            $('input:checkbox[name=ids]:checked').each(function() {
+                all_ids.push($(this).val());
+
+            });
+            $.ajax({
+                url: "{{route('checkDelete')}}",
+                type: "DELETE",
+                data: {
+                    ids: all_ids,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    $.each(all_ids, function(key, val) {
+                        $('#banner_ids' + val).remove();
+
+                    })
+                }
+            });
+        })
+    });
+
+    document.getElementById("deleteAllSelect").onclick = function() {
+    var result = window.confirm("Are you sure you want to proceed?");
+    
+    if (result) {
+        location.reload();
+    }
+};
+    // function autoload() {
+    //     location.reload();
+    // };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkboxes = document.querySelectorAll(".checkbox_ids")
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener("change", function() {
+                var a = document.getElementById("deleteAllSelect")
+                if (this.checked) {
+                    a.style.opacity = 1;
+                } else {
+                    a.style.opacity = 0;
+                }
+            })
+        })
+    });
+
+
+
+    function isChecked(checkboxes) {
+        for (var i = 0; i < chekboxes.lenght; i++) {
+            if (chekboxes[i].checked) {
+                return true;
+            }
+
+        }
+        return false;
+    };
+
+
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.getElementById('search-input');
+    searchButton.addEventListener('click', () => {
+        const inputValue = searchInput.value;
+        alert(inputValue);
+    });
+</script>
 @endsection
