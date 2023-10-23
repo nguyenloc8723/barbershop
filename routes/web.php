@@ -12,13 +12,16 @@ use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 
-use App\Http\Controllers\TimesheetController;
+use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
 
 
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+
+//use App\Http\Controllers\Client\PhoneAuthController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -67,7 +70,6 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
 });
-
 
 
 // client route

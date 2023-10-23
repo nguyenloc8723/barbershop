@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
@@ -66,7 +67,7 @@ Route::group([],function () {
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
-
+    Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
     Route::prefix('trash')->group(function (){
         Route::get('category', [TrashController::class, 'category'])->name('trash.category');
         Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');

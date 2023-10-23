@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->boolean('is_active')->default(true);
             $table->boolean('is_block')->default(true);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
