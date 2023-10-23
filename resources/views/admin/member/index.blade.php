@@ -44,7 +44,6 @@
         <div class="col-xl-4">
             <div class="card">
                 <div class="text-center card-body">
-{{--                    ==================================--}}
                     <div>
                         <img src="https://kenh14cdn.com/thumb_w/660/2020/7/16/1-15948998699171250460902.jpg"
                              class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>

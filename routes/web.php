@@ -133,3 +133,4 @@ Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp'
 Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 
 
+

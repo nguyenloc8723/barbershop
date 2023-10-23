@@ -17,8 +17,6 @@ class ServiceController extends AdminBaseController
         'price' => 'Giá dịch vụ',
         'description' => 'Mô tả',
         'is_active' => 'Trạng thái hoạt động',
+        'money' => 'giá tính theo vnd',
     ];
-
-
-
 }

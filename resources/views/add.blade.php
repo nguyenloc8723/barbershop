@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="editor" cols="30" rows="10"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
                         @error('description')
                         <p>{{$message}}</p>
                         @enderror
@@ -43,7 +43,7 @@
                 <script>
                     // Kích hoạt CKEditor trên textarea với id "editor"
                     ClassicEditor
-                        .create(document.querySelector('#editor'))
+                        .create(document.querySelector('#description'))
                         .catch(error => {
                             console.error(error);
                         });

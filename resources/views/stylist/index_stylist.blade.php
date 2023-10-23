@@ -49,12 +49,13 @@
 
 </div>
 <div class="row">
+    @foreach ($stylists as $stylist)
     <div class="col-xl-4" style="text-align: center">
-        @foreach ($stylists as $stylist)
         <div class="card">
             <div class="text-center card-body">
                 <div>
                     <form action="{{route('stylists.destroy',$stylist->id)}}" method="POST" >
+                        <input type="checkbox" name="checkbox" id="checkbox"> 
                         @csrf
                         @method('DELETE')
                     <img src="{{ asset('storage/image/'.$stylist->image)}}"
@@ -74,11 +75,11 @@
                         <p class="text-muted font-13"><strong>Location :</strong> <span
                                 class="ms-2">Việt Nam</span></p>
                     </div>
-                        <button type="button"
+                    <button type="button"
                             class="btn btn-primary rounded-pill waves-effect waves-light"><a href="{{route('stylists.edit',$stylist->id)}}" style="color: white ">Update member</a>
                     </button>
                     <button type="submit"
-                            class="btn btn-danger rounded-pill waves-effect waves-light ms-1" style="margin-top: 10px">Delete
+                            class="btn btn-danger rounded-pill waves-effect waves-light ms-1">Delete
                         member
                     </button>
                     </form>
@@ -86,10 +87,11 @@
             
             </div>
         </div>
-        @endforeach
+        
 
 
     </div>
+    @endforeach
 
 </div>
 

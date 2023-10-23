@@ -32,8 +32,10 @@
                                                   nowrap text-center align-content-sm-center">
                         <thead>
                             <tr class="">
+                                @foreach ($money as $money)
                                 @foreach($columns as $key => $column)
                                     <th>{{$column}}</th>
+                                    <th>{{$money}}</th>
                                 @endforeach
                                 <th>action</th>
                             </tr>

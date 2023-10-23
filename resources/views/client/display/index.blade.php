@@ -343,7 +343,7 @@
                             <div class="flex">
                                 <div class="title">{{$item->name}}</div>
                                 <div class="dots"></div>
-                                <div class="price">${{$item->price}}</div>
+                                <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
                             </div>
                             <p><i>{{$item->description}}</i></p>
                         </div>
@@ -369,7 +369,7 @@
                     <div class="owl-carousel owl-theme">
                         @foreach($stylists as $stylist)
                         <div class="team-card mb-30">
-                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" alt="" class="w-100"></div>
+                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px;" alt="" class="w-100"></div>
                             <div class="team-content">
                                 <h3 class="team-title"><span>Barber</span></h3>
                                 <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
@@ -428,73 +428,13 @@
                     <div class="owl-carousel owl-theme">
                         @foreach($blogs as $blog)
                         <div class="item">
-                            <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}}" alt="">
+                            <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}} " style="height: 300px;width: 400px;" alt="">
                                 <div class="date">
                                     <a href="post.html"> <span>Dec</span> <i>29</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
                                     <a href="blog.html">Hair Care</a>
-                                </span>
-                                <h5><a href="post.html">{{$blog->title}}</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}}" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>27</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Beard</a>
-                                </span>
-                                <h5><a href="post.html">{{$blog->title}}</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>25</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Hairstyle</a>
-                                </span>
-                                <h5><a href="post.html">{{$blog->title}}</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                        <div class="position-re o-hi dden"> <img src="client/img/slider/4.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>23</i> </a>
-                                </div>
-                            </div>
-                             <div class="con"> <span class="category">
-                                    <a href="blog.html">Haircut</a>
-                                </span>
-                                <h5><a href="post.html">What Are The Secrets of The Haircut & Moustache Trim?</a></h5>
-                            </div> 
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="file:///C:/laragon/www/fpt-barber-shop/resources/views/client/display/Screenshot%20(1).png" alt="">
-                                <div class="date">
-                                    <a href="post.html">{{$blog->title}} <span>Dec</span> <i>22</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Wedding</a>
-                                </span>
-                                <h5><a href="post.html">{{$blog->title}}</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="file:///C:/laragon/www/fpt-barber-shop/resources/views/client/display/Screenshot%20(1).png" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>20</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Blog</a>
                                 </span>
                                 <h5><a href="post.html">{{$blog->title}}</a></h5>
                             </div>

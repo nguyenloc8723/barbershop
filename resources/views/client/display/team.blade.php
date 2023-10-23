@@ -16,8 +16,8 @@
     <section class="team-page section-padding">
         <div class="container">
             <div class="row">
+                @foreach ($stylists as $stylist)
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                    @foreach ($stylists as $stylist)
                     <div class="team-page-card mb-60">
                         <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" alt="" class="w-100"></div>
                         <div class="team-content">
@@ -31,8 +31,9 @@
                             <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
                         </div>
                     </div>
-                    @endforeach
+                    
                 </div>
+                @endforeach
             </div>
            
         </div>
