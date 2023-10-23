@@ -62,11 +62,11 @@
     <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- third party js ends -->
-
     <!-- Datatables init -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script src="{{asset('js/jsAdmin/user.js')}}"></script>
     <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
+
 
 
 <!-- Datatables init -->
