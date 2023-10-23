@@ -49,7 +49,7 @@
 
     function sendOTP() {
 
-        var number = $("#number").val();
+        var number = "+84" + $("#number").val();
         firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
             window.confirmationResult = confirmationResult;
             coderesult = confirmationResult;

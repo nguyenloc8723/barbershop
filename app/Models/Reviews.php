@@ -18,4 +18,8 @@ class Reviews extends Model
     public function booking(){
         return $this->belongsTo(Booking::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

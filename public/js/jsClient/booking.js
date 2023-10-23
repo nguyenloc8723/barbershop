@@ -38,7 +38,7 @@ $(document).ready(function () {
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
                       role="presentation" style="width: 78px;" data-id="${item.id}">
                         <div class="content-center-middle "><div class="relative">
-                                <img class="jqr-img" src="img/team/1.jpg" style="border: 3px solid #FFFFFF" alt="Icon">
+                                <img class="jqr-img" src="/storage/${item.image}" style="border: 3px solid #FFFFFF" alt="Icon">
                                 <br>
                                 <div>
                                     <span class="name-stylist">${item.name}</span>
@@ -593,7 +593,6 @@ $(document).ready(function () {
         let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            user_id: user_id,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,
