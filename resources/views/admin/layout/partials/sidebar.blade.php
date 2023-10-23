@@ -108,6 +108,8 @@
                 </li>
 
                 <li>
+
+                <a href="{{route('timesheets.index')}}">
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Lịch làm việc</span>

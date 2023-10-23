@@ -8,13 +8,21 @@ use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\TimeSheetController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BannerController;
+
+
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Admin\StatisticalController;
-use App\Http\Controllers\Admin\StylistTimeSheetsController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,8 +63,22 @@ Route::group(["prefix" => "admin"], function () {
 
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('timesheets', TimesheetController::class);
+    // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
+    Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
+    Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+   //setting
+    Route::resource('settings', SettingController::class);
+    Route::get('/admin/settings/{id}/delete', [SettingController::class,'delete'])->name('settings.delete');
+    Route::match(['GET', 'POST'],'/admin/settings/{id}/edit', [SettingController::class, 'edit'])->name('settings.edit');
+    //banner
+    Route::resource('banners', BannerController::class)->withTrashed();
+    Route::get('/admin/banners/{id}/delete', [BannerController::class,'delete'])->name('banners.delete');
+    Route::match(['GET', 'POST'],'/admin/banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
+
     Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
     Route::resource('user', UserController::class);
+
 
 
     Route::resource('member', MemberController::class);
@@ -64,6 +86,8 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
+
+
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
     Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
     // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
@@ -83,7 +107,9 @@ Route::group(["prefix" => "admin"], function () {
 //    Route::resource('booking_blade', BookingController::class);
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
     Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 
