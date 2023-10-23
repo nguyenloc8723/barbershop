@@ -46,6 +46,9 @@ Route::group([],function (){
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+
+    Route::get('role',[ApiUserController::class, 'roles']);
+//    Route::get('role',[\App\Http\Controllers\Admin\RoleController::class, 'roles']);
 });
 
 Route::group([],function (){

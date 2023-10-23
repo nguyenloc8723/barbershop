@@ -16,8 +16,8 @@ class RoleController extends Controller
     public function index()
     {
         $data = Role::query()->orderByDesc('id')->get();
-
-        return view(self::PATH . __FUNCTION__, compact('data'));
+        return response()->json($data);
+//        return view(self::PATH . __FUNCTION__, compact('data'));
     }
 
     /**

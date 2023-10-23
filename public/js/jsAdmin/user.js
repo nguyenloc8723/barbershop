@@ -5,6 +5,7 @@ $(document).ready(function () {
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
     const baseUrl = '/api/user';
+    const urlGetRole = '/api/role';
     const btnUpdate = $('.js-btn-update');
     let idUpdate;
     $('#example').DataTable({
@@ -202,4 +203,27 @@ $(document).ready(function () {
             }
         });
     }
+
+    function setValue() {
+        $.ajax({
+            url: urlGetRole,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                let isRole = `<select class="form-control" name="role" id="role">`;
+                for (let i = 0; i < data.length; i++){
+                    isRole += `<option value="${data[i].id}">${data[i].name}</option>`;
+                }
+                isRole += `</select>`;
+                $('#role').html(isRole);
+                $("#role").selectize({ maxItems: 2 });
+            },
+            error: function (error) {
+                console.error(error);
+            },
+        });
+    }
+    setValue();
 });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class ApiUserController extends Controller
 {
@@ -16,7 +18,12 @@ class ApiUserController extends Controller
         $data = User::all();
         return response()->json($data);
     }
-
+    public function roles()
+    {
+        $data = Role::query()->orderByDesc('id')->get();
+        return response()->json($data);
+//        return view(self::PATH . __FUNCTION__, compact('data'));
+    }
     /**
      * Store a newly created resource in storage.
      */
