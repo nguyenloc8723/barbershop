@@ -15,18 +15,19 @@
                 @method('PUT')
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="hour" class="form-label">hour</label>
-                                <input type="number" class="form-control" id="hour" name="hour" value="{{$timesheet->hour}}" />
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="minutes" class="form-label">minutes</label>
-                                <input type="number" class="form-control" id="minutes" name="minutes" value="{{$timesheet->minutes}}" />
-                            </div>
-                        </div>
+                    <div class="col-12">
+    <div class="mb-3">
+        <label for="hour" class="form-label">hour</label>
+        <input type="number" class="form-control" id="hour" name="hour" value="{{$timesheet->hour}}" min="0" />
+    </div>
+</div>
+<div class="col-12">
+    <div class="mb-3">
+        <label for "minutes" class="form-label">minutes</label>
+        <input type="number" class="form-control" id="minutes" name="minutes" value="{{$timesheet->minutes}}" min="0" />
+    </div>
+</div>
+
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="is_active" class="form-label">Trạng thái</label>
