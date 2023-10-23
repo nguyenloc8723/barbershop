@@ -5,13 +5,23 @@ $(document).ready(function () {
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
-
+    let countPrice = 0;
+    let is_consultant = 1;
+    let is_accept_take_a_photo = 1;
+    let stylist = 0;
+    let countSelect = 0;
+    let time = 0;
     let isContentVisible = false;
+    let is_selectConsultant = true;
+    let is_selectTakePhoto = true;
     $('.jqr-contentStylist').css({
        'display': 'none',
     });
     $('.jqr-messageStylist').css({
         'display': 'none',
+    });
+    $('.jqr-textBase').css({
+
     });
 
 
@@ -53,32 +63,32 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 $('.jqr-messageStylist').html(`
-               <div class="stylist-selected">
-                  <div class="stylist__top">
-                     <div class="name">
-                          Stylist: ${data.name}
-                     </div>
-                     </div>
-                         <div class="stylist__listRaiting">
-                             <div class="rating">
-                                 <div class="rating__title">Đánh giá 4.8</div>
-                                     <div class="rating__detail">
-                                         <span>(4.8k khách)</span>
-                                     </div>
-                                     <div class="rating__icon">
-                                         <span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle icon">
-                                             <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                              <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path>
-                                             </svg>
-                                         </span>
+                   <div class="stylist-selected">
+                      <div class="stylist__top">
+                         <div class="name">
+                              Stylist: ${data.name}
+                         </div>
+                         </div>
+                             <div class="stylist__listRaiting">
+                                 <div class="rating">
+                                     <div class="rating__title">Đánh giá 4.8</div>
+                                         <div class="rating__detail">
+                                             <span>(4.8k khách)</span>
+                                         </div>
+                                         <div class="rating__icon">
+                                             <span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle icon">
+                                                 <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                  <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path>
+                                                 </svg>
+                                             </span>
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
-                     </div>
-                  </div>
-               </div>
-        `);
+                      </div>
+                   </div>
+                `);
             },
             error:function (error) {
                 console.error(error);
@@ -101,7 +111,6 @@ $(document).ready(function () {
                 } else {
                     count = Math.floor(dataTimeSheet.length / 3) + 1;
                 }
-
                 let timesheet_box = ``;
                 for (let i = 0; i < count; i++) {
                     timesheet_box += `<div class="swiper-slide box-time_gr" style="width: 101.048px; margin-right: 8px;">`;
@@ -202,6 +211,7 @@ $(document).ready(function () {
                         }
                     }
                 }
+                countPrice = money;
                 function formatCurrency(amount) {
                     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 }
@@ -265,18 +275,18 @@ $(document).ready(function () {
 
 
                                     <div class="content fade-in jqr-contentStylist">
-<!--                                        <div class="left" role="presentation">-->
-<!--                                            <div>-->
-<!--                                                <div class="user-default relative cursor-pointer">-->
-<!--                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">-->
-<!--                                                        <path d="M12.9998 2.1665C10.8572 2.1665 8.7627 2.80187 6.98116 3.99225C5.19963 5.18263 3.8111 6.87457 2.99115 8.8541C2.1712 10.8336 1.95666 13.0119 2.37467 15.1133C2.79267 17.2148 3.82445 19.1451 5.33952 20.6602C6.85459 22.1752 8.7849 23.207 10.8864 23.625C12.9878 24.043 15.166 23.8285 17.1456 23.0085C19.1251 22.1886 20.817 20.8 22.0074 19.0185C23.1978 17.237 23.8332 15.1425 23.8332 12.9998C23.8332 11.5772 23.553 10.1685 23.0085 8.8541C22.4641 7.53974 21.6661 6.34548 20.6602 5.33951C19.6542 4.33355 18.4599 3.53557 17.1456 2.99114C15.8312 2.44672 14.4225 2.1665 12.9998 2.1665V2.1665ZM12.9998 5.4165C13.6426 5.4165 14.271 5.60711 14.8054 5.96423C15.3399 6.32134 15.7565 6.82892 16.0025 7.42278C16.2484 8.01664 16.3128 8.67011 16.1874 9.30055C16.062 9.93099 15.7525 10.5101 15.2979 10.9646C14.8434 11.4191 14.2643 11.7287 13.6339 11.8541C13.0034 11.9795 12.35 11.9151 11.7561 11.6691C11.1623 11.4231 10.6547 11.0066 10.2976 10.4721C9.94045 9.93765 9.74984 9.30929 9.74984 8.6665C9.74984 7.80455 10.0923 6.9779 10.7017 6.36841C11.3112 5.75891 12.1379 5.4165 12.9998 5.4165V5.4165ZM19.0882 17.5065C18.3827 18.4566 17.4646 19.2284 16.4074 19.7602C15.3502 20.2919 14.1832 20.5689 12.9998 20.5689C11.8164 20.5689 10.6495 20.2919 9.59228 19.7602C8.53509 19.2284 7.61701 18.4566 6.91151 17.5065C6.80464 17.3486 6.74136 17.1652 6.72804 16.975C6.71473 16.7848 6.75185 16.5944 6.83567 16.4232L7.06317 15.9465C7.32583 15.3898 7.74119 14.9191 8.26094 14.5892C8.78068 14.2593 9.38342 14.0838 9.99901 14.0832H16.0007C16.6079 14.084 17.2028 14.2549 17.7179 14.5766C18.233 14.8983 18.6476 15.3578 18.9148 15.9032L19.164 16.4123C19.2499 16.585 19.2881 16.7774 19.2748 16.9697C19.2615 17.1621 19.197 17.3474 19.0882 17.5065Z" fill="#767676"/>-->
-<!--                                                    </svg>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div>-->
-<!--                                                <span>6XPRO <br> Chọn Hộ Anh</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <div class="left jqr-randomStylist" role="presentation">
+                                            <div>
+                                                <div class="user-default relative cursor-pointer">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                                                        <path d="M12.9998 2.1665C10.8572 2.1665 8.7627 2.80187 6.98116 3.99225C5.19963 5.18263 3.8111 6.87457 2.99115 8.8541C2.1712 10.8336 1.95666 13.0119 2.37467 15.1133C2.79267 17.2148 3.82445 19.1451 5.33952 20.6602C6.85459 22.1752 8.7849 23.207 10.8864 23.625C12.9878 24.043 15.166 23.8285 17.1456 23.0085C19.1251 22.1886 20.817 20.8 22.0074 19.0185C23.1978 17.237 23.8332 15.1425 23.8332 12.9998C23.8332 11.5772 23.553 10.1685 23.0085 8.8541C22.4641 7.53974 21.6661 6.34548 20.6602 5.33951C19.6542 4.33355 18.4599 3.53557 17.1456 2.99114C15.8312 2.44672 14.4225 2.1665 12.9998 2.1665V2.1665ZM12.9998 5.4165C13.6426 5.4165 14.271 5.60711 14.8054 5.96423C15.3399 6.32134 15.7565 6.82892 16.0025 7.42278C16.2484 8.01664 16.3128 8.67011 16.1874 9.30055C16.062 9.93099 15.7525 10.5101 15.2979 10.9646C14.8434 11.4191 14.2643 11.7287 13.6339 11.8541C13.0034 11.9795 12.35 11.9151 11.7561 11.6691C11.1623 11.4231 10.6547 11.0066 10.2976 10.4721C9.94045 9.93765 9.74984 9.30929 9.74984 8.6665C9.74984 7.80455 10.0923 6.9779 10.7017 6.36841C11.3112 5.75891 12.1379 5.4165 12.9998 5.4165V5.4165ZM19.0882 17.5065C18.3827 18.4566 17.4646 19.2284 16.4074 19.7602C15.3502 20.2919 14.1832 20.5689 12.9998 20.5689C11.8164 20.5689 10.6495 20.2919 9.59228 19.7602C8.53509 19.2284 7.61701 18.4566 6.91151 17.5065C6.80464 17.3486 6.74136 17.1652 6.72804 16.975C6.71473 16.7848 6.75185 16.5944 6.83567 16.4232L7.06317 15.9465C7.32583 15.3898 7.74119 14.9191 8.26094 14.5892C8.78068 14.2593 9.38342 14.0838 9.99901 14.0832H16.0007C16.6079 14.084 17.2028 14.2549 17.7179 14.5766C18.233 14.8983 18.6476 15.3578 18.9148 15.9032L19.164 16.4123C19.2499 16.585 19.2881 16.7774 19.2748 16.9697C19.2615 17.1621 19.197 17.3474 19.0882 17.5065Z" fill="#767676"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span>Barber <br> Chọn Hộ Bạn</span>
+                                            </div>
+                                        </div>
                                         <div class="right relative">
                                             <div class="swiper-container swiper-container-initialized swiper-container-horizontal"  style=" overflow: auto">
                                                 <div class="swiper-wrapper jqr-show-stylist" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
@@ -298,7 +308,7 @@ $(document).ready(function () {
                                         <div class="mt-2">
                                             <div class="flex item-center " role="presentation">
                                                 <div class="suggestion-salon__text jqr-name">
-                                                    <div>TuấnAnh còn rất nhiều giờ trống vào ngày mai, click để đổi sang ngày mai anh nhé!</div>
+                                                    <div>Ngày mai còn rất nhiều giờ trống, click để đổi sang ngày mai bạn nhé!</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -311,11 +321,28 @@ $(document).ready(function () {
                                                 </div>
                                                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div id=""></div>
                                 </div>
+                            </div>
+                            <div class="text-base jqr-textBase">
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-consultant"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Chụp ảnh sau khi cắt</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-accept_take_a_photo"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-acceptTakeAPhoto">Bạn cho phép chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
                             </div>
                         </div>
                     </div>
@@ -335,7 +362,7 @@ $(document).ready(function () {
                     'display': 'none',
                 });
                 loadStylist();
-
+                randomStylist();
             },
             error: function (error) {
                 console.error(error);
@@ -403,8 +430,34 @@ $(document).ready(function () {
         });
     }
 
-
-    let countSelect = 0;
+    $(document).on('click','.jqr-consultant',function () {
+        is_selectConsultant = !is_selectConsultant;
+        if (is_selectConsultant){
+            $('.jqr-textConsultant').html(`
+                <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+            `);
+            is_consultant = 1;
+        }else {
+            $('.jqr-textConsultant').html(`
+                <p class="jqr-textConsultant">Bạn không cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+            `);
+            is_consultant = 0;
+        }
+    });
+    $(document).on('click','.jqr-accept_take_a_photo',function () {
+         is_selectTakePhoto = !is_selectTakePhoto;
+        if (is_selectTakePhoto){
+            $('.jqr-acceptTakeAPhoto').html(`
+                <p class="jqr-acceptTakeAPhoto">Bạn cho phép chúng mình chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
+            `);
+            is_accept_take_a_photo = 1;
+        }else {
+            $('.jqr-acceptTakeAPhoto').html(`
+                <p class="jqr-acceptTakeAPhoto">Bạn không cho phép chụp ảnh, không cần thợ lần sau biết.</p>
+            `);
+            is_accept_take_a_photo = 0;
+        }
+    });
     $(document).on('click', '.item__button', function () {
         let id = $(this).data('id');
         $(this).css({
@@ -415,7 +468,7 @@ $(document).ready(function () {
 
         if (!arrayIDService.includes(id)) {
             arrayIDService.push(id);
-        } else {
+        }else {
             let index = arrayIDService.indexOf(id);
             if (index !== -1) {
                 arrayIDService.splice(index, 1);
@@ -426,7 +479,7 @@ $(document).ready(function () {
                 'color': '#000',
             });
         }
-
+        console.log(arrayIDService);
         countSelect = arrayIDService.length;
         if (countSelect === 0) {
             $('.jqr-clickService').css({
@@ -446,8 +499,6 @@ $(document).ready(function () {
             $('.jqr-clickService').html(`<span>Chọn ${countSelect} dịch vụ</span>`);
         }
     })
-
-    let stylist = 0;
     $(document).on('click', '.jqr-detail', function () {
         stylist = $(this).data('id');
         $('.jqr-messageStylist').css({
@@ -462,10 +513,13 @@ $(document).ready(function () {
         });
         messageSty(stylist);
         timeSheet(stylist);
-    })
-
-
-    let time = 0;
+    });
+    $(document).on('click','.jqr-randomStylist', function () {
+        $('.jqr-messageStylist').css({
+            'display': 'block',
+        });
+        randomStylist();
+    });
     $(document).on('click', '.box-time_item', function () {
         time = $(this).data('id');
         $('.box-time_item').not('.unavailable').css({
@@ -506,7 +560,7 @@ $(document).ready(function () {
          isContentVisible = !isContentVisible;
          if (isContentVisible){
              $('.jqr-contentStylist').css({
-                 'display': 'block',
+                 'display': 'flex',
              });
          }else {
              $('.jqr-contentStylist').css({
@@ -516,19 +570,38 @@ $(document).ready(function () {
 
     });
 
+    function randomStylist() {
+        $.ajax({
+            url: '/api/booking/randomStylist',
+            method: 'GET',
+            success: function (data) {
+                stylist = data.id;
+                messageSty(data.id);
+                $('.jqr-messageStylist').css({
+                    'display': 'block',
+                });
+                timeSheet(data.id);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
     function pushRequest() {
-        let special_requirement = 1;
-        let is_consultant = 1;
-        let is_accept_take_a_photo = 1;
+        let status = 1;
+        let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            stylist: stylist,
-            time: time,
-            specialRequirement: special_requirement,
+            user_id: user_id,
+            stylist_id: stylist,
+            timesheet_id: time,
+            price: countPrice,
             is_consultant: is_consultant,
-            isAcceptTakeAPhoto: is_accept_take_a_photo,
+            is_accept_take_a_photo: is_accept_take_a_photo,
             date: date,
             arrayIDService: arrayIDService,
+            status: status
         };
         $.ajax({
             url: pullRequestUrl,
@@ -538,9 +611,9 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': csrfToken,
             },
             success: function (response) {
-                console.log(response)
+                console.log(response.success)
                 // toastr['success']('Đặt lịch thành công');
-                window.location.href = 'booking/success';
+                window.location.href = 'booking/success/' + response.success;
             },
             error: function (error) {
                 console.error(error);

@@ -29,14 +29,14 @@
             <div class="card">
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered dt-responsive table-responsive
-                                                  nowrap text-center align-content-sm-center">
+                                                   nowrap text-center align-content-sm-center">
                         <thead>
-                            <tr class="">
-                                @foreach($columns as $key => $column)
-                                    <th>{{$column}}</th>
-                                @endforeach
-                                <th>action</th>
-                            </tr>
+                        <tr class="">
+                            @foreach($columns as $key => $column)
+                                <th>{{$column}}</th>
+                            @endforeach
+                            <th>action</th>
+                        </tr>
                         </thead>
                         <tbody id="jquery-value">
 

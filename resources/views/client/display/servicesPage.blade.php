@@ -44,7 +44,7 @@
                                 <a href="client/img/slider/1.jpg" title="" class="img-zoom">
                                     <div class="gallery-box">
 
-                                        <div class="gallery-img"><img src="{{asset($item->url)}}" class="img-fluid mx-auto d-block" alt="work-img">
+                                        <div class="gallery-img"><img src="{{asset('storage/'.$item->url)}}" class="img-fluid mx-auto d-block" alt="work-img">
                                         </div>
 
                                     </div>
@@ -62,17 +62,13 @@
                                 <div class="sidebar-title">
                                     <h4>All Services</h4>
                                 </div>
+                                @foreach($data as $item)
                                 <ul>
-                                    <li class="active"><a href="services-page.html">Haircut</a></li>
-                                    <li><a href="services-page.html">Moustache Trim</a></li>
-                                    <li><a href="services-page.html">Face Shave</a></li>
-                                    <li><a href="services-page.html">Beard Trim</a></li>
-                                    <li><a href="services-page.html">Clipper Cut</a></li>
-                                    <li><a href="services-page.html">Facial & Massage</a></li>
-                                    <li><a href="services-page.html">Hair Washing</a></li>
-                                    <li><a href="services-page.html">Hair Dryer</a></li>
-                                    <li><a href="services-page.html">Coloring</a></li>
+
+                                    <li><a href="{{route('services-page', $item)}}">{{$item->name}}</a></li>
+
                                 </ul>
+                                @endforeach
                             </div>
                         </div>
                     </aside>
