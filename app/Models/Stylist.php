@@ -10,11 +10,13 @@ class Stylist extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
         'excerpt',
         'image',
         'is_vip',
     ];
+
 
     public function timeSheet(){
         return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');

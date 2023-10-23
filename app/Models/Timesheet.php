@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Timesheet extends Model
 {
     use HasFactory;
+    
 
     protected $fillable = [
         'hour',
@@ -17,5 +20,8 @@ class Timesheet extends Model
 
     public function stylist(){
         return $this->belongsToMany(Stylist::class, 'stylist_time_sheet');
+    }
+    public function booking(){
+        return $this->hasOne(Booking::class);
     }
 }
