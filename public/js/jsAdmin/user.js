@@ -54,8 +54,7 @@ $(document).ready(function () {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.name}</td>
-                          <td>${item.phone}</td>
+                          <td>${item.phone_number}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -120,6 +119,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 loadTable();
                 toastr['success']('Thêm mới người dùng thành công');
             },
