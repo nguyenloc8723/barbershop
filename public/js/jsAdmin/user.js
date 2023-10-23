@@ -48,14 +48,13 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $('#jquery-list').empty();
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.name}</td>
-                          <td>${item.phone}</td>
+                          <td>${item.phone_number}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -168,9 +167,7 @@ $(document).ready(function () {
 
                 $('.is_active').html(is_activeSelect);
                 actionMethod.val('update');
-                $('input[name="name"]').val(data.name);
-                $('input[name="phone"]').val(data.phone);
-                // $('input[name="password"]').val(data.password);
+                $('input[name="phone_number"]').val(data.phone_number);
                 showModal();
             },
             error: function (xhr, status, error) {
