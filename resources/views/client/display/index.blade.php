@@ -825,10 +825,43 @@
 
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
-    <script>
+    
+    
+        $(<script>
         $(document).ready(function (){
-
             var userId = $('#user-info').data('userid');
+
+            // Function to change a booking
+            function changeBooking(bookingId) {
+                console.log('Đổi lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/change/' + bookingId, // Replace with your actual endpoint for changing bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Function to cancel a booking
+            function cancelBooking(bookingId) {
+                console.log('Hủy lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/cancel/' + bookingId, // Replace with your actual endpoint for canceling bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
 
             $.ajax({
                 url: '/api/booking/notification/' + userId,
@@ -862,9 +895,43 @@
                                                 </div>
                                             </div>
                                             <div class="section-footer text-center mt-2 mb-30">
-                                                <button>Đổi/Hủy lịch</button>
+                                                <button class="jqr-change" data-booking-id="${value.id}">Đổi</button>
+                                                <button class="jqr-destroy" data-booking-id="${value.id}">Hủy lịch</button>
                                             </div>`)
                     }
+
+                    // Add click event handler for 'Đổi' button
+                    $(document).on('click','.jqr-change', function () {
+                        var bookingId = $(this).data('booking-id');
+                        console.log('đổi lịch');
+                        changeBooking(bookingId);
+                        window.location.href = '/client/booking';
+                    });
+
+                    // Add click event handler for 'Hủy lịch' button
+                    $(document).on('click','.jqr-destroy', function () {
+                        var bookingId = $(this).data('booking-id');
+                        Swal.fire({
+                            title: 'Bạn chắc chắn muốn hủy lịch?',
+                            text: "Bạn sẽ không thể hoàn nguyên điều này!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    '',
+                                    'Hủy lịch thành công.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.href = '/';
+                                });
+                                cancelBooking(bookingId);
+                            }
+                        });
+                    });
                 },
                 error: function ( error) {
                     console.log(error);
@@ -873,3 +940,4 @@
         })
     </script>
 @endsection
+
