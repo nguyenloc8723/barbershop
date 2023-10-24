@@ -28,9 +28,10 @@
                         <label for="name" class="form-label">Reply:</label>
                         <textarea class="form-control" name="reply" id="" cols="150" rows="5">{{$data->reply}}</textarea>
                         <!-- <input type="text" class="form-control" name="reply"> <br> -->
+                        
                     </div>
                     <br>
-                    
+
 
 
 

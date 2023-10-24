@@ -1,47 +1,55 @@
 @extends('admin.layout.master')
 @section('style')
 <link rel="stylesheet" href="{{asset('css/service.css')}}">
+
 @endsection
 @section('content')
 
 
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header bg-light">
-            <h4 class="modal-title" id="myCenterModalLabel">Sửa Banner</h4>
 
-        </div>
-        <div class="modal-body">
-            <form action="{{route('edit.banner', ['id'=>request()->route('id')])}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Key</label>
-                        <input type="text" class="form-control" name="key" value="{{$data->key}}" />
-                    </div>
-                    <div class="col-xl-6 p-3">
-                        <div class="row text-center">
-                            <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
-                            <span class="show-error text-danger" data-name="files"></span>
-                            <img id="anh_the_preview" src="{{$data->image? Storage::url($data->image): ''}}" alt="" width="150" height="100">
-                            <input type="file" name="image" id="cmt_anh" class=" form-control-file @error('image') is-invalid @enderror" multiple />
+<div class="modal-content">
+    <div class="modal-header bg-light">
+        <h4 class="modal-title" id="myCenterModalLabel">Sửa Banner</h4>
 
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-6 ">
+            <div class="modal-body">
+                <form action="{{route('edit.banner', ['id'=>request()->route('id')])}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Key</label>
+                            <input type="text" class="form-control" name="key" value="{{$data->key}}" />
                         </div>
-                        
-                    </div>
-                </div>
-                
 
-                <div class="w-100 text-center">
-                    <button type="submit" class="btn btn-success waves-effect waves-light">Update
-                    </button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-close">Cancel
-                    </button>
-                </div>
-            </form>
+                        <div class="col-6">
+                            <div class="row text-center">
+                                <label for="service-image" style="font-size: 20px">Tải ảnh lên <i class="upload font-22"></i></label>
+                                <span class="show-error text-danger" data-name="files"></span>
+                                <img id="anh_the_preview" src="{{$data->image? asset('img/'.$data->image): ''}}" alt="" width="50" height="150">
+                                <input type="file" name="image" id="cmt_anh" class=" form-control-file @error('image') is-invalid @enderror" multiple />
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <br>
+
+                    <div class="w-100 text-center">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">Update
+                        </button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-close">Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
 
 </script>
 
@@ -77,4 +85,5 @@
 
 
 <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+
 @endsection

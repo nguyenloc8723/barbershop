@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class BannerSettingCtl extends Controller
 {
@@ -38,17 +39,21 @@ class BannerSettingCtl extends Controller
         }
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if ($this->model !== null) {
             $data = $this->model->paginate();
         } else {
             $data = [];
         }
+
+
+        if ($request->post() && $request->searchBanner) {
+            $data = DB::table('banners')->where('key', 'like', '%' . $request->searchBanner . '%')->get();
+        }
         return view($this->pathViews . '.' . __FUNCTION__, compact('data'))
             ->with('columns', $this->columns);
     }
-
 
     public function create()
     {
@@ -61,21 +66,20 @@ class BannerSettingCtl extends Controller
     public function store(Request $request)
     {
 
-        function uploadFile($nameFolder, $file)
-        {
-            $fileName = time() . '' . $file->getClientOriginalName();
-            return $file->storeAS($nameFolder, $fileName, 'public');
+        $request->validate([
+            'key' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'img/';
+            $bannerImage = time() . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $bannerImage);
+            $input['image'] = "$bannerImage";
         }
-
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $request->image = uploadFile('image', $request->file('image'));
-        }
-
-        $params = $request->except('_token');
-        $params['image'] = $request->image;
-
-        Banner::create($params);
-        return redirect()->route($this->route . '.' . 'index');
+        Banner::create($input);;
+        return redirect()->route($this->route . '.' . 'index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -91,38 +95,33 @@ class BannerSettingCtl extends Controller
      */
     public function edit(Request $request, string $id)
     {
-        
-        function uploadFile2($nameFolder, $file)
-        {
-            $fileName = time() . '' . $file->getClientOriginalName();
-            return $file->storeAS($nameFolder, $fileName, 'public');
-        }
         $data = Banner::findOrFail($id);
 
         if ($request->isMethod('POST')) {
 
-            $params = $request->except('_token');
-            if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                $resultDL = Storage::delete('/public/' . $data->image);
-                if ($resultDL) {
-                    $request->image = uploadFile2('image', $request->file('image'));
-                    $params['image'] =  $request->image;
+            $input = $request->all();
+            if ($image = $request->file('image')) {
+                $destinationPath = 'img/';
+                if(file_exists($destinationPath.$data->image)){
+                    unlink($destinationPath.$data->image);
                 }
+                $bannerImage = time() . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $bannerImage);
+                $input['image'] = "$bannerImage";
             } else {
-                $params['image'] = $data->image;
+                unset($input['image']);
             }
-        
-            $result = Banner::where('id', $id)->update($params);
-            return redirect()->route($this->route . '.' . 'index');
-            
+
+            $data->update($input);
+            return redirect()->route($this->route . '.' . 'index')->with('success', 'Product created successfully.');
         }
-            return view($this->pathViews . '.' . __FUNCTION__, compact('data'));
-        
+        return view($this->pathViews . '.' . __FUNCTION__, compact('data'));
     }
-    public function checkDelete(Request $request){
+    public function checkDelete(Request $request)
+    {
         $ids = $request->ids;
         Banner::withTrashed()->whereIn('id', $ids)->forceDelete();
-        return response()->json(["success"=> "Banner delete success"]);
+        return response()->json(["success" => "Banner delete success"]);
     }
     /**
      * Remove the specified resource from storage.

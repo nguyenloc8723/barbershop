@@ -95,6 +95,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
+    Route::post('searchBanner', [BannerSettingCtl::class, 'index'])->name('searchBanner');
 
 
 

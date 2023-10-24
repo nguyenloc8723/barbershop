@@ -17,12 +17,7 @@
                     <thead class="table-light">
 
                         <tr class="">
-                            <th scope="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="responsivetableCheck">
-                                    <label class="form-check-label" for="responsivetableCheck"></label>
-                                </div>
-                            </th>
+                            
                             @foreach($columns as $key => $column)
                             <th>{{$column}}</th>
                             @endforeach
@@ -32,12 +27,7 @@
                     <tbody>
                         @foreach($data as $item)
                         <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="responsivetableCheck01">
-                                    <label class="form-check-label" for="responsivetableCheck01"></label>
-                                </div>
-                            </th>
+                            
                             @foreach($columns as $key => $column)
                             <td>
 

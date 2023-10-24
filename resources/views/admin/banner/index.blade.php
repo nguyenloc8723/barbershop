@@ -1,6 +1,8 @@
 @extends('admin.layout.master')
 @section('style')
 <link rel="stylesheet" href="{{asset('css/service.css')}}">
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <style>
     .switch {
         position: relative;
@@ -92,17 +94,26 @@
             <div class="card-body">
 
 
-                <a href="#" class="btn btn-warning" id="deleteAllSelect" style="opacity: 0;">Delete</a>
-                <!-- <div class="input-group">
-                    <div class="form-outline">
-                        <input id="search-input" type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Search</label>
+                <div class="row">
+                    <div class="col-4 align-self-start">
+                        <a href="#" class="btn btn-warning" id="deleteAllSelect" style="display: none; width: 150px; border-radius: 20px;">DeleteAllSelect</a>
                     </div>
-                    <button id="search-button" type="button" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div> -->
+                    <div class="col-4"></div>
 
+                    <div class="col-4 align-self-end">
+                        <form action="{{ route('searchBanner') }}" method="POST">
+                            @csrf
+                            <div class="input-group mb-4 border rounded-pill p-1">
+
+                                <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon4" class="form-control bg-none border-0" name="searchBanner">
+                                <div class="input-group-prepend border-0">
+                                    <button id="button-addon4" type="submit" class="btn btn-link text-info"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
                 <table id="" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
 
                     <thead>
@@ -127,7 +138,7 @@
 
                                 @if(in_array($key, ['image']))
 
-                                <img src="{{$item->image? Storage::url($item->image): ''}}" alt="{{$item->image? Storage::url($item->image): ''}}" width="150" height="100">
+                                <img src="{{$item->image? asset('img/'.$item->image): ''}}" alt="" width="150" height="100">
                                 @else
                                 {{$item->$key}}
                                 @endif
@@ -179,6 +190,7 @@
 
 @section('script')
 <!-- third party js -->
+
 <script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -223,7 +235,11 @@
                 success: function(response) {
                     $.each(all_ids, function(key, val) {
                         $('#banner_ids' + val).remove();
-
+                        Swal.fire(
+                            'Good job!',
+                            'You clicked the button!',
+                            'success'
+                        )
                     })
                 }
             });
@@ -231,12 +247,13 @@
     });
 
     document.getElementById("deleteAllSelect").onclick = function() {
-    var result = window.confirm("Are you sure you want to proceed?");
-    
-    if (result) {
-        location.reload();
-    }
-};
+        var result = window.confirm("Bạn có chắc chắn xóa ?");
+
+        if (result) {
+            location.reload();
+
+        }
+    };
     // function autoload() {
     //     location.reload();
     // };
@@ -247,9 +264,9 @@
             checkbox.addEventListener("change", function() {
                 var a = document.getElementById("deleteAllSelect")
                 if (this.checked) {
-                    a.style.opacity = 1;
+                    a.style.display = "block";
                 } else {
-                    a.style.opacity = 0;
+                    a.style.display = "none";
                 }
             })
         })
