@@ -15,9 +15,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::pluck('name','name')->all();
-        return response()->json($data);
-//        return view(self::PATH . __FUNCTION__, compact('data'));
+//        $data = Role::pluck('name','name')->all();
+        $data = Role::all();
+//        return response()->json($data);
+//        dd($data);
+        return view(self::PATH . __FUNCTION__, compact('data'));
     }
 
     /**

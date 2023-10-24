@@ -24,16 +24,16 @@
     <form action="{{route('role.update', $model->id)}}" method="post">
         @csrf
         <label for="name">Name</label>
-        <input class="form-control" name="name" type="text">
+        <input class="form-control" name="name" type="text" value="{{$model->name}}">
 
         <label for="guard_name">guard name</label>
-        <input class="form-control" type="text" name="guard_name" value="web" disabled>
+        <input class="form-control" type="text" name="guard_name" value="{{$model->guard_name}}" disabled>
 
         <label for="name">Name</label>
         <div class="col-xl-6">
             @foreach(config('permissions') as $key => $value)
                 <input type="checkbox"
-                       name="permission[]"
+                       name="permissions[]"
                        @if(in_array($key, $permissions)) checked @endif
                        value="{{$key}}"
                        id="{{$key}}">

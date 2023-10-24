@@ -43,5 +43,7 @@ class CreatePermission extends Command
 
         $role = Role::create(['name' => 'super-admin', 'guard_name' => 'web']);
         $role->givePermissionTo(Permission::all());
+
+
     }
 }
