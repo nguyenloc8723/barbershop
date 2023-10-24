@@ -1,16 +1,15 @@
 $(document).ready(function () {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     const btnShow = $('.jquery-btn-create');
-    const btnCancel = $('.jquery-close');
+    const btnCancel = $('.jquery-btn-cancel');
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
-    const baseUrl = '/api/user';
-    const urlGetRole = '/api/roleUser';
-    const btnUpdate = $('.js-btn-update');
+    const urlShow = '/api/roles';
+    const addRoles = '/api/AddRoles';
+    const roleDetail = '/api/getRoleDetail';
+    const updateRole = '/api/updateRole';
+    const destroyRole = '/api/destroyRole';
     let idUpdate;
-    $('#example').DataTable({
-        ajax: baseUrl,
-    });
 
     // Điều khiển modal
     function showModal(action = true) {
@@ -19,14 +18,12 @@ $(document).ready(function () {
         } else {
             formModal[0].reset();
             actionMethod.val('');
-            $('.is_active').empty();
             $('.jquery-main-modal').hide();
         }
     }
 
     btnShow.on('click', showModal);
     btnCancel.on('click', function () {
-
         showModal(false);
 
     });
@@ -35,27 +32,39 @@ $(document).ready(function () {
     formModal.on('submit', function (e) {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
+            // update(idUpdate);
             update();
         } else {
             add();
+            showModal(false);
         }
-        showModal(false);
     })
-
+    $(document).on('click','.js-btn-update', function (){
+        let itemId = $(this).data('id');
+        idUpdate = itemId;
+        actionMethod.val('update')
+        loadValueDetail(itemId);
+    });
+    $(document).on('click','.js-btn-delete', function (){
+        if (confirm('Bạn có chắc chắn muốn xóa ?')){
+            idUpdate = $(this).data('id');
+            destroy();
+        }
+    });
 
     function loadTable() {
         $.ajax({
-            url: baseUrl,
+            url: urlShow,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('#jquery-list').empty();
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
-                          <td>${item.id}</td>
-                          <td>${item.phone_number}</td>
+                          <td>${item.name}</td>
+                          <td>${item.guard_name}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -90,39 +99,26 @@ $(document).ready(function () {
             error: function (error) {
             }
         });
-    }
-
+    };
     loadTable();
 
-
-    $(document).on('click','.js-btn-update', function (){
-        let itemId = $(this).data('id');
-        idUpdate = itemId;
-        loadValueDetail(itemId);
-    });
-    $(document).on('click','.js-btn-delete', function (){
-        if (confirm('Bạn có chắc chắn muốn xóa ?')){
-            idUpdate = $(this).data('id');
-            destroy();
-        }
-    });
-
-
-
     function add() {
-        let formData = formModal.serialize();
+        console.log(2);
+        let formData = new FormData(formModal[0]);
         $.ajax({
-            url: baseUrl,
+            url: addRoles,
             method: 'POST',
             data: formData,
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                console.log(data)
                 loadTable();
-                toastr['success']('Thêm mới người dùng thành công');
+                toastr['success']('Thêm mới dữ liệu thành công');
             },
             error: function (error) {
                 console.error(error);
@@ -130,46 +126,28 @@ $(document).ready(function () {
         });
     }
 
-    function destroy() {
-        $.ajax({
-            url: baseUrl +'/' + idUpdate,
-            method: 'DELETE',
-            dataType: 'json',
-            success: function (data) {
-                // console.log(data);
-               loadTable();
-               toastr['success']
-               ('Dữ liệu đã được đưa vào thùng rác! Bạn có thể khôi phục tại đó');
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
-    }
     function loadValueDetail(id) {
         $.ajax({
-            url: baseUrl + '/' + id,
+            url: roleDetail + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                let is_activeSelect = `
-                <label for="" class="form-label">Is_active</label>
-                    <select class="form-control" name="is_active">
-                `;
-                let option = ['Không hoạt động','Hoạt động'];
-                for (let i = 0; i < option.length; i++){
-                    let selected = '';
-                    if (data.is_active === 1){
-                        selected = 'selected';
-                    }
-                    is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
-                }
+                // console.log(data);
+                $('.jqr_roleName').val(data.role.name);
+                data.permission.forEach(function(value) {
+                    // Lặp qua tất cả các checkbox
+                    $('.jqr-checkbox').each(function() {
+                        // Lấy giá trị của checkbox
+                        let checkboxValue = $(this).val();
 
-                is_activeSelect+= `</select>`
-
-                $('.is_active').html(is_activeSelect);
+                        // So sánh giá trị của biến a và giá trị của checkbox
+                        if (value === checkboxValue) {
+                            // Nếu trùng nhau, chọn (checked) checkbox đó
+                            $(this).prop('checked', true);
+                        }
+                    });
+                });
                 actionMethod.val('update');
-                $('input[name="phone_number"]').val(data.phone_number);
                 showModal();
             },
             error: function (xhr, status, error) {
@@ -179,23 +157,21 @@ $(document).ready(function () {
         });
     }
 
-
-
     function update() {
-        let formData = formModal.serialize();
-        // formData.delete('actionMethod');
+        let formData = new FormData(formModal[0]);
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
-            method: 'PUT',
+            url: updateRole +'/' + idUpdate,
+            method: 'post',
             data: formData,
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
             dataType: 'json',
             success: function (data) {
-                showModal(false)
+                showModal(false);
                 loadTable();
-                // console.log(data)
                 toastr['success']('Cập nhật thành công');
             },
             error: function (xhr, status, error) {
@@ -204,26 +180,19 @@ $(document).ready(function () {
         });
     }
 
-    function setValue() {
+    function destroy() {
         $.ajax({
-            url: urlGetRole,
-            method: 'GET',
+            url: destroyRole +'/' + idUpdate,
+            method: 'DELETE',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
-
-                let isRole = `<select class="form-control" name="role" id="role">`;
-                for (let i = 0; i < data.length; i++){
-                    isRole += `<option value="${data[i].id}">${data[i].name}</option>`;
-                }
-                isRole += `</select>`;
-                $('#role').html(isRole);
-                $("#role").selectize({ maxItems: 2 });
+                loadTable();
+                toastr['success']
+                ('Dữ liệu đã được xóa thành công.');
             },
             error: function (error) {
                 console.error(error);
-            },
+            }
         });
     }
-    setValue();
 });

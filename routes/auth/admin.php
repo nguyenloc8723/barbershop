@@ -81,11 +81,11 @@ Route::group([],function () {
 
     Route::group([],function (){
         Route::get('roles', [RoleController::class, 'index' ])->name('role');
-        Route::get('roles/create', [RoleController::class, 'create' ])->name('role.create');
-        Route::post('roles/store', [RoleController::class, 'store' ])->name('role.store');
-        Route::get('roles/edit/{id}', [RoleController::class, 'edit' ])->name('role.edit');
-        Route::post('roles/update/{id}', [RoleController::class, 'update' ])->name('role.update');
-        Route::post('roles/destroy/{id}', [RoleController::class, 'destroy' ])->name('role.destroy');
+//        Route::get('roles/create', [RoleController::class, 'create' ])->name('role.create');
+//        Route::post('roles/store', [RoleController::class, 'store' ])->name('role.store');
+//        Route::get('roles/edit/{id}', [RoleController::class, 'edit' ])->name('role.edit');
+//        Route::post('roles/update/{id}', [RoleController::class, 'update' ])->name('role.update');
+//        Route::post('roles/destroy/{id}', [RoleController::class, 'destroy' ])->name('role.destroy');
     });
 });
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
+use App\Http\Controllers\Admin\API\ApiRoleController;
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
 use App\Http\Controllers\Admin\API\ApiUserController;
 
@@ -47,8 +48,13 @@ Route::group([],function (){
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
 
-    Route::get('role',[ApiUserController::class, 'roles']);
-//    Route::get('role',[\App\Http\Controllers\Admin\RoleController::class, 'roles']);
+    Route::get('roleUser',[ApiUserController::class, 'roles']);
+
+    Route::get('roles',[ApiRoleController::class, 'index']);
+    Route::post('AddRoles',[ApiRoleController::class, 'store']);
+    Route::get('getRoleDetail/{id}',[ApiRoleController::class, 'edit']);
+    Route::post('updateRole/{id}',[ApiRoleController::class, 'update']);
+    Route::delete('destroyRole/{id}',[ApiRoleController::class, 'destroy']);
 });
 
 Route::group([],function (){
