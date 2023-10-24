@@ -11,7 +11,9 @@ use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
 {
@@ -31,7 +33,7 @@ class BookingController extends Controller
     {
         $dataStylist = $this->model::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
-        Log::info($dataTimeSheet);
+//        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
@@ -52,16 +54,11 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-//        Log::info($request->all());
-//        $userId = auth()->user()->id;
-        $userId = 1;
-        $booking = $request->all();
 
+        $booking = $request->all();
         $model = new $this->booking;
-        $model->user_id = $userId;
         $model->fill($booking);
         $model->save();
-
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
