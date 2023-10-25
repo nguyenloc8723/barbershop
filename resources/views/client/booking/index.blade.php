@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-    <!-- Booking -->
+    @if (Auth::check())
+        <div id="user_id" data-userid="{{Auth::id()}}"></div>
+    @endif
     <div class="fix-hed">
 
     </div>

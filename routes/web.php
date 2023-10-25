@@ -1,6 +1,7 @@
 <?php
 
 
+
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
@@ -20,8 +21,10 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 
-//use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\Client\PhoneAuthController;
+// use App\Http\Controllers\BookingController;
 
+use App\Http\Controllers\Admin\StatisticalController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +60,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
 
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
