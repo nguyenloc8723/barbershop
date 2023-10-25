@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\StylistController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
@@ -38,7 +40,6 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 
 Route::group([],function () {
@@ -79,13 +80,11 @@ Route::group([],function () {
     Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
 
 
+    Route::resource('stylists',StylistController::class);
+    Route::resource('blogs',BlogController::class);
+
     Route::group([],function (){
         Route::get('roles', [RoleController::class, 'index' ])->name('role');
-//        Route::get('roles/create', [RoleController::class, 'create' ])->name('role.create');
-//        Route::post('roles/store', [RoleController::class, 'store' ])->name('role.store');
-//        Route::get('roles/edit/{id}', [RoleController::class, 'edit' ])->name('role.edit');
-//        Route::post('roles/update/{id}', [RoleController::class, 'update' ])->name('role.update');
-//        Route::post('roles/destroy/{id}', [RoleController::class, 'destroy' ])->name('role.destroy');
     });
 });
 

@@ -49,7 +49,7 @@
 
     @if (Auth::check())
         <div id="user-info" data-userid="{{Auth::id()}}">
-            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->   
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
     @endif
     <!-- About -->
@@ -417,7 +417,7 @@
                         @endforeach
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -443,7 +443,7 @@
                         </a>
                     </div>
                 </div>
-                @endforeach  
+                @endforeach
             </div>
         </div>
     </section>
@@ -456,7 +456,7 @@
                         <div class="section-subtitle">Latest news</div>
                         <div class="section-title white">News & Blog</div>
                     </div>
-                       
+
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         @foreach($blogs as $blog)
@@ -475,7 +475,7 @@
                         @endforeach
                     </div>
                 </div>
-             
+
                     </div>
                 </div>
             </div>
@@ -619,8 +619,8 @@
 
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
-    
-    
+
+
         $(<script>
         $(document).ready(function (){
             var userId = $('#user-info').data('userid');

@@ -53,8 +53,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('stylists',StylistController::class);
-Route::resource('blogs',BlogController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -95,7 +94,8 @@ Route::get('about', function () {
     return view('client.display.about');
 })->name('about');
 //trang chu
-Route::match(['GET', 'POST'], '/test', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
+//Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
+Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
 Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
 
 Route::get('contact', function () {
@@ -112,7 +112,7 @@ Route::get('portfolio', function () {
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
-Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog.list');
+Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
 
 Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {
