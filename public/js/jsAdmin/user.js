@@ -5,6 +5,7 @@ $(document).ready(function () {
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
     const baseUrl = '/api/user';
+    const urlGetRole = '/api/roleUser';
     const btnUpdate = $('.js-btn-update');
     let idUpdate;
     $('#example').DataTable({
@@ -48,14 +49,13 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $('#jquery-list').empty();
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.name}</td>
-                          <td>${item.phone}</td>
+                          <td>${item.phone_number}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -120,6 +120,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 loadTable();
                 toastr['success']('Thêm mới người dùng thành công');
             },
@@ -168,9 +169,7 @@ $(document).ready(function () {
 
                 $('.is_active').html(is_activeSelect);
                 actionMethod.val('update');
-                $('input[name="name"]').val(data.name);
-                $('input[name="phone"]').val(data.phone);
-                // $('input[name="password"]').val(data.password);
+                $('input[name="phone_number"]').val(data.phone_number);
                 showModal();
             },
             error: function (xhr, status, error) {
@@ -204,4 +203,27 @@ $(document).ready(function () {
             }
         });
     }
+
+    function setValue() {
+        $.ajax({
+            url: urlGetRole,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                let isRole = `<select class="form-control" name="role" id="role">`;
+                for (let i = 0; i < data.length; i++){
+                    isRole += `<option value="${data[i].id}">${data[i].name}</option>`;
+                }
+                isRole += `</select>`;
+                $('#role').html(isRole);
+                $("#role").selectize({ maxItems: 2 });
+            },
+            error: function (error) {
+                console.error(error);
+            },
+        });
+    }
+    setValue();
 });

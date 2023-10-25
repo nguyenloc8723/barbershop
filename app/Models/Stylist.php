@@ -10,10 +10,11 @@ class Stylist extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
-        'excerpt',
+        'phone',
         'image',
-        'is_vip',
+        // 'is_vip',
     ];
 
 

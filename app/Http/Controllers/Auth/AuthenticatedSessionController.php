@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Log;
@@ -51,11 +52,6 @@ class AuthenticatedSessionController extends Controller
         } else {
             $request->session()->regenerate();
             Auth::login($existingUser);
-//            if (Auth::check()) {
-//                Log::info('Đây là một thông tin.');
-//            } else {
-//                $this->sendSms($phoneNumber ); // cho chạy hàm chuyền tham số vào gửi sms
-//            }
         }
 //        $this->sendSmsViaSpeedSMS($phoneNumber );
 

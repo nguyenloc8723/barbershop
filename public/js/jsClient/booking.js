@@ -9,6 +9,7 @@ $(document).ready(function () {
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
     let stylist = 0;
+    let user_phone = $('#user_phone').data('user_phone');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
@@ -38,7 +39,7 @@ $(document).ready(function () {
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
                       role="presentation" style="width: 78px;" data-id="${item.id}">
                         <div class="content-center-middle "><div class="relative">
-                                <img class="jqr-img" src="img/team/1.jpg" style="border: 3px solid #FFFFFF" alt="Icon">
+                                <img class="jqr-img" src="/storage/${item.image}" style="border: 3px solid #FFFFFF" alt="Icon">
                                 <br>
                                 <div>
                                     <span class="name-stylist">${item.name}</span>
@@ -215,12 +216,11 @@ $(document).ready(function () {
                 function formatCurrency(amount) {
                     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 }
-
                 let formattedMoney = formatCurrency(money);
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
-            <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
+                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                     <div class="main-screen">
                         <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                             <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
@@ -589,11 +589,11 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
+        console.log(user_phone);
         let status = 1;
-        let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            user_id: user_id,
+            user_phone: user_phone,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,

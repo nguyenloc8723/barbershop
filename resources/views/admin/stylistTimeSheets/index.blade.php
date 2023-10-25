@@ -1,6 +1,16 @@
 @extends('admin.layout.master')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
+    <link rel="stylesheet" href="{{asset('be/assets/libs/spectrum-colorpicker2/spectrum.min.css')}}" >
+    <link rel="stylesheet" href="{{asset('be/assets/libs/flatpickr/flatpickr.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/clockpicker/bootstrap-clockpicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('be/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}"/>
+    <link href="{{asset('be/assets/libs/mohithg-switchery/switchery.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('be/assets/libs/multiselect/css/multi-select.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('be/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('be/assets/libs/selectize/css/selectize.bootstrap3.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('be/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     <div class="row">
@@ -57,6 +67,22 @@
 
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+    <!-- Plugins js-->
+    <script src="{{asset('be/assets/libs/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/spectrum-colorpicker2/spectrum.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/multiselect/js/jquery.multi-select.js')}}"></script>
+    <script src="{{asset('be/assets/libs/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/jquery-mockjax/jquery.mockjax.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/devbridge-autocomplete/jquery.autocomplete.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+    <script src="{{asset('be/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+    <!-- <script src="{{asset('be/assets/js/pages/form-advanced.init.js')}}"></script> -->
+
+    <!-- Init js-->
 
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script src="{{asset('js/jsAdmin/stylistTimeSheets.js')}}"></script>
