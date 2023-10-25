@@ -72,9 +72,9 @@
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.service.modal')
     </div>
-<div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
+    <div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
 
-</div>
+    </div>
 
 @endsection
 
