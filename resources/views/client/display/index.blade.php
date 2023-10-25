@@ -29,14 +29,15 @@
         }
     </style>
     <!-- Parallax Image -->
-    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
+    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/12.jpg')}}">
         <div class="container">
             <div class="row content-justify-center">
                 <div class="col-md-12 text-center">
                     <div class="v-middle">
                         <h5>Stay sharp, Look good</h5>
                         <h1>NYC'S FAVOURITE<br>BARBER SHOP.</h1>
-                        <h5>Broadway St, NYC. Appointment: 855 100 4444</h5> <a href="{{route('client.booking')}}" class="button-1 mt-20">Book Appointment<span></span></a>
+                        <h5>Broadway St, NYC. Appointment: 855 100 4444</h5>
+                        <a href="{{route('client.booking')}}" class="button-1 mt-20">Book Appointment<span></span></a>
                     </div>
                 </div>
             </div>
