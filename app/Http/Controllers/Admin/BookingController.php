@@ -29,12 +29,13 @@ class BookingController extends AdminBaseController
     {
 
 //        $stylist = Stylist::find(1)->orderBy('name')->get();
-        $data = Booking::query()->where('id',$id)
+        $data = Booking::query()->where('id', $id)
             ->with('user')
             ->with('stylist')
             ->with('timesheet')
             ->with('service')
             ->with('results')
+            ->with('reviews')
             ->first();
 
 //        dd($data);
@@ -61,10 +62,16 @@ class BookingController extends AdminBaseController
                     'image' => $result,
                 ]);
             }
+            $booking = Booking::findorFail($id);
+            if ($booking) {
+                $booking->status = '2';
+                $booking->save();
+            }
 
         }
         return $this->getDetail($id);
     }
+
 
 
 //    public function getDetail(){

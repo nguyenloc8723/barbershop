@@ -110,7 +110,7 @@
                 <li>
                     <a href="{{route('timesheet.index')}}">
                         <i class="mdi mdi-access-point-network"></i>
-                        <span>Stylist's Time Sheet</span>
+                        <span>Lịch làm việc</span>
                     </a>
                 </li>
                 <li>
@@ -157,6 +157,13 @@
                 </li>
 
                 <li>
+                    <a href="{{route('route.statistical')}}">
+                        <i class="mdi mdi-briefcase-variant-outline"></i>
+                        <span>Thống kê</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="#contacts" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>
                         <span> Thùng rác </span>
@@ -168,11 +175,7 @@
                                 <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
-
-                                <a href="{{route('trash.stylistTimeSheets')}}">Stylist's Time Sheets</a>
-
                                 <a href="{{route('trash.service')}}">Dịch vụ</a>
-
                             </li>
                             <li>
                                 <a href="{{route('trash.user')}}">User</a>

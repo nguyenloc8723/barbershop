@@ -1,6 +1,7 @@
 <?php
 
 
+
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
@@ -13,12 +14,21 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BannerSettingCtl;
+use App\Http\Controllers\Admin\TimeSheetController;
 use App\Http\Controllers\Admin\resultsController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
-use App\Http\Controllers\TimeSheetController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BannerController;
+
+
+
+// use App\Http\Controllers\BookingController;
+
+use App\Http\Controllers\Admin\StatisticalController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +67,7 @@ require __DIR__.'/auth.php';
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
 
+    Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
     Route::resource('timesheets', TimesheetController::class);
@@ -84,8 +95,10 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
     Route::get('user', [UserController::class, 'index'])->name('route.user');
 
-    
+
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
+    Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
+    // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
@@ -101,8 +114,6 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::prefix('trash')->group(function (){
        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
-
-       Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');
        Route::get('user', [TrashController::class, 'user'])->name('trash.user');
 
 
@@ -114,7 +125,9 @@ Route::group(["prefix" => "admin"], function () {
 //    Route::resource('booking_blade', BookingController::class);
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
     Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 

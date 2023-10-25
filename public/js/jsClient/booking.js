@@ -9,6 +9,7 @@ $(document).ready(function () {
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
     let stylist = 0;
+    let user_id = $('#user_id').data('userid');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
@@ -215,12 +216,11 @@ $(document).ready(function () {
                 function formatCurrency(amount) {
                     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 }
-
                 let formattedMoney = formatCurrency(money);
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
-            <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
+                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                     <div class="main-screen">
                         <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                             <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
@@ -590,9 +590,9 @@ $(document).ready(function () {
 
     function pushRequest() {
         let status = 1;
-        let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
+            user_id: user_id,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,
