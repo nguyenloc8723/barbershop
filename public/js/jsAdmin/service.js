@@ -15,10 +15,8 @@ $(document).ready(function () {
     const urlPut = '/api/put/service';
     const urlDelete = '/api/delete/service';
     const urlCategory = '/api/category';
-
-    // mặc định ẩn bảng modal
-    // $('.jquery-main-modal').hide();
-
+    const roleEdit = $('.jqr-roleEdit').val();
+    const roleDelete = $('.jqr-roleDelete').val();
     $(document).on('click','.btn-image',function () {
         let id = $(this).data('id');
         $.ajax({
@@ -139,8 +137,14 @@ $(document).ready(function () {
                                        </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <button class="dropdown-item js-btn-update" data-id="${item.id}">Cập nhật</button>
-                                        <button class="dropdown-item js-btn-delete" data-id="${item.id}">Xóa</button>
+
+                                        ${roleEdit === 'true' ? `
+                                            <button class="dropdown-item js-btn-update" data-id="${item.id}">Cập nhật</button>` :
+                                            '<button class="dropdown-item" disabled>Cập nhật</button>'}
+
+                                        ${roleDelete === 'true' ? `
+                                            <button class="dropdown-item js-btn-delete" data-id="${item.id}">Xóa</button>` :
+                                            '<button class="dropdown-item" disabled>Xóa</button>'}
                                         <button class="dropdown-item btn-image" data-id="${item.id}">Ảnh dịch vụ</button>
                                     </div>
                                 </div>
@@ -332,7 +336,5 @@ $(document).ready(function () {
         });
     }
     setValue();
-
-
 
 });

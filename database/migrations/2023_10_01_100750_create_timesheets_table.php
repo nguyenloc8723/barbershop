@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('timesheets', function (Blueprint $table) {
             $table->id();
             $table->integer('hour');
+<<<<<<< HEAD
+        $table->integer('minutes');
+        $table->boolean('is_active')->default(true);
+=======
             $table->integer('minutes');
             $table->boolean('is_active')->default(true);
 
+>>>>>>> ec98a023376472cdb7c089fd242fb55b29feb35d
             $table->timestamps();
         });
     }
