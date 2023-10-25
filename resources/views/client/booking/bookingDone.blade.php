@@ -1,11 +1,19 @@
 @extends('client.layouts.layout')
 
 @section('style')
+
+{{--    <link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">--}}
+{{--    <link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />--}}
+{{--    <link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css"/>--}}
+
+    <link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css" />
+
 <link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
 <link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
 <link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
+
 @endsection
 
 @section('content')
@@ -80,7 +88,7 @@
                                     <img src="https://toppng.com/public/uploads/preview/motorcycle-icon-11562943268vracxoczhd.png" alt="" style="width: 20px; height: 20px;"> Gửi xe máy miễn phí tại salon
                                 </div>
                             </div>
-                            
+
 
 
 
