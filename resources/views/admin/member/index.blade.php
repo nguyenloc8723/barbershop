@@ -44,7 +44,6 @@
         <div class="col-xl-4">
             <div class="card">
                 <div class="text-center card-body">
-{{--                    ==================================--}}
                     <div>
                         <img src="https://kenh14cdn.com/thumb_w/660/2020/7/16/1-15948998699171250460902.jpg"
                              class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>
@@ -56,7 +55,7 @@
 
                         <div class="text-start">
                             <p class="text-muted font-13"><strong>Full Name :</strong> <span
-                                    class="ms-2">Tuấn Anh</span></p>
+                                    class="ms-2">{{}}</span></p>
 
                             <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">0342 599 803</span>
                             </p>
@@ -82,108 +81,6 @@
 
         </div>
 
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="text-center card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-
-                            <a href="" class="dropdown-item">Action</a>
-
-                            <a href="" class="dropdown-item">Another action</a>
-
-                            <a href="" class="dropdown-item">Something else</a>
-
-                            <a href="" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-                    <div>
-                        <img
-                            src="{{asset('be/img/user-13.jpg')}}"
-                            class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>
-
-                        <p class="text-muted font-13 mb-3">
-                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                            1500s, when an unknown printer took a galley of type.
-                        </p>
-
-                        <div class="text-start">
-                            <p class="text-muted font-13"><strong>Full Name :</strong> <span
-                                    class="ms-2">Johnathan Deo</span></p>
-
-                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">(123) 123 1234</span>
-                            </p>
-
-                            <p class="text-muted font-13"><strong>Email :</strong> <span
-                                    class="ms-2">nobita1271999@gmail.com</span></p>
-
-                            <p class="text-muted font-13"><strong>Location :</strong> <span
-                                    class="ms-2">Việt Nam</span></p>
-                        </div>
-
-                        <button type="button"
-                                class="btn btn-primary rounded-pill waves-effect waves-light">Send Message
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="text-center card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-
-                            <a href="" class="dropdown-item">Action</a>
-
-                            <a href="" class="dropdown-item">Another action</a>
-
-                            <a href="" class="dropdown-item">Something else</a>
-
-                            <a href="" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-                    <div>
-                        <img src="https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-de-thuong.jpg"
-                             class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>
-
-                        <p class="text-muted font-13 mb-3">
-                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                            1500s, when an unknown printer took a galley of type.
-                        </p>
-
-                        <div class="text-start">
-                            <p class="text-muted font-13"><strong>Full Name :</strong> <span
-                                    class="ms-2">Johnathan Deo</span></p>
-
-                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">(123) 123 1234</span>
-                            </p>
-
-                            <p class="text-muted font-13"><strong>Email :</strong> <span
-                                    class="ms-2">coderthemes@gmail.com</span></p>
-
-                            <p class="text-muted font-13"><strong>Location :</strong> <span
-                                    class="ms-2">USA</span></p>
-                        </div>
-
-                        <button type="button"
-                                class="btn btn-primary rounded-pill waves-effect waves-light">Send Message
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </div>
 
 

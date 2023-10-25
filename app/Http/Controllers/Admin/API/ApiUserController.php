@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class ApiUserController extends Controller
 {
@@ -16,7 +19,12 @@ class ApiUserController extends Controller
         $data = User::all();
         return response()->json($data);
     }
-
+    public function roles()
+    {
+        $data = Role::query()->orderByDesc('id')->get();
+        return response()->json($data);
+//        return view(self::PATH . __FUNCTION__, compact('data'));
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -25,6 +33,9 @@ class ApiUserController extends Controller
         $data = new User;
         $data->fill($request->except('_token'));
         $data->save();
+        if ($request->has('role')) {
+            $data->assignRole($request->input('role'));
+        }
         return response()->json(['success','Thêm mới thành công']);
     }
 
@@ -46,8 +57,10 @@ class ApiUserController extends Controller
         $data = $request->all();
 
         $model = User::query()->findOrFail($id);
-
         $model->update($data);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $model->assignRole($request->input('role'));
         return response()->json(['success','Cập nhật thành công']);
     }
 

@@ -12,9 +12,9 @@ class Stylist extends Model
     protected $fillable = [
         'id',
         'name',
-        'excerpt',
+        'phone',
         'image',
-        'is_vip',
+        // 'is_vip',
     ];
 
 

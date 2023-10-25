@@ -35,11 +35,14 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            
             <div class="card-body">
+            <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"  class="btn btn-danger" id="deleteAllSelectedRecord" style="margin-bottom: 7px;">Delete all</a>
 
                 <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                     <thead>
                         <tr class="">
+                            <th><input type="checkbox" name="" class="" id="select_all_ids" ></th>
                           <th>id</th>
                           <th>hour</th>
                           <th>minutes</th>
@@ -50,7 +53,8 @@
                     <tbody id="jquery-list">
                       
                     @foreach ($timesheets as $timesheet)
-                    <tr>
+                    <tr id="timesheet_ids{{ $timesheet->id }}">
+                        <td><input type="checkbox" name="ids" class="checkbox_ids" id="" value="{{$timesheet->id}}"></td>
                     <td>{{ $timesheet->id }}</td>
                     <td>{{ $timesheet->hour }}</td>
                     <td>{{ $timesheet->minutes }}</td>
@@ -79,7 +83,54 @@
 
 @section('script')
 <!-- third party js -->
+<script>
+   $(function(e) {
+    // Ẩn ban đầu khi trang được tải
+    $("#deleteAllSelectedRecord").hide();
 
+    $("#select_all_ids").click(function() {
+        $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+        toggleDeleteButtonVisibility(); // Gọi hàm để kiểm tra việc ẩn hoặc hiển thị nút Delete
+    });
+
+    $('.checkbox_ids').click(function() {
+        toggleDeleteButtonVisibility(); // Gọi hàm để kiểm tra việc ẩn hoặc hiển thị nút Delete
+    });
+
+    function toggleDeleteButtonVisibility() {
+        var anyCheckboxChecked = $('.checkbox_ids:checked').length > 0;
+
+        if (anyCheckboxChecked) {
+            $("#deleteAllSelectedRecord").show();
+        } else {
+            $("#deleteAllSelectedRecord").hide();
+        }
+    }
+
+    $('#deleteAllSelectedRecord').click(function(e) {
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=ids]:checked').each(function() {
+            all_ids.push($(this).val());
+        });
+        $.ajax({
+            url: "{{ route('timesheet.delete') }}",
+            type: "DELETE",
+            data: {
+                ids: all_ids,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                $.each(all_ids, function(key, val) {
+                    $('#timesheet_ids' + val).remove();
+                });
+                toggleDeleteButtonVisibility(); // Gọi hàm để kiểm tra việc ẩn hoặc hiển thị nút Delete sau khi xóa
+            }
+        });
+    });
+});
+
+</script>
 {{-- <script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>--}}
 {{-- <script src="{{asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>--}}
 {{-- <script src="{{asset('be/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>--}}

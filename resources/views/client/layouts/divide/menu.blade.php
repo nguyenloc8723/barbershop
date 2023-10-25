@@ -94,7 +94,7 @@
                                                  role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                                  aria-expanded="false">Blog <i class="ti-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('blog') }}" class="dropdown-item"><span>Blog 01</span></a></li>
+                        <li><a class="dropdown-item"><span>Blog 01</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
