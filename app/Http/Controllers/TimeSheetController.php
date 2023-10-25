@@ -23,9 +23,9 @@ class TimeSheetController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'hour' => 'required|integer',
-        'minutes' => 'required|integer',
-        'is_active' => '',
+        'hour' => 'required|integer|min:0',
+        'minutes' => 'required|integer|min:0',
+        'is_active' => 'boolean',
     ]);
     Timesheet::create([
         'hour' => $request->input('hour'),
@@ -48,8 +48,8 @@ public function update(Request $request, $id){
     $timesheet = Timesheet::findOrFail($id);
 
     $request->validate([
-        'hour' => 'required|integer',
-        'minutes' => 'required|integer',
+        'hour' => 'required|integer|min:0',
+        'minutes' => 'required|integer|min:0',
         'is_active' => 'boolean',
     ]);
 
@@ -73,5 +73,9 @@ public function update(Request $request, $id){
     return redirect()->route('timesheets.index');
     // return redirect()->route('admin.timesheets.index')->with('success', 'Timesheet deleted successfully');
 }
-
+public function deleteAll(Request $request){
+    $ids = $request->ids;
+    Timesheet::whereIn('id',$ids)->delete();
+    return response()->json(["success"=> "Timesheet have been delete"]);
+}
 }
