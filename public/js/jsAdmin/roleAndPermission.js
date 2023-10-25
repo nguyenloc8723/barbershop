@@ -134,6 +134,7 @@ $(document).ready(function () {
             success: function (data) {
                 // console.log(data);
                 $('.jqr_roleName').val(data.role.name);
+                $('.jqr_roleGuardName').val('web');
                 data.permission.forEach(function(value) {
                     // Lặp qua tất cả các checkbox
                     $('.jqr-checkbox').each(function() {

@@ -13,7 +13,7 @@
                 <input class="form-control jqr_roleName" name="name" type="text" >
 
                 <label for="guard_name">guard name</label>
-                <input class="form-control" type="text" name="guard_name" value="web" disabled>
+                <input class="form-control jqr_roleGuardName" type="text" name="guard_name" value="web" disabled>
 
                 <label for="name">Name</label>
                 <div class="">

@@ -13,34 +13,34 @@ use Mockery\Exception;
 
 class ApiServiceController extends Controller
 {
-    function uploadFile($folder, $files, $multiple = true)
-    {
-
-        $result = '';
-        if ($multiple == 'true'){
-            $uploadFile = [];
-            foreach ($files as $file){
-                $fileName = time().$file->getClientOriginalName();
-                $uploadFile[] = [
-                    'url' => $file->storeAs($folder, $fileName, 'public'),
-                ];
-            }
-            $result = $uploadFile;
-        }else{
-
-            if (is_array($files)){
-                $file = $files[0];
-            }else{
-                $file = $files;
-            }
-
-            $fileName = time().$file->getClientOriginalName();
-
-            $result = $file->storeAs($folder, $fileName, 'public');
-
-        }
-        return $result;
-    }
+//    function uploadFile($folder, $files, $multiple = true)
+//    {
+//
+//        $result = '';
+//        if ($multiple == 'true'){
+//            $uploadFile = [];
+//            foreach ($files as $file){
+//                $fileName = time().$file->getClientOriginalName();
+//                $uploadFile[] = [
+//                    'url' => $file->storeAs($folder, $fileName, 'public'),
+//                ];
+//            }
+//            $result = $uploadFile;
+//        }else{
+//
+//            if (is_array($files)){
+//                $file = $files[0];
+//            }else{
+//                $file = $files;
+//            }
+//
+//            $fileName = time().$file->getClientOriginalName();
+//
+//            $result = $file->storeAs($folder, $fileName, 'public');
+//
+//        }
+//        return $result;
+//    }
     /**
      * Display a listing of the resource.
      */
@@ -57,7 +57,6 @@ class ApiServiceController extends Controller
     {
         $files = $request->file('files');
         $slug = Str::slug($request->input('name'));
-//                Log::info($request->input('category_id'));
         $service = Service::create([
             'category_id' => $request->input('category_id'),
             'name' => $request->input('name'),
@@ -68,7 +67,7 @@ class ApiServiceController extends Controller
         ]);
         $id = $service->id;
         if ($request->hasFile('files')){
-            $result = $this->uploadFile('images', $files);
+            $result = uploadFile('images', $files);
             foreach ($result as $value){
 //                Log::info($value);
                 ImageService::create([
@@ -77,7 +76,7 @@ class ApiServiceController extends Controller
                 ]);
             }
         }
-//        Log::info($request->file('files'));
+
         return response()->json(['success','Thêm mới thành công']);
     }
 
@@ -122,9 +121,8 @@ class ApiServiceController extends Controller
                 }
 
                 $files = $request->file('files');
-                $result = $this->uploadFile('images', $files);
+                $result = uploadFile('images', $files);
                 foreach ($result as $value){
-//                Log::info($value);
                     ImageService::create([
                         'url' => $value['url'],
                         'service_id' => $idImg,

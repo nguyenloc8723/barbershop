@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\API\ApiUserController;
 use App\Http\Controllers\Admin\API\ApiServiceController;
 
 use App\Http\Controllers\Admin\API\ApiTrashController;
+use App\Http\Controllers\Admin\API\StylistPermissionController;
 use App\Http\Controllers\Admin\API\Trash\CategoryController;
 use App\Http\Controllers\Admin\API\Trash\ServiceController;
 use App\Http\Controllers\Client\API\BookingController;
@@ -49,6 +50,7 @@ Route::group([],function (){
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
 
     Route::get('roleUser',[ApiUserController::class, 'roles']);
+    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
 
     Route::get('roles',[ApiRoleController::class, 'index']);
     Route::post('AddRoles',[ApiRoleController::class, 'store']);

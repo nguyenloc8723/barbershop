@@ -41,9 +41,7 @@ class CreatePermission extends Command
             ->whereNotIn('name', array_keys($dataPermissions))
             ->delete();
 
-        $role = Role::create(['name' => 'super-admin', 'guard_name' => 'web']);
+        $role = Role::query()->updateOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
         $role->givePermissionTo(Permission::all());
-
-
     }
 }
