@@ -14,17 +14,24 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BannerSettingCtl;
-use App\Http\Controllers\Admin\TimeSheetController;
+// use App\Http\Controllers\Admin\TimeSheetController;
 use App\Http\Controllers\Admin\resultsController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\client\ClientBlogController;
+use App\Http\Controllers\StylistController;
+
+use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
 
 
 
+// use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\Admin\StatisticalController;
@@ -51,6 +58,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -134,10 +143,10 @@ Route::group(["prefix" => "admin"], function () {
 
 
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
-Route::get('services-page/{id}', [\App\Http\Controllers\Client\ClientServiceController::class, 'servicesPage'])->name('services-page');
+Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
 
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
-Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
+Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
 
 
 Route::group(["prefix" => "user", 'as' => 'client.'], function (){
@@ -145,7 +154,6 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
 });
-
 
 
 // client route
@@ -165,9 +173,10 @@ Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 
 Route::get('about', function () {
     return view('client.display.about');
 })->name('about');
-Route::get('blog', function () {
-    return view('client.display.blog');
-})->name('blog');
+//trang chu
+//Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
+Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
+Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
 
 Route::get('contact', function () {
     return view('client.display.contact');
@@ -183,6 +192,9 @@ Route::get('portfolio', function () {
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
+Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
+
+Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {
     return view('client.display.pricing');
 })->name('pricing');
@@ -193,6 +205,7 @@ Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
-
+Route::get('search', [StylistController::class, 'getSearch'])->name('search');
+Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
 
 

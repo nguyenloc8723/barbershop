@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
+use App\Http\Controllers\Admin\API\ApiRoleController;
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
 use App\Http\Controllers\Admin\API\ApiUserController;
 
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\API\ApiUserController;
 use App\Http\Controllers\Admin\API\ApiServiceController;
 
 use App\Http\Controllers\Admin\API\ApiTrashController;
+use App\Http\Controllers\Admin\API\StylistPermissionController;
 use App\Http\Controllers\Admin\API\Trash\CategoryController;
 use App\Http\Controllers\Admin\API\Trash\ServiceController;
 use App\Http\Controllers\Admin\API\ApiDashboardController;
@@ -34,7 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([],function (){
     Route::get('get/service',[ApiServiceController::class, 'index']);
-    Route::post('post/service',[ApiServiceController::class, 'store']);
+    Route::post('postttt/service',[ApiServiceController::class, 'store']);
     Route::get('edit/service/{id}',[ApiServiceController::class, 'show']);
     Route::post('put/service/{id}',[ApiServiceController::class, 'update']);
     Route::delete('delete/service/{id}',[ApiServiceController::class, 'destroy']);
@@ -47,6 +49,15 @@ Route::group([],function (){
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+
+    Route::get('roleUser',[ApiUserController::class, 'roles']);
+//    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
+
+    Route::get('roles',[ApiRoleController::class, 'index']);
+    Route::post('AddRoles',[ApiRoleController::class, 'store']);
+    Route::get('getRoleDetail/{id}',[ApiRoleController::class, 'edit']);
+    Route::post('updateRole/{id}',[ApiRoleController::class, 'update']);
+    Route::delete('destroyRole/{id}',[ApiRoleController::class, 'destroy']);
 });
 
 Route::group([],function (){

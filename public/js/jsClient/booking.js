@@ -9,7 +9,7 @@ $(document).ready(function () {
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
     let stylist = 0;
-    let user_id = $('#user_id').data('userid');
+    let user_phone = $('#user_phone').data('user_phone');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
@@ -589,10 +589,11 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
+        console.log(user_phone);
         let status = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
-            user_id: user_id,
+            user_phone: user_phone,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,

@@ -40,7 +40,7 @@ $(document).ready(function () {
     formModal.on('submit', function (e) {
         e.preventDefault();
         if (actionMethod.val() === 'update') {
-            update(idUpdate);
+            // update(idUpdate);
             update();
         } else {
             add();
@@ -278,7 +278,7 @@ $(document).ready(function () {
                     is_activeSelect += `<option value="${i}">${option[i]}</option>`;
                 }
                 is_activeSelect+= `</select>`
-                
+
                 $('.is_active').html(is_activeSelect);
                 $('#stylist_id').html(isStylist);
                 $('#timesheet_id').html(isTimeSheet);

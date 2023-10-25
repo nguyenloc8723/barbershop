@@ -21,40 +21,49 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="hour" class="form-label">hour</label>
-                                <input type="number" class="form-control" id="hour" name="hour" />
 
+
+                                <input type="number" class="form-control" id="hour" name="hour" min="0" required />
+                                <div class="invalid-feedback">
+                                    Please enter a valid hour (must be a non-negative integer).
+
+                                    Please enter a valid hour (must be a non-negative integer).
+                                </div Please enter a valid hour (must be a Please enter a </div>
                             </div>
                         </div>
+
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="minutes" class="form-label">minutes</label>
-                                <input type="number" class="form-control" id="minutes" name="minutes" />
-
-
+                                <input type="number" class="form-control" id="minutes" name="minutes" min="0" required />
+                                <div class="invalid-feedback">
+                                    Please enter a valid minute (must be a positive integer).
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="is_active" class="form-label">Trạng thái</label>
-                                <select name="is_active" class="form-control" id="is_active">
+                                <select name="is_active" class="form-control" id="is_active" required>
                                     <option selected value="1">Hoạt Động</option>
                                     <option value="0">Không Hoạt Động</option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
-                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
-                            > <a href="{{ route('timesheets.index') }}">Cancel</a>
-                        </button>
-                            </div>
+                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"> <a href="{{ route('timesheets.index') }}">Cancel</a>
+                            </button>
+                        </div>
+                    </div>
+
+
                 </div>
-
-
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 @endsection
 
@@ -62,8 +71,8 @@
 <!-- third party js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $(".jquery-btn-cancel").click(function () {
+    $(document).ready(function() {
+        $(".jquery-btn-cancel").click(function() {
             // Find the closest modal and close it
             $(this).closest(".modal").modal("hide");
         });

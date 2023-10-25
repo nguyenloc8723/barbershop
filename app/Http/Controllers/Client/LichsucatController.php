@@ -22,7 +22,7 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = 2;
+        $user = "0365029527";
 
         // $test = Booking::query()->get();
         // // // $test= DB::table('bookings')->get();
@@ -30,7 +30,7 @@ class LichsucatController extends Controller
         // $result = Results::all()->pluck('booking_id');
         // dd($result);
         $bookings = Booking::query()->with('stylist', 'User', 'timeSheet', 'reviews')
-            ->where('user_id', $user)
+            ->where('user_phone', $user)
             ->orderBy('date', 'desc')
             ->first();
 
@@ -43,7 +43,7 @@ class LichsucatController extends Controller
 
         // dd($bookings);
         $reviews = Booking::with('reviews')
-        ->whereIn('user_id', [$user])
+        ->whereIn('user_phone', [$user])
         ->orderBy('date', 'desc')
         ->get();
 
