@@ -589,7 +589,7 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
-        // console.log(user_id);
+        console.log(user_phone);
         let status = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
