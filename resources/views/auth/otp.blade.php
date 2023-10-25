@@ -14,17 +14,17 @@
             <div class="col-xl-6 col-lg-7 col-sm-12 col-12 fxt-bg-color">
                 <div class="fxt-content">
                     <div class="fxt-header">
-                        <a href="login-11.html" class="fxt-logo"><img src="{{asset('login/img/logo-11.png')}}" alt="Logo"></a>
+                        <a href="" class="fxt-logo"><img src="{{asset('client/img/logobarber.png')}}" alt="Logo" width="200px"></a>
                     </div>
                     <div class="fxt-form">
                         <div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
                         <div class="alert alert-danger" id="error" style="display: none;"></div>
-                        <h2>Two-Step Verification</h2>
+                        <h2>Xác minh mã OTP</h2>
                         <a href="#" class="fxt-otp-logo"><img src="{{asset('login/img/elements/otp-icon.png')}}" alt="Otp Logo"></a>
 {{--                        <p id="phoneNumberDisplay">We've sent a verification code to <span id="phoneNumber"></span></p>--}}
 
-                        <p>We’ve sent a verification code to<span>+2*******337</span></p>
-                        <label class="fxt-otp-label">Enter OTP Code Here</label>
+                        <p>Chúng tôi đã gửi mã xác minh tới <span id="myPhone"></span></p>
+                        <label class="fxt-otp-label">Nhập mã OTP vào đây</label>
                         <form onsubmit="return false;"  method="post" >
                             @csrf
                             <div class="fxt-transformY-50 fxt-transition-delay-1">
@@ -35,14 +35,14 @@
                             </div>
                             <div class="fxt-form-btn fxt-transformY-50 fxt-transition-delay-4">
                                 <div class="text-center mb-3">
-                                    <button type="button" class="fxt-btn-fill" onclick="verify()">Verify</button>
+                                    <button type="button" class="fxt-btn-fill" onclick="verify()">Xác minh</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="fxt-footer">
                         <div class="fxt-transformY-50 fxt-transition-delay-9">
-                            <p class="fxt-resend-wrap">Not received your code?<button class="fxt-btn-resend" type="submit">Resend code</button><span class="text-or">OR</span><button class="fxt-btn-resend" type="button">Call</button></p>
+                            <p class="fxt-resend-wrap">Không nhận được mã OTP?<button class="fxt-btn-resend" type="submit">Resend code</button><span class="text-or">OR</span><button class="fxt-btn-resend" type="button">Call</button></p>
                         </div>
                     </div>
                 </div>

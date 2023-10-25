@@ -10,16 +10,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-//    public function create(): View
-//    {
-//        return view('auth.login');
-//    }
     public function login()
     {
         return view('auth.login');
@@ -33,7 +32,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function storeLogin(Request  $request)
     {
         // Lấy thông tin từ request (số điện thoại)
         $phoneNumber = $request->input('phone_number');
@@ -45,29 +44,42 @@ class AuthenticatedSessionController extends Controller
             // Nếu số điện thoại chưa tồn tại, tạo tài khoản mới
             $user = new User();
             $user->phone_number = $phoneNumber;
-            // Thêm các trường khác (nếu cần): $user->name = $request->input('name');
             $user->save();
             $request->session()->regenerate();
             Auth::login($user);
-            // Thực hiện các tác vụ bạn cần sau khi tạo tài khoản, ví dụ: đăng nhập người dùng, chuyển hướng, vv.
-            return redirect()->route('index')->with('message', 'Tài khoản đã được tạo thành công.');
-//            return response()->json(['message' => 'Tài khoản đã được tạo thành công.']);
+
         } else {
-            // Nếu số điện thoại đã tồn tại, bạn có thể thực hiện các tác vụ khác, chẳng hạn đăng nhập người dùng và chuyển hướng.
-            // Ví dụ:
-            // Auth::login($existingUser);
-//            $request->authenticate();
-
             $request->session()->regenerate();
-
             Auth::login($existingUser);
-            return redirect()->route('index')->with('message', 'Tài khoản đã được tạo thành công.');
-//            return response()->json(['message' => 'Tài khoản đã tồn tại.']);
+//            if (Auth::check()) {
+//                Log::info('Đây là một thông tin.');
+//            } else {
+//                $this->sendSms($phoneNumber ); // cho chạy hàm chuyền tham số vào gửi sms
+//            }
         }
-
-
+//        $this->sendSmsViaSpeedSMS($phoneNumber );
 
     }
+
+
+    public function sendSms($receiverPhoneNumber)
+    {
+        $twilioSid = env('TWILIO_SID');
+        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
+        $client = new Client($twilioSid, $twilioAuthToken);
+
+        $message = $client->messages->create(
+            $receiverPhoneNumber, // Số điện thoại người nhận
+            [
+                'from' => '+12392177433', // Số điện thoại Twilio của bạn
+                'body' => 'Chào mừng em đến với nhà của bọn anh'
+            ]
+        );
+
+        // Xử lý kết quả nếu cần
+    }
+
+
 
     /**
      * Destroy an authenticated session.
@@ -82,4 +94,8 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+
+
+
 }
