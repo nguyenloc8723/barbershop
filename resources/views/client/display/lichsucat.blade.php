@@ -47,7 +47,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Lịch Sử Đã Cắt</span></div>
-                @if($bookings->status == 1)
+                @if($bookings->status == 2)
 
                 <div class="main-screen">
 
