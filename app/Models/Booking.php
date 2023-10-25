@@ -22,14 +22,8 @@ class Booking extends Model
         'status',
     ];
 
-
-//    public function service(){
-//        return $this->belongsToMany(Service::class);
-//    }
-
-    public function service()
-    {
-        return $this->belongsToMany(Service::class, 'booking_services', 'booking_id', 'service_id');
+    public function service(){
+        return $this->belongsToMany(Service::class, 'booking_service');
     }
 //    public function service(){
 //        return $this->belongsToMany(Service::class, 'booking_services');
@@ -48,9 +42,7 @@ class Booking extends Model
     {
         return $this->belongsTo(Stylist::class, 'stylist_id');
     }
-
-    public function review()
-    {
+    public function reviews(){
         return $this->hasMany(Reviews::class, 'booking_id');
     }
 

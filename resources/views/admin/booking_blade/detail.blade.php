@@ -221,7 +221,7 @@
 {{--                            </div>--}}
                             <div>
 
-                                @foreach ($data->review as $item)
+                                @foreach ($data->reviews as $item)
 
                                     <div class="d-flex mb-3">
                                         <div class="flex-shrink-0 me-3">

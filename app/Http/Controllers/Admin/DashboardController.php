@@ -10,5 +10,6 @@ class DashboardController extends AdminBaseController
 {
 //    public $model = null;
     public $pathViews = 'admin.dashboard';
+    
 
 }

@@ -17,6 +17,7 @@
     <link href="{{asset('be/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style"/>
 
     <!-- icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="{{asset('be/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
 {{--    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />--}}
 
@@ -96,5 +97,24 @@
 @yield('script')
 
 <script src="{{asset('be/assets/js/app.min.js')}}"></script>
+<script>
+    $(function(){
+        function readURL(input, selector) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(selector).attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#cmt_anh").change(function () {
+            readURL(this, '#anh_the_preview');
+        });
+
+    });
+    </script>
 </body>
 </html>

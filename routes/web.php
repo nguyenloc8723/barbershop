@@ -12,6 +12,14 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\BannerSettingCtl;
+// use App\Http\Controllers\Admin\TimeSheetController;
+use App\Http\Controllers\Admin\resultsController;
+use App\Http\Controllers\Client\ClientBookingController;
+use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
 use App\Http\Controllers\StylistController;
@@ -21,10 +29,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
 
 
-use App\Http\Controllers\Client\ClientBookingController;
-use App\Http\Controllers\Client\ClientServiceController;
 
-use App\Http\Controllers\Client\PhoneAuthController;
+// use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
@@ -67,6 +73,74 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::group(["prefix" => "admin"], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
+
+    Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
+
+    Route::resource('category', CategoryServiceController::class);
+    Route::resource('timesheets', TimesheetController::class);
+    // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
+    Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
+    Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+   //setting
+    Route::resource('settings', SettingController::class);
+    Route::get('/admin/settings/{id}/delete', [SettingController::class,'delete'])->name('settings.delete');
+    Route::match(['GET', 'POST'],'/admin/settings/{id}/edit', [SettingController::class, 'edit'])->name('settings.edit');
+    //banner
+    Route::resource('banners', BannerController::class)->withTrashed();
+    Route::get('/admin/banners/{id}/delete', [BannerController::class,'delete'])->name('banners.delete');
+    Route::match(['GET', 'POST'],'/admin/banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
+
+    Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
+    Route::resource('user', UserController::class);
+
+
+
+    Route::resource('member', MemberController::class);
+    Route::resource('timesheet', TimeSheetController::class);
+    Route::get('service', [ServiceController::class, 'index'])->name('route.service');
+    Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
+    Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
+    Route::get('user', [UserController::class, 'index'])->name('route.user');
+
+
+    Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
+    Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
+    // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
+
+    Route::get('result', [resultsController::class, 'result'])->name('route.result');
+    Route::resource('banner', BannerSettingCtl::class);
+    Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
+    Route::resource('review', ReviewController::class);
+    Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
+
+    Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
+    Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
+    Route::post('searchBanner', [BannerSettingCtl::class, 'index'])->name('searchBanner');
+
+
+
+    Route::prefix('trash')->group(function (){
+       Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+       Route::get('user', [TrashController::class, 'user'])->name('trash.user');
+
+
+        Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
+    });
+
+    //Booking
+//    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
+//    Route::resource('booking_blade', BookingController::class);
+    Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
+    Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
+    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+
+//    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+});
+
+
 
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
@@ -89,6 +163,12 @@ Route::get('/', function () {
 Route::get('404', function () {
     return view('client.display.404');
 })->name('404');
+// Route::get('lichsucat', function () {
+//     return view('client.display.lichsucat');
+// });
+Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
+Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
+Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
 Route::get('about', function () {
     return view('client.display.about');
