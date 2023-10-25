@@ -614,6 +614,7 @@ $(document).ready(function () {
                 console.log(response.success)
                 // toastr['success']('Đặt lịch thành công');
                 window.location.href = 'booking/success/' + response.success;
+                
             },
             error: function (error) {
                 console.error(error);
@@ -621,3 +622,4 @@ $(document).ready(function () {
         });
     }
 });
+
