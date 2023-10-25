@@ -86,4 +86,9 @@ class StylistController extends Controller
      $stylists= Stylist::where('name','like','%'.$request->key.'%')->get();
      return view('/stylist/search_stylist',compact('stylists'));
     }
+    public function deletes(Request $request)
+    {
+        $deletes= Stylist::all();
+        return view('/stylist/index_stylist',compact('deletes'));
+    }
 }

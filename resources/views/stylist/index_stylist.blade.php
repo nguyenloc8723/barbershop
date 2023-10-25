@@ -36,6 +36,7 @@
 </div>
 <div class="row">
     @foreach ($stylists as $stylist)
+    <input type="checkbox" name="ids" class="checkbox_ids" id="">
     <div class="col-xl-4" style="text-align: center">
         <div class="card">
             <div class="text-center card-body">

@@ -133,6 +133,7 @@ Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-aut
 Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
 Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
+Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
 
 
 
