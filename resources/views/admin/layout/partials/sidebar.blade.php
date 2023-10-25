@@ -115,7 +115,7 @@
                     <div class="collapse" id="sidebarTasks">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('member.index')}}">Danh sách nhân viên</a>
+                                <a href="{{route('stylists.index')}}">Danh sách nhân viên</a>
                             </li>
                             <li>
                                 <a href="{{route('member.index')}}">Lịch làm việc</a>

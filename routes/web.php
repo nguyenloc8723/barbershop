@@ -15,6 +15,7 @@ use App\Http\Controllers\StylistController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -131,6 +132,7 @@ Route::get('team-details', function () {
 Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
 Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
 Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
+Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 
 
 

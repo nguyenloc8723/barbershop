@@ -81,4 +81,9 @@ class StylistController extends Controller
         $stylist->delete();
         return redirect()->route('stylists.index');
     }
+    public function getSearch(Request $request)
+    {
+     $stylists= Stylist::where('name','like','%'.$request->key.'%')->get();
+     return view('/stylist/search_stylist',compact('stylists'));
+    }
 }

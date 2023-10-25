@@ -17,11 +17,12 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <form method="get" action="{{route('search')}}">
-                            <label for="inputPassword2" class="visually-hidden">Search</label>
-                            <input type="search" class="form-control my-1 my-md-0" name="key"  id="inputPassword2" placeholder="Tìm kiếm theo tên">
-                            <button type="submit" class="btn btn-danger rounded-pill waves-effect waves-light ms-1">Tìm kiếm</button>
-                        </form>
+
+                            {{-- <div>
+                                <input type="search" class="form-control my-1 my-md-0"
+                                       id="inputPassword2"
+                                       placeholder="Search..."/>
+                            </div> --}}
                     </div>
                 </div>
             </div>
@@ -34,6 +35,8 @@
 @endif
 
 </div>
+<h1>Kết quả tìm kiếm</h1>
+<p>Tìm thấy {{count($stylists)}} stylist</p>
 <div class="row">
     @foreach ($stylists as $stylist)
     <div class="col-xl-4" style="text-align: center">
