@@ -18,7 +18,4 @@ class ServiceController extends AdminBaseController
         'description' => 'Mô tả',
         'is_active' => 'Trạng thái hoạt động',
     ];
-
-
-
 }

@@ -12,6 +12,9 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StylistTimeSheetsController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\client\ClientBlogController;
+use App\Http\Controllers\StylistController;
 
 use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
@@ -22,6 +25,7 @@ use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
 
 use App\Http\Controllers\Client\PhoneAuthController;
+use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\Admin\StatisticalController;
@@ -48,6 +52,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('stylists',StylistController::class);
+Route::resource('blogs',BlogController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -87,9 +94,9 @@ Route::get('404', function () {
 Route::get('about', function () {
     return view('client.display.about');
 })->name('about');
-Route::get('blog', function () {
-    return view('client.display.blog');
-})->name('blog');
+//trang chu
+Route::match(['GET', 'POST'], '/test', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
+Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
 
 Route::get('contact', function () {
     return view('client.display.contact');
@@ -105,6 +112,9 @@ Route::get('portfolio', function () {
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
+Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog.list');
+
+Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {
     return view('client.display.pricing');
 })->name('pricing');
@@ -115,6 +125,7 @@ Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
-
+Route::get('search', [StylistController::class, 'getSearch'])->name('search');
+Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
 
 
