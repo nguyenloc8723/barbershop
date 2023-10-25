@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -61,6 +62,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             Auth::login($existingUser);
+
             return redirect()->route('index')->with('message', 'Tài khoản đã được tạo thành công.');
 //            return response()->json(['message' => 'Tài khoản đã tồn tại.']);
         }

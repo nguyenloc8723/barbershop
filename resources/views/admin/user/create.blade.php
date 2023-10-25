@@ -10,6 +10,18 @@
                                 <label class="form-label">Phone number</label>
                                 <input type="tel" class="form-control" name="phone_number" required/>
                             </div>
+{{--                            <div class="mb-3">--}}
+{{--                                <label class="form-label">Vai trò</label>--}}
+{{--                                <select name="role" id=""></select>--}}
+{{--                            </div>--}}
+
+                            <div class="mb-3">
+                                <label class="form-label">Vai Trò</label>
+                                <select class="form-control" name="role" id="role">
+
+                                </select>
+                                <div class="clearfix"></div>
+                            </div>
                             <div class="mb-3 is_active">
 
                             </div>
