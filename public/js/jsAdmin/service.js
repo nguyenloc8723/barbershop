@@ -10,7 +10,7 @@ $(document).ready(function () {
     const actionMethod = $('input[name="actionMethod"]');
     let idDetail;
     const urlShow = '/api/get/service';
-    const urlPost = '/api/post/service';
+    const urlPost = '/api/postttt/service';
     const urlShowEdit = '/api/edit/service';
     const urlPut = '/api/put/service';
     const urlDelete = '/api/delete/service';

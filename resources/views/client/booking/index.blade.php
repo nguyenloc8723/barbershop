@@ -8,7 +8,7 @@
 
 @section('content')
     @if (Auth::check())
-        <div id="user_id" data-userid="{{Auth::id()}}"></div>
+        <div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>
     @endif
     <div class="fix-hed">
 
