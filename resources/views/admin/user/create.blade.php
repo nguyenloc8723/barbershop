@@ -7,16 +7,20 @@
                     <form class="" id="formModal">
                         <div class="">
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" required/>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Phone number</label>
-                                <input type="tel" class="form-control" name="phone" required/>
+                                <input type="tel" class="form-control" name="phone_number" required/>
                             </div>
+{{--                            <div class="mb-3">--}}
+{{--                                <label class="form-label">Vai trò</label>--}}
+{{--                                <select name="role" id=""></select>--}}
+{{--                            </div>--}}
+
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password" required/>
+                                <label class="form-label">Vai Trò</label>
+                                <select class="form-control" name="role" id="role">
+
+                                </select>
+                                <div class="clearfix"></div>
                             </div>
                             <div class="mb-3 is_active">
 

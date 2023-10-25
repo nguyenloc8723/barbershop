@@ -1,6 +1,33 @@
 @extends('client.layouts.layout')
 
 @section('content')
+    <style>
+        .section-body{
+            background: #14100c;
+            border-radius: 10px;
+        }
+        .body-content{
+            padding: 20px;
+        }
+        .body-content .content-item{
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .body-content .content-item i{
+            margin-right: 15px;
+        }
+        .section-footer button{
+            padding: 5px 10px;
+            border-radius: 10px;
+            color: #14100c;
+            border: 1px solid #14100c;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    </style>
     <!-- Parallax Image -->
     <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
         <div class="container">
@@ -19,6 +46,12 @@
             <a href="#" data-scroll-nav="1" class=""> <i class="ti-arrow-down"></i> </a>
         </div>
     </div>
+
+    @if (Auth::check())
+        <div id="user-info" data-userid="{{Auth::id()}}">
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->   
+        </div>
+    @endif
     <!-- About -->
     <section class="about section-padding" data-scroll-index="1">
         <div class="container">
@@ -581,4 +614,124 @@
             </div>
         </div>
     </section>
+
 @endsection
+
+@section('js')
+    <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
+    
+    
+        $(<script>
+        $(document).ready(function (){
+            var userId = $('#user-info').data('userid');
+
+            // Function to change a booking
+            function changeBooking(bookingId) {
+                console.log('Đổi lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/change/' + bookingId, // Replace with your actual endpoint for changing bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Function to cancel a booking
+            function cancelBooking(bookingId) {
+                console.log('Hủy lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/cancel/' + bookingId, // Replace with your actual endpoint for canceling bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            $.ajax({
+                url: '/api/booking/notification/' + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    const element = $('#user-info');
+                    element.html(`<div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-30 section-notification">
+                                            <div class="section-head mb-20">
+                                                <h3>Lịch đặt của bạn (${res.length})</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> `)
+                    for(const value of res){
+                        element.find('.section-notification').append(`<div class="section-body">
+                                                <div class="body-content">
+                                                    <div class="content-item mb-3">
+                                                        <div>Thông tin lịch hẹn sắp tới:</div>
+                                                    </div>
+                                                    <div class="content-item">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        <span>Ngày ${moment(value.date).format('DD.MM')}, ${value.time_sheet.hour} giờ ${value.time_sheet.minutes}</span>
+                                                    </div>
+                                                    <div class="content-item">
+                                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                                        <span>Stylist của bạn là ${value.stylist.name}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="section-footer text-center mt-2 mb-30">
+                                                <button class="jqr-change" data-booking-id="${value.id}">Đổi</button>
+                                                <button class="jqr-destroy" data-booking-id="${value.id}">Hủy lịch</button>
+                                            </div>`)
+                    }
+
+                    // Add click event handler for 'Đổi' button
+                    $(document).on('click','.jqr-change', function () {
+                        var bookingId = $(this).data('booking-id');
+                        console.log('đổi lịch');
+                        changeBooking(bookingId);
+                        window.location.href = '/client/booking';
+                    });
+
+                    // Add click event handler for 'Hủy lịch' button
+                    $(document).on('click','.jqr-destroy', function () {
+                        var bookingId = $(this).data('booking-id');
+                        Swal.fire({
+                            title: 'Bạn chắc chắn muốn hủy lịch?',
+                            text: "Bạn sẽ không thể hoàn nguyên điều này!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    '',
+                                    'Hủy lịch thành công.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.href = '/';
+                                });
+                                cancelBooking(bookingId);
+                            }
+                        });
+                    });
+                },
+                error: function ( error) {
+                    console.log(error);
+                }
+            });
+        })
+    </script>
+@endsection
+

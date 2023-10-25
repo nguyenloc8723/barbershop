@@ -3,6 +3,15 @@
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
+{{--    @if (Auth::check())--}}
+{{--        <h1>{{Auth::id()}}</h1>--}}
+{{--    @endif--}}
+    @can('roles.editService')
+        <input type="hidden" class="jqr-roleEdit" value="true">
+    @endcan
+    @can('roles.deleteService')
+        <input type="hidden" class="jqr-roleDelete" value="true">
+    @endcan
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -10,11 +19,21 @@
                     <div class="row justify-content-between">
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-
-                                <button type="button"
-                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i
-                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ
-                                </button>
+{{--                                @can('roles.createService')--}}
+{{--                                <button type="button"--}}
+{{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
+{{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
+{{--                                </button>--}}
+{{--                                @endcan--}}
+                                @if(\Gate::check('roles.createService'))
+                                    <button type="button" class="btn btn-success waves-effect waves-light query-btn-show-modal">
+                                        <i class="mdi mdi-plus-circle me-1"></i> Thêm dịch vụ
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-success waves-effect waves-light" disabled>
+                                        <i class="mdi mdi-plus-circle me-1"></i> Thêm dịch vụ
+                                    </button>
+                                @endif
                             </div>
                         </div>
 
@@ -29,16 +48,14 @@
             <div class="card">
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered dt-responsive table-responsive
-                                                  nowrap text-center align-content-sm-center">
+                                                   nowrap text-center align-content-sm-center">
                         <thead>
-                            <tr class="">
-                                @foreach ($money as $money)
-                                @foreach($columns as $key => $column)
-                                    <th>{{$column}}</th>
-                                    <th>{{$money}}</th>
-                                @endforeach
-                                <th>action</th>
-                            </tr>
+                        <tr class="">
+                            @foreach($columns as $key => $column)
+                                <th>{{$column}}</th>
+                            @endforeach
+                            <th>action</th>
+                        </tr>
                         </thead>
                         <tbody id="jquery-value">
 
@@ -55,10 +72,9 @@
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.service.modal')
     </div>
+<div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
 
-    <div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
-
-    </div>
+</div>
 
 @endsection
 

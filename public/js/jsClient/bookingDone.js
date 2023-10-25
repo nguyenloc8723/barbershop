@@ -6,8 +6,8 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                console.log(response)
-                console.log(response.service)
+                // console.log(response)
+                // console.log(response.service)
                 $('.jqr-serviceName').empty();
                 let price = 0;
                 response.service.map(item => {
@@ -40,8 +40,8 @@ $(document).ready(function () {
 
     $(document).on('click','.jqr-destroy', function () {
         Swal.fire({
-            title: 'Anh chắc chắn muốn hủy lịch?',
-            text: "Anh sẽ không thể hoàn nguyên điều này!",
+            title: 'Bạn chắc chắn muốn hủy lịch?',
+            text: "Bạn sẽ không thể hoàn nguyên điều này!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

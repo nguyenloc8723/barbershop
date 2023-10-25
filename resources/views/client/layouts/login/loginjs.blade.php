@@ -14,30 +14,14 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
     var firebaseConfig = {
-        // apiKey: "AIzaSyAOvQDy2ZBoXvqiQ9TMrwTlqVPDalTUFiQ",
-        // authDomain: "testda-a322b.firebaseapp.com",
-        // projectId: "testda-a322b",
-        // storageBucket: "testda-a322b.appspot.com",
-        // messagingSenderId: "361948022676",
-        // appId: "1:361948022676:web:41d6468b7f7e3627eb3181",
-        // measurementId: "G-KK4HFJ3ZPR"
-
-        // apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
-        // authDomain: "fir-6cd66.firebaseapp.com",
-        // databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
-        // projectId: "fir-6cd66",
-        // storageBucket: "fir-6cd66.appspot.com",
-        // messagingSenderId: "167315184992",
-        // appId: "1:167315184992:web:9bfc9570f1fd3179611205",
-        // measurementId: "G-0195R4LR4V"
-
-        apiKey: "AIzaSyAUFqlNlcVV9R6bc4GyIbVwBhhD0Rwofrw",
-        authDomain: "test1-c5553.firebaseapp.com",
-        projectId: "test1-c5553",
-        storageBucket: "test1-c5553.appspot.com",
-        messagingSenderId: "839373893398",
-        appId: "1:839373893398:web:86c69f3c9db259027eaa37",
-        measurementId: "G-Y75PPH37BL"
+        apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
+        authDomain: "fir-6cd66.firebaseapp.com",
+        databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
+        projectId: "fir-6cd66",
+        storageBucket: "fir-6cd66.appspot.com",
+        messagingSenderId: "167315184992",
+        appId: "1:167315184992:web:9bfc9570f1fd3179611205",
+        measurementId: "G-0195R4LR4V"
     };
     firebase.initializeApp(firebaseConfig);
 </script>
@@ -66,14 +50,14 @@
 
     function sendOTP() {
 
-        var number = $("#number").val();
+        var number = "+84" + $("#number").val();
         firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
             window.confirmationResult = confirmationResult;
             coderesult = confirmationResult;
             console.log(coderesult);
             $("#successAuth").text("Message sent");
             $("#successAuth").show();
-
+            localStorage.setItem("phoneNumber", number);
             window.location.href = "/verify-otp?verificationId=" + confirmationResult.verificationId; // Thay đổi "/verify-otp" thành URL trang xác thực OTP của bạn
         }).catch(function (error) {
             $("#error").text(error.message);
@@ -83,12 +67,39 @@
 
     function verify() {
         var code = $("#verificationId").val();
+        // Lấy số điện thoại từ localStorage
+        var phoneNumber = localStorage.getItem("phoneNumber");
+
+        console.log(phoneNumber);
+
         const urlParams = new URLSearchParams(window.location.search);
         const verificationId = urlParams.get("verificationId");
+
         const confirmationResult = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+
+        // Lấy giá trị số điện thoại từ biến `number`
+
+
         firebase.auth().signInWithCredential(confirmationResult).then(function (result) {
-            console.log(result);
-            window.location.href = "/";
+
+            $.ajax({
+                type: 'POST',
+                url: '/process',
+                data: {
+                    phone_number: phoneNumber, // Truyền giá trị số điện thoại vào yêu cầu POST
+                    // Các trường thông tin khác nếu cần
+                },
+                success: function (data) {
+                    // Xử lý dữ liệu phản hồi từ phía máy chủ (nếu cần)
+                    console.log(data);
+                    window.location.href = "/"; // Chuyển hướng sau khi xử lý
+                },
+                error: function (error) {
+                    $("#error").text(error.message);
+                    $("#error").show();
+                }
+            });
+
         }).catch(function (error) {
             $("#error").text(error.message);
             $("#error").show();

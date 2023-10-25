@@ -80,11 +80,37 @@
                 </li>
 
                 <li>
+                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                        <i class="mdi mdi-account-multiple-plus-outline"></i>
+                        <span>Vai trò và quyền </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAuth">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('role')}}">Vai trò</a>
+                            </li>
+                            <li>
+                                <a href="{{route('role')}}">Quyền</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="{{route('route.chat')}}">
                         <i class="mdi mdi-forum-outline"></i>
                         <span> Chat </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('route.booking_blade')}}">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Booking </span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{route('route.service')}}">
                         <i class="mdi mdi-access-point-network"></i>
@@ -100,12 +126,13 @@
                 </li>
 
                 <li>
+                <a href="{{route('timesheets.index')}}">
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
-                        <span>Stylist's Time Sheet</span>
+                        <span>Lịch làm việc</span>
+                    </a>
                     </a>
                 </li>
-
                 <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
                         <i class="mdi mdi-clipboard-outline"></i>
@@ -132,6 +159,13 @@
                 </li>
 
                 <li>
+                    <a href="{{route('route.statistical')}}">
+                        <i class="mdi mdi-briefcase-variant-outline"></i>
+                        <span>Thống kê</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="#contacts" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>
                         <span> Thùng rác </span>
@@ -143,11 +177,7 @@
                                 <a href="{{route('trash.category')}}">Danh muc</a>
                             </li>
                             <li>
-
-                                <a href="{{route('trash.stylistTimeSheets')}}">Stylist's Time Sheets</a>
-
                                 <a href="{{route('trash.service')}}">Dịch vụ</a>
-
                             </li>
                             <li>
                                 <a href="{{route('trash.user')}}">User</a>
@@ -168,35 +198,7 @@
 
                 {{--                <li class="menu-title mt-2">Custom</li>--}}
 
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarAuth" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-account-multiple-plus-outline"></i>--}}
-                {{--                        <span> Auth Pages </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarAuth">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-login.html">Log In</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-register.html">Register</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-recoverpw.html">Recover Password</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-lock-screen.html">Lock Screen</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-confirm-mail.html">Confirm Mail</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="auth-logout.html">Logout</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
+
 
                 {{--                <li>--}}
                 {{--                    <a href="#sidebarExpages" data-bs-toggle="collapse">--}}

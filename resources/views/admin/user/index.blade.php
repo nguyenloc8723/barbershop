@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('style')
-    <link rel="stylesheet" href="{{asset('css/service.css')}}">
+<link rel="stylesheet" href="{{asset('css/service.css')}}">
 @endsection
 @section('content')
     <div class="row">
@@ -15,12 +15,12 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <div class="row">
         <div class="col-12">
@@ -42,10 +42,12 @@
                     </table>
 
                 </div>
-            </div>
 
+            </div>
         </div>
+
     </div>
+</div>
 
 
     <div class="modal show jquery-main-modal" tabIndex="-1" aria-hidden="true">
@@ -59,11 +61,11 @@
     <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- third party js ends -->
-
     <!-- Datatables init -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script src="{{asset('js/jsAdmin/user.js')}}"></script>
     <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
+<!-- Datatables init -->
+<script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+
+<script src="{{asset('js/jsAdmin/user.js')}}"></script>
 @endsection
-
-

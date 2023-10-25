@@ -1,5 +1,8 @@
 <?php
 
+
+
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CategoryServiceController;
@@ -12,13 +15,26 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
 use App\Http\Controllers\StylistController;
+
+use App\Http\Controllers\TimeSheetController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BannerController;
+
+
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\SearchController;
+// use App\Http\Controllers\BookingController;
+
+use App\Http\Controllers\Admin\StatisticalController;
+
 use Illuminate\Support\Facades\Route;
 
 
+
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,52 +49,34 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
-Route::group(["prefix" => "admin"], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
-
-
-    Route::resource('category', CategoryServiceController::class);
-    Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
-    Route::resource('user', UserController::class);
-
-
-
-    Route::resource('member', MemberController::class);
-    Route::get('service', [ServiceController::class, 'index'])->name('route.service');
-    Route::get('calendar', [CalendarController::class, 'index'])->name('route.calendar');
-    Route::get('chat', [ChatController::class, 'index'])->name('route.chat');
-    Route::get('user', [UserController::class, 'index'])->name('route.user');
-    Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
-
-    Route::resource('stylists',StylistController::class);
-    Route::resource('blogs',BlogController::class);
-    
-
-
-    Route::prefix('trash')->group(function (){
-       Route::get('category', [TrashController::class, 'category'])->name('trash.category');
-
-       Route::get('stylistTimeSheets', [TrashController::class, 'stylistTimeSheets'])->name('trash.stylistTimeSheets');
-       Route::get('user', [TrashController::class, 'user'])->name('trash.user');
-
-        Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
-
-    });
-
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::resource('stylists',StylistController::class);
+Route::resource('blogs',BlogController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 
-//Route::get('services', function () {
-//    return view('client.display.services');
-//})->name('services');
+Route::get('services', [ClientServiceController::class, 'services'])->name('services');
+Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
+
 Route::get('services', [ClientServiceController::class,'services'])->name('services');
-Route::get('services-page/{id}', [ClientServiceController::class,'servicesPage'])->name('services-page');
+Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
 
 
-Route::group(["prefix" => "client", 'as' => 'client.'], function (){
+Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
@@ -92,7 +90,6 @@ Route::get('/', function () {
 Route::get('404', function () {
     return view('client.display.404');
 })->name('404');
-
 
 Route::get('about', function () {
     return view('client.display.about');
@@ -128,12 +125,7 @@ Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
-
-Route::get('phone-auth', [PhoneAuthController::class, 'login'])->name('phone-auth');
-Route::get('verify-otp', [PhoneAuthController::class, 'otp'])->name('verify-otp');
-Route::get('welcome', [PhoneAuthController::class, 'welcome'])->name('welcome');
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
-
 
 
