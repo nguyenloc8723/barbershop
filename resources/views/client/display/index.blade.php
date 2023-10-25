@@ -49,7 +49,7 @@
 
     @if (Auth::check())
         <div id="user-info" data-userid="{{Auth::id()}}">
-            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->   
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
     @endif
     <!-- About -->
@@ -369,90 +369,20 @@
                         </div>
                     </div>
                 </div>
+                @foreach($data as $item)
                 <div class="col-md-6">
                     <div class="menu-list mb-30">
                         <div class="item">
                             <div class="flex">
-                                <div class="title">Wash and Cut</div>
+                                <div class="title">{{$item->name}}</div>
                                 <div class="dots"></div>
-                                <div class="price">$20</div>
+                                <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
                             </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Head Shave with Razor</div>
-                                <div class="dots"></div>
-                                <div class="price">$30</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Long Hair</div>
-                                <div class="dots"></div>
-                                <div class="price">$45</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Children Wash & Cut</div>
-                                <div class="dots"></div>
-                                <div class="price">$25</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
+                            <p><i>{{$item->description}}</i></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Wash and Style</div>
-                                <div class="dots"></div>
-                                <div class="price">$10</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Short Beard Tidy</div>
-                                <div class="dots"></div>
-                                <div class="price">$15</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Large beard trim</div>
-                                <div class="dots"></div>
-                                <div class="price">$25</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">Luxury Full Service</div>
-                                <div class="dots"></div>
-                                <div class="price">$60</div>
-                            </div>
-                            <p><i>Lorem nestibulum sceisue can varius the dis monte.</i></p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -470,60 +400,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
+                        @foreach($stylists as $stylist)
                         <div class="team-card mb-30">
-                            <div class="team-img"><img src="client/img/team/b1.jpg" alt="" class="w-100"></div>
+                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px;" alt="" class="w-100"></div>
                             <div class="team-content">
-                                <h3 class="team-title">Philip Brown<span>Barber</span></h3>
+                                <h3 class="team-title"><span>Barber</span></h3>
                                 <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
                                 <div class="social">
                                     <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
                                 </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
                             </div>
                             <div class="title-box">
-                                <h3 class="mb-0">Philip Brown<span>Barber</span></h3>
+                                <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
                             </div>
                         </div>
-                        <div class="team-card mb-30">
-                            <div class="team-img"><img src="client/img/team/b2.jpg" alt="" class="w-100"></div>
-                            <div class="team-content">
-                                <h3 class="team-title">Stephen Martin<span>Stylist</span></h3>
-                                <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
-                                <div class="social">
-                                    <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
-                                </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
-                            </div>
-                            <div class="title-box">
-                                <h3 class="mb-0">Stephen Martin<span>Stylist</span></h3>
-                            </div>
-                        </div>
-                        <div class="team-card mb-30">
-                            <div class="team-img"><img src="client/img/team/b3.jpg" alt="" class="w-100"></div>
-                            <div class="team-content">
-                                <h3 class="team-title">Dennis Dan<span>Barber</span></h3>
-                                <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
-                                <div class="social">
-                                    <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
-                                </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
-                            </div>
-                            <div class="title-box">
-                                <h3 class="mb-0">Dennis Dan<span>Barber</span></h3>
-                            </div>
-                        </div>
-                        <div class="team-card mb-30">
-                            <div class="team-img"><img src="client/img/team/b4.jpg" alt="" class="w-100"></div>
-                            <div class="team-content">
-                                <h3 class="team-title">Helen Brown<span>Barber</span></h3>
-                                <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
-                                <div class="social">
-                                    <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
-                                </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
-                            </div>
-                            <div class="title-box">
-                                <h3 class="mb-0">Helen Brown<span>Barber</span></h3>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -539,60 +433,17 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($data as $item)
                 <div class="col-md-4">
                     <div class="item">
                         <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
-                            <h5>Moustache Trim</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-1"></span> </div>
+                            <h5>{{$item->name}}</h5>
+                            <p>{{$item->description}}</p>
+                            <div class="shape"> <span class="icon icon-icon-1-5"></span> </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-9"></span>
-                            <h5>Face Shave</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-9"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-3"></span>
-                            <h5>Beard Trim</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-3"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-2"></span>
-                            <h5>Haircut</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-2"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-6"></span>
-                            <h5>Clipper Cut</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-6"></span> </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-8"></span>
-                            <h5>Facial & Massage</h5>
-                            <p>Lorem vulputate massa ons amet ravida haretra nuam the drana miss uctus enec accumsan aliquam sit sapien.</p>
-                            <div class="shape"> <span class="icon icon-icon-1-8"></span> </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -605,13 +456,12 @@
                         <div class="section-subtitle">Latest news</div>
                         <div class="section-title white">News & Blog</div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
+
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
+                        @foreach($blogs as $blog)
                         <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/8.jpg" alt="">
+                            <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}} " style="height: 300px;width: 400px;" alt="">
                                 <div class="date">
                                     <a href="post.html"> <span>Dec</span> <i>29</i> </a>
                                 </div>
@@ -619,69 +469,13 @@
                             <div class="con"> <span class="category">
                                     <a href="blog.html">Hair Care</a>
                                 </span>
-                                <h5><a href="post.html">Women's Hair Care Routine for Any Hair Type</a></h5>
+                                <h5><a href="post.html">{{$blog->title}}</a></h5>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/9.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>27</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Beard</a>
-                                </span>
-                                <h5><a href="post.html">Common Mistakes That Damage Your Beard</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/6.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>25</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Hairstyle</a>
-                                </span>
-                                <h5><a href="post.html">5 Most Iconic Men’s Hairstyles Of All Times</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/4.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>23</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Haircut</a>
-                                </span>
-                                <h5><a href="post.html">What Are The Secrets of The Haircut & Moustache Trim?</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/16.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>22</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Wedding</a>
-                                </span>
-                                <h5><a href="post.html">Best Tips for Groom Shaving for Your Wedding</a></h5>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="position-re o-hidden"> <img src="client/img/slider/19.jpg" alt="">
-                                <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>20</i> </a>
-                                </div>
-                            </div>
-                            <div class="con"> <span class="category">
-                                    <a href="blog.html">Blog</a>
-                                </span>
-                                <h5><a href="post.html">What We Need to Choose The Fashion Model?</a></h5>
-                            </div>
-                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
                     </div>
                 </div>
             </div>
@@ -825,10 +619,43 @@
 
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
-    <script>
-        $(document).ready(function (){
 
+
+        $(<script>
+        $(document).ready(function (){
             var userId = $('#user-info').data('userid');
+
+            // Function to change a booking
+            function changeBooking(bookingId) {
+                console.log('Đổi lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/change/' + bookingId, // Replace with your actual endpoint for changing bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Function to cancel a booking
+            function cancelBooking(bookingId) {
+                console.log('Hủy lịch ' + bookingId);
+                $.ajax({
+                    url: '/api/booking/cancel/' + bookingId, // Replace with your actual endpoint for canceling bookings
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
 
             $.ajax({
                 url: '/api/booking/notification/' + userId,
@@ -862,9 +689,43 @@
                                                 </div>
                                             </div>
                                             <div class="section-footer text-center mt-2 mb-30">
-                                                <button>Đổi/Hủy lịch</button>
+                                                <button class="jqr-change" data-booking-id="${value.id}">Đổi</button>
+                                                <button class="jqr-destroy" data-booking-id="${value.id}">Hủy lịch</button>
                                             </div>`)
                     }
+
+                    // Add click event handler for 'Đổi' button
+                    $(document).on('click','.jqr-change', function () {
+                        var bookingId = $(this).data('booking-id');
+                        console.log('đổi lịch');
+                        changeBooking(bookingId);
+                        window.location.href = '/client/booking';
+                    });
+
+                    // Add click event handler for 'Hủy lịch' button
+                    $(document).on('click','.jqr-destroy', function () {
+                        var bookingId = $(this).data('booking-id');
+                        Swal.fire({
+                            title: 'Bạn chắc chắn muốn hủy lịch?',
+                            text: "Bạn sẽ không thể hoàn nguyên điều này!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    '',
+                                    'Hủy lịch thành công.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.href = '/';
+                                });
+                                cancelBooking(bookingId);
+                            }
+                        });
+                    });
                 },
                 error: function ( error) {
                     console.log(error);
@@ -873,3 +734,4 @@
         })
     </script>
 @endsection
+

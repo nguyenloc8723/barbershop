@@ -6,8 +6,12 @@
 @endsection
 
 @section('content')
+
+
     @if (Auth::check())
-        <div id="user_id" data-userid="{{Auth::id()}}"></div>
+        <div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>
+    @else
+        <div id="user_phone" data-user_phone=""></div>
     @endif
     <div class="fix-hed">
 

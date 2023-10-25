@@ -12,7 +12,7 @@ class Booking extends Model
     use HasFactory,SoftDeletes;
 //    public $timestamps = false;
     protected $fillable = [
-        'user_id',
+        'user_phone',
         'stylist_id',
         'timesheet_id',
         'price',
