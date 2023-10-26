@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -27,9 +28,30 @@ class CreatePermission extends Command
      */
     public function handle()
     {
-        $dataPermissions = config('permissions');
+//        $dataPermissions = config('permissions');
+//
+//        foreach ($dataPermissions as $key => $value) {
+//            Permission::query()->updateOrCreate([
+//                'name' => $key,
+//                'guard_name' => 'web'
+//            ]);
+//        }
+//
+//        Permission::query()
+//            ->where('guard_name', 'web')
+//            ->whereNotIn('name', array_keys($dataPermissions))
+//            ->delete();
+//
+//        $role = Role::query()->updateOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+//        $role->givePermissionTo(Permission::all());
 
-        foreach ($dataPermissions as $key => $value) {
+        $dataPermissions = config('permissions');
+        $mergedArray = [];
+        foreach ($dataPermissions as $permissions) {
+            $mergedArray = array_merge($mergedArray, $permissions);
+        }
+
+        foreach ($mergedArray as $key => $value) {
             Permission::query()->updateOrCreate([
                 'name' => $key,
                 'guard_name' => 'web'
@@ -38,7 +60,7 @@ class CreatePermission extends Command
 
         Permission::query()
             ->where('guard_name', 'web')
-            ->whereNotIn('name', array_keys($dataPermissions))
+            ->whereNotIn('name', array_keys($mergedArray))
             ->delete();
 
         $role = Role::query()->updateOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);

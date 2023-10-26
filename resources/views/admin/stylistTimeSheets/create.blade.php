@@ -18,7 +18,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Time-Sheets</label>
-                                <select name="timesheet_id" id="timesheet_id">
+                                <select name="timesheet_id[]" id="timesheet_id">
 
                                 </select>
                                 <div class="clearfix"></div>

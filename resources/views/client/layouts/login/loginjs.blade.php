@@ -14,6 +14,7 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
     var firebaseConfig = {
+
         // apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
         // authDomain: "fir-6cd66.firebaseapp.com",
         // databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
@@ -22,6 +23,8 @@
         // messagingSenderId: "167315184992",
         // appId: "1:167315184992:web:9bfc9570f1fd3179611205",
         // measurementId: "G-0195R4LR4V"
+
+
         apiKey: "AIzaSyCJ8pbe36jbzUmVQK_pFOZlPKXRW6JNoG8",
         authDomain: "test2-5f15d.firebaseapp.com",
         projectId: "test2-5f15d",
