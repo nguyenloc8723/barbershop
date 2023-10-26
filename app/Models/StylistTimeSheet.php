@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StylistTimeSheet extends Model
 {
     use HasFactory;
+    protected $table = 'stylist_time_sheet';
     protected $fillable = [
         'id',
         'stylist_id',
