@@ -83,6 +83,8 @@ Route::group(["prefix" => "admin"], function () {
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
     Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+    Route::delete('/timesheets/delete', 'TimesheetController@delete')->name('timesheets.delete');
+
    //setting
     Route::resource('settings', SettingController::class);
     Route::get('/admin/settings/{id}/delete', [SettingController::class,'delete'])->name('settings.delete');
