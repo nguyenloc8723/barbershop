@@ -27,7 +27,7 @@ $(document).ready(function () {
     function formatCurrency(amount) {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
-    console.log(formatCurrency(500000000))
+
 
     let arrayIDService = [];
 
@@ -379,12 +379,14 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 let data = response.data;
+                console.log(response.data);
                 let imgService = response.service;
                 let category = '';
-                let countImg = 0;
-                console.log(imgService[0].images[0].url);
+                console.log(imgService);
                 for (let i = 0; i < data.length; i++) {
+                    let countImg = 0;
                     let count = data[i].service.length;
                     let service = '';
                     service += `
@@ -401,7 +403,7 @@ $(document).ready(function () {
                         service += `
                                 <div class="list__item">
                                     <div class="item__media " role="presentation">
-                                       <img src="/storage/${imgService[0].images[0].url}" alt>
+                                       <img src="/storage/${imgService[countImg].images[0].url}" alt>
 
                                     </div>
                                     <div class="fs-6 fw-bold mx-2" role="presentation">${data[i].service[j].name}</div>
