@@ -22,7 +22,7 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = "0365029527";
+        $user = "+840365029527";
 
         // $test = Booking::query()->get();
         // // // $test= DB::table('bookings')->get();

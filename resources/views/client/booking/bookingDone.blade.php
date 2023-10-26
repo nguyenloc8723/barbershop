@@ -48,9 +48,9 @@
                             <a href="https://www.google.com/maps/place/FPT+Polytechnic/@21.0373391,105.7464079,17z/data=!3m1!4b1!4m6!3m5!1s0x31345515f14a641f:0xe7f2a647f98416cb!8m2!3d21.0373341!4d105.7489828!16s%2Fg%2F11hygrsyrb?entry=ttu" class=" p-2 border text-dark">Chỉ đường <i class="bi bi-geo-alt-fill"></i></a>
                         </div>
                         <hr>
-
+                        
                         <p class="font-normal color-111111">
-                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->user->phone_number)}}</b> ) vào lúc: <br>
+                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->user_phone)}}</b> ) vào lúc: <br>
                             <b>{{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} | {{$bookings->date}}.</b>
                         </p>
                     </div>
