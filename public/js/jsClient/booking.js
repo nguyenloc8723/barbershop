@@ -383,7 +383,7 @@ $(document).ready(function () {
                 let imgService = response.service;
                 let category = '';
                 let countImg = 0;
-
+                console.log(imgService[0].images[0].url);
                 for (let i = 0; i < data.length; i++) {
                     let count = data[i].service.length;
                     let service = '';
@@ -401,7 +401,8 @@ $(document).ready(function () {
                         service += `
                                 <div class="list__item">
                                     <div class="item__media " role="presentation">
-                                       <img src="/storage/${imgService[countImg].images[0].url}" alt>
+                                       <img src="/storage/${imgService[0].images[0].url}" alt>
+
                                     </div>
                                     <div class="fs-6 fw-bold mx-2" role="presentation">${data[i].service[j].name}</div>
                                     <div class="mx-2 item__description" role="presentation">
@@ -617,7 +618,7 @@ $(document).ready(function () {
                 console.log(response.success)
                 // toastr['success']('Đặt lịch thành công');
                 window.location.href = 'booking/success/' + response.success;
-                
+
             },
             error: function (error) {
                 console.error(error);

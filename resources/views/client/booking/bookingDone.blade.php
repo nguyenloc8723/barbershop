@@ -50,7 +50,7 @@
                         <hr>
 
                         <p class="font-normal color-111111">
-                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->user->phone_number)}}</b> ) vào lúc: <br>
+                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->phone_number)}}</b> ) vào lúc: <br>
                             <b>{{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} | {{$bookings->date}}.</b>
                         </p>
                     </div>
