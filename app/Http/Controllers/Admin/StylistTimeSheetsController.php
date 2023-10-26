@@ -15,7 +15,7 @@ class StylistTimeSheetsController extends AdminBaseController
     public $columns = [
         'id' => 'ID',
         'stylist_id' => 'ID Stylist',
-        'timeshhet_id' => 'ID Time Sheet',
+        'timesheet_id' => 'ID Time Sheet',
         'is_active' => 'Active',
         'is_block' => 'Block',
     ];

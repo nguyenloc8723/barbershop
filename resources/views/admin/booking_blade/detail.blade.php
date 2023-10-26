@@ -31,7 +31,7 @@
                                 <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64"
                                      src="{{asset('client/img/logo.png')}}">
                                 <div class="flex-grow-1">
-                                    <h4 class="media-heading mt-0">{{$data->user->name}}</h4>
+                                    <h4 class="media-heading mt-0">{{$data->phone_number}}</h4>
                                     <span
                                         class="badge bg-{{$data->status == 1 ? "danger" : "success" }}">{{$data->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}</span>
                                 </div>
@@ -221,7 +221,7 @@
 {{--                            </div>--}}
                             <div>
 
-                                @foreach ($data->review as $item)
+                                @foreach ($data->reviews as $item)
 
                                     <div class="d-flex mb-3">
                                         <div class="flex-shrink-0 me-3">

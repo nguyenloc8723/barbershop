@@ -51,7 +51,7 @@ Route::group([],function (){
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
 
     Route::get('roleUser',[ApiUserController::class, 'roles']);
-    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
+//    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
 
     Route::get('roles',[ApiRoleController::class, 'index']);
     Route::post('AddRoles',[ApiRoleController::class, 'store']);

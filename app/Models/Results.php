@@ -15,6 +15,6 @@ class Results extends Model
     ];
 
     public function booking(){
-        return $this->hasOne(Booking::class);
+        return $this->hasOne(Booking::class, 'booking_id');
     }
 }

@@ -29,14 +29,15 @@
         }
     </style>
     <!-- Parallax Image -->
-    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
+    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/12.jpg')}}">
         <div class="container">
             <div class="row content-justify-center">
                 <div class="col-md-12 text-center">
                     <div class="v-middle">
                         <h5>Stay sharp, Look good</h5>
                         <h1>NYC'S FAVOURITE<br>BARBER SHOP.</h1>
-                        <h5>Broadway St, NYC. Appointment: 855 100 4444</h5> <a href="{{route('client.booking')}}" class="button-1 mt-20">Book Appointment<span></span></a>
+                        <h5>Broadway St, NYC. Appointment: 855 100 4444</h5>
+                        <a href="{{route('client.booking')}}" class="button-1 mt-20">Book Appointment<span></span></a>
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@
 
     @if (Auth::check())
         <div id="user-info" data-userid="{{Auth::id()}}">
-            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->   
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
     @endif
     <!-- About -->
@@ -417,7 +418,7 @@
                         @endforeach
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -443,7 +444,7 @@
                         </a>
                     </div>
                 </div>
-                @endforeach  
+                @endforeach
             </div>
         </div>
     </section>
@@ -456,7 +457,7 @@
                         <div class="section-subtitle">Latest news</div>
                         <div class="section-title white">News & Blog</div>
                     </div>
-                       
+
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         @foreach($blogs as $blog)
@@ -475,7 +476,7 @@
                         @endforeach
                     </div>
                 </div>
-             
+
                     </div>
                 </div>
             </div>
@@ -619,8 +620,8 @@
 
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
-    
-    
+
+
         $(<script>
         $(document).ready(function (){
             var userId = $('#user-info').data('userid');

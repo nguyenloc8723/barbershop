@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id');
             $table->integer('rating');
             $table->string('comment');
+            $table->string('reply')->nullable();
             $table->timestamps();
 
 //            $table->foreign('booking_id')->references('id')->on('bookings');
