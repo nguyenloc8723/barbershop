@@ -624,7 +624,7 @@
 
         $(<script>
         $(document).ready(function (){
-            var userId = $('#user-info').data('userid');
+            var user_phone = $('#user-info').data('user_phone');
 
             // Function to change a booking
             function changeBooking(bookingId) {
@@ -659,7 +659,7 @@
             }
 
             $.ajax({
-                url: '/api/booking/notification/' + userId,
+                url: '/api/booking/notification/' + user_phone,
                 method: 'GET',
                 dataType: 'json',
                 success: function (res) {
