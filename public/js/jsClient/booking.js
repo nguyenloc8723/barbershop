@@ -27,7 +27,7 @@ $(document).ready(function () {
     function formatCurrency(amount) {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
-    console.log(formatCurrency(500000000))
+
 
     let arrayIDService = [];
 
@@ -384,9 +384,9 @@ $(document).ready(function () {
                 console.log(response.data);
                 let imgService = response.service;
                 let category = '';
-                let countImg = 0;
                 console.log(imgService);
                 for (let i = 0; i < data.length; i++) {
+                    let countImg = 0;
                     let count = data[i].service.length;
                     let service = '';
                     service += `
