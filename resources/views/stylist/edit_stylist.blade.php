@@ -10,7 +10,7 @@
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            <form class="edit_stylist" method="POST" action="{{ route('stylists.store') }}" enctype="multipart/form-data">
+            <form class="edit_stylist" method="POST" action="{{ route('stylists.update',$stylist->id )}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -21,11 +21,18 @@
                     @enderror
 
                 </div>
-
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Số điện thoại</label> 
                     <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone" value="{{old('phone')?? $stylist->phone}} "/>
                     @error('phone')
+                    <p>{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Mô tả ngắn</label> 
+                    <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter excerpt" value="{{old('excerpt')?? $stylist->excerpt}} "/>
+                    @error('excerpt')
                     <p>{{$message}}</p>
                     @enderror
                 </div>

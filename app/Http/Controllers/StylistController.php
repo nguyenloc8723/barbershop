@@ -33,6 +33,7 @@ class StylistController extends Controller
         $stylist=new Stylist();
         $stylist->name=$request->name;  
         $stylist->phone=$request->phone;
+        $stylist->excerpt=$request->excerpt;
         $image=$request->image->getClientOriginalName();
         $request->image->storeAs('public/image/', $image);
         $stylist->image=$image;
@@ -63,8 +64,9 @@ class StylistController extends Controller
     {
             $stylist->name=$request->name;
             $stylist->phone=$request->phone;
+            $stylist->excerpt=$request->excerpt;
             if($request->image){
-                Storage::delete('public/image/',$stylist->image);
+                Storage::delete('public/image/',$stylist->image);   
                 $image=$request->image->getClientOriginalName();
                 $request->image->storeAs('public/image/', $image);
                 $stylist->image=$image;

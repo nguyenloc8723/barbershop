@@ -21,11 +21,19 @@
                     @enderror
 
                 </div>
-
+    
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Số điện thoại</label> 
-                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter email" />
+                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone" />
                     @error('phone')
+                    <p>{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Mô tả ngắn</label> 
+                    <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter excerpt" />
+                    @error('excerpt')
                     <p>{{$message}}</p>
                     @enderror
                 </div>

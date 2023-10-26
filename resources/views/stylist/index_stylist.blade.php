@@ -19,8 +19,12 @@
                     <div class="col-md-8">
                         <form method="get" action="{{route('search')}}">
                             <label for="inputPassword2" class="visually-hidden">Search</label>
-                            <input type="search" class="form-control my-1 my-md-0" name="key"  id="inputPassword2" placeholder="Tìm kiếm theo tên">
-                            <button type="submit" class="btn btn-danger rounded-pill waves-effect waves-light ms-1">Tìm kiếm</button>
+                            <div class="input-group">
+                                <input type="search" class="form-control" placeholder="Search..." name="key" id="inputPassword2">
+                                <button class="btn input-group-text" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -47,10 +51,7 @@
                     <img src="{{ asset('storage/image/'.$stylist->image)}}"
                          class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>
 
-                    <p class="text-muted font-13 mb-3">
-                        Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                        1500s, when an unknown printer took a galley of type.
-                    </p>
+                    <p class="text-muted font-13 mb-3">{{$stylist->excerpt}}</p>
 
                     <div class="text-start">
                         <p class="text-muted font-13"><strong>Full Name :</strong> <span

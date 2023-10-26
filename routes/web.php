@@ -112,7 +112,7 @@ Route::get('portfolio', function () {
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
-Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog.list');
+Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
 
 Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {

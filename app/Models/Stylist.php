@@ -14,7 +14,7 @@ class Stylist extends Model
         'name',
         'phone',
         'image',
-        // 'is_vip',
+        'excerpt'
     ];
 
 
