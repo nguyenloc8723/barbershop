@@ -2,15 +2,9 @@
 
 @section('style')
 
-{{--    <link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">--}}
-{{--    <link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />--}}
-{{--    <link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css"/>--}}
 
-    <link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css" />
-
-<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
-<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />
+<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">
+<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
@@ -50,7 +44,7 @@
                         <hr>
                         
                         <p class="font-normal color-111111">
-                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->user_phone)}}</b> ) vào lúc: <br>
+                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->phone_number)}}</b> ) vào lúc: <br>
                             <b>{{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} | {{$bookings->date}}.</b>
                         </p>
                     </div>
