@@ -22,4 +22,16 @@
 .jquery-main-modal,.js-img{
     background: rgba(0,0,0,0.5);
 }
+.role-css{
+    position: absolute;
+    right: -2rem;
+    transform: translate(23px, -25px);
+    top: -2rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    opacity: 1;
+    padding: .635rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(161,172,184,.4);
+    transition: all .23s ease .1s;
+}
 

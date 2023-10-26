@@ -126,8 +126,8 @@
                 </li>
 
                 <li>
-                    <!-- <a href="{{route('timesheet.index')}}">
-                    <a href="{{route('timesheets.index')}}"> -->
+{{--                     <a href="{{route('timesheet.index')}}">--}}
+{{--                    <a href="{{route('timesheets.index')}}"> --}}
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Lịch làm việc</span>
@@ -214,7 +214,7 @@
                         </ul>
                     </div>
                 </li>
-               
+
 
                 {{--                <li class="menu-title mt-2">Custom</li>--}}
 

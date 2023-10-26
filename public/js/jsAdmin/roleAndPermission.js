@@ -2,7 +2,7 @@ $(document).ready(function () {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     const btnShow = $('.jquery-btn-create');
     const btnCancel = $('.jquery-btn-cancel');
-    const formModal = $('#formModal');
+    const formModal = $('#addRoleForm');
     const actionMethod = $('input[name="actionMethod"]');
     const urlShow = '/api/roles';
     const addRoles = '/api/AddRoles';
