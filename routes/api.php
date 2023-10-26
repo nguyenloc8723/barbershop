@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([],function (){
     Route::get('get/service',[ApiServiceController::class, 'index']);
-    Route::post('postttt/service',[ApiServiceController::class, 'store']);
+    Route::post('post/service',[ApiServiceController::class, 'store']);
     Route::get('edit/service/{id}',[ApiServiceController::class, 'show']);
     Route::post('put/service/{id}',[ApiServiceController::class, 'update']);
     Route::delete('delete/service/{id}',[ApiServiceController::class, 'destroy']);
