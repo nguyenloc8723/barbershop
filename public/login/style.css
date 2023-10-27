@@ -6,9 +6,9 @@ Template URL: http://html.affixtheme.com/html/xmee
 Description: Creative & Exclusive Login Registration Template
 Author: AffixTheme
 Author URL: https://themeforest.net/user/affixtheme
-Version: 2.1 
+Version: 2.1
 
-======================================  
+======================================
         Table Of Contents
 ======================================
 1. Typography
@@ -17465,4 +17465,14 @@ ul {
 }
 .fxt-template-layout36 .fxt-btn-ghost:focus {
   outline: none;
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 }

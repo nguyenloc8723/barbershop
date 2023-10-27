@@ -33,27 +33,33 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+//$request->authenticate();
+
     public function storeLogin(Request  $request)
     {
         // Lấy thông tin từ request (số điện thoại)
         $phoneNumber = $request->input('phone_number');
-
         // Kiểm tra xem số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
         $existingUser = User::where('phone_number', $phoneNumber)->first();
 
         if (!$existingUser) {
-            // Nếu số điện thoại chưa tồn tại, tạo tài khoản mới
             $user = new User();
             $user->phone_number = $phoneNumber;
             $user->save();
             $request->session()->regenerate();
             Auth::login($user);
-
         } else {
             $request->session()->regenerate();
             Auth::login($existingUser);
         }
-//        $this->sendSmsViaSpeedSMS($phoneNumber );
+//        $this->sendSmsViaSpeedSMS($phoneNumber ); gửi sms
+        $userRole = Auth::user()->role;
+        // Thực hiện chuyển hướng dựa trên quyền
+        if ($userRole === 'user') {
+            return response()->json(['role' => 'user']);
+        } elseif ($userRole === 'admin') {
+            return response()->json(['role' => 'admin']);
+        }
 
     }
 
