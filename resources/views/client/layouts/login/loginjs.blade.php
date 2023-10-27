@@ -50,6 +50,7 @@
     function sendOTP() {
 
         var number = "+84" + $("#number").val();
+
         firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
             window.confirmationResult = confirmationResult;
             coderesult = confirmationResult;
@@ -68,6 +69,7 @@
         var code = $("#verificationId").val();
         // Lấy số điện thoại từ localStorage
         var phoneNumber = localStorage.getItem("phoneNumber");
+        // document.getElementById("myPhone").innerHTML = phoneNumber;
 
         console.log(phoneNumber);
 
@@ -78,7 +80,6 @@
 
         // Lấy giá trị số điện thoại từ biến `number`
 
-
         firebase.auth().signInWithCredential(confirmationResult).then(function (result) {
 
             $.ajax({
@@ -86,7 +87,6 @@
                 url: '/process',
                 data: {
                     phone_number: phoneNumber, // Truyền giá trị số điện thoại vào yêu cầu POST
-                    // Các trường thông tin khác nếu cần
                 },
                 success: function (data) {
                     // Xử lý dữ liệu phản hồi từ phía máy chủ (nếu cần)

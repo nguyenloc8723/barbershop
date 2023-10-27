@@ -13,10 +13,11 @@ class Reviews extends Model
         'booking_id',
         'rating',
         'comment',
+        'reply'
     ];
 
     public function booking(){
-        return $this->belongsTo(Booking::class);
+        return $this->belongsTo(Booking::class, 'booking_id');
     }
     public function user()
     {

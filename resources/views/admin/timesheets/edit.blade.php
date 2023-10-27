@@ -18,15 +18,16 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="hour" class="form-label">hour</label>
-                                <input type="number" class="form-control" id="hour" name="hour" value="{{$timesheet->hour}}" />
+                                <input type="number" class="form-control" id="hour" name="hour" value="{{$timesheet->hour}}" min="0" />
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="minutes" class="form-label">minutes</label>
-                                <input type="number" class="form-control" id="minutes" name="minutes" value="{{$timesheet->minutes}}" />
+                                <label for "minutes" class="form-label">minutes</label>
+                                <input type="number" class="form-control" id="minutes" name="minutes" value="{{$timesheet->minutes}}" min="0" />
                             </div>
                         </div>
+
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="is_active" class="form-label">Trạng thái</label>
@@ -38,9 +39,9 @@
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Save</button>
-                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
-                            > <a href="{{ route('timesheets.index') }}">Cancel</a>
-                        </button>                        </div>
+                            <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"> <a href="{{ route('timesheets.index') }}">Cancel</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

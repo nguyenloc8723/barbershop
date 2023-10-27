@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
 
+use App\Http\Controllers\Admin\API\ApiRoleController;
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
 use App\Http\Controllers\Admin\API\ApiUserController;
 
@@ -10,8 +11,10 @@ use App\Http\Controllers\Admin\API\ApiUserController;
 use App\Http\Controllers\Admin\API\ApiServiceController;
 
 use App\Http\Controllers\Admin\API\ApiTrashController;
+use App\Http\Controllers\Admin\API\StylistPermissionController;
 use App\Http\Controllers\Admin\API\Trash\CategoryController;
 use App\Http\Controllers\Admin\API\Trash\ServiceController;
+use App\Http\Controllers\Admin\API\ApiDashboardController;
 use App\Http\Controllers\Client\API\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +49,15 @@ Route::group([],function (){
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+
+    Route::get('roleUser',[ApiUserController::class, 'roles']);
+//    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
+
+    Route::get('roles',[ApiRoleController::class, 'index']);
+    Route::post('AddRoles',[ApiRoleController::class, 'store']);
+    Route::get('getRoleDetail/{id}',[ApiRoleController::class, 'edit']);
+    Route::post('updateRole/{id}',[ApiRoleController::class, 'update']);
+    Route::delete('destroyRole/{id}',[ApiRoleController::class, 'destroy']);
 });
 
 Route::group([],function (){
@@ -94,6 +106,13 @@ Route::group([],function (){
 
     Route::get('booking/success', [BookingController::class, 'bookingDone']);
     Route::get('booking/randomStylist', [BookingController::class, 'randomStylist']);
+
+    Route::get('booking/notification/{userId}', [BookingController::class, 'bookingNotification']);
 });
+Route::get('/dailySales', [ApiDashboardController::class, 'dailySales']);
+Route::get('/dataSixMonths', [ApiDashboardController::class, 'dataSixMonths']);
+Route::get('/monthlyRevenue', [ApiDashboardController::class, 'monthlyRevenue']);
+Route::get('/latestStylist', [ApiDashboardController::class, 'latestStylist']);
+Route::get('/latestBooking', [ApiDashboardController::class, 'latestBooking']);
 
 

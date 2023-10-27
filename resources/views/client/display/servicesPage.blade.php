@@ -25,7 +25,7 @@
                         <div class="section-title">{{$model->name}}</div>
                     </div>
                     <p>{{$model->description}}</p>
-                    <p class="mb-45">{{$model->description}}</p>
+
                     <!-- Pricing -->
                     <div class="menu-list mb-10">
                         <div class="item">

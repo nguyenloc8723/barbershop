@@ -9,6 +9,7 @@ $(document).ready(function () {
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
     let stylist = 0;
+    let user_phone = $('#user_phone').data('user_phone');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
@@ -23,6 +24,9 @@ $(document).ready(function () {
     $('.jqr-textBase').css({
 
     });
+    function formatCurrency(amount) {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }
 
 
     let arrayIDService = [];
@@ -124,7 +128,7 @@ $(document).ready(function () {
                                     break;
                                 }
                             }
-                            timesheet_box += `<div class="box-time_item ${unavailable}" data-id="${dataTimeSheet[index].id}" role="presentation">${dataTimeSheet[index].hour}h${dataTimeSheet[index].minutes}</div>`;
+                            timesheet_box += `<div class="box_time_item ${unavailable}" data-id="${dataTimeSheet[index].id}" role="presentation">${dataTimeSheet[index].hour}h${dataTimeSheet[index].minutes}</div>`;
                         }
                     }
                     timesheet_box += `</div>`;
@@ -183,7 +187,7 @@ $(document).ready(function () {
 
                             <div class="new-affix-v2">
                                 <div class="flex space-between text-center content-step  time-line--active">
-                                    <div class="right button-next pointer btn-inactive jqr-clickService jqr-css" role="presentation">
+                                    <div class="right pointer fw-bold fs-5 btn-inactive jqr-clickService jqr-css" role="presentation">
                                         <span>Chọn dịch vụ</span>
                                     </div>
                                 </div>
@@ -212,15 +216,12 @@ $(document).ready(function () {
                     }
                 }
                 countPrice = money;
-                function formatCurrency(amount) {
-                    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                }
-
                 let formattedMoney = formatCurrency(money);
+                console.log('main'+ formattedMoney)
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
-            <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
+                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                     <div class="main-screen">
                         <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                             <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
@@ -348,7 +349,7 @@ $(document).ready(function () {
                     </div>
                     <div class="new-affix-v2">
                         <div class="flex space-between text-center content-step time-line ">
-                            <div class="right button-next pointer btn-inactive jqr-completed" role="presentation">
+                            <div class="right pointer btn-inactive jqr-completed" role="presentation">
                                 <span>Hoàn tất</span>
                             </div>
                             <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
@@ -378,11 +379,14 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 let data = response.data;
+                console.log(response.data);
                 let imgService = response.service;
                 let category = '';
-                let countImg = 0;
+                console.log(imgService);
                 for (let i = 0; i < data.length; i++) {
+                    let countImg = 0;
                     let count = data[i].service.length;
                     let service = '';
                     service += `
@@ -395,22 +399,24 @@ $(document).ready(function () {
                                      <div class="grid gap-4 grid-cols-2 flex-column">
                           `
                     for (let j = 0; j < count; j++) {
+                        let formattedMoney = formatCurrency(+data[i].service[j].price);
                         service += `
                                 <div class="list__item">
                                     <div class="item__media " role="presentation">
                                        <img src="/storage/${imgService[countImg].images[0].url}" alt>
+
                                     </div>
-                                    <div class="item__title " role="presentation">${data[i].service[j].name}</div>
-                                    <div class="item__description " role="presentation">
+                                    <div class="fs-6 fw-bold mx-2" role="presentation">${data[i].service[j].name}</div>
+                                    <div class="mx-2 item__description" role="presentation">
                                         ${data[i].service[j].description}
                                     </div>
                                     <div class="item__price " role="presentation">
                                         <div class="meta__price">
-                                            <span class="meta__newPrice">${data[i].service[j].price}</span>
+                                            <span class="meta__newPrice">${formattedMoney}</span>
                                             <span class="meta__oldPrice"></span>
                                         </div>
                                     </div>
-                                    <div class="item__button jqr-css" data-id="${data[i].service[j].id}" role="presentation">
+                                    <div class="item_button fw-bold jqr-css" data-id="${data[i].service[j].id}" role="presentation">
                                     Chọn
                                     </div>
                                 </div>
@@ -458,7 +464,7 @@ $(document).ready(function () {
             is_accept_take_a_photo = 0;
         }
     });
-    $(document).on('click', '.item__button', function () {
+    $(document).on('click', '.item_button', function () {
         let id = $(this).data('id');
         $(this).css({
             'background-color': '#91765a',
@@ -483,9 +489,9 @@ $(document).ready(function () {
         countSelect = arrayIDService.length;
         if (countSelect === 0) {
             $('.jqr-clickService').css({
-                'background-color': '#fff',
-                'border': '1px solid #91765a',
-                'color': '#000',
+                'background-color': '#e8e8e8',
+                'border': '1px solid #e8e8e8',
+                'color': '#91765a',
             });
             $('.font-medium').html(`<div class="text-sm font-medium">Dịch vụ đã chọn: 0 dịch vụ</div>`)
             $('.jqr-clickService').html(`<span>Chọn dịch vụ</span>`);
@@ -520,9 +526,9 @@ $(document).ready(function () {
         });
         randomStylist();
     });
-    $(document).on('click', '.box-time_item', function () {
+    $(document).on('click', '.box_time_item', function () {
         time = $(this).data('id');
-        $('.box-time_item').not('.unavailable').css({
+        $('.box_time_item').not('.unavailable').css({
             'background': '#fff',
             'border': '1px solid #000',
             'border-radius': '4px',
@@ -589,10 +595,11 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
+        console.log(user_phone);
         let status = 1;
-        let user_id = 1;
         let date = $('input[name="date"]').val();
         let arrayBooking = {
+            user_phone: user_phone,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,
@@ -613,6 +620,7 @@ $(document).ready(function () {
                 console.log(response.success)
                 // toastr['success']('Đặt lịch thành công');
                 window.location.href = 'booking/success/' + response.success;
+
             },
             error: function (error) {
                 console.error(error);
@@ -620,3 +628,4 @@ $(document).ready(function () {
         });
     }
 });
+

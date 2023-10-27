@@ -21,7 +21,7 @@ class ServiceFactory extends Factory
             'name'=>fake()->text(20),
             'price'=>fake()->numberBetween(100, 1000000),
             'description'=>fake()->text(),
-            'images'=>fake()->imageUrl,
+            'slug'=>fake()->text(),
             'is_active'=>fake()->boolean,
         ];
     }

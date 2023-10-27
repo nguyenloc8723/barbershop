@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reviews;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -77,6 +78,7 @@ class AdminBaseController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**
