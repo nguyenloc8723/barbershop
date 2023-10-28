@@ -3,9 +3,9 @@
 @section('style')
 
 
-<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
-
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">--}}
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">--}}
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
 @endsection
