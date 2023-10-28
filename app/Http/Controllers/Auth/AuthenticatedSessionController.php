@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Log;
@@ -51,36 +52,66 @@ class AuthenticatedSessionController extends Controller
         } else {
             $request->session()->regenerate();
             Auth::login($existingUser);
+//            $this->sendSms($phoneNumber);
         }
-//        $this->sendSmsViaSpeedSMS($phoneNumber ); gửi sms
-        $userRole = Auth::user()->role;
+
+        $userRole = Auth::user()->user_type;
         // Thực hiện chuyển hướng dựa trên quyền
         if ($userRole === 'user') {
-            return response()->json(['role' => 'user']);
+            return response()->json(['user_type' => 'user']);
         } elseif ($userRole === 'admin') {
-            return response()->json(['role' => 'admin']);
+            return response()->json(['user_type' => 'admin']);
         }
 
     }
 
 
-    public function sendSms($receiverPhoneNumber)
+//    public function sendSms($receiverPhoneNumber)
+//    {
+//        $twilioSid = env('TWILIO_SID');
+//        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
+//        $client = new Client($twilioSid, $twilioAuthToken);
+//
+//        $message = $client->messages->create(
+//            $receiverPhoneNumber, // Số điện thoại người nhận
+//            [
+//                'from' => '+12392177433', // Số điện thoại Twilio của bạn
+//                'body' => 'Chào mừng em đến với nhà của bọn anh'
+//            ]
+//        );
+//
+//        // Xử lý kết quả nếu cần
+//    }
+
+// sms VN
+    public function sendSms($phoneNumber)
     {
-        $twilioSid = env('TWILIO_SID');
-        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
-        $client = new Client($twilioSid, $twilioAuthToken);
+        if (Str::startsWith($phoneNumber, '+84')) {
+            // Nếu có, loại bỏ tiền tố "+84"
+            $phoneNumber = Str::substr($phoneNumber, 3);
+        }
+        $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
+        $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
+        $YourPhone = $phoneNumber;
+        Log::info($YourPhone);
+        $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
 
-        $message = $client->messages->create(
-            $receiverPhoneNumber, // Số điện thoại người nhận
-            [
-                'from' => '+12392177433', // Số điện thoại Twilio của bạn
-                'body' => 'Chào mừng em đến với nhà của bọn anh'
-            ]
-        );
+        $SendContent = urlencode($Content);
+        $data = "http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&Brandname=Baotrixemay&SmsType=2";
 
-        // Xử lý kết quả nếu cần
+        $curl = curl_init($data);
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+
+        $obj = json_decode($result, true);
+        if ($obj['CodeResult'] == 100) {
+           Log::info("thành công ");
+        } else {
+            Log::info("lỗi  ");
+        }
     }
-
 
 
     /**

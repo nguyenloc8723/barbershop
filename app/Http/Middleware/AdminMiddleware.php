@@ -15,10 +15,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->user_type === 'admin') {
             return $next($request); // Cho phép người dùng admin truy cập
         }
-
         return redirect('/404');
     }
 }

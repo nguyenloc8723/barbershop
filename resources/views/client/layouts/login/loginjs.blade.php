@@ -112,7 +112,7 @@
                 success: function (data) {
                     // Xử lý dữ liệu phản hồi từ phía máy chủ (nếu cần)
                     console.log(data);
-                    if (data.role === 'admin') {
+                    if (data.user_type === 'admin') {
                         window.location.href = "/admin/dashboard"; // Chuyển hướng đến trang admin
                     } else {
                         window.location.href = "/"; // Chuyển hướng đến trang người dùng thông thường
