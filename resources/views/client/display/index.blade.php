@@ -81,11 +81,28 @@
 
     .home__form-input .form-input__form .form__input input {
         padding-left: 15px;
-        height: 38px;
+        height: 47px;
         font-size: 16px;
         font-weight: 400;
     }
+   
 
+.home .btn-action {
+    border-radius: 6px;
+    padding: 0 5px;
+    font-family: segoe ui,sans-serif;
+    font-size: 18px;
+    transition: all .3s;
+    cursor: pointer;
+}
+.form__button {
+    background: linear-gradient(270deg,#cfa462,#f5e2c0 25.22%,#faeacd 53.97%,#ca9e5a 96.84%);
+}
+.content-center-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
     .home__form-input {
         font-family: segoe ui, sans-serif;
         font-weight: 300;
@@ -97,21 +114,16 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
     }
 
-    .form__button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+   
     .form-link {
         text-decoration: none;
         color: white;
         margin-right: 10px;
         /* Điều chỉnh khoảng cách giữa thẻ <a> và nội dung bên trong */
-        background-color: #15397f;
+        
         border: none;
         border-radius: 5px;
-        padding: 10px 20px;
+        padding: 10px 15px;
     }
 </style>
 <!-- Parallax Image -->
