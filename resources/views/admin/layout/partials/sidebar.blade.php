@@ -126,7 +126,8 @@
                 </li>
 
                 <li>
-                <a href="{{route('timesheets.index')}}">
+{{--                     <a href="{{route('timesheet.index')}}">--}}
+{{--                    <a href="{{route('timesheets.index')}}"> --}}
                     <a href="{{route('route.stylistTimeSheets')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span>Lịch làm việc</span>
@@ -155,6 +156,24 @@
                     <a href="{{route('route.user')}}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span> Người dùng </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('route.result')}}">
+                        <i class="mdi mdi-briefcase-variant-outline"></i>
+                        <span> Result </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('review.index')}}">
+                    <i class="bi bi-chat-square-quote"></i>
+                        <span> Reviews </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('banner.index')}}">
+                    <i class="bi bi-images"></i>
+                        <span> Setting Banner </span>
                     </a>
                 </li>
 
@@ -195,6 +214,7 @@
                         </ul>
                     </div>
                 </li>
+
 
                 {{--                <li class="menu-title mt-2">Custom</li>--}}
 

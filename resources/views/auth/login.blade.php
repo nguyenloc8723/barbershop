@@ -14,9 +14,9 @@
                 <div class="fxt-content">
 
                     <div class="fxt-header">
-                        <a href="" class="fxt-logo"><img src="{{asset('login/img/logo-11.png')}}"
-                                                                      alt="Logo"></a>
-                        <p>Login into your pages account</p>
+                        <a href="" class="fxt-logo"><img src="{{asset('client/img/logobarber.png')}}"
+                                                                      alt="Logo" width="250px"></a>
+                        <p>Đăng nhập vào tài khoản của bạn</p>
                     </div>
                     <div class="alert alert-danger" id="error" style="display: none;"></div>
                     <div class="alert alert-success" id="successAuth" style="display: none;"></div>
@@ -25,14 +25,14 @@
                             <div class="form-group">
                                 <div class="fxt-transformY-50 fxt-transition-delay-1">
                                     <input type="text" id="number" class="form-control" name="number"
-                                           placeholder="Phone" >
+                                           placeholder="Số điện thoại ..." >
                                 </div>
                                 <div id="recaptcha-container"></div>
 
                             </div>
                             <div class="form-group">
                                 <div class="fxt-transformY-50 fxt-transition-delay-4">
-                                    <button type="button" class="fxt-btn-fill" onclick="sendOTP();">Send Me Phone
+                                    <button type="button" class="fxt-btn-fill" onclick="sendOTP();">Gửi mã OTP
                                     </button>
                                 </div>
                             </div>

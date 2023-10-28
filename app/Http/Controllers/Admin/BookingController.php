@@ -35,7 +35,7 @@ class BookingController extends AdminBaseController
             ->with('timesheet')
             ->with('service')
             ->with('results')
-            ->with('review')
+            ->with('reviews')
             ->first();
 
 //        dd($data);

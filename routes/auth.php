@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('phone-auth', [AuthenticatedSessionController::class, 'login'])->name('phone-auth');
     Route::get('verify-otp', [AuthenticatedSessionController::class, 'otp'])->name('verify-otp');
-    Route::post('process', [AuthenticatedSessionController::class, 'store'])->name('process');
+    Route::post('process', [AuthenticatedSessionController::class, 'storeLogin'])->name('process');
 
 //    khi người dùng chưa đăng nhập mới có thể truy cập nó
 

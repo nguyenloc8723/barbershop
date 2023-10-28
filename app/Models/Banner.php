@@ -9,14 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banner extends Model
 {
-    use HasFactory;
 
-    protected $fillable=[
-       'categor_id',
-        'name',
-        'price',
-        'description',
-        'images',
-        'is_active'
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'id',
+        'key',
+        'image'
     ];
+
 }

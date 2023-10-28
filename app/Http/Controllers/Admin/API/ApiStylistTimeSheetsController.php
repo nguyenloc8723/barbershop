@@ -7,6 +7,7 @@ use App\Models\StylistTimeSheet;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiStylistTimeSheetsController extends Controller
 {
@@ -24,12 +25,16 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function store(Request $request)
     {
-        $stylistTimeSheets = StylistTimeSheet::create([
-            'stylist_id' => $request->input('stylist_id'),
-            'timesheet_id' => json_decode($request->input('timesheet_id')),
-            'is_active' => $request->input('is_active'),
-            'is_block' => $request->input('is_block'),
-        ]);
+        $time = $request->input('timesheet_id');
+        foreach ($time as $value){
+            StylistTimeSheet::create([
+                'stylist_id' => $request->input('stylist_id'),
+                'timesheet_id' => $value,
+                'is_active' => $request->input('is_active'),
+                'is_block' => $request->input('is_block'),
+            ]);
+        }
+
         return response()->json(['success','Created successfully']);
     }
 

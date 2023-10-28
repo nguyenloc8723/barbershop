@@ -79,5 +79,10 @@
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
 
+<<<<<<< HEAD
+    <script src="{{asset('js/jsAdmin/service.js')}}"></script>
+@endsection
+=======
 {{--    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>--}}
 @endsection
+>>>>>>> 2153bd3b65b3a8788a74bd9b67d1562eb929fb0d
