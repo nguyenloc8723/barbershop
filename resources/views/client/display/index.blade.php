@@ -93,30 +93,39 @@
     <section class="services-box section-padding pt-0">
         <div class="container">
             <div class="row">
+                @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4">
-                    <div class="item"> <span class="icon icon icon-icon-1-6"></span>
+                    <div class="item">
+                        <a href="services-page.html">
+                            @if ($item->id == 1)
+                            <span class="icon icon-icon-1-1"></span>
+                        @elseif ($item->id == 2)
+                            <span class="icon icon-icon-1-2"></span>
+                        @elseif ($item->id == 3)
+                            <span class="icon icon-icon-1-3"></span>
+                        @elseif ($item->id == 4)
+                            <span class="icon icon-icon-1-4"></span>
+                        @elseif ($item->id == 5)
+                            <span class="icon icon-icon-1-6"></span>
+                        @elseif ($item->id == 6)
+                            <span class="icon icon-icon-1-8"></span>
+                        @elseif ($item->id == 7)
+                            <span class="icon icon-icon-1-9"></span>
+                        @elseif ($item->id == 8)
+                            <span class="icon icon-icon-1-18"></span>
+                        @elseif ($item->id == 9)
+                            <span class="icon icon-icon-1-10"></span>
+                        @else
+                            <span class="icon icon-icon-1-9"></span>
+                        @endif
                         <div class="cont">
-                            <h5>Cuts</h5>
-                            <p>Cuts ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
+                            <h5>{{$item->name}}</h5>
+                            <p>{{$item->description}}</p>
                         </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item"> <span class="icon icon-icon-1-3"></span>
-                        <div class="cont">
-                            <h5>Fades</h5>
-                            <p>Fades ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item"> <span class="icon icon-icon-1-1"></span>
-                        <div class="cont">
-                            <h5>Shaves</h5>
-                            <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -157,54 +166,50 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     <div class="item">
-                        <div class="position-re o-hidden"> <img src="client/img/services/2.jpg" alt=""> </div>
+                        <div class="position-re o-hidden">
+                           
+                             <img src="client/img/services/2.jpg" alt="">
+                            
+                         </div>
                         <div class="con">
-                            <div class="icon icon-icon-1-6"></div>
-                            <h5>Hair Cut</h5>
+                            <div class="">
+                                @if ($item->id == 1)
+                                <span class="icon icon-icon-1-1"></span>
+                            @elseif ($item->id == 2)
+                                <span class="icon icon-icon-1-2"></span>
+                            @elseif ($item->id == 3)
+                                <span class="icon icon-icon-1-3"></span>
+                            @elseif ($item->id == 4)
+                                <span class="icon icon-icon-1-4"></span>
+                            @elseif ($item->id == 5)
+                                <span class="icon icon-icon-1-6"></span>
+                            @elseif ($item->id == 6)
+                                <span class="icon icon-icon-1-8"></span>
+                            @elseif ($item->id == 7)
+                                <span class="icon icon-icon-1-9"></span>
+                            @elseif ($item->id == 8)
+                                <span class="icon icon-icon-1-18"></span>
+                            @elseif ($item->id == 9)
+                                <span class="icon icon-icon-1-10"></span>
+                            @else
+                                <span class="icon icon-icon-1-9"></span>
+                            @endif
+                            </div>
+                            <h5>{{$item->name}}</h5>
                             <div class="line"></div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <div class="permalink">Hair cut amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
-                                    <h6>$30</h6>
+                                    <div class="permalink">{{$item->description}}</div>
+                                    <h6>{{number_format($item->price, 0, ".", ".")}}đ</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="item">
-                        <div class="position-re o-hidden"> <img src="client/img/services/1.jpg" alt=""> </div>
-                        <div class="con">
-                            <div class="icon icon-icon-1-1"></div>
-                            <h5>Beard Trim</h5>
-                            <div class="line"></div>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <div class="permalink">Shaves ons amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
-                                    <h6>$20</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="item">
-                        <div class="position-re o-hidden"> <img src="client/img/services/3.jpg" alt=""> </div>
-                        <div class="con">
-                            <div class="icon icon-icon-1-4"></div>
-                            <h5>Hair Wash</h5>
-                            <div class="line"></div>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <div class="permalink">Hair wash amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
-                                    <h6>$15</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -433,13 +438,56 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($data as $item)
+                @foreach($data->slice(0,6) as $item)
                 <div class="col-md-4">
                     <div class="item">
-                        <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
+                        <a href="services-page.html">
+                            @if ($item->id == 1)
+                            <span class="icon icon-icon-1-1"></span>
+                        @elseif ($item->id == 2)
+                            <span class="icon icon-icon-1-2"></span>
+                        @elseif ($item->id == 3)
+                            <span class="icon icon-icon-1-3"></span>
+                        @elseif ($item->id == 4)
+                            <span class="icon icon-icon-1-4"></span>
+                        @elseif ($item->id == 5)
+                            <span class="icon icon-icon-1-6"></span>
+                        @elseif ($item->id == 6)
+                            <span class="icon icon-icon-1-8"></span>
+                        @elseif ($item->id == 7)
+                            <span class="icon icon-icon-1-9"></span>
+                        @elseif ($item->id == 8)
+                            <span class="icon icon-icon-1-18"></span>
+                        @elseif ($item->id == 9)
+                            <span class="icon icon-icon-1-10"></span>
+                        @else
+                            <span class="icon icon-icon-1-9"></span>
+                        @endif
                             <h5>{{$item->name}}</h5>
                             <p>{{$item->description}}</p>
-                            <div class="shape"> <span class="icon icon-icon-1-5"></span> </div>
+                            <div class="shape"> 
+                                @if ($item->id == 1)
+                                <span class="icon icon-icon-1-1"></span>
+                            @elseif ($item->id == 2)
+                                <span class="icon icon-icon-1-2"></span>
+                            @elseif ($item->id == 3)
+                                <span class="icon icon-icon-1-3"></span>
+                            @elseif ($item->id == 4)
+                                <span class="icon icon-icon-1-4"></span>
+                            @elseif ($item->id == 5)
+                                <span class="icon icon-icon-1-6"></span>
+                            @elseif ($item->id == 6)
+                                <span class="icon icon-icon-1-8"></span>
+                            @elseif ($item->id == 7)
+                                <span class="icon icon-icon-1-9"></span>
+                            @elseif ($item->id == 8)
+                                <span class="icon icon-icon-1-18"></span>
+                            @elseif ($item->id == 9)
+                                <span class="icon icon-icon-1-10"></span>
+                            @else
+                                <span class="icon icon-icon-1-9"></span>
+                            @endif    
+                            </div>
                         </a>
                     </div>
                 </div>
