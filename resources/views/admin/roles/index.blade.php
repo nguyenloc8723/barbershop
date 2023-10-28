@@ -13,9 +13,7 @@
                                 <button type="button"class="btn btn-success waves-effect waves-light jquery-btn-create">
                                     <i class="mdi mdi-plus-circle me-1 "></i> Add new
                                 </button>
-{{--                                <a href="{{route('role.create')}}" class="btn btn-success waves-effect waves-light jquery-btn-create">--}}
-{{--                                    <i class="mdi mdi-plus-circle me-1 "></i> Add new--}}
-{{--                                </a>--}}
+
                             </div>
                         </div>
 
@@ -38,23 +36,6 @@
                         </tr>
                         </thead>
                         <tbody id="jquery-list">
-{{--                            @foreach($data as $key => $value)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$value->name}}</td>--}}
-{{--                                    <td>{{$value->guard_name}}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <a href="{{route('role.edit', $value->id)}}" class="btn btn-primary">--}}
-{{--                                            Cập nhật--}}
-{{--                                        </a>--}}
-{{--                                        <a href="" onclick="event.preventDefault(); document.getElementById('destroy').submit()" class="btn btn-danger">--}}
-{{--                                            Xóa--}}
-{{--                                        </a>--}}
-{{--                                        <form id="destroy" action="{{ route('role.destroy', $value->id) }}" method="POST" style="display: none;">--}}
-{{--                                            @csrf--}}
-{{--                                        </form>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
                         </tbody>
                     </table>
                 </div>

@@ -35,7 +35,7 @@ $(document).ready(function () {
     $(document).on('click','.jqr-change', function () {
         console.log('đổi lịch');
         destroy(booking_id);
-        window.location.href = '/client/booking';
+        window.location.href = '/user/booking';
     });
 
     $(document).on('click','.jqr-destroy', function () {
