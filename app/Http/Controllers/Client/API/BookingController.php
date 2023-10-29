@@ -54,7 +54,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-//        Log::info($request->all());
+        //Log::info($request->all());
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
@@ -92,8 +92,8 @@ class BookingController extends Controller
         return response()->json(['success'=>'Xóa thành công']);
     }
 
-    public function bookingNotification($userId){
-        $bookings = Booking::with(['timeSheet','stylist'])->where('user_id', $userId)
+    public function bookingNotification($user_phone){
+        $bookings = Booking::with(['timeSheet','stylist'])->where('user_phone', $user_phone)
                     ->where('status', 1)
                     ->whereDoesntHave('results')
                     ->get();

@@ -16,7 +16,7 @@
 @if (Auth::check())
 <div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>
 @else
-<div id="user_phone" data-user_phone=""></div>
+<div id="user_phone" data-user_phone="+84{{request('user_phone')}}"></div>
 @endif
 <div class="fix-hed">
 
