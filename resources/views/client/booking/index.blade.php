@@ -19,7 +19,7 @@
 {{--<div id="user_phone" data-user_phone=""></div>--}}
 
 {{--@endif--}}
-<div id="user_phone" data-user_phone="{{ request()->query('phone') }}"></div>
+<div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 
 </div>
