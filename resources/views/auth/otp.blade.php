@@ -1,5 +1,6 @@
 <div class="fxt-template-layout11 container">
     <div class="fxt-content">
+        <span class="closePopupButton" id="closePopupOTP">×</span>
         <div class="fxt-form">
             <h2>Xác minh mã OTP</h2>
             <p>Chúng tôi đã gửi mã xác minh tới bạn <span id="myPhone"></span></p>
