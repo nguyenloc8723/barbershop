@@ -11,5 +11,7 @@
     <link rel="stylesheet" href="{{asset('client/css/style.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="{{asset('login/css/fontawesome-all.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('login/style.css')}}">
     @yield('style')
 </head>

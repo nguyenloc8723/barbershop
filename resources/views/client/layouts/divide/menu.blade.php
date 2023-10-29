@@ -125,11 +125,9 @@
                             </li>
                         </ul>
                     </li>
-
                 @else
-
                     <li>
-                        <a href="{{ route('phone-auth') }}" class="btn btn-warning nav-link">
+                        <a id="openPopupButton" class="btn btn-warning nav-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-amd" viewBox="0 0 16 16">
                                 <path
@@ -137,8 +135,6 @@
                             </svg>
                             <span> </span> Đăng Nhập </a>
                     </li>
-
-
                 @endauth
             </ul>
         </div>

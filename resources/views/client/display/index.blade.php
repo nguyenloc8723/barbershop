@@ -28,6 +28,8 @@
             font-weight: 500;
         }
     </style>
+
+
     <!-- Parallax Image -->
     <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/12.jpg')}}">
         <div class="container">

@@ -4859,7 +4859,9 @@ ul {
 14. Demo Layout Eleven
 =========================================================================*/
 .fxt-template-layout11 {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
+    min-height: 50px;
+    max-width: 550px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4868,7 +4870,7 @@ ul {
   align-items: center;
   width: 100%;
   background-color: #fff;
-  padding: 15px;
+    margin-top: 100px;
 }
 .fxt-template-layout11 .fxt-checkbox-area {
   display: -webkit-box;
@@ -4893,7 +4895,7 @@ ul {
   box-shadow: 0px 0px 62px 0px rgba(0, 0, 0, 0.07);
 }
 .fxt-template-layout11 .fxt-content {
-  padding: 65px 90px 45px;
+  padding: 45px 90px 45px;
   width: 100%;
   background-color: #fff;
 }
@@ -17468,6 +17470,16 @@ ul {
 }
 
 .popup-container {
+    display: none;
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.popup-container2 {
     display: none;
     position: fixed;
     /* top: 0;

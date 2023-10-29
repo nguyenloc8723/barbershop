@@ -6,6 +6,13 @@
 <body>
 <!-- Menu -->
 @include('client.layouts.divide.menu')
+{{--Login--}}
+<div id="popupContainer" class="popup-container" >
+@include('auth.login')
+</div>
+<div id="popupContainer2" class="popup-container2">
+@include('auth.otp')
+</div>
 <!-- Begin Page Content -->
 @yield('content')
 <!-- Footer -->
