@@ -217,7 +217,6 @@ $(document).ready(function () {
                 }
                 countPrice = money;
                 let formattedMoney = formatCurrency(money);
-                console.log('main'+ formattedMoney)
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
@@ -379,12 +378,12 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 let data = response.data;
-                console.log(response.data);
+                // console.log(response.data);
                 let imgService = response.service;
                 let category = '';
-                console.log(imgService);
+                // console.log(imgService);
                 for (let i = 0; i < data.length; i++) {
                     let countImg = 0;
                     let count = data[i].service.length;
@@ -485,7 +484,7 @@ $(document).ready(function () {
                 'color': '#000',
             });
         }
-        console.log(arrayIDService);
+        // console.log(arrayIDService);
         countSelect = arrayIDService.length;
         if (countSelect === 0) {
             $('.jqr-clickService').css({
@@ -627,5 +626,7 @@ $(document).ready(function () {
             }
         });
     }
+
+
 });
 
