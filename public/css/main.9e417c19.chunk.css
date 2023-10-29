@@ -2,6 +2,19 @@
     --main-bg-color: #15397f
 }
 
+/*=======================================================================*/
+.btn_booking{
+    font-weight: 700;
+}
+.css_booking{
+    width: 150px;
+    height: 38px;
+    border-radius: 7px;
+}
+#91765a
+/*=====================================================================*/
+
+
 @font-face {
     font-family: segoe ui;
     src: url(/segoeui.ttf)
@@ -2124,7 +2137,8 @@ img {
 .home__form-input {
     font-family: segoe ui, sans-serif;
     font-weight: 300;
-    background: #15397f;
+    background: #91765a;
+    /*background: #fff;*/
     max-width: 566px;
     border-radius: 10px;
     padding: 10px 15px;
