@@ -74,7 +74,7 @@ class BookingController extends Controller
             ]);
             $booking_service->save();
         }
-        $this->sendSms($phone_number);
+//        $this->sendSms($phone_number);
         return response()->json(['success'=>$bookingDone_id]);
     }
 
