@@ -71,7 +71,6 @@ Route::resource('stylistTimeSheets', ApiStylistTimeSheetsController::class);
 Route::resource('user', ApiUserController::class);
 
 Route::prefix('trash')->group(function (){
-
     Route::get('category', [ApiTrashController::class, 'category']);
     Route::post('category/{id}', [ApiTrashController::class, 'restore']);
     Route::Delete('category/{id}', [ApiTrashController::class, 'destroy']);
@@ -94,6 +93,8 @@ Route::prefix('trash')->group(function (){
 
 
 Route::group([],function (){
+    Route::get('getUserPhone/booking', [BookingController::class, 'getUserPhone']);
+    Route::post('setUserPhone/booking', [BookingController::class, 'setUserPhone']);
     Route::get('stylist/booking', [BookingController::class, 'index']);
     Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
     Route::get('stylistDetail/booking/{id}', [BookingController::class, 'stylistDetail']);

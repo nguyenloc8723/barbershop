@@ -12,6 +12,7 @@ use App\Models\Timesheet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -22,8 +23,7 @@ class BookingController extends Controller
     public $modelChooService = Service_categories::class;
     public $imgService = Service::class;
     public $booking = Booking::class;
-
-
+    private $user_phone = '';
     public function index()
     {
         $data = $this->model::all();
@@ -92,6 +92,11 @@ class BookingController extends Controller
         return response()->json(['success'=>'Xóa thành công']);
     }
 
+    function setUserPhone(Request $request){
+        $user_phone = $request->user_phone;
+        Log::info($user_phone);
+        return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
+    }
     public function bookingNotification($user_phone){
         $bookings = Booking::with(['timeSheet','stylist'])->where('user_phone', $user_phone)
                     ->where('status', 1)
@@ -99,5 +104,6 @@ class BookingController extends Controller
                     ->get();
         return response()->json($bookings);
     }
+
 
 }
