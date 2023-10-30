@@ -44,7 +44,7 @@
                 <div class="col-md-12 text-center">
                     <div class="v-middle">
                         <h5>Stay sharp, Look good</h5>
-                        <h1>NYC'S FAVOURITE<br>BARBER SHOP.</h1>
+                        <h1>Chào mừng bạn đến với cửa hàng của tôi.</h1>
                         <h5>Broadway St, NYC. Appointment: 855 100 4444</h5>
                         <div class="home__form-input">
                             <div class="form-input__form flex mt-1">

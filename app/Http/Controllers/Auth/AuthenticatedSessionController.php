@@ -84,34 +84,6 @@ class AuthenticatedSessionController extends Controller
 //    }
 
 // sms VN
-    public function sendSms($phoneNumber)
-    {
-        if (Str::startsWith($phoneNumber, '+84')) {
-            // Nếu có, loại bỏ tiền tố "+84"
-            $phoneNumber = Str::substr($phoneNumber, 3);
-        }
-        $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
-        $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
-        $YourPhone = $phoneNumber;
-        Log::info($YourPhone);
-        $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
-
-        $SendContent = urlencode($Content);
-        $data = "http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&Brandname=Baotrixemay&SmsType=2";
-
-        $curl = curl_init($data);
-        curl_setopt($curl, CURLOPT_FAILONERROR, true);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($curl);
-
-        $obj = json_decode($result, true);
-        if ($obj['CodeResult'] == 100) {
-           Log::info("thành công ");
-        } else {
-            Log::info("lỗi  ");
-        }
-    }
 
 
     /**

@@ -34,7 +34,7 @@ class LichsucatController extends Controller
             ->orderBy('date', 'desc')
             ->first();
 
-        
+
             // dd($bookings);
     //     $userBookings = User::find($user)->bookings()
     // ->with('stylist', 'timeSheet', 'reviews')
@@ -51,28 +51,28 @@ class LichsucatController extends Controller
 
         foreach ($reviews as $booking) {
             foreach ($booking->reviews as $review) {
-                
+
                 $booking_id = $review->booking_id;
                 $allReviews[] =  $booking_id;
-                
+
             }
         }
-        
+
         // dd($allReviews);
-        
-       
+
+
         return view('client.display.lichsucat', compact('bookings','reviews','allReviews'));
     }
 
     public function create(Request $request)
     {
-        
+
             $validate = Validator::make($request->all(), [
                 'booking_id' => 'required|unique:reviews',
                 'rating' => 'required|between:1,5',
                 'comment' => 'required',
             ]);
-            
+
             if($validate->fails()){
                 return back()->with('Lỗi!', 'Anh chị vui lòng kiểm tra lại 2 bước đánh giá hoặc anh chị đã đánh giá rồi!')->withInput();
             }else{
@@ -92,12 +92,12 @@ class LichsucatController extends Controller
         ->get();
         // dd($combo);
         foreach ($combo as $service) {
-            
+
         }
         $reviews = Reviews::where('booking_id', $booking_id)->first();
-        
+
         // dd($reviews);
-        
+
 
         return view('client.display.detailHistory', compact('bookings', 'reviews', 'combo'));
     }

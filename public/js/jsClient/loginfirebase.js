@@ -115,3 +115,5 @@ function verify() {
     closeOTP.addEventListener("click", function () {
     popupContainer2.style.display = "none";
 });
+
+

@@ -183,7 +183,7 @@
                href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{{asset('be/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
                 <span class="pro-user-name ms-1">
-                                    Nowak <i class="mdi mdi-chevron-down"></i>
+                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
                                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">

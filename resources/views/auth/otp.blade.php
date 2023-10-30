@@ -3,7 +3,7 @@
         <span class="closePopupButton" id="closePopupOTP">×</span>
         <div class="fxt-form">
             <h2>Xác minh mã OTP</h2>
-            <p>Chúng tôi đã gửi mã xác minh tới bạn <span id="myPhone"></span></p>
+            <p>Chúng tôi đã gửi mã xác minh tới bạn <span id="phoneNumber"></span></p>
             <label class="fxt-otp-label">Nhập mã OTP vào đây</label>
             <div class="alert alert-danger" id="error1" style="display: none;"></div>
             <form onsubmit="return false;" method="post">
