@@ -183,8 +183,6 @@ $(document).ready(function () {
 
 
                             </div>
-
-
                             <div class="new-affix-v2">
                                 <div class="flex space-between text-center content-step  time-line--active">
                                     <div class="right pointer fw-bold fs-5 btn-inactive jqr-clickService jqr-css" role="presentation">
@@ -266,14 +264,11 @@ $(document).ready(function () {
 
                                         </span>
                                     </div>
-
 <!--                                    messenger-->
                                     <div class="bot-message bot-message__stylist fade-in jqr-messageStylist">
 
                                     </div>
 <!--                                    messenger-->
-
-
                                     <div class="content fade-in jqr-contentStylist">
                                         <div class="left jqr-randomStylist" role="presentation">
                                             <div>

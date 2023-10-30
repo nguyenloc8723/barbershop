@@ -1,24 +1,12 @@
 @extends('client.layouts.layout')
 
 @section('style')
-
-
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">--}}
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">--}}
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
 @endsection
 
 @section('content')
-
-
-{{--@if (Auth::check())--}}
-{{--<div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>--}}
-{{--@else--}}
-{{--<div id="user_phone" data-user_phone=""></div>--}}
-
-{{--@endif--}}
 <div id="user_phone" data-user_phone="{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 
