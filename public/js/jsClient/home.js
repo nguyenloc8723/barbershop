@@ -46,6 +46,7 @@ $(document).ready(function () {
     });
     checkAndUpdateLink();
 });
+
 // ==================================
 $(document).ready(function() {
     var user_phone = $('#user-info').data('user-phone');

@@ -14,6 +14,13 @@
 
 
 
+{{--@if (Auth::check())--}}
+{{--<div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>--}}
+{{--@else--}}
+{{--<div id="user_phone" data-user_phone=""></div>--}}
+
+{{--@endif--}}
+
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 

@@ -97,8 +97,10 @@ class BookingController extends Controller
         Log::info($user_phone);
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
+
     public function bookingNotification($user_phone){
         $bookings = Booking::with(['timeSheet','stylist'])->where('user_phone', $user_phone)
+
                     ->where('status', 1)
                     ->whereDoesntHave('results')
                     ->get();
