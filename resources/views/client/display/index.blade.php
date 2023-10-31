@@ -153,6 +153,7 @@
                             <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
                                 monte.</p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -182,6 +183,51 @@
                                 </div>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <div class="about-list-icon"> <span class="ti-check"></span> </div>
+                        <div class="about-list-text">
+                            <p>We use quality products to make you look perfect</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="about-list-icon"> <span class="ti-check"></span> </div>
+                        <div class="about-list-text">
+                            <p>We care about our customers satisfaction</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="client/img/about2.jpg" alt="" class="mt-90 mb-30"> </div>
+            <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="client/img/about.jpg" alt=""> </div>
+        </div>
+    </div>
+</section>
+<!-- Services Box -->
+<section class="services-box section-padding pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="item"> <span class="icon icon icon-icon-1-6"></span>
+                    <div class="cont">
+                        <h5>Cuts</h5>
+                        <p>Cuts ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item"> <span class="icon icon-icon-1-3"></span>
+                    <div class="cont">
+                        <h5>Fades</h5>
+                        <p>Fades ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item"> <span class="icon icon-icon-1-1"></span>
+                    <div class="cont">
+                        <h5>Shaves</h5>
+                        <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
                     </div>
                 </div>
             </div>
@@ -417,6 +463,194 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
+                <div class="item">
+                    <div class="position-re o-hidden"> <img src="client/img/services/1.jpg" alt=""> </div>
+                    <div class="con">
+                        <div class="icon icon-icon-1-1"></div>
+                        <h5>Beard Trim</h5>
+                        <div class="line"></div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="permalink">Shaves ons amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
+                                <h6>$20</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
+                <div class="item">
+                    <div class="position-re o-hidden"> <img src="client/img/services/3.jpg" alt=""> </div>
+                    <div class="con">
+                        <div class="icon icon-icon-1-4"></div>
+                        <h5>Hair Wash</h5>
+                        <div class="line"></div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="permalink">Hair wash amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
+                                <h6>$15</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials -->
+<section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg" data-overlay-dark="4">
+    <div class="container">
+        <div class="row">
+            <!-- Testimonials -->
+            <div class="col-md-8 offset-md-2 text-center">
+                <div class="testimonials">
+                    <div class="testimonials-box">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item"> <span>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                </span>
+                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
+                                <div class="info">
+                                    <div class="author-img"> <img src="client/img/team/1.jpg" alt=""> </div>
+                                    <div class="cont">
+                                        <h6>Andreas Brown</h6> <span>Customer review</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item"> <span>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                </span>
+                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
+                                <div class="info">
+                                    <div class="author-img"> <img src="client/img/team/2.jpg" alt=""> </div>
+                                    <div class="cont">
+                                        <h6>Emily White</h6> <span>Customer review</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item"> <span>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                    <i class="star-rating"></i>
+                                </span>
+                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
+                                <div class="info">
+                                    <div class="author-img"> <img src="client/img/team/3.jpg" alt=""> </div>
+                                    <div class="cont">
+                                        <h6>Daniel Martin</h6> <span>Customer review</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- First Class Services -->
+<div class="first-class-services section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-head text-center">
+                    <div class="section-subtitle">Firs-Class</div>
+                    <div class="section-title white">Our Features</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="square-flip">
+                    <div class="square bg-img" data-background="client/img/barber.jpg">
+                        <div class="square-container d-flex align-items-end justify-content-end">
+                            <div class="box-title">
+                                <h4>Groom's Shave</h4>
+                            </div>
+                        </div>
+                        <div class="flip-overlay"></div>
+                    </div>
+                    <div class="square2">
+                        <div class="square-container2">
+                            <h4>Groom's Shave</h4>
+                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="square-flip">
+                    <div class="square bg-img" data-background="client/img/kids.jpg">
+                        <div class="square-container d-flex align-items-end justify-content-end">
+                            <div class="box-title">
+                                <h4>Kids Cuts</h4>
+                            </div>
+                        </div>
+                        <div class="flip-overlay"></div>
+                    </div>
+                    <div class="square2">
+                        <div class="square-container2">
+                            <h4>Kids Cuts</h4>
+                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="square-flip">
+                    <div class="square bg-img" data-background="client/img/team/b3.jpg">
+                        <div class="square-container d-flex align-items-end justify-content-end">
+                            <div class="box-title">
+                                <h4>Creative Barbers</h4>
+                            </div>
+                        </div>
+                        <div class="flip-overlay"></div>
+                    </div>
+                    <div class="square2">
+                        <div class="square-container2">
+                            <h4>Creative Barbers</h4>
+                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our Team<span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Video -->
+<section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4" data-background="client/img/slider/5.jpg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="section-head text-center">
+                    <div class="section-title white">Watch Our Barbershop Promo Video</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
+                    <div class="vid-butn"> <span class="icon"><i class="ti-control-play"></i></span> </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Pricing -->
+<section class="barber-pricing section-padding position-re">
+    <div class="container">
+        <div class="row">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
@@ -424,19 +658,18 @@
                     </a>
                 </div>
             </div>
+            @endforeach
         </div>
-    </section>
-    <!-- Pricing -->
-    <section class="barber-pricing section-padding position-re">
-        <div class="container">
-            <div class="row">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-head text-center">
-                            <div class="section-subtitle">Pricing Plan</div>
-                            <div class="section-title">Barber Pricing</div>
-                        </div>
-                    </div>
+    </div>
+</section>
+<!-- News -->
+<section class="news section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-head text-center">
+                    <div class="section-subtitle">Latest news</div>
+                    <div class="section-title white">News & Blog</div>
                 </div>
                 @foreach($data as $item)
                     <div class="col-md-6">
@@ -697,7 +930,34 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- Clients -->
+<section class="clients">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="owl-carousel owl-theme">
+                    <div class="clients-logo">
+                        <a href="#0"><img src="client/img/clients/2.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="client/img/clients/3.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="client/img/clients/4.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="client/img/clients/5.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="client/img/clients/6.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection
 
@@ -710,3 +970,98 @@
 
     @endsection
 
+        // Function to cancel a booking
+        function cancelBooking(bookingId) {
+            console.log('Hủy lịch ' + bookingId);
+            $.ajax({
+                url: '/api/booking/destroy/' + bookingId, // Replace with your actual endpoint for canceling bookings
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response)
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        $.ajax({
+            url: '/api/booking/notification/' + user_phone,
+            method: 'GET',
+            dataType: 'json',
+            success: function(res) {
+                if(res.length){
+                    const element = $('#user-info');
+                    element.html(`<div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6 mt-30 section-notification">
+                                                <div class="section-head mb-20">
+                                                    <h3>Lịch đặt của bạn (${res.length})</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> `)
+                    for (const value of res) {
+                        element.find('.section-notification').append(`<div class="section-body">
+                                                    <div class="body-content">
+                                                        <div class="content-item mb-3">
+                                                            <div>Thông tin lịch hẹn sắp tới:</div>
+                                                        </div>
+                                                        <div class="content-item">
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            <span>Ngày ${moment(value.date).format('DD.MM')}, ${value.time_sheet.hour} giờ ${value.time_sheet.minutes}</span>
+                                                        </div>
+                                                        <div class="content-item">
+                                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                                            <span>Stylist của bạn là ${value.stylist.name}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="section-footer text-center mt-2 mb-30">
+                                                    <button class="jqr-change" data-booking-id="${value.id}">Đổi</button>
+                                                    <button class="jqr-destroy" data-booking-id="${value.id}">Hủy lịch</button>
+                                                </div>`)
+                    }
+                }
+
+                // Add click event handler for 'Đổi' button
+                $(document).on('click', '.jqr-change', function() {
+                    var bookingId = $(this).data('booking-id');
+                    changeBooking(bookingId);
+                    window.location.href = '/user/booking';
+                });
+
+                // Add click event handler for 'Hủy lịch' button
+                $(document).on('click', '.jqr-destroy', function() {
+                    var bookingId = $(this).data('booking-id');
+                    Swal.fire({
+                        title: 'Bạn chắc chắn muốn hủy lịch?',
+                        text: "Bạn sẽ không thể hoàn nguyên điều này!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                '',
+                                'Hủy lịch thành công.',
+                                'success'
+                            ).then(() => {
+                                window.location.href = '/';
+                            });
+                            cancelBooking(bookingId);
+                        }
+                    });
+                });
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    })
+</script>
+
+@endsection
