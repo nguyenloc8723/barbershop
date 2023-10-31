@@ -141,5 +141,3 @@ Route::get('team-details', function () {
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
-
-
