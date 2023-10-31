@@ -28,7 +28,6 @@ $(document).ready(function () {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
 
-
     let arrayIDService = [];
 
     function loadStylist() {

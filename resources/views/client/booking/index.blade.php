@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 
