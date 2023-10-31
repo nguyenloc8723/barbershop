@@ -1,25 +1,12 @@
 @extends('client.layouts.layout')
 
 @section('style')
-
-
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">--}}
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">--}}
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
 @endsection
 
 @section('content')
-
-
-
-{{--@if (Auth::check())--}}
-{{--<div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>--}}
-{{--@else--}}
-{{--<div id="user_phone" data-user_phone=""></div>--}}
-
-{{--@endif--}}
 
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
@@ -48,6 +35,7 @@
                                 </svg>
                             </div>
                         </div>
+                        <p class="jqr-validateService disabled d-none mg-top-10 validateBooking">Mời bạn chọn dịch vụ để chọn giờ cắt</p>
                         <div class="block__box">
                             <div class="mt-4">
                                 <div class="flex flex-wrap -mx-1.5">
@@ -114,6 +102,7 @@
                                         <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                     </div>
                                 </div>
+                                <p class="jqr-validateDate disabled d-none mg-top-10 validateBooking">Mời bạn chọn ngày cắt để chọn giờ cắt</p>
                                 <div class="block suggestion-salon">
                                     <div class="mt-2">
                                         <div class="flex item-center " role="presentation">
@@ -139,7 +128,8 @@
                                 <div id=""></div>
                             </div>
                         </div>
-                        <div class="text-base">
+                        <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
+                        <div class="text-base jqr-textBase">
                             <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
@@ -161,7 +151,7 @@
                 </div>
                 <div class="new-affix-v2">
                     <div class="flex space-between text-center content-step time-line ">
-                        <div class="right button-next pointer btn-inactive" role="presentation">
+                        <div class="right button-next pointer btn-inactive jqr-completed" role="presentation">
                             <span>Hoàn tất</span>
                         </div>
                         <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
