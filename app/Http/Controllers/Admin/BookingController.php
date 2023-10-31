@@ -15,7 +15,7 @@ class BookingController extends AdminBaseController
     public $pathViews = 'admin.booking_blade';
     public $columns = [
         'id' => 'id',
-        'user_id' => 'Id Người dùng',
+        'user_phone' => 'Id Người dùng',
         'stylist_id' => 'Id Stylist',
         'timesheet_id' => 'Id Timesheet',
         'date' => "Ngày cắt",
