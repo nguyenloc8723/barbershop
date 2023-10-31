@@ -11,7 +11,7 @@
                 <div class="fxt-transformY-50 fxt-transition-delay-1">
                     <div class="fxt-form-row">
                         <input type="text" class="fxt-form-col otp-input form-control" id="verificationId"
-                               required="required" onkeyup="checkEnter(event)">
+                               required="required" onkeyup="checkEnter(event)" oninput="validatePhoneNumber(this)">
                     </div>
                 </div>
                 <div class="fxt-form-btn fxt-transformY-50 fxt-transition-delay-4">

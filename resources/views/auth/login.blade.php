@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="fxt-transformY-50 fxt-transition-delay-1">
                         <input type="text" id="number" class="form-control" name="number"
-                               placeholder="Số điện thoại ...">
+                               placeholder="Số điện thoại ..." oninput="validatePhoneNumber(this)" required>
                     </div>
                     <div id="recaptcha-container"></div>
 

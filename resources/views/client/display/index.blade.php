@@ -1,7 +1,7 @@
 @extends('client.layouts.layout')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
-    @endsection
+@endsection
 @section('content')
     <style>
         .section-body {
@@ -50,7 +50,8 @@
                             <div class="form-input__form flex mt-1">
                                 @if (Auth::check())
                                     <div class="form__input">
-                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input" value="{{Auth::user()->phone_number}}">
+                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"
+                                               value="{{Auth::user()->phone_number}}">
                                     </div>
                                 @else
                                     <div class="form__input">
@@ -59,9 +60,9 @@
                                 @endif
                                 <a class="jqr_routeBooking" data-booking-url="#">
                                     <div class="form__button content-center-middle css_booking" role="presentation">
-                                            <div class="btn_booking">
-                                                ĐẶT LỊCH NGAY
-                                            </div>
+                                        <div class="btn_booking">
+                                            ĐẶT LỊCH NGAY
+                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -78,10 +79,10 @@
     </div>
 
     @if (Auth::check())
-<div id="user-info" data-user-phone="{{Auth::user()->phone_number}}">
-    <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
-</div>
-@endif
+        <div id="user-info" data-user-phone="{{Auth::user()->phone_number}}">
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
+        </div>
+    @endif
 
     <!-- About -->
     <section class="about section-padding" data-scroll-index="1">
@@ -185,57 +186,62 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="about-list-icon"> <span class="ti-check"></span> </div>
-                        <div class="about-list-text">
-                            <p>We use quality products to make you look perfect</p>
+                        </li>
+                        <li>
+                            <div class="about-list-icon"><span class="ti-check"></span></div>
+                            <div class="about-list-text">
+                                <p>We use quality products to make you look perfect</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="about-list-icon"><span class="ti-check"></span></div>
+                            <div class="about-list-text">
+                                <p>We care about our customers satisfaction</p>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"><img
+                            src="{{asset('client/img/about2.jpg')}}" alt="" class="mt-90 mb-30"></div>
+                    <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"><img
+                            src="{{asset('client/img/about.jpg')}}" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Box -->
+    <section class="services-box section-padding pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="item"><span class="icon icon icon-icon-1-6"></span>
+                        <div class="cont">
+                            <h5>Cuts</h5>
+                            <p>Cuts ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
+                                monte.</p>
                         </div>
-                    </li>
-                    <li>
-                        <div class="about-list-icon"> <span class="ti-check"></span> </div>
-                        <div class="about-list-text">
-                            <p>We care about our customers satisfaction</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item"><span class="icon icon-icon-1-3"></span>
+                        <div class="cont">
+                            <h5>Fades</h5>
+                            <p>Fades ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
+                                monte.</p>
                         </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="{{asset('client/img/about2.jpg')}}" alt="" class="mt-90 mb-30"> </div>
-            <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="{{asset('client/img/about.jpg')}}" alt=""> </div>
-        </div>
-    </div>
-        </div>
-</section>
-<!-- Services Box -->
-<section class="services-box section-padding pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="item"> <span class="icon icon icon-icon-1-6"></span>
-                    <div class="cont">
-                        <h5>Cuts</h5>
-                        <p>Cuts ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="item"> <span class="icon icon-icon-1-3"></span>
-                    <div class="cont">
-                        <h5>Fades</h5>
-                        <p>Fades ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="item"> <span class="icon icon-icon-1-1"></span>
-                    <div class="cont">
-                        <h5>Shaves</h5>
-                        <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis monte.</p>
+                <div class="col-md-4">
+                    <div class="item"><span class="icon icon-icon-1-1"></span>
+                        <div class="cont">
+                            <h5>Shaves</h5>
+                            <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
+                                monte.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <!-- Services -->
     <section class="barber-services section-padding">
@@ -469,14 +475,16 @@
             </div>
             <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                 <div class="item">
-                    <div class="position-re o-hidden"> <img src="{{asset('client/img/services/1.jpg')}}" alt=""> </div>
+                    <div class="position-re o-hidden"><img src="{{asset('client/img/services/1.jpg')}}" alt=""></div>
                     <div class="con">
                         <div class="icon icon-icon-1-1"></div>
                         <h5>Beard Trim</h5>
                         <div class="line"></div>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <div class="permalink">Shaves ons amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
+                                <div class="permalink">Shaves ons amet ravida haretra nuam the drana miss uctus enec
+                                    accumsan.
+                                </div>
                                 <h6>$20</h6>
                             </div>
                         </div>
@@ -485,14 +493,16 @@
             </div>
             <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                 <div class="item">
-                    <div class="position-re o-hidden"> <img src="{{asset('client/img/services/3.jpg')}}" alt=""> </div>
+                    <div class="position-re o-hidden"><img src="{{asset('client/img/services/3.jpg')}}" alt=""></div>
                     <div class="con">
                         <div class="icon icon-icon-1-4"></div>
                         <h5>Hair Wash</h5>
                         <div class="line"></div>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <div class="permalink">Hair wash amet ravida haretra nuam the drana miss uctus enec accumsan.</div>
+                                <div class="permalink">Hair wash amet ravida haretra nuam the drana miss uctus enec
+                                    accumsan.
+                                </div>
                                 <h6>$15</h6>
                             </div>
                         </div>
@@ -500,59 +510,73 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Testimonials -->
-<section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg" data-overlay-dark="4">
-    <div class="container">
-        <div class="row">
-            <!-- Testimonials -->
-            <div class="col-md-8 offset-md-2 text-center">
-                <div class="testimonials">
-                    <div class="testimonials-box">
-                        <div class="owl-carousel owl-theme">
-                            <div class="item"> <span>
+        </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg"
+             data-overlay-dark="4">
+        <div class="container">
+            <div class="row">
+                <!-- Testimonials -->
+                <div class="col-md-8 offset-md-2 text-center">
+                    <div class="testimonials">
+                        <div class="testimonials-box">
+                            <div class="owl-carousel owl-theme">
+                                <div class="item"> <span>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                 </span>
-                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="{{asset('client/img/team/1.jpg')}}" alt=""> </div>
-                                    <div class="cont">
-                                        <h6>Andreas Brown</h6> <span>Customer review</span>
+                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
+                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
+                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
+                                        neca the sene on satien.</p>
+                                    <div class="info">
+                                        <div class="author-img"><img src="{{asset('client/img/team/1.jpg')}}" alt="">
+                                        </div>
+                                        <div class="cont">
+                                            <h6>Andreas Brown</h6> <span>Customer review</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item"> <span>
+                                <div class="item"> <span>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                 </span>
-                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="{{asset('client/img/team/2.jpg')}}" alt=""> </div>
-                                    <div class="cont">
-                                        <h6>Emily White</h6> <span>Customer review</span>
+                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
+                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
+                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
+                                        neca the sene on satien.</p>
+                                    <div class="info">
+                                        <div class="author-img"><img src="{{asset('client/img/team/2.jpg')}}" alt="">
+                                        </div>
+                                        <div class="cont">
+                                            <h6>Emily White</h6> <span>Customer review</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item"> <span>
+                                <div class="item"> <span>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                     <i class="star-rating"></i>
                                 </span>
-                                <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="{{asset('client/img/team/3.jpg')}}" alt=""> </div>
-                                    <div class="cont">
-                                        <h6>Daniel Martin</h6> <span>Customer review</span>
+                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
+                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
+                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
+                                        neca the sene on satien.</p>
+                                    <div class="info">
+                                        <div class="author-img"><img src="{{asset('client/img/team/3.jpg')}}" alt="">
+                                        </div>
+                                        <div class="cont">
+                                            <h6>Daniel Martin</h6> <span>Customer review</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -561,100 +585,91 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- First Class Services -->
-<div class="first-class-services section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-head text-center">
-                    <div class="section-subtitle">Firs-Class</div>
-                    <div class="section-title white">Our Features</div>
+    </section>
+    <!-- First Class Services -->
+    <div class="first-class-services section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-head text-center">
+                        <div class="section-subtitle">Firs-Class</div>
+                        <div class="section-title white">Our Features</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="square-flip">
-                    <div class="square bg-img" data-background="client/img/barber.jpg">
-                        <div class="square-container d-flex align-items-end justify-content-end">
-                            <div class="box-title">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="square-flip">
+                        <div class="square bg-img" data-background="client/img/barber.jpg">
+                            <div class="square-container d-flex align-items-end justify-content-end">
+                                <div class="box-title">
+                                    <h4>Groom's Shave</h4>
+                                </div>
+                            </div>
+                            <div class="flip-overlay"></div>
+                        </div>
+                        <div class="square2">
+                            <div class="square-container2">
                                 <h4>Groom's Shave</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
+                                        manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                             </div>
-                        </div>
-                        <div class="flip-overlay"></div>
-                    </div>
-                    <div class="square2">
-                        <div class="square-container2">
-                            <h4>Groom's Shave</h4>
-                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="square-flip">
-                    <div class="square bg-img" data-background="client/img/kids.jpg">
-                        <div class="square-container d-flex align-items-end justify-content-end">
-                            <div class="box-title">
+                <div class="col-md-4">
+                    <div class="square-flip">
+                        <div class="square bg-img" data-background="client/img/kids.jpg">
+                            <div class="square-container d-flex align-items-end justify-content-end">
+                                <div class="box-title">
+                                    <h4>Kids Cuts</h4>
+                                </div>
+                            </div>
+                            <div class="flip-overlay"></div>
+                        </div>
+                        <div class="square2">
+                            <div class="square-container2">
                                 <h4>Kids Cuts</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
+                                        manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                             </div>
-                        </div>
-                        <div class="flip-overlay"></div>
-                    </div>
-                    <div class="square2">
-                        <div class="square-container2">
-                            <h4>Kids Cuts</h4>
-                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="square-flip">
-                    <div class="square bg-img" data-background="client/img/team/b3.jpg">
-                        <div class="square-container d-flex align-items-end justify-content-end">
-                            <div class="box-title">
+                <div class="col-md-4">
+                    <div class="square-flip">
+                        <div class="square bg-img" data-background="client/img/team/b3.jpg">
+                            <div class="square-container d-flex align-items-end justify-content-end">
+                                <div class="box-title">
+                                    <h4>Creative Barbers</h4>
+                                </div>
+                            </div>
+                            <div class="flip-overlay"></div>
+                        </div>
+                        <div class="square2">
+                            <div class="square-container2">
                                 <h4>Creative Barbers</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
+                                        manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our
+                                    Team<span></span></a>
                             </div>
                         </div>
-                        <div class="flip-overlay"></div>
-                    </div>
-                    <div class="square2">
-                        <div class="square-container2">
-                            <h4>Creative Barbers</h4>
-                            <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our Team<span></span></a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Video -->
-<section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4" data-background="client/img/slider/5.jpg">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="section-head text-center">
-                    <div class="section-title white">Watch Our Barbershop Promo Video</div>
+    <!-- Video -->
+    <section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4"
+             data-background="client/img/slider/5.jpg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="section-head text-center">
+                        <div class="section-title white">Watch Our Barbershop Promo Video</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
-                    <div class="vid-butn"> <span class="icon"><i class="ti-control-play"></i></span> </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Pricing -->
-<section class="barber-pricing section-padding position-re">
-    <div class="container">
-        <div class="row">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
@@ -663,34 +678,47 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- News -->
-<section class="news section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-head text-center">
-                    <div class="section-subtitle">Latest news</div>
-                    <div class="section-title white">News & Blog</div>
-                </div>
-                @foreach($data as $item)
-                    <div class="col-md-6">
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">{{$item->name}}</div>
-                                    <div class="dots"></div>
-                                    <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
-                                </div>
-                                <p><i>{{$item->description}}</i></p>
-                            </div>
-                        </div>
+    </section>
+    <!-- Pricing -->
+    <section class="barber-pricing section-padding position-re">
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
+                            <div class="vid-butn"><span class="icon"><i class="ti-control-play"></i></span></div>
+                        </a>
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- News -->
+    <section class="news section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-head text-center">
+                        <div class="section-subtitle">Latest news</div>
+                        <div class="section-title white">News & Blog</div>
+                    </div>
+                    @foreach($data as $item)
+                        <div class="col-md-6">
+                            <div class="menu-list mb-30">
+                                <div class="item">
+                                    <div class="flex">
+                                        <div class="title">{{$item->name}}</div>
+                                        <div class="dots"></div>
+                                        <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
+                                    </div>
+                                    <p><i>{{$item->description}}</i></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </section>
     <!-- Team -->
     <section class="team section-padding pb-0">
@@ -934,34 +962,34 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Clients -->
-<section class="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="owl-carousel owl-theme">
-                    <div class="clients-logo">
-                        <a href="#0"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
+        </div>
+    </section>
+    <!-- Clients -->
+    <section class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="owl-carousel owl-theme">
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 @endsection
 

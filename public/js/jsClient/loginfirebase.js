@@ -41,6 +41,18 @@ function render() {
 
 
 var coderesult;
+function validatePhoneNumber(input) {
+    var phoneNumber = input.value;
+    var formattedPhoneNumber = '';
+    for (var i = 0; i < phoneNumber.length; i++) {
+        if (phoneNumber[i] >= '0' && phoneNumber[i] <= '9') {
+            formattedPhoneNumber += phoneNumber[i];
+        }
+    }
+    if (formattedPhoneNumber !== phoneNumber) {
+        input.value = formattedPhoneNumber;
+    }
+}
 function sendOTP() {
 
     var number = "+84" + $("#number").val();
