@@ -57,14 +57,23 @@ class AuthenticatedSessionController extends Controller
 
         $userRole = Auth::user()->user_type;
         // Thực hiện chuyển hướng dựa trên quyền
-        if ($userRole === 'user') {
-            return response()->json(['user_type' => 'user']);
-        } elseif ($userRole === 'admin') {
-            return response()->json(['user_type' => 'admin']);
+        if ($userRole === RouteServiceProvider::HOME_ADMIN) {
+            return response()->json(['user_type' => RouteServiceProvider::HOME_ADMIN]);
+        } elseif ($userRole === RouteServiceProvider::HOME_STYLIST) {
+            return response()->json(['user_type' => RouteServiceProvider::HOME_STYLIST]);
+        }else{
+            return response()->json(['user_type' => RouteServiceProvider::HOME_USER]);
         }
-
+//        /** @var  $user */
+//        $user = $request->user();
+//        if ($user->isAdmin()){
+//            return response()->json(['user_type' => RouteServiceProvider::HOME_ADMIN]);
+//        }elseif ($user->isSylist()){
+//            return response()->json(['user_type' => RouteServiceProvider::HOME_STYLIST]);
+//        }else{
+//            return response()->json(['user_type' => RouteServiceProvider::HOME_USER]);
+//        }
     }
-
 
 //    public function sendSms($receiverPhoneNumber)
 //    {
