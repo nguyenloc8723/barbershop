@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class ClientBookingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('client.booking.index');
     }

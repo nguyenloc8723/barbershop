@@ -1,10 +1,6 @@
 @extends('client.layouts.layout')
 
 @section('style')
-
-
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">--}}
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">--}}
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
@@ -12,12 +8,7 @@
 
 @section('content')
 
-
-@if (Auth::check())
-<div id="user_phone" data-user_phone="{{Auth::user()->phone_number}}"></div>
-@else
-<div id="user_phone" data-user_phone="+84{{request('user_phone')}}"></div>
-@endif
+<div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 
 </div>
@@ -35,7 +26,6 @@
                                     <path d="M10.0001 12.1209L7.68308 14.4379C8.04548 15.2925 8.09936 16.2466 7.83546 17.1366C7.57157 18.0266 7.00635 18.7971 6.23666 19.316C5.46698 19.835 4.54076 20.0701 3.61675 19.981C2.69274 19.892 1.82847 19.4843 1.17207 18.8279C0.515665 18.1715 0.108001 17.3072 0.0189446 16.3832C-0.0701123 15.4592 0.164983 14.533 0.683938 13.7633C1.20289 12.9936 1.97339 12.4284 2.86339 12.1645C3.75338 11.9006 4.70745 11.9545 5.56208 12.3169L7.88008 9.99988L2.21008 4.33288C2.02428 4.14715 1.87689 3.92663 1.77633 3.68393C1.67577 3.44123 1.62401 3.18109 1.62401 2.91838C1.62401 2.65566 1.67577 2.39552 1.77633 2.15282C1.87689 1.91012 2.02428 1.6896 2.21008 1.50388L2.91808 0.796875L10.0001 7.87988L17.0811 0.797875L17.7891 1.50488C17.9749 1.6906 18.1223 1.91112 18.2228 2.15382C18.3234 2.39652 18.3752 2.65666 18.3752 2.91937C18.3752 3.18209 18.3234 3.44222 18.2228 3.68493C18.1223 3.92763 17.9749 4.14815 17.7891 4.33388L12.1201 9.99988L14.4371 12.3169C15.2917 11.9545 16.2458 11.9006 17.1358 12.1645C18.0258 12.4284 18.7963 12.9936 19.3152 13.7633C19.8342 14.533 20.0693 15.4592 19.9802 16.3832C19.8912 17.3072 19.4835 18.1715 18.8271 18.8279C18.1707 19.4843 17.3064 19.892 16.3824 19.981C15.4584 20.0701 14.5322 19.835 13.7625 19.316C12.9928 18.7971 12.4276 18.0266 12.1637 17.1366C11.8998 16.2466 11.9537 15.2925 12.3161 14.4379L10.0001 12.1199V12.1209ZM4.00008 17.9999C4.53051 17.9999 5.03922 17.7892 5.4143 17.4141C5.78937 17.039 6.00008 16.5303 6.00008 15.9999C6.00008 15.4694 5.78937 14.9607 5.4143 14.5857C5.03922 14.2106 4.53051 13.9999 4.00008 13.9999C3.46965 13.9999 2.96094 14.2106 2.58587 14.5857C2.21079 14.9607 2.00008 15.4694 2.00008 15.9999C2.00008 16.5303 2.21079 17.039 2.58587 17.4141C2.96094 17.7892 3.46965 17.9999 4.00008 17.9999ZM16.0001 17.9999C16.5305 17.9999 17.0392 17.7892 17.4143 17.4141C17.7894 17.039 18.0001 16.5303 18.0001 15.9999C18.0001 15.4694 17.7894 14.9607 17.4143 14.5857C17.0392 14.2106 16.5305 13.9999 16.0001 13.9999C15.4696 13.9999 14.9609 14.2106 14.5859 14.5857C14.2108 14.9607 14.0001 15.4694 14.0001 15.9999C14.0001 16.5303 14.2108 17.039 14.5859 17.4141C14.9609 17.7892 15.4696 17.9999 16.0001 17.9999Z" fill="#3D3D3D" />
                                 </svg>
                             </div>
-
                             <button class="pr-0.5 overflow-hidden whitespace-nowrap overflow-ellipsis w-full text-sm color-111111 jqr-showAllService">
                                 Xem tất cả dịch vụ hấp dẫn
                             </button>
@@ -45,6 +35,7 @@
                                 </svg>
                             </div>
                         </div>
+                        <p class="jqr-validateService disabled d-none mg-top-10 validateBooking">Mời bạn chọn dịch vụ để chọn giờ cắt</p>
                         <div class="block__box">
                             <div class="mt-4">
                                 <div class="flex flex-wrap -mx-1.5">
@@ -111,6 +102,7 @@
                                         <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                     </div>
                                 </div>
+                                <p class="jqr-validateDate disabled d-none mg-top-10 validateBooking">Mời bạn chọn ngày cắt để chọn giờ cắt</p>
                                 <div class="block suggestion-salon">
                                     <div class="mt-2">
                                         <div class="flex item-center " role="presentation">
@@ -136,7 +128,8 @@
                                 <div id=""></div>
                             </div>
                         </div>
-                        <div class="text-base">
+                        <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
+                        <div class="text-base jqr-textBase">
                             <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
@@ -158,7 +151,7 @@
                 </div>
                 <div class="new-affix-v2">
                     <div class="flex space-between text-center content-step time-line ">
-                        <div class="right button-next pointer btn-inactive" role="presentation">
+                        <div class="right button-next pointer btn-inactive jqr-completed" role="presentation">
                             <span>Hoàn tất</span>
                         </div>
                         <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
@@ -173,4 +166,5 @@
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
+
 @endsection
