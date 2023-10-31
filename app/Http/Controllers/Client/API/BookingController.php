@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {
@@ -54,8 +55,10 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-//        Log::info($request->all());
+        //Log::info($request->all());
         $booking = $request->all();
+        $phone_number=$request->user_phone;
+        Log::info($phone_number);
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
@@ -71,6 +74,7 @@ class BookingController extends Controller
             ]);
             $booking_service->save();
         }
+//        $this->sendSms($phone_number);
         return response()->json(['success'=>$bookingDone_id]);
     }
 
@@ -91,17 +95,51 @@ class BookingController extends Controller
         Booking_service::where('booking_id',$id)->delete();
         return response()->json(['success'=>'Xóa thành công']);
     }
+
     function setUserPhone(Request $request){
         $user_phone = $request->user_phone;
         Log::info($user_phone);
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
-    public function bookingNotification($userId){
-        $bookings = Booking::with(['timeSheet','stylist'])->where('user_id', $userId)
+
+    public function bookingNotification($user_phone){
+        $bookings = Booking::with(['timeSheet','stylist'])->where('user_phone', $user_phone)
+
                     ->where('status', 1)
                     ->whereDoesntHave('results')
                     ->get();
         return response()->json($bookings);
+    }
+
+    public function sendSms($phoneNumber)
+    {
+        if (Str::startsWith($phoneNumber, '+84')) {
+            // Nếu có, loại bỏ tiền tố "+84"
+            $phoneNumber = Str::substr($phoneNumber, 3);
+        }
+//        $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
+//        $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
+        $APIKey = "44A12426B71D5CDBD86F3EB12DD2F4";
+        $SecretKey = "3FDAB16BC3DBB1DD12814080488663";
+        $YourPhone = $phoneNumber;
+        Log::info($YourPhone);
+        $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
+
+        $SendContent = urlencode($Content);
+        $data = "http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&Brandname=Baotrixemay&SmsType=2";
+
+        $curl = curl_init($data);
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+
+        $obj = json_decode($result, true);
+        if ($obj['CodeResult'] == 100) {
+            Log::info("thành công ");
+        } else {
+            Log::info("lỗi  ");
+        }
     }
 
 }

@@ -546,6 +546,7 @@ $(document).ready(function () {
         }else if ($('input[name="date"]').val() == ''){
             $('.jqr-validateDate').removeClass('d-none');
         }else if (time === 0){
+            $('.jqr-validateDate').addClass('d-none');
             $('.jqr-validateTime').removeClass('d-none');
         } else{
             pushRequest();

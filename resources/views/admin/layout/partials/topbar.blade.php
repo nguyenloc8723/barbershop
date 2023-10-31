@@ -183,7 +183,7 @@
                href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{{asset('be/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
                 <span class="pro-user-name ms-1">
-                                    Nowak <i class="mdi mdi-chevron-down"></i>
+                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
                                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -193,7 +193,7 @@
 {{--                </div>--}}
 
                 <!-- item-->
-                <a href="contacts-profile.html" class="dropdown-item notify-item">
+                <a href="" class="dropdown-item notify-item">
                     <i class="fe-user"></i>
                     <span>Tài khoản của tôi</span>
                 </a>
@@ -207,11 +207,14 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="auth-logout.html" class="dropdown-item notify-item">
+                <a href="{{ route('logout') }}" class="dropdown-item notify-item"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fe-log-out"></i>
                     <span>Đăng xuất</span>
                 </a>
-
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
 

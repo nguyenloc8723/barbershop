@@ -13,7 +13,8 @@ use App\Http\Resources\BookingResource;
 
 class ApiDashboardController extends Controller
 {
-    public function dailySales(){
+    public function dailySales()
+    {
         $data['totalUser'] = User::whereDate('created_at', now()->toDateString())->count();
         $data['totalBooking'] = Booking::whereDate('date', now()->toDateString())->count();
         $data['totalResult'] = Results::whereDate('created_at', now()->toDateString())->count();
@@ -21,34 +22,35 @@ class ApiDashboardController extends Controller
         return response()->json($data);
     }
 
-    public function dataSixMonths(){
+    public function dataSixMonths()
+    {
 
         $result = [];
 
         for ($i = 5; $i >= 0; $i--) {
             $startOfMonth = Carbon::now()->subMonths($i)->startOfMonth();
             $endOfMonth = Carbon::now()->subMonths($i)->endOfMonth();
-    
+
             $userCount = User::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
-    
+
             $stylistCount = Stylist::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
-    
+
             $data[] = [
                 'month' => $startOfMonth->format('M'),
                 'user_count' => $userCount,
                 'stylist_count' => $stylistCount,
             ];
         }
-    
+
         return response()->json($data);
-            
     }
 
-    public function monthlyRevenue(){
-        
+    public function monthlyRevenue()
+    {
+
         $revenueByMonth = \DB::table('results')
-            ->join('booking_services', 'results.booking_id', '=', 'booking_services.booking_id')
-            ->join('services', 'booking_services.service_id', '=', 'services.id')
+            ->join('booking_service', 'results.booking_id', '=', 'booking_service.booking_id')
+            ->join('services', 'booking_service.service_id', '=', 'services.id')
             ->join('bookings', 'results.booking_id', '=', 'bookings.id')
             ->select(
                 \DB::raw('MONTH(bookings.date) as month'),
@@ -66,7 +68,7 @@ class ApiDashboardController extends Controller
                     'month' => $month,
                     'revenue' => 0,
                 ];
-            }else{
+            } else {
                 $data[] = [
                     'month' => $month,
                     'revenue' => $revenueByMonth[$month],
@@ -77,12 +79,14 @@ class ApiDashboardController extends Controller
         return response()->json($data);
     }
 
-    public function latestStylist(){
+    public function latestStylist()
+    {
         $data = Stylist::orderByDesc('id')->get()->take(6);
         return response()->json($data);
     }
 
-    public function latestBooking(){
+    public function latestBooking()
+    {
         $bookings = Booking::orderByDesc('id')->get()->take(7);
         return BookingResource::collection($bookings);
     }
