@@ -55,7 +55,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-//        Log::info($request->all());
+        //Log::info($request->all());
         $booking = $request->all();
         $phone_number=$request->user_phone;
         Log::info($phone_number);
@@ -95,13 +95,16 @@ class BookingController extends Controller
         Booking_service::where('booking_id',$id)->delete();
         return response()->json(['success'=>'Xóa thành công']);
     }
+
     function setUserPhone(Request $request){
         $user_phone = $request->user_phone;
         Log::info($user_phone);
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
-    public function bookingNotification($userId){
-        $bookings = Booking::with(['timeSheet','stylist'])->where('user_id', $userId)
+
+    public function bookingNotification($user_phone){
+        $bookings = Booking::with(['timeSheet','stylist'])->where('user_phone', $user_phone)
+
                     ->where('status', 1)
                     ->whereDoesntHave('results')
                     ->get();
