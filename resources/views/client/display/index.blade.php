@@ -52,6 +52,8 @@
                                     <div class="form__input">
                                         <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"
                                                value="{{Auth::user()->phone_number}}">
+{{--                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"--}}
+{{--                                               value="{{ preg_replace('/(\d{4})(\d{3})(\d{3})/', '$1.$2.$3', str_replace('+84', '', Auth::user()->phone_number)) }}">--}}
                                     </div>
                                 @else
                                     <div class="form__input">
