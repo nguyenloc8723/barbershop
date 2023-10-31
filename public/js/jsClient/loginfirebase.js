@@ -51,6 +51,8 @@ function validatePhoneNumber(input) {
     }
     if (formattedPhoneNumber !== phoneNumber) {
         input.value = formattedPhoneNumber;
+        $("#error").text("Ko đúng định dạng .");
+        $("#error").show();
     }
 }
 function sendOTP() {
