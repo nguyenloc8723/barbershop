@@ -2,7 +2,7 @@ $(document).ready(function () {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     const btnCancel = $('.jquery-btn-cancel');
     const btnShowModal = $('.query-btn-show-modal');
-    // const btnUpdate = $('.js-btn-update');
+    //     // const btnUpdate = $('.js-btn-update');
     const fileInput = $('#service-image');
     const imgContainer = $('.selected-images');
     const listTable = $('#jquery-value');

@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>What We Do</h5>
-                    <h1>Our Services</h1>
+                    <h5>Barber X6PRO+1</h5>
+                    <h1>Dịch vụ của chúng tôi </h1>
                 </div>
             </div>
         </div>

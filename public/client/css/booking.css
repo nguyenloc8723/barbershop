@@ -297,7 +297,7 @@ textarea {
     border: 1px solid #d1d1d1;
     border-radius: 6px;
     overflow: hidden;
-    max-width: 250px;
+    max-width: 350px;
     height: auto;
     display: flex;
     flex-direction: column;
