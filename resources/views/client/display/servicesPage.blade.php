@@ -32,7 +32,8 @@
                             <div class="flex">
                                 <div class="title">{{$model->name}}</div>
                                 <div class="dots"></div>
-                                <div class="price">{{$model->price}}$</div>
+                                <div class="price"> {{number_format($model->price, 0, ".", ".")}}đ</div>
+
                             </div>
                         </div>
                     </div>

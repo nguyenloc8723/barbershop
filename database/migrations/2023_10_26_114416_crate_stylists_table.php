@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('excerpt');
+            $table->string('excerpt')->default('')->change();
             $table->string('image')->nullable();
+            $table->timestamps();
         });
     }
 

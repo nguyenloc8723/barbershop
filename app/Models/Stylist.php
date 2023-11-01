@@ -14,9 +14,9 @@ class Stylist extends Model
         'name',
         'excerpt',
         'image',
-        // 'is_vip',
     ];
 
+    public $timestamps = true; // This line will enable the created_at and updated_at timestamps.
 
 //    public function timeSheet(){
 //        return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
@@ -24,4 +24,7 @@ class Stylist extends Model
 //    public function booking(){
 //        return $this->hasOne(Booking::class);
 //    }
+
 }
+
+

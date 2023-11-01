@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('stylist_time_sheet', function (Blueprint $table) {
             $table->id();
-            $table->integer('stylist_id');
+            $table->integer('user_id');
             $table->integer('timesheet_id');
             $table->boolean('is_active')->default(true);
             $table->boolean('is_block')->default(true);

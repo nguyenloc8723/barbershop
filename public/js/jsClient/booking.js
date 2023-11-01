@@ -28,7 +28,6 @@ $(document).ready(function () {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
 
-
     let arrayIDService = [];
 
     function loadStylist() {
@@ -546,6 +545,7 @@ $(document).ready(function () {
         }else if ($('input[name="date"]').val() == ''){
             $('.jqr-validateDate').removeClass('d-none');
         }else if (time === 0){
+            $('.jqr-validateDate').addClass('d-none');
             $('.jqr-validateTime').removeClass('d-none');
         } else{
             pushRequest();

@@ -53,35 +53,10 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__.'/auth.php';
-
-
-
 
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
-
-Route::get('services', [ClientServiceController::class,'services'])->name('services');
-Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
-
 
 Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
@@ -127,7 +102,6 @@ Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
 Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
-
 Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {
     return view('client.display.pricing');
@@ -141,5 +115,3 @@ Route::get('team-details', function () {
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
-
-

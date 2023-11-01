@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
 
@@ -166,4 +165,5 @@
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
+
 @endsection
