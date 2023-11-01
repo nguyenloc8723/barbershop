@@ -1,11 +1,8 @@
 @extends('client.layouts.layout')
-
 @section('style')
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-
 @endsection
-
 @section('content')
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 <div class="fix-hed">
@@ -161,9 +158,7 @@
     </div>
 </section>
 @endsection
-
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
-
 @endsection
