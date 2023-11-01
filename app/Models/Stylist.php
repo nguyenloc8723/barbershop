@@ -18,10 +18,10 @@ class Stylist extends Model
     ];
 
 
-    public function timeSheet(){
-        return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
-    }
-    public function booking(){
-        return $this->hasOne(Booking::class);
-    }
+//    public function timeSheet(){
+//        return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
+//    }
+//    public function booking(){
+//        return $this->hasOne(Booking::class);
+//    }
 }

@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    // 
+    //
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
@@ -24,7 +24,9 @@ class User extends Authenticatable
         'phone_number',
     ];
 
-
+    public function timeSheet(){
+        return $this->belongsToMany(Timesheet::class,'stylist_time_sheet');
+    }
 
     public function booking(){
         return $this->hasMany(Booking::class);

@@ -18,7 +18,7 @@ class StylistTimeSheet extends Model
         'is_block',
     ];
     public function stylist(){
-        return $this->belongsTo(Stylist::class,'stylist_id','id');
+        return $this->belongsTo(User::class,'stylist_id','id');
     }
 
     public function TimeSheet(){

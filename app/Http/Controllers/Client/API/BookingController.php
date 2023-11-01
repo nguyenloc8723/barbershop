@@ -26,8 +26,9 @@ class BookingController extends Controller
     private $user_phone = '';
     public function index()
     {
-        $data = $this->model::all();
-        return response()->json($data);
+//        $data = $this->model::all();
+//        $data = User::query()->where()
+//        return response()->json($data);
     }
     public function timeSheetDetail(string $id)
     {
