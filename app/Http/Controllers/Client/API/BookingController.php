@@ -27,14 +27,15 @@ class BookingController extends Controller
     private $user_phone = '';
     public function index()
     {
-        $data = $this->model::all();
+//        $data = $this->model::all();
+        $data = User::query()->where('user_type', 'STYLIST')->get();
         return response()->json($data);
     }
     public function timeSheetDetail(string $id)
     {
-        $dataStylist = $this->model::query()->with('timeSheet')->where('id',$id)->first();
+        $dataStylist = User::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
-//        Log::info($dataTimeSheet);
+        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
@@ -79,7 +80,7 @@ class BookingController extends Controller
     }
 
     public function stylistDetail(string $id){
-        $data = $this->model::query()->where('id',$id)->first();
+        $data = User::query()->where('id',$id)->first();
         return response()->json($data);
     }
 

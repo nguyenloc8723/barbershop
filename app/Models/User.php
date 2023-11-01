@@ -22,8 +22,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'phone_number',
-        'user_type'
+        'name',
+        'image',
+        'excerpt',
+        'user_type',
     ];
+
+
 
     public function isAdmin()
     {
@@ -40,6 +45,10 @@ class User extends Authenticatable
         return $this->type === USER_TYPE_USER;
     }
 //    ----------------------- relation --------------------
+    public function timeSheet()
+    {
+        return $this->belongsToMany(Timesheet::class, 'stylist_time_sheet');
+    }
     public function booking(){
         return $this->hasMany(Booking::class);
     }
