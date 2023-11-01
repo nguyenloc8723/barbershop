@@ -28,13 +28,28 @@ class User extends Authenticatable
         'user_type',
     ];
 
+
+
+    public function isAdmin()
+    {
+        return $this->type === USER_TYPE_ADMIN;
+    }
+
+    public function isStylist()
+    {
+        return $this->type === USER_TYPE_STYLIST;
+    }
+
+    public function isUser()
+    {
+        return $this->type === USER_TYPE_USER;
+    }
+//    ----------------------- relation --------------------
     public function timeSheet()
     {
         return $this->belongsToMany(Timesheet::class, 'stylist_time_sheet');
     }
-
-    public function booking()
-    {
+    public function booking(){
         return $this->hasMany(Booking::class);
     }
 }

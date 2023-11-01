@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('image')->nullable();
             $table->string('excerpt')->nullable();
-            $table->string('user_type')->default('USER');
+            $table->string('user_type')->default(USER_TYPE_USER);
             $table->rememberToken();
             $table->timestamps();
         });
