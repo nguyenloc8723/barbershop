@@ -36,6 +36,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+
                 data.map(item => {
                     $('.jqr-show-stylist').append(`
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
@@ -65,6 +66,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('.jqr-messageStylist').html(`
                    <div class="stylist-selected">
                       <div class="stylist__top">
