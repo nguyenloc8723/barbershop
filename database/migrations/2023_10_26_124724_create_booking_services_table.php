@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('service_id');
             $table->timestamps();
-            $table->foreign('booking_id')->references('id')->on('bookings');
-            $table->foreign('service_id')->references('id')->on('services');
+//            $table->foreign('booking_id')->references('id')->on('bookings');
+//            $table->foreign('service_id')->references('id')->on('services');
         });
     }
 

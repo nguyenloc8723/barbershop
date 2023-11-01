@@ -40,7 +40,7 @@ class BookingController extends Controller
     }
 
     public function randomStylist(){
-        $stylist = Stylist::inRandomOrder()->first();
+        $stylist =User::inRandomOrder()->where('user_type', 'STYLIST')->first();
         return response()->json($stylist);
     }
 
@@ -58,8 +58,6 @@ class BookingController extends Controller
     {
         //Log::info($request->all());
         $booking = $request->all();
-        $phone_number=$request->user_phone;
-        Log::info($phone_number);
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
