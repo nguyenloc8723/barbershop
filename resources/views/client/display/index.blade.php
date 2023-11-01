@@ -540,7 +540,7 @@
                         <div class="reservations mb-10">
                             <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
                             <div class="text">
-                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865886742</a>
+                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886 742</a>
                             </div>
                         </div>
                     </div>
@@ -611,10 +611,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Chọn thợ cắt tóc</label>
+                                                <label>Chọn Barber</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">họn thợ cắt tóc</option>
+                                                        <option value="0">Chọn Barber</option>
                                                         <option value="0">Philip</option>
                                                         <option value="1">Stephen</option>
                                                         <option value="2">Dennis</option>

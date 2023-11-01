@@ -107,11 +107,11 @@
                     <!-- Appointment call -->
                     <div class="col-md-5 mb-30 mt-60">
                         <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>We Are Best Barbers & Hair Cutting Salon at NYC.</h5>
+                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất ở Hà Nội.</h5>
                         <div class="reservations mb-10">
                             <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
                             <div class="text">
-                                <p class="color-1">Appointment</p> <a class="color-1" href="tel:855-100-4444">855 100 4444</a>
+                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886 742</a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                     <div class="col-md-5 offset-md-2">
                         <div class="booking-box">
                             <div class="head-box text-center">
-                                <h4>Make An Appointment</h4>
+                                <h4>Đặt một cuộc hẹn</h4>
                             </div>
                             <div class="booking-inner clearfix">
                                 <form class="form1 clearfix">
@@ -128,7 +128,7 @@
                                             <div class="input1_wrapper">
                                                 <label>Name</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Name" required>
+                                                    <input type="text" class="form-control input" placeholder="Tên" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
                                             <div class="input1_wrapper">
                                                 <label>Phone</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Phone" required>
+                                                    <input type="text" class="form-control input" placeholder="Số điện thoại" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,16 +144,16 @@
                                             <div class="input1_wrapper">
                                                 <label>Date</label>
                                                 <div class="input1_inner">
-                                                    <input type="text" class="form-control input datepicker" placeholder="Date" required>
+                                                    <input type="text" class="form-control input datepicker" placeholder="Ngày" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Time</label>
+                                                <label>Thời gian</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Time</option>
+                                                        <option value="0">Thời gian</option>
                                                         <option value="1">10:00 am</option>
                                                         <option value="2">11:00 am</option>
                                                         <option value="3">12:00 pm</option>
@@ -167,10 +167,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Services</label>
+                                                <label>Dịch vụ</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Services</option>
+                                                        <option value="0">Dịch vụ</option>
                                                         <option value="0">Hair Styling</option>
                                                         <option value="1">Face Mask</option>
                                                         <option value="2">Shaving</option>
@@ -182,10 +182,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Choose Barber</label>
+                                                <label>Chọn Barber</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Choose Barber</option>
+                                                        <option value="0">Chọn Barber</option>
                                                         <option value="0">Philip</option>
                                                         <option value="1">Stephen</option>
                                                         <option value="2">Dennis</option>
@@ -195,7 +195,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Make Appointment</button>
+                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn</button>
                                         </div>
                                     </div>
                                 </form>

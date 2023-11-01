@@ -47,7 +47,7 @@
 
                 <div style="margin-top: 20px; float:left" class="w-100 text-center">
                     <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Sửa</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"><a style="color: white" href="{{route('stylists.index')}}">Cancel</a></button>
                 </div>
             </form>
         </div>

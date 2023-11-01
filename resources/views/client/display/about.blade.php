@@ -118,7 +118,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="section-head text-center">
-                        <div class="section-title white">Watch Our Barbershop Promo Video</div>
+                        <div class="section-title white">Xem video quảng cáo tiệm cắt tóc của chúng tôi</div>
                     </div>
                 </div>
             </div>
@@ -137,8 +137,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Our Barbers</div>
-                        <div class="section-title white">Hair Stylists</div>
+                        <div class="section-subtitle">THỢ CẮT TÓC CỦA CHÚNG TÔI</div>
+                        <div class="section-title white">Các nhà tạo mẫu tóc</div>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                     <div class="owl-carousel owl-theme">
                         @foreach($stylists as $stylist)
                         <div class="team-card mb-30">
-                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" alt="" class="w-100"></div>
+                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
                             <div class="team-content">
                                 <h3 class="team-title">{{$stylist->name}}<span>Barber</span></h3>
                                 <p class="team-text">{{$stylist->excerpt}}</p>

@@ -32,7 +32,7 @@
                 </div>
                 <div style="float:left" class="w-100 text-center">
                     <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Thêm</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"><a style="color: white" href="{{route('faqs.index')}}">Cancel</a></button>
                 </div>
                 <script>
                     // Kích hoạt CKEditor trên textarea với id "editor"
