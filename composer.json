@@ -23,7 +23,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1"
-        
+
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +31,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "files": ["app/Helpers/system.php"]
+        "files": [
+            "app/Helpers/system.php",
+            "app/Helpers/const.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
