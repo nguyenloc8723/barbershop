@@ -45,9 +45,9 @@
             <div class="text-center card-body">
                 <div>
                     <form action="{{route('stylists.destroy',$stylist->id)}}" method="POST" >
-                        <input type="checkbox" name="checkbox" id="checkbox"> 
                         @csrf
                         @method('DELETE')
+                        <input type="hidden" name="selected_stylists" id="selected_stylists" value="">
                     <img src="{{ asset('storage/image/'.$stylist->image)}}"
                          class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image"/>
 
@@ -61,6 +61,7 @@
                         </p>
                         <p class="text-muted font-13"><strong>Location :</strong> <span
                                 class="ms-2">Việt Nam</span></p>
+                            <input type="checkbox" name="selected_stylists[]" value="{{ $stylist->id }}">
                     </div>
                     <button type="button"
                             class="btn btn-primary rounded-pill waves-effect waves-light"><a href="{{route('stylists.edit',$stylist->id)}}" style="color: white ">Update member</a>
@@ -71,15 +72,24 @@
                     </button>
                     </form>
                 </div>
-            
             </div>
         </div>
-        
-
-
     </div>
     @endforeach
-
+    <script>
+        const checkboxes = document.querySelectorAll('.stylist-checkbox');
+        const selectedStylistsInput = document.getElementById('selected_stylists');
+    
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const selectedStylists = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+    
+                selectedStylistsInput.value = selectedStylists.join(',');
+            });
+        });
+    </script>
 </div>
 
 

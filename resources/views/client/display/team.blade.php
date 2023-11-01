@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Our Barbers</h5>
-                    <h1>Hair Stylists</h1>
+                    <h5>Thợ cắt tóc của chúng tôi</h5>
+                    <h1>Nhà tạo mẫu tóc</h1>
                 </div>
             </div>
         </div>

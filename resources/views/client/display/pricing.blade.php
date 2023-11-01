@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Our Price List</h5>
-                    <h1>Pricing Plan</h1>
+                    <h5>Bảng giá của chúng tôi</h5>
+                    <h1>Các gói giá</h1>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                     <div class="img left">
                         <a href="pricing.html"> <img src="client/img/slider/6.jpg" alt="">
                             <div class="centered">
-                                <h2>Haircut</h2>
+                                <h2>Cắt tóc</h2>
                             </div>
                         </a>
                     </div>
@@ -28,79 +28,43 @@
                 <!-- menu list -->
                 <div class="col-md-6 p-0 valign">
                     <div class="content barber-pricing">
+                        @foreach ($pricing->slice(0, 3) as $item)
                         <div class="menu-list mb-30">
                             <div class="item">
                                 <div class="flex">
-                                    <div class="title">Perukar HairCut</div>
+                                    <div class="title">{{$item->name}}</div>
                                     <div class="dots"></div>
-                                    <div class="price">$30</div>
+                                    <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
                                 </div>
-                                <p><i>Haircut, shampoo, scalp massage, hot towel face treatment.</i></p>
+                                <p><i>{{strip_tags($item->description)}}</i></p>
                             </div>
                         </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Haircut with Skin Fade</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$20</div>
-                                </div>
-                                <p><i>Haircut with a flat top or skin fade using a zero guard.</i></p>
-                            </div>
-                        </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Haircut Razor skin fade</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$15</div>
-                                </div>
-                                <p><i>Perukar Haircut with a razor skin fade.</i></p>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    </div>        
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 p-0 order2 valign">
                     <div class="content barber-pricing">
+                        @foreach ($pricing->slice(3, 3) as $item)
                         <div class="menu-list mb-30">
                             <div class="item">
                                 <div class="flex">
-                                    <div class="title">Basic Beard Trim</div>
+                                    <div class="title">{{$item->name}}</div>
                                     <div class="dots"></div>
-                                    <div class="price">$25</div>
+                                    <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
                                 </div>
-                                <p><i>A beard trim done with trimmers or clippers & guards only.</i></p>
+                                <p><i>{{strip_tags($item->description)}}</i></p>
                             </div>
                         </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Beard Trim & Line Up</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$20</div>
-                                </div>
-                                <p><i>A beard trim done with scissors, clippers, or trimmers. </i></p>
-                            </div>
-                        </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Electric Razor</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$15</div>
-                                </div>
-                                <p><i>A line-up or edge-up with trimmers or electric razor.</i></p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order1 item">
                     <div class="img left">
                         <a href="pricing.html"> <img src="client/img/slider/4.jpg" alt="">
                             <div class="centered">
-                                <h2>Beard</h2>
+                                <h2>Tỉa râu</h2>
                             </div>
                         </a>
                     </div>
@@ -111,43 +75,25 @@
                     <div class="img left">
                         <a href="pricing.html"> <img src="client/img/slider/5.jpg" alt="">
                             <div class="centered">
-                                <h2>Shaves</h2>
+                                <h2>Cạo viền</h2>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 valign">
                     <div class="content barber-pricing">
+                        @foreach ($pricing->slice(6, 3) as $item)
                         <div class="menu-list mb-30">
                             <div class="item">
                                 <div class="flex">
-                                    <div class="title">Full Face Shave</div>
+                                    <div class="title">{{$item->name}}</div>
                                     <div class="dots"></div>
-                                    <div class="price">$20</div>
+                                    <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
                                 </div>
-                                <p><i>Slick up your face with our smooth hot lather full face shave.</i></p>
+                                <p><i>{{strip_tags($item->description)}}</i></p>
                             </div>
                         </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Partial Face Shave</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$15</div>
-                                </div>
-                                <p><i>Partial shaving of the face, cheeks and neck. Includes a beard trim.</i></p>
-                            </div>
-                        </div>
-                        <div class="menu-list mb-30">
-                            <div class="item">
-                                <div class="flex">
-                                    <div class="title">Head Shave</div>
-                                    <div class="dots"></div>
-                                    <div class="price">$25</div>
-                                </div>
-                                <p><i>Make your dome shine with our awesome, hot lather head shave.</i></p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

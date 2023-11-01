@@ -25,6 +25,7 @@ class StylistRequest extends FormRequest
                 'name' => 'required',
                 'phone' => 'required',
                 'image' => 'required',
+                'excerpt' => 'required',
             ];
     }
 }

@@ -15,7 +15,7 @@ class BlogController extends Controller
     {
         $blogs= Blog::get();
         // $blogs=strip_tags($blogs);
-        return view('index',compact('blogs'));
+        return view('/blog/index',compact('blogs'));
     }
 
     /**
@@ -23,7 +23,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('add');
+        return view('/blog/add');
     }
 
     /**
@@ -32,11 +32,24 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $blog=new Blog();
-        $blog->title=$request->title;  
-        $image=$request->image->getClientOriginalName();
-        $request->image->storeAs('public/image/', $image);
-        $blog->image=$image;
+        $blog->title=$request->title; 
+        if($request->image){
+            Storage::delete('public/image/',$blog->image);   
+            $image=$request->image->getClientOriginalName();
+            $request->image->storeAs('public/image/', $image);
+            $blog->image=$image;
+        } 
         $blog->description=$request->description; 
+        $request->validate([
+            'title' => 'required', 
+            'description' => 'required',   
+            'image' => 'required', 
+        ],
+        [
+            'title.required' => 'Hãy nhập tiêu đề bài viết.',
+            'description.required' => 'Mô tả không được để trống.',
+            'image.required' => 'Ảnh không được để trống.',
+        ]);
         $blog->save();
         return redirect()->route('blogs.index');
     }
@@ -50,7 +63,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('edit',compact('blog'));
+        return view('/blog/edit',compact('blog'));
     }
 
     /**
@@ -64,8 +77,18 @@ class BlogController extends Controller
                 $image=$request->image->getClientOriginalName();
                 $request->image->storeAs('public/image/', $image);
                 $blog->image=$image;
-                $blog->description=$request->description;
             }
+            $blog->description=$request->description;
+            $request->validate([
+                'title' => 'required', 
+                'description' => 'required',   
+                'image' => 'required', 
+            ],
+            [
+                'title.required' => 'Hãy nhập tiêu đề bài viết.',
+                'description.required' => 'Mô tả không được để trống.',
+                'image.required' => 'Ảnh không được để trống.',
+            ]);
            $blog->save();
            return redirect()->route('blogs.index');
     }

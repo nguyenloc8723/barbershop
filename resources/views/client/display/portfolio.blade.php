@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Gallery & Video</h5>
-                    <h1>Our Portfolio</h1>
+                    <h5>Thư viện ảnh </h5>
+                    <h1>Các kiểu tóc của chúng tôi</h1>
                 </div>
             </div>
         </div>
@@ -18,76 +18,53 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Portfolio</div>
-                        <div class="section-title">Image Gallery</div>
+                        <div class="section-subtitle">Kiểu tóc</div>
+                        <div class="section-title">Thư viện</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <!-- 3 columns -->
+                @foreach($portfolio->slice(0, 3) as $item)
                 <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/3.jpg" title="" class="img-zoom">
+                    <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/3.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                            <div class="gallery-img">
+                                <img src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                            </div>
                         </div>
-                    </a>
+                    </a>       
                 </div>
-                <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/4.jpg" title="" class="img-zoom">
-                        <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/4.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/5.jpg" title="" class="img-zoom">
-                        <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/5.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
                 <!-- 2 columns -->
+                @foreach($portfolio->slice(3,2) as $item)
                 <div class="col-md-6 gallery-item">
-                    <a href="client/img/slider/16.jpg" title="" class="img-zoom">
+                    <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/16.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
+                            <div class="gallery-img">
+                                <img style="width: " src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                            </div>
+                        </div>                     
+                    </a>                  
                 </div>
-                <div class="col-md-6 gallery-item">
-                    <a href="client/img/slider/14.jpg" title="" class="img-zoom">
-                        <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/14.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
                 <!-- 3 columns -->
+                @foreach($portfolio->slice(5, 3) as $item)
                 <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/8.jpg" title="" class="img-zoom">
+                    <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/8.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
+                            <div class="gallery-img">
+                                <img src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                            </div>
+                        </div>              
+                    </a>          
                 </div>
-                <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/9.jpg" title="" class="img-zoom">
-                        <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/9.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 gallery-item">
-                    <a href="client/img/slider/10.jpg" title="" class="img-zoom">
-                        <div class="gallery-box">
-                            <div class="gallery-img"> <img src="client/img/slider/10.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
     <!-- Video Gallery -->
-    <section class="section-padding">
+    {{-- <section class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -147,6 +124,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 @endsection

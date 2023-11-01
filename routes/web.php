@@ -35,7 +35,8 @@ use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\Admin\StatisticalController;
-
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -112,7 +113,7 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
     Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
-    Route::resource('review', ReviewController::class);
+    Route::resource('review', ReviewController::class); 
     Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
 
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
@@ -170,42 +171,48 @@ Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
 Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
 Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
-Route::get('about', function () {
-    return view('client.display.about');
-})->name('about');
+// Route::get('about', function () {
+//     return view('client.display.about');
+// })->name('about');
 //trang chu
 //Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
 Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
-Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
+Route::get('about' , [App\Http\Controllers\client\ClientIndexController::class, 'about'])->name('about');
+Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
+Route::get('faq' , [App\Http\Controllers\client\ClientIndexController::class, 'faq'])->name('faq');
+Route::get('pricing' , [App\Http\Controllers\client\ClientIndexController::class, 'pricing'])->name('pricing');
+Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
+Route::get('/team', [App\Http\Controllers\client\ClientTeamController::class, 'index'])->name('team');
 
 Route::get('contact', function () {
     return view('client.display.contact');
 })->name('contact');
 
-Route::get('faq', function () {
-    return view('client.display.faq');
-})->name('faq');
+// Route::get('faq', function () {
+//     return view('client.display.faq');
+// })->name('faq');
 
-Route::get('portfolio', function () {
-    return view('client.display.portfolio');
-})->name('portfolio');
+// Route::get('portfolio', function () {
+//     return view('client.display.portfolio');
+// })->name('portfolio');
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
 Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
 
 Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
-Route::get('pricing', function () {
-    return view('client.display.pricing');
-})->name('pricing');
-Route::get('team', function () {
-    return view('client.display.team');
-})->name('team');
+// Route::get('pricing', function () {
+//     return view('client.display.pricing');
+// })->name('pricing');
+// Route::get('team', function () {
+//     return view('client.display.team');
+// })->name('team');
 Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
-Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
+
+
 
 

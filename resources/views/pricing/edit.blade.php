@@ -1,54 +1,54 @@
 @extends('admin.layout.master')
 @section('style')
 <link rel="stylesheet" href="{{asset('css/service.css')}}">
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.0/classic/ckeditor.js"></script>
 @endsection
 @section('content')
 <div class="modal-full-width">
     <div class="modal-content">
         <div class="modal-header bg-light">
-            <h4 class="modal-title" id="myCenterModalLabel">Sửa Stylist</h4>
+            <h4 class="modal-title" id="myCenterModalLabel">Sửa chính sách</h4>
             <button type="button" class="btn-close jquery-btn-cancel" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            <form class="edit_stylist" method="POST" action="{{ route('stylists.update',$stylist->id )}}" enctype="multipart/form-data">
+            <form class="d-flex justify-content-between flex-wrap" method="POST" action="{{ route('pricings.update', [$pricing->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="mb-3">
-                    <label for="name" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{old('name')?? $stylist->name}}" />
-                    @error('name')
-                    <p style="color: red">{{$message}}</p>
-                    @enderror
-
+                <div class="col-xl-6">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Tên chính sách</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{$pricing->name}}" />
+                        @error('name')
+                        <p style="color: red">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Giá</label>
+                        <input type="text" class="form-control" id="price" name="price" value="{{$pricing->price}}" />
+                        @error('price')
+                        <p style="color: red">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" cols="30" rows="10" value="{{$pricing->description}}"></textarea>
+                        @error('description')
+                        <p style="color: red">{{$message}}</p>
+                        @enderror
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Số điện thoại</label> 
-                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone" value="{{old('phone')?? $stylist->phone}}"/>
-                    @error('phone')
-                    <p style="color: red">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Mô tả ngắn</label> 
-                    <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter excerpt" value="{{old('excerpt')?? $stylist->excerpt}} "/>
-                    @error('excerpt')
-                    <p style="color: red">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Avatar</label>
-                    <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" placeholder="Avatar" value="{{old('image')?? $stylist->image}}">
-                    @error('image')
-                    <p style="color: red">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div style="margin-top: 20px; float:left" class="w-100 text-center">
+                <div style="margin-top:20px; float:left" class="w-100 text-center">
                     <button type="submit" class="btn btn-success waves-effect waves-light" data-bs-dismiss="modal">Sửa</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel">Cancel</button>
                 </div>
+                <script>
+                    // Kích hoạt CKEditor trên textarea với id "editor"
+                    ClassicEditor
+                        .create(document.querySelector('#description'))
+                        .catch(error => {
+                            console.error(error);
+                        });
+                </script>
             </form>
         </div>
     </div>
@@ -75,5 +75,4 @@
 
 <!-- Datatables init -->
 <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
-
 @endsection

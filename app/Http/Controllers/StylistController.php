@@ -34,9 +34,23 @@ class StylistController extends Controller
         $stylist->name=$request->name;  
         $stylist->phone=$request->phone;
         $stylist->excerpt=$request->excerpt;
-        $image=$request->image->getClientOriginalName();
-        $request->image->storeAs('public/image/', $image);
-        $stylist->image=$image;
+        if ($request->hasFile('image')) {
+            $image = $request->image->getClientOriginalName();
+            $request->image->storeAs('public/image/', $image);
+            $stylist->image = $image;
+        }
+        $request->validate([
+            'name' => 'required', // Kiểm tra xem trường 'field1' có được điền không
+            'excerpt' => 'required',    // Kiểm tra xem trường 'field2' có đúng định dạng email không
+            'phone' => 'numeric',  // Kiểm tra xem trường 'field3' có phải là số không
+            'image' => 'required',  // Kiểm tra xem trường 'field3' có phải là số không
+        ],
+        [
+            'name.required' => 'Hãy nhập tên stylist.',
+            'excerpt.required' => 'Mô tả ngắn không được để trống.',
+            'phone.numeric' => 'Số điện thoại không được để trống và phải là số.',
+            'image.required' => 'Ảnh đại diện không được để trống.',
+        ]);
         $stylist->save();
         return redirect()->route('stylists.index');
     }
@@ -71,6 +85,18 @@ class StylistController extends Controller
                 $request->image->storeAs('public/image/', $image);
                 $stylist->image=$image;
             }
+            $request->validate([
+                'name' => 'required', 
+                'excerpt' => 'required',   
+                'phone' => 'numeric',  
+                'image' => 'required', 
+            ],
+            [
+                'name.required' => 'Hãy nhập tên stylist.',
+                'excerpt.required' => 'Mô tả ngắn không được để trống.',
+                'phone.numeric' => 'Số điện thoại không được để trống và phải là số.',
+                'image.required' => 'Ảnh đại diện không được để trống.',
+            ]);
            $stylist->save();
            return redirect()->route('stylists.index');
     }
@@ -88,9 +114,12 @@ class StylistController extends Controller
      $stylists= Stylist::where('name','like','%'.$request->key.'%')->get();
      return view('/stylist/search_stylist',compact('stylists'));
     }
-    public function deletes(Request $request)
-    {
-        $deletes= Stylist::all();
-        return view('/stylist/index_stylist',compact('deletes'));
+    public function deleteMultiple(Request $request) {
+        $selectedStylists = $request->input('selected_stylists', []);
+    
+        // Xóa các stylist có ID nằm trong mảng $selectedStylists
+        Stylist::whereIn('id', $selectedStylists)->delete();
+    
+        return redirect()->route('stylists.index');
     }
 }
