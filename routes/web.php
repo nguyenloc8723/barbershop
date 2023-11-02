@@ -22,7 +22,7 @@ use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
-use App\Http\Controllers\StylistController;
+use App\Http\Controllers\Admin\StylistController;
 
 use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
@@ -79,6 +79,7 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('stylist', StylistController::class);
     Route::resource('timesheets', TimesheetController::class);
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
@@ -205,7 +206,5 @@ Route::get('team-details', function () {
     return view('client.display.team-details');
 })->name('team-details');
 
-Route::get('search', [StylistController::class, 'getSearch'])->name('search');
-Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
 
 

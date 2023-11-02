@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\API\APIBookingController;
 use App\Http\Controllers\Admin\API\ApiCategoryController;
-
+use App\Http\Controllers\Admin\API\ApiStylistController;
 use App\Http\Controllers\Admin\API\ApiRoleController;
 use App\Http\Controllers\Admin\API\ApiStylistTimeSheetsController;
 use App\Http\Controllers\Admin\API\ApiUserController;
@@ -67,6 +67,7 @@ Route::group([],function (){
 });
 
 Route::resource('category', ApiCategoryController::class);
+Route::resource('stylist', ApiStylistController::class);
 Route::resource('stylistTimeSheets', ApiStylistTimeSheetsController::class);
 Route::resource('user', ApiUserController::class);
 
