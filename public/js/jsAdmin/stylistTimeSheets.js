@@ -61,7 +61,7 @@ $(document).ready(function () {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.id}</td>
-                          <td>${item.stylist_id}</td>
+                          <td>${item.user_id}</td>
                           <td>${item.timesheet_id}</td>
                           <td>${item.is_active}</td>
                           <td>${item.is_block}</td>

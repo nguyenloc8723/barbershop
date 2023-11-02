@@ -12,7 +12,7 @@ class StylistTimeSheet extends Model
     protected $table = 'stylist_time_sheet';
     protected $fillable = [
         'id',
-        'stylist_id',
+        'user_id',
         'timesheet_id',
         'is_active',
         'is_block',
