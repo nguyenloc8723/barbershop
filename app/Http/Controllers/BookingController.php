@@ -13,7 +13,7 @@ class BookingController extends Controller
 {
     $statistics = DB::table('bookings')
         ->select(
-            'user_id',
+            'user_phone',
             'stylist_id',
             'timesheet_id',
             'date',
@@ -24,7 +24,7 @@ class BookingController extends Controller
             DB::raw('COUNT(*) as total')
         )
         ->groupBy(
-            'user_id',
+            'user_phone',
             'stylist_id',
             'timesheet_id',
             'date',

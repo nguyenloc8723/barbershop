@@ -31,7 +31,6 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>guard name</th>
                             <th>Action Status</th>
                         </tr>
                         </thead>

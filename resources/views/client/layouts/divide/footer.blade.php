@@ -12,7 +12,11 @@
                             <p class="footer-contact-phone">0865886742</p>
                             <p class="footer-contact-mail">6xpro@barber.com</p>
                         </div>
-                        <div class="footer-about-social-list"> <a href="#"><i class="ti-instagram"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-youtube"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-pinterest"></i></a> </div>
+                        <div class="footer-about-social-list"> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i>
+                            </a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-youtube"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-pinterest"></i></a> </div>
                     </div>
                 </div>
                 <div class="col-md-3 offset-md-1">

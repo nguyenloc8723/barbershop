@@ -1,25 +1,31 @@
 @extends('client.layouts.layout')
-
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+@endsection
 @section('content')
     <style>
-        .section-body{
+        .section-body {
             background: #14100c;
             border-radius: 10px;
         }
-        .body-content{
+
+        .body-content {
             padding: 20px;
         }
-        .body-content .content-item{
+
+        .body-content .content-item {
             color: #fff;
             font-size: 16px;
             margin-bottom: 5px;
             font-weight: 500;
             letter-spacing: 0.5px;
         }
-        .body-content .content-item i{
+
+        .body-content .content-item i {
             margin-right: 15px;
         }
-        .section-footer button{
+
+        .section-footer button {
             padding: 5px 10px;
             border-radius: 10px;
             color: #14100c;
@@ -28,6 +34,8 @@
             font-weight: 500;
         }
     </style>
+
+
     <!-- Parallax Image -->
     <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
         <div class="container">
@@ -36,7 +44,30 @@
                     <div class="v-middle">
                         <h5>Đẹp trai, Bản lĩnh, Tự tin</h5>
                         <h1>LỰA CHỌN CỦA PHÁI MẠNH<br>6X-PRO BARBER SHOP.</h1>
-                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5> <a href="{{route('client.booking')}}" class="button-1 mt-20">Đặt lịch ngay<span></span></a>
+                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5> 
+                        <div class="home__form-input">
+                            <div class="form-input__form flex mt-1">
+                                @if (Auth::check())
+                                    <div class="form__input">
+                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"
+                                               value="{{Auth::user()->phone_number}}">
+{{--                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"--}}
+{{--                                               value="{{ preg_replace('/(\d{4})(\d{3})(\d{3})/', '$1.$2.$3', str_replace('+84', '', Auth::user()->phone_number)) }}">--}}
+                                    </div>
+                                @else
+                                    <div class="form__input">
+                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input" value="">
+                                    </div>
+                                @endif
+                                <a class="jqr_routeBooking" data-booking-url="#">
+                                    <div class="form__button content-center-middle css_booking" role="presentation">
+                                        <div class="btn_booking">
+                                            ĐẶT LỊCH NGAY
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,11 +79,11 @@
     </div>
 
     @if (Auth::check())
-        <div id="user-info" data-userid="{{Auth::id()}}">
-            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->   
+        <div id="user-info" data-user-phone="{{Auth::user()->phone_number}}">
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
     @endif
-    <!-- About -->
+
     <section class="about section-padding" data-scroll-index="1">
         <div class="container">
             <div class="row">
@@ -65,27 +96,29 @@
                     <p>6X-Pro Barber-shop đầu tư mạnh mẽ vào nền tảng công nghệ giúp nâng cao trải nghiệm dịch vụ, hiệu suất vận hành, đồng thời liên tục nghiên cứu và phát triển các dịch vụ và trải nghiệm mới phù hợp với nhu cầu khách hàng nam giới hiện đại.</p>
                     <ul class="about-list list-unstyled mb-30">
                         <li>
-                            <div class="about-list-icon"> <span class="ti-check"></span> </div>
+                            <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
                                 <p>Chúng tôi là những thợ cắt tóc chuyên nghiệp và được chứng nhận.</p>
                             </div>
                         </li>
                         <li>
-                            <div class="about-list-icon"> <span class="ti-check"></span> </div>
+                            <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
                                 <p>Chúng tôi sử dụng sản phẩm chất lượng để làm cho vẻ ngoài của bạn trở nên hoàn hảo.</p>
                             </div>
                         </li>
                         <li>
-                            <div class="about-list-icon"> <span class="ti-check"></span> </div>
+                            <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
                                 <p>Chúng tôi quan tâm đến sự hài lòng của khách hàng.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="client/img/about2.jpg" alt="" class="mt-90 mb-30"> </div>
-                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="client/img/about.jpg" alt=""> </div>
+                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"><img
+                        src="{{asset('client/img/about2.jpg')}}" alt="" class="mt-90 mb-30"></div>
+                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"><img
+                        src="{{asset('client/img/about.jpg')}}" alt=""></div>
             </div>
         </div>
     </section>
@@ -133,7 +166,8 @@
     <section class="about section-padding bg-darkbrown">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 mb-30 animate-box" data-animate-effect="fadeInLeft"> <img src="client/img/about3.jpg" alt=""> </div>
+                <div class="col-md-5 mb-30 animate-box" data-animate-effect="fadeInLeft"><img
+                        src="{{asset('client/img/about3.jpg')}}" alt=""></div>
                 <div class="col-md-7 valign mb-30 animate-box" data-animate-effect="fadeInRight">
                     <div class="row">
                         <div class="col-md-12">
@@ -213,7 +247,8 @@
         </div>
     </section>
     <!-- Testimonials -->
-    <section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg" data-overlay-dark="4">
+    <section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg"
+             data-overlay-dark="4">
         <div class="container">
             <div class="row">
                 <!-- Testimonials -->
@@ -230,7 +265,8 @@
                                     </span>
                                     <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ không thất vọng!</p>
                                     <div class="info">
-                                        <div class="author-img"> <img src="client/img/team/1.jpg" alt=""> </div>
+                                        <div class="author-img"><img src="{{asset('client/img/team/1.jpg')}}" alt="">
+                                        </div>
                                         <div class="cont">
                                             <h6>Vũ Duy Khánh</h6> <span>Đánh giá của khách hàng</span>
                                         </div>
@@ -243,9 +279,13 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
+                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
+                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
+                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
+                                        neca the sene on satien.</p>
                                     <div class="info">
-                                        <div class="author-img"> <img src="client/img/team/2.jpg" alt=""> </div>
+                                        <div class="author-img"><img src="{{asset('client/img/team/2.jpg')}}" alt="">
+                                        </div>
                                         <div class="cont">
                                             <h6>Emily White</h6> <span>Customer review</span>
                                         </div>
@@ -258,9 +298,13 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra neca the sene on satien.</p>
+                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
+                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
+                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
+                                        neca the sene on satien.</p>
                                     <div class="info">
-                                        <div class="author-img"> <img src="client/img/team/3.jpg" alt=""> </div>
+                                        <div class="author-img"><img src="{{asset('client/img/team/3.jpg')}}" alt="">
+                                        </div>
                                         <div class="cont">
                                             <h6>Daniel Martin</h6> <span>Customer review</span>
                                         </div>
@@ -343,7 +387,8 @@
         </div>
     </div>
     <!-- Video -->
-    <section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4" data-background="client/img/slider/5.jpg">
+    <section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4"
+             data-background="client/img/slider/5.jpg">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -355,7 +400,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
-                        <div class="vid-butn"> <span class="icon"><i class="ti-control-play"></i></span> </div>
+                        <div class="vid-butn"><span class="icon"><i class="ti-control-play"></i></span></div>
                     </a>
                 </div>
             </div>
@@ -374,18 +419,18 @@
                     </div>
                 </div>
                 @foreach($data as $item)
-                <div class="col-md-6">
-                    <div class="menu-list mb-30">
-                        <div class="item">
-                            <div class="flex">
-                                <div class="title">{{$item->name}}</div>
-                                <div class="dots"></div>
-                                <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
+                    <div class="col-md-6">
+                        <div class="menu-list mb-30">
+                            <div class="item">
+                                <div class="flex">
+                                    <div class="title">{{$item->name}}</div>
+                                    <div class="dots"></div>
+                                    <div class="price">{{number_format($item->price, 0, ".", ".")}}đ</div>
+                                </div>
+                                <p><i>{{$item->description}}</i></p>
                             </div>
-                            <p><i>{{$item->description}}</i></p>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -405,19 +450,25 @@
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         @foreach($stylists as $stylist)
-                        <div class="team-card mb-30">
-                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px;" alt="" class="w-100"></div>
-                            <div class="team-content">
-                                <h3 class="team-title"><span>Barber</span></h3>
-                                <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
-                                <div class="social">
-                                    <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
-                                </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                            <div class="team-card mb-30">
+                                <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}"
+                                                           style="height: 300px;width: 400px;" alt="" class="w-100">
+                                </div>
+                                <div class="team-content">
+                                    <h3 class="team-title"><span>Barber</span></h3>
+                                    <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
+                                        vesatien arcuman ontese auctor ac aleuam aretra.</p>
+                                    <div class="social">
+                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
+                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
+                                            <a href="#"><i class="ti-instagram"></i></a></div>
+                                    </div>
+                                    <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                                </div>
+                                <div class="title-box">
+                                    <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
+                                </div>
                             </div>
-                            <div class="title-box">
-                                <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
-                            </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -516,21 +567,21 @@
                             <div class="con"> <span class="category">
                                     <a href="blog.html">Chăm sóc tóc</a>
                                 </span>
-                                <h5><a href="post.html">{{$blog->title}}</a></h5>
-                            </div>
+                                        <h5><a href="post.html">{{$blog->title}}</a></h5>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                </div>
-             
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </section>
     <!-- Appointment Form -->
     <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/20.jpg" data-overlay-dark="6">
+        <div class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/20.jpg"
+             data-overlay-dark="6">
             <div class="container">
                 <div class="row">
                     <!-- Appointment call -->
@@ -642,19 +693,19 @@
                 <div class="col-md-7">
                     <div class="owl-carousel owl-theme">
                         <div class="clients-logo">
-                            <a href="#0"><img src="client/img/clients/2.png" alt=""></a>
+                            <a href="#0"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="client/img/clients/3.png" alt=""></a>
+                            <a href="#0"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="client/img/clients/4.png" alt=""></a>
+                            <a href="#0"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="client/img/clients/5.png" alt=""></a>
+                            <a href="#0"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="client/img/clients/6.png" alt=""></a>
+                            <a href="#0"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -662,123 +713,11 @@
         </div>
     </section>
 
+
 @endsection
 
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
-    
-    
-        $(<script>
-        $(document).ready(function (){
-            var userId = $('#user-info').data('userid');
-
-            // Function to change a booking
-            function changeBooking(bookingId) {
-                console.log('Đổi lịch ' + bookingId);
-                $.ajax({
-                    url: '/api/booking/change/' + bookingId, // Replace with your actual endpoint for changing bookings
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (response) {
-                        console.log(response)
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            // Function to cancel a booking
-            function cancelBooking(bookingId) {
-                console.log('Hủy lịch ' + bookingId);
-                $.ajax({
-                    url: '/api/booking/cancel/' + bookingId, // Replace with your actual endpoint for canceling bookings
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (response) {
-                        console.log(response)
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            $.ajax({
-                url: '/api/booking/notification/' + userId,
-                method: 'GET',
-                dataType: 'json',
-                success: function (res) {
-                    const element = $('#user-info');
-                    element.html(`<div class="container">
-                                    <div class="row">
-                                        <div class="col-md-6 mt-30 section-notification">
-                                            <div class="section-head mb-20">
-                                                <h3>Lịch đặt của bạn (${res.length})</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> `)
-                    for(const value of res){
-                        element.find('.section-notification').append(`<div class="section-body">
-                                                <div class="body-content">
-                                                    <div class="content-item mb-3">
-                                                        <div>Thông tin lịch hẹn sắp tới:</div>
-                                                    </div>
-                                                    <div class="content-item">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                        <span>Ngày ${moment(value.date).format('DD.MM')}, ${value.time_sheet.hour} giờ ${value.time_sheet.minutes}</span>
-                                                    </div>
-                                                    <div class="content-item">
-                                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                                        <span>Stylist của bạn là ${value.stylist.name}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="section-footer text-center mt-2 mb-30">
-                                                <button class="jqr-change" data-booking-id="${value.id}">Đổi</button>
-                                                <button class="jqr-destroy" data-booking-id="${value.id}">Hủy lịch</button>
-                                            </div>`)
-                    }
-
-                    // Add click event handler for 'Đổi' button
-                    $(document).on('click','.jqr-change', function () {
-                        var bookingId = $(this).data('booking-id');
-                        console.log('đổi lịch');
-                        changeBooking(bookingId);
-                        window.location.href = '/client/booking';
-                    });
-
-                    // Add click event handler for 'Hủy lịch' button
-                    $(document).on('click','.jqr-destroy', function () {
-                        var bookingId = $(this).data('booking-id');
-                        Swal.fire({
-                            title: 'Bạn chắc chắn muốn hủy lịch?',
-                            text: "Bạn sẽ không thể hoàn nguyên điều này!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire(
-                                    '',
-                                    'Hủy lịch thành công.',
-                                    'success'
-                                ).then(() => {
-                                    window.location.href = '/';
-                                });
-                                cancelBooking(bookingId);
-                            }
-                        });
-                    });
-                },
-                error: function ( error) {
-                    console.log(error);
-                }
-            });
-        })
-    </script>
+    <script src="{{asset('js/jsClient/home.js')}}"></script>
 @endsection
 
