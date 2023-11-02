@@ -4,44 +4,52 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer-column footer-contact">
-                        <h3 class="footer-title">Contact</h3>
-                        <p class="footer-contact-text">0665 Broadway NY, New York 10001
-                            <br>United States of America
+                        <h3 class="footer-title">Liên hệ</h3>
+                        <p class="footer-contact-text">Cao đẳng FPT Polytechnic
+                            <br>Việt Nam
                         </p>
                         <div class="footer-contact-info">
-                            <p class="footer-contact-phone">855 100 4444</p>
+                            <p class="footer-contact-phone">0123 456 789</p>
                             <p class="footer-contact-mail">info@barber.com</p>
                         </div>
-                        <div class="footer-about-social-list"> <a href="#"><i class="ti-instagram"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-youtube"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-pinterest"></i></a> </div>
+                        <div class="footer-about-social-list"> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i>
+                            </a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-youtube"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-facebook"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-pinterest"></i></a> </div>
                     </div>
                 </div>
                 <div class="col-md-3 offset-md-1">
                     <div class="item opening">
-                        <h3 class="footer-title">Work Time</h3>
+                        <h3 class="footer-title">Thời gian làm việc</h3>
                         <ul>
                             <li>
-                                <div class="tit">Monday</div>
-                                <div class="dots"></div> <span>10:00 - 20:00</span>
+                                <div class="tit">Thứ hai</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
                             </li>
                             <li>
-                                <div class="tit">Tuesday</div>
-                                <div class="dots"></div> <span>10:00 - 20:00</span>
+                                <div class="tit">Thứ ba</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
                             </li>
                             <li>
-                                <div class="tit">Thursday</div>
-                                <div class="dots"></div> <span>10:00 - 20:00</span>
+                                <div class="tit">Thứ tư</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
                             </li>
                             <li>
-                                <div class="tit">Friday</div>
-                                <div class="dots"></div> <span>10:00 - 20:00</span>
+                                <div class="tit">Thứ năm</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
                             </li>
                             <li>
-                                <div class="tit">Saturday</div>
-                                <div class="dots"></div> <span>10:00 - 20:00</span>
+                                <div class="tit">Thứ sáu</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
                             </li>
                             <li>
-                                <div class="tit">Weekend</div>
-                                <div class="dots"></div> <span>Closed</span>
+                                <div class="tit">Thứ bảy</div>
+                                <div class="dots"></div> <span>08:00 - 21:00</span>
+                            </li>
+                            <li>
+                                <div class="tit">Chủ nhật</div>
+                                <div class="dots"></div> <span>Đóng cửa</span>
                             </li>
                         </ul>
                     </div>

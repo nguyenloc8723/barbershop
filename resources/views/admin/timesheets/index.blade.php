@@ -114,7 +114,7 @@
             all_ids.push($(this).val());
         });
         $.ajax({
-            url: "{{ route('timesheet.delete') }}",
+            url: "{{ route('timesheets.delete') }}",
             type: "DELETE",
             data: {
                 ids: all_ids,

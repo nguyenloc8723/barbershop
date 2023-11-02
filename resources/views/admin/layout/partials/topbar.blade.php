@@ -182,9 +182,16 @@
             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
                href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{{asset('be/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
-                <span class="pro-user-name ms-1">
-                                    Nowak <i class="mdi mdi-chevron-down"></i>
-                                </span>
+{{--                @if(Auth::user()->user_type == 'STYLIST')--}}
+{{--                    <span class="pro-user-name ms-1">--}}
+{{--                                   Stylist-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                </span>--}}
+{{--                @else--}}
+{{--                    <span class="pro-user-name ms-1">--}}
+{{--                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                </span>--}}
+{{--                @endif--}}
+
             </a>
             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                 <!-- item-->
@@ -193,25 +200,29 @@
 {{--                </div>--}}
 
                 <!-- item-->
-                <a href="contacts-profile.html" class="dropdown-item notify-item">
+                <a href="" class="dropdown-item notify-item">
                     <i class="fe-user"></i>
                     <span>Tài khoản của tôi</span>
                 </a>
 
+
                 <!-- item-->
-{{--                <a href="auth-lock-screen.html" class="dropdown-item notify-item">--}}
-{{--                    <i class="fe-lock"></i>--}}
-{{--                    <span>Lock Screen</span>--}}
-{{--                </a>--}}
+                <a href="{{route('index')}}" class="dropdown-item notify-item">
+                    <i class="fe-lock"></i>
+                    <span>website</span>
+                </a>
 
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="auth-logout.html" class="dropdown-item notify-item">
+                <a href="{{ route('logout') }}" class="dropdown-item notify-item"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fe-log-out"></i>
                     <span>Đăng xuất</span>
                 </a>
-
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
 

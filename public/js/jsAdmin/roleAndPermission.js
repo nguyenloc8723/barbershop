@@ -52,6 +52,11 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on('click','#selectAll', function () {
+        let isChecked = $(this).prop('checked');
+        $('.jqr-checkbox').prop('checked', isChecked);
+    } )
+
     function loadTable() {
         $.ajax({
             url: urlShow,
@@ -64,7 +69,6 @@ $(document).ready(function () {
                     $('#jquery-list').append(`
                         <tr>
                           <td>${item.name}</td>
-                          <td>${item.guard_name}</td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -103,7 +107,6 @@ $(document).ready(function () {
     loadTable();
 
     function add() {
-        console.log(2);
         let formData = new FormData(formModal[0]);
         $.ajax({
             url: addRoles,

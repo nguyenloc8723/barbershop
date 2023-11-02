@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Stylist;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +14,7 @@ class ApiStylistController extends Controller
      */
     public function index()
     {
-        $data = Stylist::all();
+        $data = User::query()->where('user_type', 'STYLIST')->get();
         return response()->json($data);
     }
 
@@ -23,16 +23,15 @@ class ApiStylistController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $path = $file->store('public/images');
-            $filename = basename($path);
-            Stylist::create([
-                'name' => $request->input('name'),
-                'phone' => $request->input('phone'),
-                'excerpt' => $request->input('excerpt'),
-                'image' => $filename,
-            ]);
+            $data = $request->all();
+            $image = uploadFile('images',$file,false);
+            $data['image'] = $image;
+            $model = new User;
+            $model->fill($data);
+            $model->save();
         }
 
         return response()->json(['success','Thêm mới thành công']);
@@ -43,7 +42,7 @@ class ApiStylistController extends Controller
      */
     public function show(string $id)
     {
-        $data = Stylist::query()->findOrFail($id);
+        $data = User::query()->where('user_type', 'STYLIST')->findOrFail($id);
         return response()->json($data);
     }
 
@@ -52,31 +51,22 @@ class ApiStylistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $stylist = Stylist::query()->findOrFail($id);
+
+        $stylist = User::query()->findOrFail($id);
+
         try {
             if ($request->hasFile('image')) {
-                // Xóa ảnh cũ
-                Storage::delete('public/images/'.$stylist->image);
-                $file = $request->file('image');
-                $path = $file->store('public/images');
-                $filename = basename($path);
 
-                $stylist->update([
-                    'name' => $request->input('name'),
-                    'phone' => $request->input('phone'),
-                    'excerpt' => $request->input('excerpt'),
-                    'image' => $filename,
-                ]);
-                $stylist->touch();
-                dd($stylist->getChanges());
+                $file = $request->file('image');
+                $data = $request->all();
+                $data['image'] = uploadFile('images',$file, false);
+                $stylist->fill($data);
+                $stylist->save();
+                Storage::delete('public/images/'.$stylist->image);
             } else {
-                $stylist->update([
-                    'name' => $request->input('name'),
-                    'phone' => $request->input('phone'),
-                    'excerpt' => $request->input('excerpt'),
-                ]);
-                $stylist->touch();
-                dd($stylist->getChanges());
+                $data = $request->all();
+                $stylist->fill($data);
+                $stylist->save();
             }
 
             return response()->json(['success' => 'Cập nhật thành công']);
@@ -90,7 +80,7 @@ class ApiStylistController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Stylist::find($id);
+        $data = User::find($id);
         $data->delete();
         return response()->json(['success','Đã vào thùng rác']);
     }

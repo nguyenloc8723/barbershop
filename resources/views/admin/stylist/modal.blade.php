@@ -14,13 +14,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Số điện thoại</label>
-                            <input type="tel" class="form-control" name="phone" id="phone" required/>
+                            <input type="tel" class="form-control" name="phone_number" id="phone_number" required/>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Mô tả ngắn</label>
                             <input type="text" class="form-control" name="excerpt" id="excerpt" required/>
                         </div>
-                        <div class="mb-3 is_active">
+                        <div class="mb-3">
+                            <label class="form-label">User type</label>
+                            <select class="form-control" name="user_type" id="user_type">
+                                <option value="USER" >User</option>
+                                <option value="STYLIST" selected>Stylist</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
                         </div>
                     </div>
 

@@ -64,7 +64,7 @@ $(document).ready(function () {
                         <div class="card">
                             <div class="text-center card-body">
                                 <div>
-                                    <img src="/storage/images/${item.image}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
+                                    <img src="/storage/${item.image}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
 
                                     <p class="text-muted font-13 mb-3">
                                         ${checked}
@@ -73,7 +73,7 @@ $(document).ready(function () {
                                     <div class="text-start">
                                         <p class="text-muted font-13"><strong>Full Name :</strong> <span class="ms-2">${item.name}</span></p>
 
-                                        <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">${item.phone}</span></p>
+                                        <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">${item.phone_number}</span></p>
 
                                         <p class="text-muted font-13"><strong>Location :</strong> <span class="ms-2">Hà Nội, Việt Nam</span></p>
                                     </div>
@@ -151,34 +151,16 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                let is_activeSelect = `
-                <label for="" class="form-label">Is_active</label>
-                    <select class="form-control" name="is_active">
-                `;
-                let option = ['Không hoạt động','Hoạt động'];
-                for (let i = 0; i < option.length; i++){
-                    let selected = '';
-                    if (data.is_active === 1){
-                        selected = 'selected';
-                    }
-                    else{
-                        selected = '';
-                    }
-                    is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
-                }
-
-                is_activeSelect+= `</select>`;
-
+                console.log(data.phone_number)
                 let isImage= `
                         <div class="item-images">
-                        <img src="/storage/images/${data.image}"  alt=""/>
+                        <img src="/storage/${data.image}"  alt=""/>
                         </div>
                     `;
 
-                $('.is_active').html(is_activeSelect);
                 actionMethod.val('update');
                 $('input[name="name"]').val(data.name);
-                $('input[name="phone"]').val(data.phone);
+                $('input[name="phone_number"]').val(data.phone_number);
                 $('input[name="excerpt"]').val(data.excerpt);
                 imgContainer.html(isImage);
                 showModal();
@@ -193,8 +175,8 @@ $(document).ready(function () {
     function update() {
         let formData = new FormData(formModal[0]);
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
-            method: 'put',
+            url: '/api/stylist/put' +'/' + idUpdate,
+            method: 'POST',
             data: formData,
             processData: false,
             contentType: false,
@@ -212,7 +194,7 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
-    };
+    }
 
     fileInput.slideUp();
     fileInput.on('change', function () {
