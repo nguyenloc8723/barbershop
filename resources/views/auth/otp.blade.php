@@ -24,7 +24,7 @@
         <div class="fxt-footer">
             <div class="fxt-transformY-50 fxt-transition-delay-9">
                 <p class="fxt-resend-wrap">Không nhận được mã OTP?
-                    <button id="closePopupOTP" class="fxt-btn-resend" type="button" >Gửi lại</button>
+                    <button id="closePopupOTP" class="fxt-btn-resend" type="button" onclick="resendOTP();" >Gửi lại</button>
                 </p>
             </div>
         </div>
