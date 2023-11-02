@@ -3,10 +3,11 @@
 @section('style')
 
 
-<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
-
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">--}}
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">--}}
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 @endsection
 
@@ -27,6 +28,7 @@
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                 <div class="main-screen">
+
                     <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                         <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
                         <div class="cursor-pointer flex item-center bg-f7f7f7 rounded" style="height: 2.75rem; padding-left: 0.625rem; padding-right: 0.625rem;" aria-hidden="true">
@@ -136,41 +138,58 @@
                                 <div id=""></div>
                             </div>
                         </div>
-                        <div class="text-base">
-                            <div class="flex space-between is_height">
-                                <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
-                                <label class="switch ">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round jqr-consultant"></span>
-                                </label>
+                        <div class="">
+                            <div class="text-base">
+                                <div class="">
+                                    <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
+                                    <div class="form-check">
+                                        <input type="radio" class="" id="" name="pttt" value="1">
+                                        <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="" id="" name="pttt" value="2">
+                                        <label class="form-check-label" for="radio2">Thanh toán online</label>
+                                    </div>
+
+                                </div>
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
+                                    <label class="switch ">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-consultant"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
+                                <div class="flex space-between is_height">
+                                    <p class="fw-bold fs-5">Chụp ảnh sau khi cắt</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round jqr-accept_take_a_photo"></span>
+                                    </label>
+                                </div>
+                                <p class="jqr-acceptTakeAPhoto">Bạn cho phép chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
                             </div>
-                            <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
-                            <div class="flex space-between is_height">
-                                <p class="fw-bold fs-5">Chụp ảnh sau khi cắt</p>
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round jqr-accept_take_a_photo"></span>
-                                </label>
-                            </div>
-                            <p class="jqr-acceptTakeAPhoto">Bạn cho phép chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
                         </div>
                     </div>
-                </div>
-                <div class="new-affix-v2">
-                    <div class="flex space-between text-center content-step time-line ">
-                        <div class="right button-next pointer btn-inactive" role="presentation">
-                            <span>Hoàn tất</span>
+                    <div class="new-affix-v2">
+                        <div class="flex space-between text-center content-step time-line ">
+                            <div class="right button-next pointer btn-inactive" role="presentation">
+                                <span>Hoàn tất</span>
+                            </div>
+                            <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
                         </div>
-                        <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
+
 @endsection
 
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
+<script>
+
+</script>
 @endsection

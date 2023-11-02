@@ -47,7 +47,9 @@
         <div class="row justify-content-center">
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Lịch Sử Đã Cắt</span></div>
-                @if($bookings->status == 1)
+               @if(Auth::check())
+               
+                @if(Auth::user()->phone_number && $bookings->status == 1)
 
                 <div class="main-screen">
 
@@ -60,7 +62,7 @@
                         </div>
                         <div class="cursor-pointer flex item-center rounded justify-content-center " style="height: 2.75rem; padding-left: 0.625rem; padding-right: 0.625rem;" aria-hidden="true">
 
-                            <form action="{{route('lichsucat')}}" method="post">
+                            <form action="{{route('client.lichsucat')}}" method="post">
                                 @csrf
                                 <input type="hidden" value="{{$bookings->id}}" name="booking_id">
                                 <fieldset class="rating fs-1">
@@ -86,8 +88,9 @@
 
                 </div>
                 <div class="new-affix-v2">
+                    
                     <div class="flex space-between text-center content-step ">
-                        <button type="submit" class="right button-next pointer btn-inactive">Hoàn tất</button>
+                        <button type="submit" class="right button-next pointer btn">Hoàn tất</button>
 
 
                     </div>
@@ -106,7 +109,7 @@
                 @endif
                 <br>
 
-                @foreach($reviews as $booking)
+             
 
                 @foreach($allReviews as $allReview)
                
@@ -126,11 +129,13 @@
                             <br>
                             <h6 style="display: inline-block;"> Stylist:</h6> {{$bookings->stylist->name}}
                             <br>
+                            @foreach($reviews as $booking)
                             @foreach($booking->reviews as $review)
                             <h6 style="display: inline-block;"> Rating:</h6> {{$review->rating}}⭐
                             @endforeach
+                            @endforeach
                             <br>
-                            <a href="{{route('detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
+                            <a href="{{route('client.detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
                         </div>
                     </div>
 
@@ -140,10 +145,21 @@
 
 
                @endif
-                @endforeach
+            
+               
                 @endforeach
             </div>
-
+            @else
+                <div style="background-color: #fff; padding: 10px; " class="d-flex justify-content-center">
+                    <b class="text-center" style="font-family: 'Outfit', sans-serif; font-size: 20px;">Anh chị chưa đăng kí dịch vụ nào bên em. <br> Anh chị bấm đăng kí bên dưới 👇 để trải nghiêm dịch vụ bên em ạ !</b>
+                   <br>
+                </div>
+                <div style="background-color: #fff; padding: 10px;" class="d-flex justify-content-center">
+                        <a href="{{route('client.booking')}}" class="btn btn-primary">Đăng kí ngay</a>
+                        
+                    </div>
+                
+                @endif  
         </div>
     </div>
 </section>

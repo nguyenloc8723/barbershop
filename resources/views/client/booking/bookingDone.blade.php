@@ -6,6 +6,12 @@
 <link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css">
 <link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">--}}
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />--}}
+{{--<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />--}}
+{{--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">--}}
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
 @endsection
@@ -44,7 +50,7 @@
                         <hr>
                         
                         <p class="font-normal color-111111">
-                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->phone_number)}}</b> ) vào lúc: <br>
+                            Hẹn anh/chị ( <b>{{str_replace('+84', '',$bookings->user_phone)}}</b> ) vào lúc: <br>
                             <b>{{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} | {{$bookings->date}}.</b>
                         </p>
                     </div>
@@ -69,12 +75,14 @@
                         <div class="divide-y divide-gray-300">
                             <div class="">
                                 <div class="text-sm font-normal color-111111 pb-1">Dịch vụ</div>
-                                @foreach ($combo as $service)
-                                    {{$service->service->name}},
-                                @endforeach
-                                <br>
                                 <div class="text-sm font-light pb-2 jqr-serviceName"></div>
-                                <div class="text-sm font-light pb-4 text-danger" style="font-size: 17px;">Tổng tiền anh cần thanh toán: {{number_format($bookings->price, 0,'.','.')}}đ
+                                <div class="text-sm font-light pb-4 text-danger" style="font-size: 17px;">Tổng tiền anh cần thanh toán: {{number_format($bookings->price, 0,'.','.')}}đ 
+
+                                @if($payment)
+                                <br>
+                                <label for="" style="color:brown;"><b>Đã thanh toán chuyển khoản - Mã giao dịch: {{$payment->code_vnpay}}</b> </label>
+                           
+                                @endif
                                 </div>
                                 <hr>
                                 <b>Thông tin gửi xe</b>

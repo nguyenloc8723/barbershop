@@ -3,9 +3,9 @@
 @section('style')
 <link rel="stylesheet" href="{{asset('client/css/lichsucat.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
-<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />
+<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
+<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css" />
+<link rel="stylesheet" href="https://30shine.com/static/js/main.a02e4a6c.chunk.js" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,10 +42,11 @@
                         </div>
                     </div>
                     <br>
+                    <hr>
                     <div class="row">
                         <div class="col-6"><h6 class="text-star">Tổng tiền:</h6> </div>
                 
-                        <div class="col-6"><h6 class="text-end">{{$bookings->price}} K</h6></div>
+                        <div class="col-6"><h6 class="text-end">{{number_format($bookings->price, 0,'.','.')}}đ</h6></div>
                     </div>
                    
                 </div>

@@ -35,7 +35,7 @@ use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\Admin\StatisticalController;
-
+use App\Http\Controllers\Client\paymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
@@ -81,16 +81,16 @@ Route::group(["prefix" => "admin"], function () {
     Route::resource('category', CategoryServiceController::class);
     Route::resource('timesheets', TimesheetController::class);
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
-    Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
-    Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
-   //setting
+    Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class, 'delete'])->name('timesheets.delete');
+    Route::match(['GET', 'POST'], '/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
+    //setting
     Route::resource('settings', SettingController::class);
-    Route::get('/admin/settings/{id}/delete', [SettingController::class,'delete'])->name('settings.delete');
-    Route::match(['GET', 'POST'],'/admin/settings/{id}/edit', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::get('/admin/settings/{id}/delete', [SettingController::class, 'delete'])->name('settings.delete');
+    Route::match(['GET', 'POST'], '/admin/settings/{id}/edit', [SettingController::class, 'edit'])->name('settings.edit');
     //banner
     Route::resource('banners', BannerController::class)->withTrashed();
-    Route::get('/admin/banners/{id}/delete', [BannerController::class,'delete'])->name('banners.delete');
-    Route::match(['GET', 'POST'],'/admin/banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
+    Route::get('/admin/banners/{id}/delete', [BannerController::class, 'delete'])->name('banners.delete');
+    Route::match(['GET', 'POST'], '/admin/banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
 
     Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
     Route::resource('user', UserController::class);
@@ -121,23 +121,23 @@ Route::group(["prefix" => "admin"], function () {
 
 
 
-    Route::prefix('trash')->group(function (){
-       Route::get('category', [TrashController::class, 'category'])->name('trash.category');
-       Route::get('user', [TrashController::class, 'user'])->name('trash.user');
+    Route::prefix('trash')->group(function () {
+        Route::get('category', [TrashController::class, 'category'])->name('trash.category');
+        Route::get('user', [TrashController::class, 'user'])->name('trash.user');
 
 
         Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
 
     //Booking
-//    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
-//    Route::resource('booking_blade', BookingController::class);
-    Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
-    Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
-//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
+    //    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
+    //    Route::resource('booking_blade', BookingController::class);
+    Route::get('booking_blade/index', [BookingController::class, 'index'])->name('route.booking_blade');
+    Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail'])->name('route.booking_blade.detail');
+    //    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
     Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
 
-//    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
+    //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 });
 
 
@@ -145,14 +145,26 @@ Route::group(["prefix" => "admin"], function () {
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
 
-Route::get('services', [ClientServiceController::class,'services'])->name('services');
+Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
 
 
-Route::group(["prefix" => "user", 'as' => 'client.'], function (){
-    Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
+Route::group(["prefix" => "user", 'as' => 'client.'], function () {
+    Route::get('booking', [ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
+
+
+    //lich su cat
+    Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
+    Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
+    Route::match(['GET', 'POST'], 'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
+
+
+
+    Route::get('index-payment',[paymentController::class, 'index'])->name('indexPayment');
+    Route::post('create-vnpay',[paymentController::class, 'create_vnpay'])->name('create.vnpay');
+    Route::match(['GET','POST'],'return',[paymentController::class, 'return'])->name('return.vnpay');
 });
 
 
@@ -166,16 +178,13 @@ Route::get('404', function () {
 // Route::get('lichsucat', function () {
 //     return view('client.display.lichsucat');
 // });
-Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
-Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
-Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
 Route::get('about', function () {
     return view('client.display.about');
 })->name('about');
 //trang chu
 //Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
-Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
 Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
 
 Route::get('contact', function () {
@@ -192,9 +201,9 @@ Route::get('portfolio', function () {
 Route::get('post', function () {
     return view('client.display.post');
 })->name('post');
-Route::get('blogs-list', [ClientBlogController::class,'index'])->name('blog');
+Route::get('blogs-list', [ClientBlogController::class, 'index'])->name('blog');
 
-Route::get('detail-blog/{id}', [ClientBlogController::class,'detailBlog'])->name('detail.blog');
+Route::get('detail-blog/{id}', [ClientBlogController::class, 'detailBlog'])->name('detail.blog');
 Route::get('pricing', function () {
     return view('client.display.pricing');
 })->name('pricing');
@@ -207,5 +216,3 @@ Route::get('team-details', function () {
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
-
-

@@ -10,6 +10,7 @@ class Booking extends Model
 {
 
     use HasFactory,SoftDeletes;
+    protected $table = 'bookings';
 //    public $timestamps = false;
     protected $fillable = [
         'user_phone',
@@ -20,6 +21,7 @@ class Booking extends Model
         'is_consultant',
         'is_accept_take_a_photo',
         'status',
+        'pttt'
     ];
 
     public function service(){

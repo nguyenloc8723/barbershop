@@ -22,16 +22,17 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = "+840365029527";
+        $user = auth()->user()->phone_number;
+        // dd($user);
 
         // $test = Booking::query()->get();
         // // // $test= DB::table('bookings')->get();
         // dd($test);
         // $result = Results::all()->pluck('booking_id');
         // dd($result);
-        $bookings = Booking::query()->with('stylist', 'User', 'timeSheet', 'reviews')
+        $bookings = Booking::query()->with('stylist','timeSheet', 'reviews')
             ->where('user_phone', $user)
-            ->orderBy('date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->first();
 
         
@@ -77,7 +78,7 @@ class LichsucatController extends Controller
                 return back()->with('Lỗi!', 'Anh chị vui lòng kiểm tra lại 2 bước đánh giá hoặc anh chị đã đánh giá rồi!')->withInput();
             }else{
                 Reviews::create($request->all());
-                return redirect()->route('show')
+                return redirect()->route('client.show')
             ->with('success', 'Cảm ơn anh/chị đã đánh giá.');
             }
     }

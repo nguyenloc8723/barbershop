@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Booking_service;
+use App\Models\payment;
 use App\Models\Reviews;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -27,7 +28,10 @@ class ClientBookingController extends Controller
         $combo = Booking_service::with('service')
             ->where('booking_id', $booking_id)
             ->get();
+
+        $payment = payment::where('booking_id', $booking_id)->first();
+        
         // dd($combo);
-        return view('client.booking.bookingDone', compact('booking_id', 'bookings', 'combo'));
+        return view('client.booking.bookingDone', compact('booking_id', 'bookings', 'combo', 'payment'));
     }
 }
