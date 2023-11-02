@@ -182,15 +182,15 @@
             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
                href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{{asset('be/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
-                @if(Auth::user()->user_type == 'STYLIST')
-                    <span class="pro-user-name ms-1">
-                                   Stylist-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
-                                </span>
-                @else
-                    <span class="pro-user-name ms-1">
-                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
-                                </span>
-                @endif
+{{--                @if(Auth::user()->user_type == 'STYLIST')--}}
+{{--                    <span class="pro-user-name ms-1">--}}
+{{--                                   Stylist-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                </span>--}}
+{{--                @else--}}
+{{--                    <span class="pro-user-name ms-1">--}}
+{{--                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>--}}
+{{--                                </span>--}}
+{{--                @endif--}}
 
             </a>
             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">

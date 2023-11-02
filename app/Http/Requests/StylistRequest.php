@@ -16,7 +16,7 @@ class StylistRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *zxz 
+     *zxz
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
@@ -24,6 +24,7 @@ class StylistRequest extends FormRequest
             return [
                 'name' => 'required',
                 'phone' => 'required',
+                'excerpt' => 'required',
                 'image' => 'required',
             ];
     }
