@@ -14,6 +14,7 @@ class Booking extends Model
 //    public $timestamps = false;
     protected $fillable = [
         'user_phone',
+        'user_id',
         'stylist_id',
         'timesheet_id',
         'price',
@@ -50,6 +51,6 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -74,7 +74,7 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
 
 
 
-    Route::get('index-payment',[paymentController::class, 'index'])->name('indexPayment');
+    Route::get('index-payment/{user_phone}',[paymentController::class, 'index'])->name('indexPayment');
     Route::post('create-vnpay',[paymentController::class, 'create_vnpay'])->name('create.vnpay');
     Route::match(['GET','POST'],'return',[paymentController::class, 'return'])->name('return.vnpay');
 });
