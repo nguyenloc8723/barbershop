@@ -18,7 +18,8 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\StylistController;
+use App\Http\Controllers\Admin\API\ApiStylistController;
+use App\Http\Controllers\Admin\StylistController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
@@ -53,6 +54,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('stylist', StylistController::class);
     Route::resource('timesheets', TimesheetController::class);
     // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');

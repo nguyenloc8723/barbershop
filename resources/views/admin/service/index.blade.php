@@ -4,7 +4,8 @@
 @endsection
 @section('content')
 {{--    @if (Auth::check())--}}
-{{--        <h1>{{Auth::id()}}</h1>--}}
+{{--        <h1>{{Auth::id()}
+    }</h1>--}}
 {{--    @endif--}}
     @can('roles.editService')
         <input type="hidden" class="jqr-roleEdit" value="true">

@@ -22,7 +22,7 @@ use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
-use App\Http\Controllers\StylistController;
+use App\Http\Controllers\Admin\StylistController;
 
 use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
@@ -37,6 +37,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\Client\paymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -62,6 +63,18 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
+
+
+    //lich su cat
+    Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
+    Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
+    Route::match(['GET', 'POST'], 'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
+
+
+
+    Route::get('index-payment',[paymentController::class, 'index'])->name('indexPayment');
+    Route::post('create-vnpay',[paymentController::class, 'create_vnpay'])->name('create.vnpay');
+    Route::match(['GET','POST'],'return',[paymentController::class, 'return'])->name('return.vnpay');
 });
 
 
@@ -75,9 +88,6 @@ Route::get('404', function () {
 // Route::get('lichsucat', function () {
 //     return view('client.display.lichsucat');
 // });
-Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
-Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
-Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
 // Route::get('about', function () {
 //     return view('client.display.about');
@@ -90,7 +100,7 @@ Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::cla
 Route::get('faq' , [App\Http\Controllers\client\ClientIndexController::class, 'faq'])->name('faq');
 Route::get('pricing' , [App\Http\Controllers\client\ClientIndexController::class, 'pricing'])->name('pricing');
 Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
-Route::get('/team', [App\Http\Controllers\client\ClientTeamController::class, 'index'])->name('team');
+Route::get('/team', [App\Http\Controllers\client\ClientIndexController::class, 'team'])->name('team');
 
 Route::get('contact', function () {
     return view('client.display.contact');
