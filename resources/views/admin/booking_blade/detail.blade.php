@@ -35,21 +35,6 @@
                                     <span
                                         class="badge bg-{{$data->status == 1 ? "danger" : "success" }}">{{$data->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}
                                     </span>
-                                    @if($data->status == 1)
-                                        <span
-                                            class="badge bg-danger" >Chờ xác nhận
-                                        </span>
-                                    @endif
-                                    @if($data->status == 2)
-                                        <span
-                                            class="badge bg-warning" >Đang chờ cắt
-                                        </span>
-                                    @endif
-                                    @if($data->status == 3)
-                                        <span
-                                            class="badge bg-success" >Đã cắt
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
 
