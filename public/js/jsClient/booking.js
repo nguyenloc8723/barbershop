@@ -36,6 +36,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+
                 data.map(item => {
                     $('.jqr-show-stylist').append(`
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
@@ -65,6 +66,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('.jqr-messageStylist').html(`
                    <div class="stylist-selected">
                       <div class="stylist__top">
@@ -182,8 +184,6 @@ $(document).ready(function () {
 
 
                             </div>
-
-
                             <div class="new-affix-v2">
                                 <div class="flex space-between text-center content-step  time-line--active">
                                     <div class="right pointer fw-bold fs-5 btn-inactive jqr-clickService jqr-css" role="presentation">
@@ -216,7 +216,6 @@ $(document).ready(function () {
                 }
                 countPrice = money;
                 let formattedMoney = formatCurrency(money);
-                console.log('main' + formattedMoney)
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
@@ -240,6 +239,7 @@ $(document).ready(function () {
                                     </svg>
                                 </div>
                             </div>
+                            <p class="jqr-validateService d-none mg-top-10 validateBooking">Mời bạn chọn dịch vụ để chọn giờ cắt</p>
                             <div class="block__box">
                                 <div class="mt-4">
                                     <div class="flex flex-wrap -mx-1.5">
@@ -267,14 +267,11 @@ $(document).ready(function () {
 
                                         </span>
                                     </div>
-
 <!--                                    messenger-->
                                     <div class="bot-message bot-message__stylist fade-in jqr-messageStylist">
 
                                     </div>
 <!--                                    messenger-->
-
-
                                     <div class="content fade-in jqr-contentStylist">
                                         <div class="left jqr-randomStylist" role="presentation">
                                             <div>
@@ -305,6 +302,7 @@ $(document).ready(function () {
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
                                     </div>
+                                    <p class="jqr-validateDate d-none mg-top-10 validateBooking">Mời bạn chọn ngày cắt để chọn giờ cắt</p>
                                     <div class="block suggestion-salon">
                                         <div class="mt-2">
                                             <div class="flex item-center " role="presentation">
@@ -327,6 +325,7 @@ $(document).ready(function () {
                                     <div id=""></div>
                                 </div>
                             </div>
+                             <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
                             <div class="text-base jqr-textBase">
                             <div class="">
                                 <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
@@ -360,10 +359,9 @@ $(document).ready(function () {
                     </div>
                     <div class="new-affix-v2">
                         <div class="flex space-between text-center content-step time-line ">
-                        
-                        <div class="right pointer btn-inactive jqr-completed" role="presentation">
-                                <span>Hoàn tất</span>                     
-                        </div>
+                            <div class="right pointer button-next btn-inactive jqr-completed" role="presentation">
+                                <span>Hoàn tất</span>
+                            </div>
                             <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
                         </div>
                     </div>
@@ -384,7 +382,6 @@ $(document).ready(function () {
         });
     }
 
-
     function loadAllService() {
         arrayIDService = [];
         $.ajax({
@@ -392,12 +389,12 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 let data = response.data;
-                console.log(response.data);
+                // console.log(response.data);
                 let imgService = response.service;
                 let category = '';
-                console.log(imgService);
+                // console.log(imgService);
                 for (let i = 0; i < data.length; i++) {
                     let countImg = 0;
                     let count = data[i].service.length;
@@ -498,7 +495,7 @@ $(document).ready(function () {
                 'color': '#000',
             });
         }
-        console.log(arrayIDService);
+        // console.log(arrayIDService);
         countSelect = arrayIDService.length;
         if (countSelect === 0) {
             $('.jqr-clickService').css({
@@ -558,7 +555,16 @@ $(document).ready(function () {
         mainBooking(arrayIDService);
     })
     $(document).on('click', '.jqr-completed', function () {
-        pushRequest();
+        if (arrayIDService.length === 0){
+            $('.jqr-validateService').removeClass('d-none');
+        }else if ($('input[name="date"]').val() == ''){
+            $('.jqr-validateDate').removeClass('d-none');
+        }else if (time === 0){
+            $('.jqr-validateDate').addClass('d-none');
+            $('.jqr-validateTime').removeClass('d-none');
+        } else{
+            pushRequest();
+        }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
         $(this).css({
@@ -608,7 +614,6 @@ $(document).ready(function () {
     }
 
     function pushRequest() {
-        console.log(user_phone);
         let status = 1;
         let pttt;
         let date = $('input[name="date"]').val();
@@ -655,5 +660,7 @@ $(document).ready(function () {
             }
         });
     }
+
+
 });
 

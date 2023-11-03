@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('payment', function (Blueprint $table) {
             $table->id();
             $table->integer('booking_id');
-            $table->float('money')->comment('tổng tiền thanh toán');
+            $table->integer('money')->comment('tổng tiền thanh toán');
             $table->string('note')->comment('Nội dung thanh toán');
             $table->string('vnp_response_code')->comment('mã phản hồi');
-            $table->integer('code_vnpay')->comment('mã giao dịch vnpay');
-            $table->integer('code_bank')->comment('mã ngân hàng');
+            $table->string('code_vnpay')->comment('mã giao dịch vnpay');
+            $table->string('code_bank')->comment('mã ngân hàng');
             $table->dateTime('time')->comment('thời gian chuyển khoản');
             $table->timestamps();
         });

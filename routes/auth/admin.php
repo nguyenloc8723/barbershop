@@ -44,8 +44,8 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-
-Route::group([],function () {
+// Lộc tạo middleware cho admin có quyền admin mới có thể truy cập
+Route::middleware(['admin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('route.dashboard');
 
     Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');

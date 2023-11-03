@@ -2,10 +2,8 @@
 
 @section('style')
 <link rel="stylesheet" href="{{asset('client/css/lichsucat.css')}}">
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/8.dd6dd3b5.chunk.css" />
-<link rel="stylesheet" href="https://30shine.com/static/js/main.a02e4a6c.chunk.js" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -110,29 +108,29 @@
                 <br>
 
              
-
+                @foreach($reviews as $booking)
                 @foreach($allReviews as $allReview)
                
                @if($allReview == $bookings->id)
 
-
+                
                 <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <div class="row">
                         <div class="col-5" style="margin-left: 30px;">
                             <i class="bi bi-image-fill" style="font-size: 150px;"></i>
                         </div>
                         <div class="col-6" style="margin-top: 40px;">
-
-                            <h6 style="display: inline-block;">Stylist:</h6> {{$bookings->stylist->name}}
+{{$bookings->id}}
+                            <h6 style="display: inline-block;">User:</h6> {{$bookings->user_phone}}
                             <br>
                             <h6 style="display: inline-block;"> TimeBooking:</h6>{{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}}
                             <br>
-                            <h6 style="display: inline-block;"> Stylist:</h6> {{$bookings->stylist->name}}
+                            <h6 style="display: inline-block;"> Stylist:</h6> {{$stylist->name}}
                             <br>
-                            @foreach($reviews as $booking)
+                            
                             @foreach($booking->reviews as $review)
                             <h6 style="display: inline-block;"> Rating:</h6> {{$review->rating}}⭐
-                            @endforeach
+                            
                             @endforeach
                             <br>
                             <a href="{{route('client.detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
@@ -146,7 +144,7 @@
 
                @endif
             
-               
+               @endforeach
                 @endforeach
             </div>
             @else

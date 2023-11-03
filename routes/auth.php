@@ -13,7 +13,7 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     //    khi người dùng  đăng nhập mới có thể truy cập nó
 //    Route::get('verify-email', EmailVerificationPromptController::class)
 //                ->name('verification.notice');

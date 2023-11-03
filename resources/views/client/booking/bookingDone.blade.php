@@ -7,13 +7,7 @@
 <link rel="stylesheet" href="https://30shine.com/static/css/main.9e417c19.chunk.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
-
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">--}}
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />--}}
-{{--<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />--}}
-{{--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">--}}
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-
 @endsection
 
 @section('content')
@@ -57,7 +51,7 @@
                     <div class="bg-white p-4 mb-2.5 jqr-booking-done">
                         <div class="divide-y divide-gray-300">
                             <div class="row">
-                                <div class="text-sm font-normal color-111111 pb-1"><b>Stylist : {{$bookings->stylist->name}}</b></div> <br>
+                                <div class="text-sm font-normal color-111111 pb-1"><b>Stylist : {{$stylist->name}}</b></div> <br>
                                 <div class="text-sm font-light pb-2">Để cùng anh tạo nên kiểu tóc ưng ý nhất, em có một vài gợi ý mới nhất dưới đây anh tham khảo nhé! </div>
                             </div>
                             <div class="">
