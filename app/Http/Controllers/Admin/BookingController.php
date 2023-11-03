@@ -64,7 +64,7 @@ class BookingController extends AdminBaseController
             }
             $booking = Booking::findorFail($id);
             if ($booking) {
-                $booking->status = '2';
+                $booking->status = '3';
                 $booking->save();
             }
 

@@ -46,7 +46,7 @@
                     <div class="bg-white p-4 mb-2.5 jqr-booking-done">
                         <div class="divide-y divide-gray-300">
                             <div class="row">
-                                <div class="text-sm font-normal color-111111 pb-1"><b>Stylist : {{$bookings->stylist->name}}</b></div> <br>
+                                <div class="text-sm font-normal color-111111 pb-1"><b>Stylist : {{$stylist->name}}</b></div> <br>
                                 <div class="text-sm font-light pb-2">Để cùng anh tạo nên kiểu tóc ưng ý nhất, em có một vài gợi ý mới nhất dưới đây anh tham khảo nhé! </div>
                             </div>
                             <div class="">
