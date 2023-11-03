@@ -35,7 +35,7 @@ use App\Http\Controllers\SearchController;
 // use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\Admin\StatisticalController;
-
+use App\Http\Controllers\Client\paymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -65,6 +65,18 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::get('booking',[ClientBookingController::class, 'index'])->name('booking');
     Route::get('chooseServices', [ClientBookingController::class, 'chooseServices'])->name('chooseServices');
     Route::get('booking/success/{id}', [ClientBookingController::class, 'bookingDone'])->name('bookingDone');
+
+
+    //lich su cat
+    Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
+    Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
+    Route::match(['GET', 'POST'], 'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
+
+
+
+    Route::get('index-payment',[paymentController::class, 'index'])->name('indexPayment');
+    Route::post('create-vnpay',[paymentController::class, 'create_vnpay'])->name('create.vnpay');
+    Route::match(['GET','POST'],'return',[paymentController::class, 'return'])->name('return.vnpay');
 });
 
 
@@ -78,16 +90,13 @@ Route::get('404', function () {
 // Route::get('lichsucat', function () {
 //     return view('client.display.lichsucat');
 // });
-Route::get('lichsucat', [LichsucatController::class, 'shows'])->name('show');
-Route::post('lichsucat', [LichsucatController::class, 'create'])->name('lichsucat');
-Route::match(['GET', 'POST'],'detailhistory/{id}', [LichsucatController::class, 'DeltailHistory'])->name('detailhistory');
 
 Route::get('about', function () {
     return view('client.display.about');
 })->name('about');
 //trang chu
 //Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
-Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
 Route::match(['GET', 'POST'], '/teams', [App\Http\Controllers\client\ClientTeamController::class, 'index']);
 
 Route::get('contact', function () {
