@@ -31,9 +31,9 @@ class ApiDashboardController extends Controller
             $startOfMonth = Carbon::now()->subMonths($i)->startOfMonth();
             $endOfMonth = Carbon::now()->subMonths($i)->endOfMonth();
 
-            $userCount = User::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+            $userCount = User::query()->where('user_type','USER')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
-            $stylistCount = Stylist::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+            $stylistCount = User::query()->where('user_type','STYLIST')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
             $data[] = [
                 'month' => $startOfMonth->format('M'),
@@ -81,7 +81,7 @@ class ApiDashboardController extends Controller
 
     public function latestStylist()
     {
-        $data = Stylist::orderByDesc('id')->get()->take(6);
+        $data =User::query()->where('user_type','STYLIST')->orderByDesc('id')->get()->take(6);
         return response()->json($data);
     }
 

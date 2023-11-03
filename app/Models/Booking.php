@@ -43,7 +43,7 @@ class Booking extends Model
 
     public function stylist()
     {
-        return $this->belongsTo(Stylist::class, 'stylist_id');
+        return $this->belongsTo(User::class, 'stylist_id');
     }
     public function reviews(){
         return $this->hasMany(Reviews::class, 'booking_id');

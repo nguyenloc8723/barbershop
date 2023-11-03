@@ -80,7 +80,7 @@ class paymentController extends Controller
 
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         $returnData = array(
@@ -123,12 +123,12 @@ class paymentController extends Controller
             if ($_GET['vnp_ResponseCode'] == '00') {
                 // echo "GD Thanh cong";
                 // dd($inputData);
-                
+
                 //kiểm tra db có dữ liệu chưa, nếu có rồi thì ko cho insert
                 $existingPayment = payment::query()
                 ->where('booking_id', $inputData['vnp_TxnRef'])
                 ->first();
-    
+
             if (!$existingPayment) {
                 payment::query()->create([
                     "booking_id" => $inputData['vnp_TxnRef'],
@@ -140,7 +140,7 @@ class paymentController extends Controller
                     "time" => $inputData['vnp_PayDate'],
                 ]);
             }
-    
+
             return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
                 Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();

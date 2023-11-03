@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StylistTimeSheet;
 use App\Models\Stylist;
 use App\Models\Timesheet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -28,7 +29,7 @@ class ApiStylistTimeSheetsController extends Controller
         $time = $request->input('timesheet_id');
         foreach ($time as $value){
             StylistTimeSheet::create([
-                'stylist_id' => $request->input('stylist_id'),
+                'user_id' => $request->input('user_id'),
                 'timesheet_id' => $value,
                 'is_active' => $request->input('is_active'),
                 'is_block' => $request->input('is_block'),
@@ -45,7 +46,7 @@ class ApiStylistTimeSheetsController extends Controller
     {
         $dataStylistTimeSheets = StylistTimeSheet::query()->findOrFail($id);
 
-        $dataStylist = Stylist::all();
+        $dataStylist = User::query()->where('user_type', 'STYLIST')->get();
 
         $dataTimeSheet = Timesheet::all();
 
@@ -55,7 +56,7 @@ class ApiStylistTimeSheetsController extends Controller
     }
     public function getvalue()
     {
-        $dataStylist = Stylist::all();
+        $dataStylist = User::query()->where('user_type', 'STYLIST')->get();
         $dataTimeSheet = Timesheet::all();
 
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
@@ -68,7 +69,7 @@ class ApiStylistTimeSheetsController extends Controller
     {
         try{
             $stylistTimeSheets = StylistTimeSheet::query()->where('id',$id)->update([
-                'stylist_id' => $request->input('stylist_id'),
+                'user_id' => $request->input('user_id'),
                 'timesheet_id' => json_decode($request->input('timesheet_id')),
                 'is_active' => $request->input('is_active'),
                 'is_block' => $request->input('is_block'),

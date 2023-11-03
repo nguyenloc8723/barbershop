@@ -22,7 +22,7 @@ use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
-use App\Http\Controllers\StylistController;
+use App\Http\Controllers\Admin\StylistController;
 
 use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
@@ -54,6 +54,9 @@ use App\Http\Controllers\ProfileController;
 */
 
 require __DIR__.'/auth.php';
+
+
+
 
 Route::get('services', [ClientServiceController::class, 'services'])->name('services');
 Route::get('services-page/{id}', [ClientServiceController::class, 'servicesPage'])->name('services-page');
@@ -124,3 +127,4 @@ Route::get('team-details', function () {
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
 Route::get('deletes', [StylistController::class, 'deletes'])->name('deletes');
+
