@@ -7,15 +7,18 @@ use App\Models\Booking;
 use App\Models\payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class paymentController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(Request $request, $user_phone)
     {
-        $user = auth()->user()->phone_number;
+        // $user = auth()->user()->phone_number;
 
-        $booking = Booking::where('user_phone', $user)->orderBy('created_at', 'desc')->first();
+        $url = "+84".$user_phone; // Sử dụng đường dẫn URL động được truyền từ route.
+        // dd($url);
+        $booking = Booking::where('user_phone', $url)->orderBy('created_at', 'desc')->first();
         // dd($booking);
 
         return view('client.vnpay.index', compact('booking'));
