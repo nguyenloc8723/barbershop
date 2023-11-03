@@ -30,7 +30,7 @@
                     <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
                             <div class="gallery-img">
-                                <img src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                                <img src="{{ asset('storage/image/'.$item->image)}}" style="height: 380px;width: 500px" alt="">
                             </div>
                         </div>
                     </a>       
@@ -42,7 +42,7 @@
                     <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
                             <div class="gallery-img">
-                                <img style="width: " src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                                <img src="{{ asset('storage/image/'.$item->image)}}" alt="" style="width: 700px;height: 500px;">
                             </div>
                         </div>                     
                     </a>                  
@@ -54,7 +54,7 @@
                     <a href="" title="" class="img-zoom">
                         <div class="gallery-box">
                             <div class="gallery-img">
-                                <img src="{{ asset('storage/image/'.$item->image)}}" alt="">
+                                <img src="{{ asset('storage/image/'.$item->image)}}" style="height: 380px;width: 400px" alt="">
                             </div>
                         </div>              
                     </a>          

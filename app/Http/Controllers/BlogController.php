@@ -29,12 +29,11 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Blog $blog)
     {
         $blog=new Blog();
         $blog->title=$request->title; 
-        if($request->image){
-            Storage::delete('public/image/',$blog->image);   
+        if($request->image){ 
             $image=$request->image->getClientOriginalName();
             $request->image->storeAs('public/image/', $image);
             $blog->image=$image;
@@ -73,7 +72,6 @@ class BlogController extends Controller
     {
             $blog->title=$request->title;
             if($request->image){
-                Storage::delete('public/image/',$blog->image);
                 $image=$request->image->getClientOriginalName();
                 $request->image->storeAs('public/image/', $image);
                 $blog->image=$image;

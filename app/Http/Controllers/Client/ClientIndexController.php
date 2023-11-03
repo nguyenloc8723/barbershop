@@ -9,6 +9,7 @@ use App\Models\Portfolio;
 use App\Models\Pricing;
 use App\Models\Service;
 use App\Models\Stylist;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientIndexController extends Controller
@@ -17,7 +18,7 @@ class ClientIndexController extends Controller
     public function index()
     {
         $blogs = Blog::limit(5)->get();
-        $stylists = Stylist::limit(3)->get();
+        $stylists = User::query()->where('user_type', 'STYLIST')->limit(3)->get();
         $data = Service::limit(8)->get();
         $model=Service::all();
         return view('client.display.index',compact('blogs','stylists','data','model'));
@@ -31,7 +32,7 @@ class ClientIndexController extends Controller
     public function about()
     {
         $data = Service::limit(8)->get();
-        $stylists= Stylist::limit(3)->get();
+        $stylists = User::query()->where('user_type', 'STYLIST')->limit(5)->get();
         return view('client.display.about',compact('data','stylists'));
     }
     public function portfolio()
@@ -48,5 +49,10 @@ class ClientIndexController extends Controller
     {
         $pricing = Pricing::limit(9)->get();
         return view('client.display.pricing',compact('pricing'));
+    }
+    public function team()
+    {
+        $stylists = User::query()->where('user_type', 'STYLIST')->limit(5)->get();
+        return view('client.display.team',compact('stylists'));
     }
 }

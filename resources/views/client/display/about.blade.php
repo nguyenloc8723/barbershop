@@ -147,7 +147,7 @@
                     <div class="owl-carousel owl-theme">
                         @foreach($stylists as $stylist)
                         <div class="team-card mb-30">
-                            <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
+                            <div class="team-img"><img src="{{ asset('storage/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
                             <div class="team-content">
                                 <h3 class="team-title">{{$stylist->name}}<span>Barber</span></h3>
                                 <p class="team-text">{{$stylist->excerpt}}</p>

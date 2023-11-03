@@ -29,7 +29,6 @@ class PortfolioController extends Controller
     {
         $portfolio=new Portfolio();
         if($request->image){
-            Storage::delete('public/image/',$portfolio->image);
             $image=$request->image->getClientOriginalName();
             $request->image->storeAs('public/image/', $image);
             $portfolio->image=$image;
@@ -66,7 +65,6 @@ class PortfolioController extends Controller
     public function update(Request $request, Portfolio $portfolio)
     {
         if($request->image){
-            Storage::delete('public/image/',$portfolio->image);
             $image=$request->image->getClientOriginalName();
             $request->image->storeAs('public/image/', $image);
             $portfolio->image=$image;

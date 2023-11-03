@@ -19,7 +19,7 @@
                 @foreach ($stylists as $stylist)
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     <div class="team-page-card mb-60">
-                        <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
+                        <div class="team-img"><img src="{{asset('storage/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
                         <div class="team-content">
                             <h3 class="team-title">{{$stylist->name}}<span>Barber</span></h3>
                             <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
