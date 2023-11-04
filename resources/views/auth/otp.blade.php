@@ -6,6 +6,9 @@
             <p>Chúng tôi đã gửi mã xác minh tới bạn <span id="phoneNumber"></span></p>
             <label class="fxt-otp-label">Nhập mã OTP vào đây</label>
             <div class="alert alert-danger" id="error1" style="display: none;"></div>
+
+            <div class="alert alert-danger" id="error" style="display: none;"></div>
+            <div class="alert alert-success" id="successAuth" style="display: none;"></div>
             <form onsubmit="return false;" method="post">
                 @csrf
                 <div class="fxt-transformY-50 fxt-transition-delay-1">
@@ -19,15 +22,17 @@
                         <button type="button" class="fxt-btn-fill" onclick="verify()">Xác minh</button>
                     </div>
                 </div>
+
+                <div class="fxt-footer">
+                    <div class="fxt-transformY-50 fxt-transition-delay-9">
+                        <p class="fxt-resend-wrap">Không nhận được mã OTP?
+                            <button type="button"  id="" class="fxt-btn-resend" onclick="sendOTPAgain();" >Gửi lại</button>
+                        </p>
+                    </div>
+                </div>
             </form>
         </div>
-        <div class="fxt-footer">
-            <div class="fxt-transformY-50 fxt-transition-delay-9">
-                <p class="fxt-resend-wrap">Không nhận được mã OTP?
-                    <button id="closePopupOTP" class="fxt-btn-resend" type="button" onclick="resendOTP();" >Gửi lại</button>
-                </p>
-            </div>
-        </div>
+
     </div>
 </div>
 

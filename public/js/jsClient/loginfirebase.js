@@ -40,6 +40,7 @@ function render() {
 
 
 var coderesult;
+
 function validatePhoneNumber(input) {
     var phoneNumber = input.value;
     var formattedPhoneNumber = '';
@@ -52,6 +53,7 @@ function validatePhoneNumber(input) {
         input.value = formattedPhoneNumber;
     }
 }
+
 function sendOTP() {
 
     var number = "+84" + $("#number").val();
@@ -113,17 +115,46 @@ function verify() {
     });
 }
 
+function sendOTPAgain() {
+    var phoneNumber = localStorage.getItem("phoneNumber");
+    console.log(phoneNumber);
+
+
+        // Gửi lại OTP cho số điện thoại đã lưu sử dụng cùng một RecaptchaVerifier
+        firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+            .then(function (confirmationResult) {
+                window.confirmationResult = confirmationResult;
+                console.log(confirmationResult);
+
+                $("#successAuth").text("Gửi lại OTP thành công");
+                $("#successAuth").show();
+                localStorage.setItem("verificationId", confirmationResult.verificationId);
+                window.location.href = "/";
+            })
+            .catch(function (error) {
+                $("#error").text(error.message);
+                $("#error").show();
+            });
+
+}
+
+
+
+
+
+
+
 // thực hiện nút ấn
-    var openButton = document.getElementById("openPopupButton");
-    var closeButton = document.getElementById("closePopupButton");
-    var closeOTP = document.getElementById("closePopupOTP");
-    openButton.addEventListener("click", function () {
+var openButton = document.getElementById("openPopupButton");
+var closeButton = document.getElementById("closePopupButton");
+var closeOTP = document.getElementById("closePopupOTP");
+openButton.addEventListener("click", function () {
     popupContainer.style.display = "block";
 });
-    closeButton.addEventListener("click", function () {
+closeButton.addEventListener("click", function () {
     popupContainer.style.display = "none";
 });
-    closeOTP.addEventListener("click", function () {
+closeOTP.addEventListener("click", function () {
     popupContainer2.style.display = "none";
 });
 
