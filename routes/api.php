@@ -97,7 +97,7 @@ Route::prefix('trash')->group(function (){
 Route::group([],function (){
     Route::get('getUserPhone/booking', [BookingController::class, 'getUserPhone']);
     Route::post('setUserPhone/booking', [BookingController::class, 'setUserPhone']);
-    Route::get('stylist/booking', [BookingController::class, 'index']);
+    Route::get('list/stylist/booking', [BookingController::class, 'index']);
     Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
     Route::get('stylistDetail/booking/{id}', [BookingController::class, 'stylistDetail']);
 

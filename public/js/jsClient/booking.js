@@ -1,6 +1,6 @@
 $(document).ready(function () {
     let csrfToken = $('meta[name="csrf-token"]').attr('content');
-    const showStylist = '/api/stylist/booking';
+    const showStylist = '/api/list/stylist/booking';
     const showTimeSheet = '/api/timeSheet/booking';
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
@@ -37,7 +37,6 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-
                 data.map(item => {
                     $('.jqr-show-stylist').append(`
                     <div class="swiper-slide item isActive swiper-slide-active jqr-detail"
@@ -220,8 +219,7 @@ $(document).ready(function () {
                 totalAmount += `Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span>`
 
                 $('#jqr-displayBooking').html(`
-                    @csrf
-                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ hihihih</span></div>
+                     <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                     <div class="main-screen">
                         <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                             <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
@@ -593,7 +591,6 @@ $(document).ready(function () {
                 'display': 'none',
             });
         }
-
     });
 
     function randomStylist() {
