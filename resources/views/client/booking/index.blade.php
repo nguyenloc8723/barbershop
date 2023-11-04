@@ -6,6 +6,8 @@
 @endsection
 @section('content')
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
+
+<div id="user-info" data-user_id="{{(Auth::check()) ? Auth::id(): '0'}}"></div>
 <div class="fix-hed">
 
 </div>

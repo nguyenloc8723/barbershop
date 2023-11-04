@@ -15,7 +15,7 @@ use App\Models\Timesheet;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LichsucatController extends Controller
@@ -23,27 +23,13 @@ class LichsucatController extends Controller
     //
     public function shows()
     {
-        $user = auth()->user()->phone_number;
-        // dd($user);
-
-        // $test = Booking::query()->get();
-        // // // $test= DB::table('bookings')->get();
-        // dd($test);
-        // $result = Results::all()->pluck('booking_id');
-
-        // dd($bookings);
-        $bookings = Booking::query()->with('timeSheet', 'reviews')
-            ->where('user_phone', $user)
+        //lấy Auth
+        $user = Auth::id();
+    
+        $bookings = Booking::query()->with('User' ,'timeSheet', 'reviews')
+            ->where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->first();
-        $stylist = User::where('id', $bookings->stylist_id)->first();
-
-
-            // dd($bookings, $stylist);
-    //     $userBookings = User::find($user)->bookings()
-    // ->with('stylist', 'timeSheet', 'reviews')
-    // ->orderBy('date', 'desc')
-    // ->first();
 
         // dd($bookings);
         $reviews = Booking::with('reviews')
@@ -61,11 +47,7 @@ class LichsucatController extends Controller
 
             }
         }
-
-        // dd($allReviews);
-
-
-        return view('client.display.lichsucat', compact('bookings','reviews','allReviews', 'stylist'));
+        return view('client.display.lichsucat', compact('bookings','reviews','allReviews'));
     }
 
     public function create(Request $request)

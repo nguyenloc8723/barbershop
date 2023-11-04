@@ -10,6 +10,7 @@ $(document).ready(function () {
     let is_accept_take_a_photo = 1;
     let stylist = 0;
     let user_phone = $('#user_phone').data('user_phone');
+    let user_info = $('#user-info').data('user_id');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
@@ -625,6 +626,7 @@ $(document).ready(function () {
         });
         let arrayBooking = {
             user_phone: user_phone,
+            user_id: user_info,
             stylist_id: stylist,
             timesheet_id: time,
             price: countPrice,
@@ -645,7 +647,8 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response.success)
                 if (pttt == 2) {
-                    window.location.href = 'index-payment/';
+                    phone = user_phone.replace("+84", "");
+                    window.location.href = 'index-payment/' + phone;
                     console.log(response.success)
                 } else {
                     // toastr['success']('Đặt lịch thành công');
