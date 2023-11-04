@@ -12,7 +12,7 @@
                         <div class="">
                             <div class="mb-3">
                                 <label class="form-label">Stylist</label>
-                                <select class="form-select" name="stylist_id" id="stylist_id">
+                                <select class="form-select" name="user_id" id="stylist_id">
 
                                 </select>
                             </div>

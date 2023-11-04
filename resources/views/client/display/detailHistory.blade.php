@@ -2,10 +2,8 @@
 
 @section('style')
 <link rel="stylesheet" href="{{asset('client/css/lichsucat.css')}}">
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
-<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,6 +23,7 @@
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Chi tiết lịch cắt</span></div>
                 <div class="main-screen">
+                    
                     <div class="row">
                         <div class="col-5">
                             <img src="https://tse4.mm.bing.net/th?id=OIP.2bJ9_f9aKoGCME7ZIff-ZwHaJ4&pid=Api&P=0&h=220" alt="" style="width: 200px; height: 200px;">
@@ -33,7 +32,7 @@
                             <b>Combo:</b>@foreach ($combo as $service) 
                                     {{$service->service->name}},
                             @endforeach <br>
-                            <b>Stylist:</b> {{$bookings->stylist->name}}<br>
+                            <b>Stylist:</b> {{$stylist->name}}<br>
                             <b>Ngày đặt:</b> {{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} <br>
                             <b>Đánh Giá:</b> {{$reviews->rating}} ⭐<br>
                             <b>Nhận xét:</b> <br>
@@ -42,10 +41,11 @@
                         </div>
                     </div>
                     <br>
+                    <hr>
                     <div class="row">
                         <div class="col-6"><h6 class="text-star">Tổng tiền:</h6> </div>
                 
-                        <div class="col-6"><h6 class="text-end">{{$bookings->price}} K</h6></div>
+                        <div class="col-6"><h6 class="text-end">{{number_format($bookings->price, 0,'.','.')}}đ<br><div style="font-size: 15px; color: red;">{{($payment->booking_id == $bookings->id ? 'Đã thanh toán chuyển khoản.' : 'Đã thanh toán tại quầy.')}}</div> </h6></div>
                     </div>
                    
                 </div>

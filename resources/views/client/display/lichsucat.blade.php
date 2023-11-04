@@ -2,10 +2,8 @@
 
 @section('style')
 <link rel="stylesheet" href="{{asset('client/css/lichsucat.css')}}">
+<link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-<link rel="stylesheet" href="https://30shine.com/static/css/main.3b0c8d1d.chunk.css">
-<link rel="stylesheet" href="https://30shine.com/static/css/9.dd6dd3b5.chunk.css" />
-<link rel="stylesheet" href="https://30shine.com/static/css/25.4af93d8b.chunk.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -47,7 +45,9 @@
         <div class="row justify-content-center">
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Lịch Sử Đã Cắt</span></div>
-                @if($bookings->status == 2)
+        @if(Auth::check())
+               
+                @if(Auth::user()->phone_number && $bookings->status == 1)
 
                 <div class="main-screen">
 
@@ -60,7 +60,7 @@
                         </div>
                         <div class="cursor-pointer flex item-center rounded justify-content-center " style="height: 2.75rem; padding-left: 0.625rem; padding-right: 0.625rem;" aria-hidden="true">
 
-                            <form action="{{route('lichsucat')}}" method="post">
+                            <form action="{{route('client.lichsucat')}}" method="post">
                                 @csrf
                                 <input type="hidden" value="{{$bookings->id}}" name="booking_id">
                                 <fieldset class="rating fs-1">
@@ -86,8 +86,9 @@
 
                 </div>
                 <div class="new-affix-v2">
+                    
                     <div class="flex space-between text-center content-step ">
-                        <button type="submit" class="right button-next pointer btn-inactive">Hoàn tất</button>
+                        <button type="submit" class="right button-next pointer btn">Hoàn tất</button>
 
 
                     </div>
@@ -106,44 +107,56 @@
                 @endif
                 <br>
 
+             
                 @foreach($reviews as $booking)
-
-                @foreach($allReviews as $allReview)
+                    @foreach($allReviews as $allReview)
                
-               @if($allReview == $bookings->id)
+                        @if($allReview == $bookings->id)
+
+                
+                            <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                                <div class="row">
+                                    <div class="col-5" style="margin-left: 30px;">
+                                        <i class="bi bi-image-fill" style="font-size: 150px;"></i>
+                                    </div>
+                                    <div class="col-6" style="margin-top: 40px;">
+                                        <h6 style="display: inline-block;">User:</h6> {{$bookings->user_phone}}
+                                        <br>
+                                        <h6 style="display: inline-block;"> TimeBooking:</h6>{{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}}
+                                        <br>
+                                        <h6 style="display: inline-block;"> Stylist:</h6> {{$stylist->name}}
+                                        <br>
+                                        
+                                        @foreach($booking->reviews as $review)
+                                        <h6 style="display: inline-block;"> Rating:</h6> {{$review->rating}}⭐
+                                        
+                                        @endforeach
+                                        <br>
+                                        <a href="{{route('client.detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
+                                    </div>
+                                </div>
 
 
-                <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                    <div class="row">
-                        <div class="col-5" style="margin-left: 30px;">
-                            <i class="bi bi-image-fill" style="font-size: 150px;"></i>
-                        </div>
-                        <div class="col-6" style="margin-top: 40px;">
-
-                            <h6 style="display: inline-block;">Stylist:</h6> {{$bookings->stylist->name}}
+                            </div>
                             <br>
-                            <h6 style="display: inline-block;"> TimeBooking:</h6>{{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}}
-                            <br>
-                            <h6 style="display: inline-block;"> Stylist:</h6> {{$bookings->stylist->name}}
-                            <br>
-                            @foreach($booking->reviews as $review)
-                            <h6 style="display: inline-block;"> Rating:</h6> {{$review->rating}}⭐
-                            @endforeach
-                            <br>
-                            <a href="{{route('detailhistory',['id'=>$bookings->id])}}" class="btn btn-primary">Chi tiết</a>
-                        </div>
-                    </div>
 
 
+                        @endif
+                
+                    @endforeach
+                @endforeach
                 </div>
-                <br>
-
-
-               @endif
-                @endforeach
-                @endforeach
-            </div>
-
+        @else
+                <div style="background-color: #fff; padding: 10px; " class="d-flex justify-content-center">
+                    <b class="text-center" style="font-family: 'Outfit', sans-serif; font-size: 20px;">Anh chị chưa đăng kí dịch vụ nào bên em. <br> Anh chị bấm đăng kí bên dưới 👇 để trải nghiêm dịch vụ bên em ạ !</b>
+                   <br>
+                </div>
+                <div style="background-color: #fff; padding: 10px;" class="d-flex justify-content-center">
+                        <a href="{{route('client.booking')}}" class="btn btn-primary">Đăng kí ngay</a>
+                        
+                    </div>
+                
+        @endif  
         </div>
     </div>
 </section>

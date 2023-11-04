@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Booking_service;
+use App\Models\payment;
 use App\Models\Reviews;
 use App\Models\Service;
 use App\Models\User;
@@ -20,16 +21,21 @@ class ClientBookingController extends Controller
 
     public function bookingDone($booking_id)
     {
-        $bookings = Booking::with('timeSheet', 'reviews')
+        $bookings = Booking::with('timeSheet')
             ->where('id', $booking_id)
             // ->orderBy('create_at', 'desc')
             ->first();
-        // dd($bookings);
         $stylist = User::where('id', $bookings->stylist_id)->first();
+        // dd($stylist);
         $combo = Booking_service::with('service')
             ->where('booking_id', $booking_id)
             ->get();
+
+        $payment = payment::where('booking_id', $booking_id)->first();
+
         // dd($combo);
-        return view('client.booking.bookingDone', compact('booking_id', 'bookings', 'combo','stylist'));
+
+
+        return view('client.booking.bookingDone', compact('booking_id', 'bookings', 'combo', 'payment', 'stylist'));
     }
 }

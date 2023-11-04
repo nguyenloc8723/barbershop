@@ -13,8 +13,8 @@ class StylistTimeSheetsController extends AdminBaseController
     public $route = 'stylistTimeSheets';
     public $pathViews = 'admin.stylistTimeSheets';
     public $columns = [
-        'id' => 'ID',
-        'stylist_id' => 'ID Stylist',
+        'id'=> 'id',
+        'user_id' => 'ID Stylist',
         'timesheet_id' => 'ID Time Sheet',
         'is_active' => 'Active',
         'is_block' => 'Block',
