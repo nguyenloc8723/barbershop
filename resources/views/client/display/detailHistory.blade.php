@@ -34,10 +34,10 @@
                             @endforeach <br>
                             <b>Stylist:</b> {{$stylist->name}}<br>
                             <b>Ngày đặt:</b> {{$bookings->date}} | {{$bookings->timeSheet->hour}}:{{$bookings->timeSheet->minutes}} <br>
-                            <b>Đánh Giá:</b> {{$reviews->rating}} ⭐<br>
+                            <b>Đánh Giá:</b> {{isset($reviews->rating) ? $reviews->rating.'⭐' : 'Chưa đánh giá'}} <br>
                             <b>Nhận xét:</b> <br>
-                                <div style="float: left; width: 90%; background-color: #bdc3c7; border-radius: 10px; padding: 10px;margin: 5px;">{{$reviews->comment}}</div>
-                                <div style="float: right; width: 90%; background-color: #bdc3c7; border-radius: 10px; padding: 10px; height: auto;"><b>CSKH:</b> {{$reviews->reply}}!</div>
+                                <div style="float: left; width: 90%; background-color: #bdc3c7; border-radius: 10px; padding: 10px;margin: 5px;">{{isset($reviews->comment) ? $reviews->comment : 'Chưa đánh giá' }}</div>
+                                <div style="float: right; width: 90%; background-color: #bdc3c7; border-radius: 10px; padding: 10px; height: auto;"><b>CSKH:</b> {{isset($reviews->reply) ? $reviews->reply : ''}}</div>
                         </div>
                     </div>
                     <br>
@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-6"><h6 class="text-star">Tổng tiền:</h6> </div>
                 
-                        <div class="col-6"><h6 class="text-end">{{number_format($bookings->price, 0,'.','.')}}đ<br><div style="font-size: 15px; color: red;">{{($payment->booking_id == $bookings->id ? 'Đã thanh toán chuyển khoản.' : 'Đã thanh toán tại quầy.')}}</div> </h6></div>
+                        <div class="col-6"><h6 class="text-end">{{number_format($bookings->price, 0,'.','.')}}đ<br><div style="font-size: 15px; color: red;">{{ isset($payment->booking_id) ? 'Đã thanh toán chuyển khoản.' : 'Đã thanh toán tại quầy.'}}</div> </h6></div>
                     </div>
                    
                 </div>
