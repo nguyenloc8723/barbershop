@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\Timesheet;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class CreateData extends Command
@@ -33,6 +34,19 @@ class CreateData extends Command
             'name' => 'Cắt gội xả massage',
             'is_active' => 1
         ]);
+
+        $data = User::query()->updateOrCreate([
+            'phone_number' => '+840342599803',
+            'name' => '6x pro',
+            'image' => '',
+            'excerpt' => '',
+            'user_type' => 'ADMIN',
+            'remember_token' => '',
+            'created_at' => '2023-11-04 11:48:01',
+            'updated_at' => '2023-11-04 11:48:01'
+        ]);
+        $data->assignRole(1);
+
         $hour = 7;
         $minutes = '00';
         $check = true;
