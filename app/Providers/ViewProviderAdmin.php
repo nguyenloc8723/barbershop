@@ -38,9 +38,10 @@ class ViewProviderAdmin extends ServiceProvider
                 ->with('booking')
                 ->orderBy('id','desc')
                 ->get();
-            Log::info($notifications[0]->booking->status);
+//            Log::info($notifications[0]->booking->status);
+            Log::info($notifications);
 
-            $view->with('notification', $notifications);
+            $view->with('notifications', $notifications);
         });
     }
 }
