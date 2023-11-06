@@ -4,9 +4,7 @@ namespace App\Service;
 
 use App\Interfaces\NotificationInterface;
 use App\Models\Notification;
-use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
-use function Laravel\Prompts\table;
 
 class MessegerService implements NotificationInterface
 {
