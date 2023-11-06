@@ -648,7 +648,7 @@ $(document).ready(function () {
                     window.location.href = 'index-payment/' + phone;
                     console.log(response.success)
                 } else {
-                    // toastr['success']('Đặt lịch thành công');
+                    toastr['success']('Đặt lịch thành công');
                     window.location.href = 'booking/success/' + response.success;
                 }
 
