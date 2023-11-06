@@ -8,7 +8,7 @@
 
 
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-body task-detail">
                             <div class="dropdown float-end">
@@ -29,23 +29,28 @@
                             </div>
                             <div class="d-flex mb-3">
                                 <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64"
-                                     src="{{asset('client/img/logo.png')}}">
+                                     src="{{asset('client/img/logobarber.png')}}">
                                 <div class="flex-grow-1">
                                     <h4 class="media-heading mt-0">{{$data->phone_number}}</h4>
-                                    <span
-                                        class="badge bg-{{$data->status == 1 ? "danger" : "success" }}">{{$data->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}
-                                    </span>
+                                    @if($data->status == 1)
+                                        <span
+                                            class="badge bg-danger" >Chờ xác nhận
+                                        </span>
+                                    @endif
+                                    @if($data->status == 2)
+                                        <span
+                                            class="badge bg-warning" >Đang chờ cắt
+                                        </span>
+                                    @endif
+                                    @if($data->status == 3)
+                                        <span
+                                            class="badge bg-success" >Đã cắt
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
-                            <h4>Stylist: {{$data->stylist->name}}</h4>
-                            {{--                                <h4>Thời gian: {{$data->timesheet->hour}}h {{$data->timesheet->minutes}}ph</h4>--}}
-
-                            {{--                                <p class="text-muted">--}}
-                            {{--                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint cupiditate non sunt in culpa qui officia deserunt animi est laborum et--}}
-                            {{--                                </p>--}}
-
-
+                            <h4>Stylist: {{$stylist->name}}</h4>
                             <div class="row task-dates mb-0 mt-2">
                                 <div class="col-lg-6">
                                     <h4 class="font-600 m-b-5">Ngày</h4>
@@ -73,27 +78,9 @@
                                 Trạng thái: {{$data->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}
                             </h4>
 
-                            {{--                                <div class="clearfix"></div>--}}
-
-                            {{--                                <div class="task-tags mt-2">--}}
-                            {{--                                    <h5>Tags</h5>--}}
-                            {{--                                    <input type="text" class="selectize-close-btn" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags"/>--}}
-                            {{--                                </div>--}}
-
-                            {{--                                <div class="assign-team mt-3">--}}
-                            {{--                                    <h5>Assign to</h5>--}}
-                            {{--                                    <div>--}}
-                            {{--                                        <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-2.jpg"> </a>--}}
-                            {{--                                        <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-3.jpg"> </a>--}}
-                            {{--                                        <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-5.jpg"> </a>--}}
-                            {{--                                        <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-8.jpg"> </a>--}}
-                            {{--                                        <a href="#"><span class="add-new-plus"><i class="mdi mdi-plus"></i> </span></a>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-
 
                             <table
-                                   class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+                                class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                                 <thead>
                                 <tr>
                                     <th>Tên dịch vụ</th>
@@ -117,6 +104,7 @@
                                      alt="img" srcset="">
                                 {{--                                    </div>--}}
                             @endforeach
+                            {{--                            @if($item->status === 2)--}}
                             <form class="d-flex justify-content-between flex-wrap"
                                   id="formModalService" method="post"
                                   action="{{route('route.booking_blade.post', $data->id)}}"
@@ -134,10 +122,6 @@
                                                     class="upload font-22"></i></label>
                                             <span class="show-error text-danger" data-name="imageFile"></span>
                                         </div>
-                                        {{--                                        <input src="" type="hidden" name="actionMethod" id="image-preview">--}}
-                                        {{--                                        <input src="" id="image-preview">--}}
-                                        {{--                                        <img src="" id="image-preview"--}}
-                                        {{--                                             style="max-height: 100px; max-width: 100px;">--}}
                                         <div id="image-container">
 
 
@@ -150,121 +134,15 @@
                                                         class="btn btn-success waves-effect waves-light me-1">
                                                     Save
                                                 </button>
-{{--                                                <tr>--}}
-{{--                                                    <td>A confirm dialog, with a function attached to the "Confirm"-button...</td>--}}
-{{--                                                    <td>--}}
-{{--                                                        <button type="button" class="btn btn-info btn-xs" id="sa-warning">Click me</button>--}}
-{{--                                                    </td>--}}
-{{--                                                </tr>--}}
                                                 <button id="cancelButton" class="btn btn-secondary">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </form>
-                            {{--                                <div class="row">--}}
-                            {{--                                    <div class="col-sm-12">--}}
-                            {{--                                        <div class="text-end">--}}
-                            {{--                                            <button type="submit"--}}
-                            {{--                                                    class="btn btn-success waves-effect waves-light me-1">--}}
-                            {{--                                                Save--}}
-                            {{--                                            </button>--}}
-                            {{--                                            <button type="button"--}}
-                            {{--                                                    class="btn btn-light waves-effect">Cancel--}}
-                            {{--                                            </button>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                        </div>
-
-                    </div>
-                </div>
-
-            </div><!-- end col -->
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dropdown float-end">
-                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <i class="mdi mdi-dots-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                            </div>
-                        </div>
-
-                        <h4 class="header-title mt-0 mb-3">Comments</h4>
-
-                        <div>
-
-{{--                            <div class="d-flex mb-3">--}}
-{{--                                <div class="flex-shrink-0 me-3">--}}
-{{--                                    <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"--}}
-{{--                                                      src="assets/images/users/user-1.jpg"> </a>--}}
-{{--                                </div>--}}
-{{--                                <div class="flex-grow-1">--}}
-{{--                                    <h5 class="mt-0">Mat Helme</h5>--}}
-{{--                                    <p class="font-13 text-muted mb-0">--}}
-{{--                                        <a href="" class="text-primary">@Michael</a>--}}
-{{--                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque--}}
-{{--                                        ante sollicitudin commodo.--}}
-{{--                                    </p>--}}
-{{--                                    <a href="" class="text-success font-13">Reply</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <div>
-
-                                @foreach ($data->reviews as $item)
-
-                                    <div class="d-flex mb-3">
-                                        <div class="flex-shrink-0 me-3">
-{{--                                            {{$data->results[1]}}--}}
-                                            <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"
-                                                              src="/storage/{{$data->results[1]->image}}">
-                                            </a>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h5 class="mt-0">{{ $data->user->name }}</h5>
-                                            <p class="font-13 text-muted mb-0">
-                                                <a href="" class="text-primary">@Michael</a>
-                                                {{ $item->comment }}
-                                            </p>
-                                            <a href="" class="text-success font-13">Reply</a>
-                                        </div>
-                                    </div>
-                                @endforeach
-{{--                                @foreach($data->review as $item)--}}
-{{--                                    {{dd($item)}}--}}
-{{--                                @endforeach--}}
-                            </div>
-
-
-{{--                            <div class="d-flex mb-3">--}}
-{{--                                <div class="flex-shrink-0 me-3">--}}
-{{--                                    <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64"--}}
-{{--                                                      src="assets/images/users/user-1.jpg"> </a>--}}
-{{--                                </div>--}}
-{{--                                <div class="flex-grow-1">--}}
-{{--                                    <h5 class="mt-0">Mat Helme</h5>--}}
-{{--                                    <p class="font-13 text-muted mb-0">--}}
-{{--                                        <a href="" class="text-primary">@Michael</a>--}}
-{{--                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque--}}
-{{--                                        ante sollicitudin commodo cras purus.--}}
-{{--                                    </p>--}}
-{{--                                    <a href="" class="text-success font-13">Reply</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
 
                         </div>
+
                     </div>
                 </div>
 
@@ -319,3 +197,4 @@
     <script src="{{asset('js/jsAdmin/booking_blade.js')}}"></script>
     {{--    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>--}}
 @endsection
+
