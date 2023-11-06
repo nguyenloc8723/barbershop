@@ -44,7 +44,7 @@
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="d-flex align-items-start">
                                     <img class="d-flex me-2 rounded-circle"
-                                         src="{{asset('be/assets/images/users/user-2.jpg')}}"
+                                         {{--                                         src="{{asset('be/assets/images/users/user-2.jpg')}}"--}}
                                          alt="Generic placeholder image" height="32">
                                     <div class="w-100">
                                         <h5 class="m-0 font-14">Erwin E. Brown</h5>
@@ -57,7 +57,7 @@
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="d-flex align-items-start">
                                     <img class="d-flex me-2 rounded-circle"
-                                         src="{{asset('be/assets/images/users/user-5.jpg')}}"
+                                         {{--                                         src="{{asset('be/assets/images/users/user-5.jpg')}}"--}}
                                          alt="Generic placeholder image" height="32">
                                     <div class="w-100">
                                         <h5 class="m-0 font-14">Jacob Deo</h5>
@@ -88,89 +88,69 @@
             <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#"
                role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="fe-bell noti-icon"></i>
-                <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
+                <span
+                    id="soLuongThongBao" class="badge bg-danger rounded-circle noti-icon-badge notification-test">
+                </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-lg">
 
                 <!-- item-->
                 <div class="dropdown-item noti-title">
                     <h5 class="m-0">
-                     <span class="float-end">
-                       <a href="" class="text-dark">
-                          <small>Clear All</small>
-                        </a>
-                     </span>Notification
+                        <span class="float-end">
+                            <a href="" class="text-dark">
+                                <small>Clear All</small>
+                            </a>
+                        </span>Notification
                     </h5>
                 </div>
-
                 <div class="noti-scroll" data-simplebar>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                        <div class="notify-icon">
-                            <img src="{{asset('be/assets/images/users/user-1.jpg')}}" class="img-fluid rounded-circle"
-                                 alt=""/></div>
-                        <p class="notify-details">Cristina Pride</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>Hi, How are you? What about our next meeting</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">1 min ago</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon">
-                            <img src="{{asset('be/assets/images/users/user-4.jpg')}}" class="img-fluid rounded-circle"
-                                 alt=""/></div>
-                        <p class="notify-details">Karen Robinson</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>Wow ! this admin looks good and awesome design</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-warning">
-                            <i class="mdi mdi-account-plus"></i>
-                        </div>
-                        <p class="notify-details">New user registered.
-                            <small class="text-muted">5 hours ago</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">4 days ago</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-secondary">
-                            <i class="mdi mdi-heart"></i>
-                        </div>
-                        <p class="notify-details">Carlos Crouch liked
-                            <b>Admin</b>
-                            <small class="text-muted">13 days ago</small>
-                        </p>
-                    </a>
+                    @foreach($notification as $item)
+                        <a class="dropdown-item notify-item active"
+                           @if($item->messege === 'Thông báo có lịch đặt mới.')
+                               href="{{route('route.booking_blade')}}"
+                           @else
+                               href="{{route('review.index')}}"
+                            @endif
+                        >
+                            <div class="notify-icon">
+                                <img src="{{asset('be/assets/images/users/user-1.jpg')}}"
+                                     class="img-fluid rounded-circle" alt=""/>
+                            </div>
+                            <p class="notify-details">{{str_replace("+84", "", $item->booking->user_phone)}}</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>{{$item->messege}}</small>
+                            </p>
+                            {{--                        <span style="bottom: 40px; position: relative; display: flex; justify-content: flex-end; align-items: center;">--}}
+                            {{--                            <i class="bi bi-trash"></i>--}}
+                            {{--                        </span>--}}
+                            <div class="row">
+                                @if($item->booking->status === 1)
+                                    <div class="col-6 d-grid gap-2 fs-6">
+                                        <button type="button"
+                                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                                                class="btn btn-sm btn-outline-success rounded-pill confirm-booking"
+                                                data-booking-id="{{ $item->booking_id }}"
+                                        >Xác nhận
+                                        </button>
+                                    </div>
+                                    <div class="col-6 d-grid gap-2 fs-6">
+                                        <button type="button"
+                                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                                                class="btn btn-sm btn-outline-danger rounded-pill delete-notification"
+                                                data-notification-id="{{ $item->id }}"
+                                        >Hủy lịch
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
 
                 <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                <a href="{{route('route.notification')}}"
+                   class="dropdown-item text-center text-primary notify-item notify-all">
                     View all
                     <i class="fe-arrow-right"></i>
                 </a>
@@ -184,22 +164,18 @@
                 <img src="{{asset('be/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
                 @if(Auth::user()->user_type == 'STYLIST')
                     <span class="pro-user-name ms-1">
-                                   Stylist-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
+                                   Stylist-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i
+                            class="mdi mdi-chevron-down"></i>
                                 </span>
                 @else
                     <span class="pro-user-name ms-1">
-                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i class="mdi mdi-chevron-down"></i>
+                                   Admin-{{ str_replace('+84', '', Auth::user()->phone_number) }} <i
+                            class="mdi mdi-chevron-down"></i>
                                 </span>
                 @endif
 
             </a>
             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                <!-- item-->
-{{--                <div class="dropdown-header noti-title">--}}
-{{--                    <h6 class="text-overflow m-0">Welcome !</h6>--}}
-{{--                </div>--}}
-
-                <!-- item-->
                 <a href="" class="dropdown-item notify-item">
                     <i class="fe-user"></i>
                     <span>Tài khoản của tôi</span>
@@ -215,7 +191,8 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="{{ route('logout') }}" class="dropdown-item notify-item"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" class="dropdown-item notify-item"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fe-log-out"></i>
                     <span>Đăng xuất</span>
                 </a>
@@ -263,7 +240,7 @@
 
         <li>
             @include('admin.layout.partials.title')
-{{--            <h4 class="page-title-main">Dashboard</h4>--}}
+            {{--            <h4 class="page-title-main">Dashboard</h4>--}}
         </li>
 
     </ul>
