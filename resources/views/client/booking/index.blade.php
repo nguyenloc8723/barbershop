@@ -161,7 +161,7 @@
                 </div>
                 <div class="new-affix-v2">
                     <div class="flex space-between text-center content-step time-line ">
-                        <div class="right button-next pointer btn-inactive" role="presentation">
+                        <div class="right button-next pointer btn-inactive jqr-completed" role="presentation">
                             <span>Hoàn tất</span>
                         </div>
                         <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
