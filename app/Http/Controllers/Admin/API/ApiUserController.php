@@ -16,7 +16,7 @@ class ApiUserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = User::query()->where('user_type', 'USER')->get();
         return response()->json($data);
     }
     public function roles()
