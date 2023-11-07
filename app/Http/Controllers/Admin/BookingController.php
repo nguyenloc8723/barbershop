@@ -45,7 +45,7 @@ class BookingController extends AdminBaseController
 
     public function index()
     {
-        $data = Booking::query()->with('user')->with('stylist')->get();
+        $data = Booking::query()->with('user')->with('stylist')->orderBy('id','desc')->get();
         return view($this->pathViews . '/' . __FUNCTION__, compact('data'))
             ->with('columns', $this->columns);
     }
