@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-6" id="btnContainer" style="display: none;">
                     <div class="row">
-                        <div class="col-6 d-grid gap-2" onclick="confirmAll()">
+                        <div class="col-6 d-grid gap-3" onclick="confirmAll()">
                             <button type="button" class="btn btn-outline-success rounded-pill">Xác nhận tất cả
                                 lịch
                             </button>
@@ -81,15 +81,11 @@
                             </div>
                         @endif
                         @if($items->booking->status === 2)
-                            <div class="col-2 d-grid gap-2">
+                            <div class="col-4 d-grid gap-2">
                                 <button type="button" class="btn btn-success rounded-pill"
                                         disabled
                                 >Đã xác nhận
                                 </button>
-                            </div>
-                            <div class="col-2 d-grid gap-2">
-                                <button type="button" class="btn btn-danger rounded-pill" disabled>Hủy
-                                    lịch</button>
                             </div>
                         @endif
                         @if($items->booking->status === 3)
