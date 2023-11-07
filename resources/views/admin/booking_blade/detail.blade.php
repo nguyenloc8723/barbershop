@@ -32,6 +32,7 @@
                                      src="{{asset('client/img/logobarber.png')}}">
                                 <div class="flex-grow-1">
                                     <h4 class="media-heading mt-0">{{$data->phone_number}}</h4>
+
                                     @if($data->status == 1)
                                         <span
                                             class="badge bg-danger" >Chờ xác nhận
@@ -51,6 +52,8 @@
                             </div>
 
                             <h4>Stylist: {{$stylist->name}}</h4>
+
+
                             <div class="row task-dates mb-0 mt-2">
                                 <div class="col-lg-6">
                                     <h4 class="font-600 m-b-5">Ngày</h4>
@@ -79,6 +82,7 @@
                             </h4>
 
 
+
                             <table
                                 class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
                                 <thead>
@@ -104,42 +108,45 @@
                                      alt="img" srcset="">
                                 {{--                                    </div>--}}
                             @endforeach
-                            {{--                            @if($item->status === 2)--}}
-                            <form class="d-flex justify-content-between flex-wrap"
-                                  id="formModalService" method="post"
-                                  action="{{route('route.booking_blade.post', $data->id)}}"
-                                  enctype="multipart/form-data">
-                                @csrf
-                                @method('POST')
-                                <div class="attached-files mt-1 col-12">
-                                    <h5>Files đính kèm </h5>
+                            @if($data->status === 2 || $data->status === 3)
+                                <form class="d-flex justify-content-between flex-wrap"
+                                      id="formModalService" method="post"
+                                      action="{{route('route.booking_blade.post', $data->id)}}"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    <div class="attached-files mt-1 col-12">
+                                        <h5>Files đính kèm </h5>
 
-                                    <div class="col-xl-6 p-3">
-                                        <div class="row text-center">
-                                            <input type="file" name="imageFile[]" hidden="hidden" id="file-input"
-                                                   multiple/>
-                                            <label for="file-input" style="font-size: 20px">Tải ảnh lên <i
-                                                    class="upload font-22"></i></label>
-                                            <span class="show-error text-danger" data-name="imageFile"></span>
+                                        <div class="col-xl-6 p-3">
+                                            <div class="row text-center">
+                                                <input type="file" name="imageFile[]" hidden="hidden" id="file-input"
+                                                       multiple/>
+                                                <label for="file-input" style="font-size: 20px">Tải ảnh lên <i
+                                                        class="upload font-22"></i></label>
+                                                <span class="show-error text-danger" data-name="imageFile"></span>
+                                            </div>
+
+                                            <div id="image-container">
+
+
+                                            </div>
                                         </div>
-                                        <div id="image-container">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="text-end">
+                                                    <button type="submit"
+                                                            class="btn btn-success waves-effect waves-light me-1">
+                                                        Save
+                                                    </button>
 
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="text-end">
-                                                <button type="submit"
-                                                        class="btn btn-success waves-effect waves-light me-1">
-                                                    Save
-                                                </button>
-                                                <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+                                                    <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endif
 
                         </div>
 
@@ -147,6 +154,7 @@
                 </div>
 
             </div><!-- end col -->
+
 
         </div>
 
@@ -197,4 +205,3 @@
     <script src="{{asset('js/jsAdmin/booking_blade.js')}}"></script>
     {{--    <script src="{{asset('js/jsAdmin/booking.js')}}"></script>--}}
 @endsection
-

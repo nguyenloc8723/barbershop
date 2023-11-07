@@ -99,7 +99,7 @@
                     <h5 class="m-0">
                         <span class="float-end">
                             <a href="" class="text-dark">
-                                <small>Clear All</small>
+{{--                                <small>Clear All</small>--}}
                             </a>
                         </span>Notification
                     </h5>

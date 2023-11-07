@@ -30,18 +30,18 @@ class BookingController extends AdminBaseController
 
 //        $stylist = Stylist::find(1)->orderBy('name')->get();
         $data = Booking::query()->where('id', $id)
-            ->with('user')
-            ->with('stylist')
             ->with('timesheet')
             ->with('service')
             ->with('results')
             ->with('reviews')
             ->first();
-
+        $stylist = User::where('id', $data->stylist_id)->first();
 //        dd($data);
-        return view($this->pathViews . '/' . 'detail', compact('data'))
+//        dd($stylist);
+        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist'))
             ->with('columns', $this->columns);
     }
+
 
     public function index()
     {
