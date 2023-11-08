@@ -29,22 +29,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body taskboard-box">
-{{--                    <div class="dropdown float-end">--}}
-{{--                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"--}}
-{{--                           aria-expanded="false">--}}
-{{--                            <i class="mdi mdi-dots-vertical"></i>--}}
-{{--                        </a>--}}
-{{--                        <div class="dropdown-menu dropdown-menu-end">--}}
-{{--                            <!-- item-->--}}
-{{--                            <a href="javascript:void(0);" class="dropdown-item">Action</a>--}}
-{{--                            <!-- item-->--}}
-{{--                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>--}}
-{{--                            <!-- item-->--}}
-{{--                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>--}}
-{{--                            <!-- item-->--}}
-{{--                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+
 
                     <h4 class="header-title mt-0 mb-3 text-primary">Quản lí lịch đặt</h4>
 
@@ -61,48 +46,31 @@
                                     </div>
 
                                     <div class="kanban-detail">
-{{--                                        <span class="badge bg-danger float-end">Urgent</span>--}}
-                                        <span class="badge float-end bg-{{$item->status == 1 ? "danger" : "success" }}">{{$item->status == 1 ? "Đã đặt lịch" : "Đã cắt" }}</span>
-                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->phone_number}}</a></h5>
-{{--                                        <ul class="list-inline">--}}
-{{--                                            <li class="list-inline-item">--}}
-{{--                                                <a href="" data-bs-toggle="tooltip" data-bs-placement="top"--}}
-{{--                                                   title="Username">--}}
-{{--                                                    <img--}}
-{{--                                                        src="{{asset('client/img/logo.png')}}"--}}
-{{--                                                        src="http://fpt-barber-shop.test/client/img/logo.png"--}}
-{{--                                                        alt="img"--}}
-{{--                                                         class="avatar-sm rounded-circle">--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="list-inline-item">--}}
-{{--                                                <a href="" data-bs-toggle="tooltip" data-bs-placement="top"--}}
-{{--                                                   title="5 Tasks">--}}
-{{--                                                    <i class="mdi mdi-format-align-left"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="list-inline-item">--}}
-{{--                                                <a href="" data-bs-toggle="tooltip" data-bs-placement="top"--}}
-{{--                                                   title="3 Comments">--}}
-{{--                                                    <i class="mdi mdi-comment-outline"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
+                                        @if($item->status == 1)
+                                            <span
+                                                class="badge float-end bg-danger" >Chờ xác nhận
+                </span>
+                                        @endif
+                                        @if($item->status == 2)
+                                            <span
+                                                class="badge float-end bg-warning" >Đang chờ cắt
+                </span>
+                                        @endif
+                                        @if($item->status == 3)
+                                            <span
+                                                class="badge float-end bg-success" >Đã cắt
+                </span>
+                                        @endif
+                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
                                     </div>
                                 </div>
                             </li>
                         @endforeach
 
 
+
                     </ul>
 
-{{--                    <div class="text-center pt-2">--}}
-{{--                        <a data-bs-toggle="modal" data-bs-target="#custom-modal"--}}
-{{--                           class="btn btn-primary waves-effect waves-light" data-animation="fadein"--}}
-{{--                           data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">--}}
-{{--                            <i class="mdi mdi-plus"></i> Add New--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
                 </div>
             </div>
 
