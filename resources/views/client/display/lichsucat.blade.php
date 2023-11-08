@@ -47,7 +47,7 @@
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Lịch Sử Đã Cắt</span></div>
                 @if(Auth::check())
 
-                @if(Auth::user()->phone_number && isset($bookings->status) == 2)
+                @if(Auth::user()->phone_number && isset($bookings->status) == 3)
 
                 <div class="main-screen">
 
@@ -70,7 +70,7 @@
                                     <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="🥺 - 2 stars"></label>
                                     <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="😡 - 1 star"></label>
                                 </fieldset>
-
+                            </form>
                         </div>
                         <br>
                         <div class="block__box">
@@ -111,7 +111,6 @@
 
 
                 @foreach($reviewIds as $reviewId)
-
                 <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <div class="row">
                         <div class="col-5" style="margin-left: 30px;">
