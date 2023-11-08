@@ -10,6 +10,6 @@ class ClientTeamController extends Controller
 {
     public function index(){
         $stylists= Stylist::all();
-        return view('client.display.team',compact('stylists'));
+        return view('client.display.teams',compact('stylists'));
     }
 }

@@ -86,6 +86,7 @@ function confirmBooking() {
                 // Cập nhật giao diện tại đây (thay đổi trạng thái, ẩn nút xác nhận, ...)
                 // Ví dụ: Ẩn nút xác nhận sau khi xác nhận thành công
                 $('.confirm-booking').hide();
+                location.reload();
             },
             error: function(response) {
                 // Xử lý lỗi
@@ -94,7 +95,36 @@ function confirmBooking() {
         });
     });
 }
-
+let check = true
+function confirmBooking() {
+    $('.confirm-booking').on('click', function() {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        var bookingId = $(this).data('booking-id');
+        $.ajax({
+            method: 'POST',
+            url: '/confirm-booking/' + bookingId,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+            },
+            success: function(response) {
+                // Hiển thị thông báo thành công
+                if(check){
+                    toastr.success(response.message, 'Xác nhận thành công');
+                    check = !check;
+                }
+                // toastr.success(response.message, 'Xác nhận thành công');
+                // Cập nhật giao diện tại đây (thay đổi trạng thái, ẩn nút xác nhận, ...)
+                // Ví dụ: Ẩn nút xác nhận sau khi xác nhận thành công
+                $('.confirm-booking').hide();
+                location.reload();
+            },
+            error: function(response) {
+                // Xử lý lỗi
+                toastr.error(response.responseJSON.message, 'Lỗi');
+            }
+        });
+    });
+}
 $(document).ready(function() {
     confirmBooking();
     $('.delete-notification').on('click', function(e) {

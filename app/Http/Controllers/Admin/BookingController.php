@@ -62,12 +62,11 @@ class BookingController extends AdminBaseController
                     'image' => $result,
                 ]);
             }
-            $booking = Booking::findorFail($id);
-            if ($booking) {
-                $booking->status = '3';
-                $booking->save();
-            }
-
+        }
+        $booking = Booking::findorFail($id);
+        if ($booking) {
+            $booking->status = '3';
+            $booking->save();
         }
         return $this->getDetail($id);
     }
