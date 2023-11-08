@@ -30,22 +30,22 @@ class BookingController extends AdminBaseController
 
 //        $stylist = Stylist::find(1)->orderBy('name')->get();
         $data = Booking::query()->where('id', $id)
-            ->with('user')
-            ->with('stylist')
             ->with('timesheet')
             ->with('service')
             ->with('results')
             ->with('reviews')
             ->first();
-
+        $stylist = User::where('id', $data->stylist_id)->first();
 //        dd($data);
-        return view($this->pathViews . '/' . 'detail', compact('data'))
+//        dd($stylist);
+        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist'))
             ->with('columns', $this->columns);
     }
 
+
     public function index()
     {
-        $data = Booking::query()->with('user')->with('stylist')->get();
+        $data = Booking::query()->with('user')->with('stylist')->orderBy('id','desc')->get();
         return view($this->pathViews . '/' . __FUNCTION__, compact('data'))
             ->with('columns', $this->columns);
     }
@@ -62,12 +62,11 @@ class BookingController extends AdminBaseController
                     'image' => $result,
                 ]);
             }
-            $booking = Booking::findorFail($id);
-            if ($booking) {
-                $booking->status = '2';
-                $booking->save();
-            }
-
+        }
+        $booking = Booking::findorFail($id);
+        if ($booking) {
+            $booking->status = '3';
+            $booking->save();
         }
         return $this->getDetail($id);
     }

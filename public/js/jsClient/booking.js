@@ -643,7 +643,6 @@ $(document).ready(function () {
                 phone = user_phone.replace("+84", "");
                 window.location.href = 'index-payment/' + phone;
 
-
             },
             error: function (error) {
                 console.error(error);
