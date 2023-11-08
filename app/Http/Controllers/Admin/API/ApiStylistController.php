@@ -16,7 +16,7 @@ class ApiStylistController extends Controller
      */
     public function index()
     {
-        $data = User::query()->where('user_type', 'STYLIST')->get();
+        $data = User::query()->whereNotIn('user_type', ['USER','ADMIN'])->with('roles')->get();
         return response()->json($data);
     }
 
@@ -47,7 +47,7 @@ class ApiStylistController extends Controller
      */
     public function show(string $id)
     {
-        $data = User::query()->where('user_type', 'STYLIST')->findOrFail($id);
+        $data = User::query()->findOrFail($id);
         $data->roles;
         $role = Role::all();
         return response()->json(['stylist' => $data, 'role'=>$role]);

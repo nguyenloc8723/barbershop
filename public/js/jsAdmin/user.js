@@ -56,6 +56,9 @@ $(document).ready(function () {
                         <tr>
                           <td>${item.id}</td>
                           <td>${item.phone_number}</td>
+                          <td>
+                          <span class="badge jqr-roleUser">${item.roles[0].name}</span>
+                          </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -86,6 +89,15 @@ $(document).ready(function () {
                       </tr>`
                     );
                 })
+
+                $('.jqr-roleUser').each(function() {
+                    let roleName = $(this).text().toLowerCase(); // Chuyển đổi chuỗi thành chữ thường
+                    if (roleName.includes('stylist')) {
+                        $(this).addClass('bg-success');
+                    }else if (roleName.includes('admin')){
+                        $(this).addClass('bg-danger');
+                    }
+                });
             },
             error: function (error) {
             }
@@ -210,7 +222,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
 
                 let isRole = `<select class="form-control" name="role" id="role">`;
                 for (let i = 0; i < data.length; i++){
