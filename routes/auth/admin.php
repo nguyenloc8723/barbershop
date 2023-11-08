@@ -27,7 +27,9 @@ use App\Http\Controllers\BannerController;
 
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
-
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PricingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -114,8 +116,14 @@ Route::middleware(['admin'])->group(function () {
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 
 
-
+    Route::resource('stylists',StylistController::class);
+    Route::resource('portfolios',PortfolioController::class);
+    Route::resource('faqs',FaqController::class);
     Route::resource('blogs',BlogController::class);
+    Route::resource('pricings',PricingController::class);
+    Route::delete('deleteMultipleStylists', 'StylistController@deleteMultiple')->name('deleteMultipleStylists');
+
+
 
     Route::group([],function (){
         Route::get('roles', [RoleController::class, 'index' ])->name('role');

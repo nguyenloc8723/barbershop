@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Barber X6PRO+1</h5>
-                    <h1>Dịch vụ của chúng tôi </h1>
+                    <h5>Chúng tôi có gì</h5>
+                    <h1>Dịch vụ của chúng tôi</h1>
                 </div>
             </div>
         </div>
@@ -79,8 +79,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Firs-Class</div>
-                        <div class="section-title white">Our Features</div>
+                        <div class="section-subtitle">HẠNG NHẤT</div>
+                        <div class="section-title white">Các tính năng của chúng tôi</div>
                     </div>
                 </div>
             </div>
@@ -90,14 +90,14 @@
                         <div class="square bg-img" data-background="client/img/barber.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Groom's Shave</h4>
+                                    <h4>Cạo râu</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Groom's Shave</h4>
+                                <h4>Cạo râu</h4>
                                 <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
                                         manis dis arturient monte miss morbine.</i></p> <a href="#0"
                                                                                            class="button-2 mt-15">Appointment<span></span></a>
@@ -110,14 +110,14 @@
                         <div class="square bg-img" data-background="client/img/kids.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Kids Cuts</h4>
+                                    <h4>Cắt tóc cho trẻ</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Kids Cuts</h4>
+                                <h4>Cắt tóc cho trẻ</h4>
                                 <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
                                         manis dis arturient monte miss morbine.</i></p> <a href="#0"
                                                                                            class="button-2 mt-15">Appointment<span></span></a>
@@ -130,14 +130,14 @@
                         <div class="square bg-img" data-background="client/img/team/b3.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Creative Barbers</h4>
+                                    <h4>Đào tạo Barber</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Creative Barbers</h4>
+                                <h4>Đào tạo Barber</h4>
                                 <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
                                         manis dis arturient monte miss morbine.</i></p> <a href="#0"
                                                                                            class="button-2 mt-15">Our
@@ -159,12 +159,12 @@
                     <div class="col-md-5 mb-30 mt-60">
                         <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i
                                 class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>We Are Best Barbers & Hair Cutting Salon at NYC.</h5>
+                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất ở Hà Nội.</h5>
                         <div class="reservations mb-10">
                             <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
                             <div class="text">
-                                <p class="color-1">Appointment</p> <a class="color-1" href="tel:855-100-4444">855 100
-                                    4444</a>
+                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886
+                                    742</a>
                             </div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                     <div class="col-md-5 offset-md-2">
                         <div class="booking-box">
                             <div class="head-box text-center">
-                                <h4>Make An Appointment</h4>
+                                <h4>Đặt một cuộc hẹn</h4>
                             </div>
                             <div class="booking-inner clearfix">
                                 <form class="form1 clearfix">
@@ -181,7 +181,7 @@
                                             <div class="input1_wrapper">
                                                 <label>Name</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Name"
+                                                    <input type="text" class="form-control input" placeholder="Tên"
                                                            required>
                                                 </div>
                                             </div>
@@ -190,26 +190,26 @@
                                             <div class="input1_wrapper">
                                                 <label>Phone</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Phone"
+                                                    <input type="text" class="form-control input" placeholder="Số điện thoại"
                                                            required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input1_wrapper">
-                                                <label>Date</label>
+                                                <label>Ngày</label>
                                                 <div class="input1_inner">
                                                     <input type="text" class="form-control input datepicker"
-                                                           placeholder="Date" required>
+                                                           placeholder="Ngày" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Time</label>
+                                                <label>Thời gian</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Time</option>
+                                                        <option value="0">Thời gian</option>
                                                         <option value="1">10:00 am</option>
                                                         <option value="2">11:00 am</option>
                                                         <option value="3">12:00 pm</option>
@@ -223,10 +223,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Services</label>
+                                                <label>Dịch vụ</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Services</option>
+                                                        <option value="0">Dịch vụ</option>
                                                         <option value="0">Hair Styling</option>
                                                         <option value="1">Face Mask</option>
                                                         <option value="2">Shaving</option>
@@ -238,10 +238,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Choose Barber</label>
+                                                <label>Chọn Barber</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Choose Barber</option>
+                                                        <option value="0">Chọn Barber</option>
                                                         <option value="0">Philip</option>
                                                         <option value="1">Stephen</option>
                                                         <option value="2">Dennis</option>
@@ -251,7 +251,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Make Appointment
+                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn
                                             </button>
                                         </div>
                                     </div>
