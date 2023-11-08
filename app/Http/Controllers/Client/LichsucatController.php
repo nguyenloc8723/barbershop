@@ -34,15 +34,16 @@ class LichsucatController extends Controller
         //lấy tất cả dữ liệu booking có user_id
         $booking = Booking::with('User', 'timeSheet', 'reviews')
         ->where('user_id', $user)
+        ->where('status', 2)
         ->get();
         $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist', 
         foreach ($booking as $review) {
             
             $reviewIds[] = $review;
-            
+           
             
         }
-        return view('client.display.lichsucat', compact('bookings','reviewIds'));
+        return view('client.display.lichsucat', compact('bookings','reviewIds', 'review'));
     }
 
     public function create(Request $request)

@@ -47,7 +47,7 @@
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Lịch Sử Đã Cắt</span></div>
                 @if(Auth::check())
 
-                @if(Auth::user()->phone_number && isset($bookings->status) == 1)
+                @if(Auth::user()->phone_number && isset($bookings->status) == 2)
 
                 <div class="main-screen">
 
@@ -109,37 +109,29 @@
 
 
 
-                @foreach($reviewIds as $reviewId)
-                <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                    <div class="row">
-                        <div class="col-5" style="margin-left: 30px;">
-                            <i class="bi bi-image-fill" style="font-size: 150px;"></i>
-                        </div>
-                        <div class="col-6" style="margin-top: 40px;">
-                            <h6 style="display: inline-block;">Số điện thoại đặt:</h6> {{$reviewId->user_phone}}
-                            <br>
-                            <h6 style="display: inline-block;"> TimeBooking:</h6> {{$reviewId->date}} | {{$reviewId->timeSheet->hour}}:{{$reviewId->timeSheet->minutes}}
-                            <br>
-                             
-                           
-                       
-                            
-                     
-                            
+              
+                    @foreach($reviewIds as $reviewId)
+                        <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                            <div class="row">
+                                <div class="col-5" style="margin-left: 30px;">
+                                    <i class="bi bi-image-fill" style="font-size: 130px;"></i>
+                                </div>
+                                <div class="col-6" style="margin-top: 40px;">
+                                    <h6 style="display: inline-block;">Số điện thoại đặt:</h6> {{$reviewId->user_phone}}
+                                    <br>
+                                    <h6 style="display: inline-block;"> Ngày đặt:</h6> {{$reviewId->date}}
+                                    <br>
+                                    <h6 style="display: inline-block;"> Giờ đặt:</h6> {{$reviewId->timeSheet->hour}}:{{$reviewId->timeSheet->minutes}}
+                                    <br>
+                                    <a href="{{route('client.detailhistory',['id'=>$reviewId])}}" class="btn btn-primary m-3">Chi tiết</a>
 
-                            
-                            <br>
-                            <br>
-                            <a href="{{route('client.detailhistory',['id'=>$reviewId])}}" class="btn btn-primary m-3">Chi tiết</a>
+                                </div>
+                            </div>
+
 
                         </div>
-                    </div>
-
-
-                </div>
-                <br>
-                @endforeach
-
+                        <br>
+                    @endforeach
             </div>
             @else
             <div style="background-color: #fff; padding: 10px; " class="d-flex justify-content-center">

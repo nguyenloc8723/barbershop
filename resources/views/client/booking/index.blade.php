@@ -129,17 +129,17 @@
                             </div>
                         </div>
                         <div class="text-base">
-                        <div class="">
+                            <!-- <div class="">
                                 <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="1">
-                                        <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="2">
-                                        <label class="form-check-label" for="radio2">Thanh toán online</label>
-                                    </div>
-                            </div>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="1">
+                                    <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="2">
+                                    <label class="form-check-label" for="radio2">Thanh toán online</label>
+                                </div>
+                            </div> -->
                             <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
