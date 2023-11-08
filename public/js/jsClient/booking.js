@@ -326,17 +326,6 @@ $(document).ready(function () {
                             </div>
                              <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
                             <div class="text-base jqr-textBase">
-                            <div class="">
-                                <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="1">
-                                        <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="2">
-                                        <label class="form-check-label" for="radio2">Thanh toán online</label>
-                                    </div>
-                            </div>
                                 <div class="flex space-between is_height">
                                     <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                     <label class="switch">
@@ -613,14 +602,14 @@ $(document).ready(function () {
 
     function pushRequest() {
         let status = 1;
-        let pttt;
+        let pttt = 2;
         let date = $('input[name="date"]').val();
-        $('input[type="radio"][name="pttt"]').each(function () {
-            if ($(this).is(':checked')) {
-                pttt = $(this).val();
-                console.log('Selected value: ' + pttt);
-            }
-        });
+        // $('input[type="radio"][name="pttt"]').each(function () {
+        //     if ($(this).is(':checked')) {
+        //         pttt = $(this).val();
+        //         console.log('Selected value: ' + pttt);
+        //     }
+        // });
         let arrayBooking = {
             user_phone: user_phone,
             user_id: user_info,
@@ -643,15 +632,16 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response.success)
-                if (pttt == 2) {
-                    phone = user_phone.replace("+84", "");
-                    window.location.href = 'index-payment/' + phone;
-                    console.log(response.success)
-                } else {
-                    // toastr['success']('Đặt lịch thành công');
-                    window.location.href = 'booking/success/' + response.success;
-                }
-
+                // if (pttt == 2) {
+                //     phone = user_phone.replace("+84", "");
+                //     window.location.href = 'index-payment/' + phone;
+                //     console.log(response.success)
+                // } else {
+                //     // toastr['success']('Đặt lịch thành công');
+                //     window.location.href = 'booking/success/' + response.success;
+                // }
+                phone = user_phone.replace("+84", "");
+                window.location.href = 'index-payment/' + phone;
 
 
             },
