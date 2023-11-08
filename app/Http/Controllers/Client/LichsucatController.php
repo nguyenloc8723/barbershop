@@ -37,13 +37,18 @@ class LichsucatController extends Controller
         ->where('status', 2)
         ->get();
         $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist', 
+        $images = [];
+        // $reviews = [];
         foreach ($booking as $review) {
             
             $reviewIds[] = $review;
-           
-            
+            // dd($review->id);
+            $image = Results::where('booking_id', $review->id)->first();  
+            $images[] = $image;
         }
-        return view('client.display.lichsucat', compact('bookings','reviewIds', 'review'));
+        
+        // dd($image);
+        return view('client.display.lichsucat', compact('bookings','reviewIds', 'review', 'images'));
     }
 
     public function create(Request $request)
@@ -75,7 +80,9 @@ class LichsucatController extends Controller
         $combo = Booking_service::with('service')
             ->where('booking_id', $id)
             ->get();
-        // dd($combo);
+        $image = Results::where('booking_id', $id)
+            ->get();
+        // dd($image);
         foreach ($combo as $service) {
         }
         $reviews = Reviews::where('booking_id', $id)->first();
@@ -83,6 +90,6 @@ class LichsucatController extends Controller
         // dd($reviews);
 
 
-        return view('client.display.detailHistory', compact('bookings', 'reviews', 'combo', 'stylist', 'payment'));
+        return view('client.display.detailHistory', compact('bookings', 'reviews', 'combo', 'stylist', 'payment', 'image'));
     }
 }

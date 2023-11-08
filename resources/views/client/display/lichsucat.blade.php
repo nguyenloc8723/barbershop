@@ -109,29 +109,45 @@
 
 
 
-              
-                    @foreach($reviewIds as $reviewId)
-                        <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                            <div class="row">
-                                <div class="col-5" style="margin-left: 30px;">
-                                    <i class="bi bi-image-fill" style="font-size: 130px;"></i>
-                                </div>
-                                <div class="col-6" style="margin-top: 40px;">
-                                    <h6 style="display: inline-block;">Số điện thoại đặt:</h6> {{$reviewId->user_phone}}
-                                    <br>
-                                    <h6 style="display: inline-block;"> Ngày đặt:</h6> {{$reviewId->date}}
-                                    <br>
-                                    <h6 style="display: inline-block;"> Giờ đặt:</h6> {{$reviewId->timeSheet->hour}}:{{$reviewId->timeSheet->minutes}}
-                                    <br>
-                                    <a href="{{route('client.detailhistory',['id'=>$reviewId])}}" class="btn btn-primary m-3">Chi tiết</a>
 
-                                </div>
-                            </div>
+                @foreach($reviewIds as $reviewId)
 
+                <div style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <div class="row">
+                        <div class="col-5" style="margin-left: 30px;">
+
+                            @php
+                                $hasImage = false; // Biến kiểm tra xem có ảnh cho booking này hay không
+                            @endphp
+                            @foreach($images as $img)
+                                @if ($img->booking_id == $reviewId->id)
+                                    <img src="/storage/{{$img->image}}" alt="" style="font-size: 130px; height: 230px;">
+                                    @php
+                                        $hasImage = true;
+                                    @endphp
+                                @endif
+                            @endforeach
+                                @if (!$hasImage)
+                                    <img src="" alt="">
+                                @endif
 
                         </div>
-                        <br>
-                    @endforeach
+                        <div class="col-6" style="margin-top: 40px;">
+                            <h6 style="display: inline-block;">Số điện thoại đặt:</h6> {{$reviewId->user_phone}}
+                            <br>
+                            <h6 style="display: inline-block;"> Ngày đặt:</h6> {{$reviewId->date}}
+                            <br>
+                            <h6 style="display: inline-block;"> Giờ đặt:</h6> {{$reviewId->timeSheet->hour}}:{{$reviewId->timeSheet->minutes}}
+                            <br>
+                            <a href="{{route('client.detailhistory',['id'=>$reviewId->id])}}" class="btn btn-primary m-3">Chi tiết</a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+                @endforeach
             </div>
             @else
             <div style="background-color: #fff; padding: 10px; " class="d-flex justify-content-center">
