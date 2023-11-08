@@ -36,19 +36,19 @@ class LichsucatController extends Controller
         ->where('user_id', $user)
         ->where('status', 2)
         ->get();
-        $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist', 
+        $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist',
         $images = [];
         // $reviews = [];
         foreach ($booking as $review) {
-            
+
             $reviewIds[] = $review;
             // dd($review->id);
-            $image = Results::where('booking_id', $review->id)->first();  
+            $image = Results::where('booking_id', $review->id)->first();
             $images[] = $image;
         }
-        
+
         // dd($image);
-        return view('client.display.lichsucat', compact('bookings','reviewIds', 'review', 'images'));
+        return view('client.display.lichsucat', compact('bookings','reviewIds', 'images'));
     }
 
     public function create(Request $request)

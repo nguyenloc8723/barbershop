@@ -145,6 +145,7 @@
                     </div>
 
 
+
                 </div>
                 <br>
                 @endforeach
@@ -165,13 +166,13 @@
 </section>
 
 <script>
-    // 
+    //
     // function autoload() {
     //     location.reload();
     // }
 
-    // 
-    // 
+    //
+    //
     $('.stars i').on('click', function() {
         $('.stars span, .stars i').removeClass('active');
 
