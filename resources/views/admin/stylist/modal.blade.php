@@ -28,12 +28,12 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">User type</label>
-                            <select class="form-control" name="user_type" id="user_type">
-                                <option value="USER" >User</option>
-                                <option value="STYLIST" selected>Stylist</option>
-                                <option value="ADMIN">Admin</option>
-                            </select>
+{{--                            <label class="form-label">User type</label>--}}
+{{--                            <select class="form-control" name="user_type" id="user_type">--}}
+{{--                                <option value="USER" >User</option>--}}
+{{--                                <option value="STYLIST" selected>Stylist</option>--}}
+{{--                                <option value="ADMIN">Admin</option>--}}
+{{--                            </select>--}}
                         </div>
                     </div>
 
