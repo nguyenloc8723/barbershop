@@ -57,7 +57,7 @@ $(document).ready(function () {
                           <td>${item.id}</td>
                           <td>${item.phone_number}</td>
                           <td>
-                          <span class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>
+                          <span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>
                           </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">

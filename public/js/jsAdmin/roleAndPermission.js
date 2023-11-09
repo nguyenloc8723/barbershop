@@ -122,7 +122,11 @@ $(document).ready(function () {
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
-                          <td>${item.name}</td>
+                          <td class="w-75">
+                            <span style="background-color: ${item.color}" class="jqr-badge">
+                                ${item.name}
+                            </span>
+                          </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -161,6 +165,7 @@ $(document).ready(function () {
     loadTable();
 
     function add() {
+        console.log($('input[name="color"]').val());
         let formData = new FormData(formModal[0]);
         $.ajax({
             url: addRoles,
@@ -192,13 +197,13 @@ $(document).ready(function () {
             success: function (data) {
                 // console.log(data);
                 $('.jqr_roleName').val(data.role.name);
+                $('.jqr_roleColor').val(data.role.color);
                 $('.jqr_roleGuardName').val('web');
                 data.permission.forEach(function(value) {
                     // Lặp qua tất cả các checkbox
                     $('.jqr-checkbox').each(function() {
                         // Lấy giá trị của checkbox
                         let checkboxValue = $(this).val();
-
                         // So sánh giá trị của biến a và giá trị của checkbox
                         if (value === checkboxValue) {
                             // Nếu trùng nhau, chọn (checked) checkbox đó
