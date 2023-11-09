@@ -69,6 +69,6 @@
     <!-- Datatables init -->
     <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
 
-
+    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
     <script src="{{asset('js/jsAdmin/stylist.js')}}"></script>
 @endsection

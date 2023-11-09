@@ -15,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
+        $data = Role::query()->with('users')->get();
+//        dd($data[0]->users);
         return view(self::PATH . __FUNCTION__, compact('data'));
     }
 }

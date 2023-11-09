@@ -13,6 +13,10 @@ class ApiRoleController extends Controller
         $data = Role::all();
         return response()->json($data);
     }
+    public function overView(){
+        $data = Role::query()->with('users')->get();
+        return response()->json($data);
+    }
 
     public function store(Request $request){
         $model = new Role();
