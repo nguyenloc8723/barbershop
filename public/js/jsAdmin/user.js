@@ -57,7 +57,7 @@ $(document).ready(function () {
                           <td>${item.id}</td>
                           <td>${item.phone_number}</td>
                           <td>
-                          <span class="badge jqr-roleUser">${item.roles[0].name}</span>
+                          <span class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>
                           </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
@@ -96,6 +96,10 @@ $(document).ready(function () {
                         $(this).addClass('bg-success');
                     }else if (roleName.includes('admin')){
                         $(this).addClass('bg-danger');
+                    }else if (roleName.includes('maintainer')){
+                        $(this).addClass('bg-warning');
+                    }else if (roleName.includes('editor')){
+                        $(this).addClass('bg-primary');
                     }
                 });
             },

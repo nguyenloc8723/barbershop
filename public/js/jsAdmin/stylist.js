@@ -76,7 +76,7 @@ $(document).ready(function () {
 
                                         <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">${item.phone_number}</span></p>
 
-                                        <p class="text-muted font-13"><strong>Vai trò :</strong> <span class="badge jqr-roleUser">${item.roles[0].name}</span></p>
+                                        <p class="text-muted font-13"><strong>Vai trò :</strong> <span class="jqr-badge jqr-roleUser">  ${item.roles[0].name}</span></p>
                                     </div>
                                     <button type="button" class="btn btn-primary rounded-pill waves-effect waves-light js-btn-update" data-id="${item.id}">Cập nhật</button>
                                     <button type="button" class="btn btn-danger rounded-pill waves-effect waves-light js-btn-delete" data-id="${item.id}">Xóa</button>

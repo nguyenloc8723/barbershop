@@ -54,6 +54,7 @@ Route::group([],function (){
 //    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
 
     Route::get('roles',[ApiRoleController::class, 'index']);
+    Route::get('roles/overView',[ApiRoleController::class, 'overView']);
     Route::post('AddRoles',[ApiRoleController::class, 'store']);
     Route::get('getRoleDetail/{id}',[ApiRoleController::class, 'edit']);
     Route::post('updateRole/{id}',[ApiRoleController::class, 'update']);
