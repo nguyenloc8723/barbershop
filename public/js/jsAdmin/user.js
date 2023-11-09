@@ -89,19 +89,6 @@ $(document).ready(function () {
                       </tr>`
                     );
                 })
-
-                $('.jqr-roleUser').each(function() {
-                    let roleName = $(this).text().toLowerCase(); // Chuyển đổi chuỗi thành chữ thường
-                    if (roleName.includes('stylist')) {
-                        $(this).addClass('bg-success');
-                    }else if (roleName.includes('admin')){
-                        $(this).addClass('bg-danger');
-                    }else if (roleName.includes('maintainer')){
-                        $(this).addClass('bg-warning');
-                    }else if (roleName.includes('editor')){
-                        $(this).addClass('bg-primary');
-                    }
-                });
             },
             error: function (error) {
             }

@@ -13,8 +13,6 @@
                     <input type="text" id="modalRoleName" name="name" class="form-control jqr_roleName" placeholder="Enter a role name" tabindex="-1" spellcheck="false" data-ms-editor="true">
                     <label class="form-label" for="modalRoleName">Màu</label>
                     <input type="color" id="modalRoleName" name="color" class="form-control jqr_roleColor">
-                    <label class="form-label" for="modalRoleName">Guard Name</label>
-                    <input type="text" id="modalRoleName" name="guard_name" value="web" class="form-control jqr_roleGuardName"tabindex="-1" spellcheck="false" data-ms-editor="true" disabled>
 
                     <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
                 <div class="col-12">

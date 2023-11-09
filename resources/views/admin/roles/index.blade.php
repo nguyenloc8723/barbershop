@@ -10,9 +10,10 @@
                     <div class="row justify-content-between">
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-                                <button type="button"class="btn btn-success waves-effect waves-light jquery-btn-create">
-                                    <i class="mdi mdi-plus-circle me-1 "></i> Add new
-                                </button>
+                                <h4>Danh sách vai trò</h4>
+{{--                                <button type="button"class="btn btn-success waves-effect waves-light jquery-btn-create">--}}
+{{--                                    <i class="mdi mdi-plus-circle me-1 "></i> Add new--}}
+{{--                                </button>--}}
 
                             </div>
                         </div>
