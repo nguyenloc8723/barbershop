@@ -15,9 +15,10 @@ class ApiDashboardController extends Controller
 {
     public function dailySales()
     {
-        $data['totalUser'] = User::whereDate('created_at', now()->toDateString())->count();
-        $data['totalBooking'] = Booking::whereDate('date', now()->toDateString())->count();
-        $data['totalResult'] = Results::whereDate('created_at', now()->toDateString())->count();
+//        $data['totalUser'] = User::whereDate('created_at', now()->toDateString())->count();
+        $data['totalUser'] = User::query()->whereNotIn('user_type', ['admin'])->count();
+        $data['totalBooking'] = Booking::query()->count();
+        $data['totalResult'] = Results::query()->count();
 
         return response()->json($data);
     }
@@ -75,7 +76,6 @@ class ApiDashboardController extends Controller
                 ];
             }
         }
-
         return response()->json($data);
     }
 

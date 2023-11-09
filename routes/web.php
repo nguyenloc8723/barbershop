@@ -24,6 +24,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\client\ClientBlogController;
 use App\Http\Controllers\Admin\StylistController;
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TimeSheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
@@ -77,6 +78,12 @@ Route::group(["prefix" => "user", 'as' => 'client.'], function (){
     Route::match(['GET','POST'],'return',[paymentController::class, 'return'])->name('return.vnpay');
 });
 
+//Route::get('notification',[NotificationController::class, 'demoNotification']);
+Route::get('notification',[NotificationController::class, 'demoNotification']);
+Route::get('admin/all-notification',[NotificationController::class, 'index'])->name('route.notification');
+Route::get('/delete-notification/{id}', [NotificationController::class, 'delete']);
+Route::get('/lay-so-luong-thong-bao', [NotificationController::class, 'laySoLuongThongBao']);
+Route::post('/confirm-booking/{id}', [NotificationController::class,'confirmBooking']);
 
 // client route
 Route::get('/', function () {

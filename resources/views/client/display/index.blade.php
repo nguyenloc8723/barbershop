@@ -719,5 +719,6 @@
 @section('js')
     <script src="{{asset('be/assets/libs/moment/min/moment.min.js')}}"></script>
     <script src="{{asset('js/jsClient/home.js')}}"></script>
+    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
 @endsection
 

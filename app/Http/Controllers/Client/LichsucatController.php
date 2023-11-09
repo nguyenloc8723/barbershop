@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\NotificationInterface;
 use App\Models\Booking;
 use App\Models\Booking_service;
 use App\Models\payment;
@@ -16,7 +17,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class LichsucatController extends Controller
 {
@@ -26,6 +26,7 @@ class LichsucatController extends Controller
         //lấy Auth
         $user = Auth::id();
 
+
         $bookings = Booking::query()->with('User', 'timeSheet', 'reviews')
             ->where('user_id', $user)
             ->orderBy('created_at', 'desc')
@@ -33,25 +34,26 @@ class LichsucatController extends Controller
 
         //lấy tất cả dữ liệu booking có user_id
         $booking = Booking::with('User', 'timeSheet', 'reviews')
-        ->where('user_id', $user)
-        ->where('status', 2)
-        ->get();
-        $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist', 
+            ->where('user_id', $user)
+            ->where('status', 3)
+            ->get();
+        $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist',
         $images = [];
         // $reviews = [];
         foreach ($booking as $review) {
-            
+
             $reviewIds[] = $review;
             // dd($review->id);
-            $image = Results::where('booking_id', $review->id)->first();  
+            $image = Results::where('booking_id', $review->id)->first();
             $images[] = $image;
         }
-        
-        // dd($image);
-        return view('client.display.lichsucat', compact('bookings','reviewIds', 'review', 'images'));
+
+//         dd($bookings);
+        return view('client.display.lichsucat', compact('bookings','reviewIds', 'images'));
+
     }
 
-    public function create(Request $request)
+    public function create(NotificationInterface $notification, Request $request)
     {
 
         $validate = Validator::make($request->all(), [
@@ -64,10 +66,13 @@ class LichsucatController extends Controller
             return back()->with('Lỗi!', 'Anh chị vui lòng kiểm tra lại 2 bước đánh giá hoặc anh chị đã đánh giá rồi!')->withInput();
         } else {
             Reviews::create($request->all());
+            $booking_id = $request->booking_id;
+            $notification->sendMessage($booking_id, 'Lịch đặt ' . $booking_id . ' vừa có đánh giá mới.');
             return redirect()->route('client.show')
                 ->with('success', 'Cảm ơn anh/chị đã đánh giá.');
         }
     }
+
     public function DeltailHistory(Request $request, $id)
     {
 

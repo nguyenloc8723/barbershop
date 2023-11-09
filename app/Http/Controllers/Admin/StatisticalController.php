@@ -17,38 +17,38 @@ class StatisticalController extends AdminBaseController
     public function statistical( Request $request )
     {
         // $bookedBooking = Results::distinct('booking_id')->count();
-        $bookedBooking = Booking::where('status',0)->count();
+        $bookedBooking = Booking::where('status',3)->count();
         $notBookedBooking = Booking::where('status',1)->count();
         $cancelledBooking = Booking::where('status',2)->count();
         $totalBooking = $bookedBooking + $notBookedBooking + $cancelledBooking;
-        $totalPrice = Booking::where('status',0)->sum('price');
+        $totalPrice = Booking::where('status',3)->sum('price');
 
 
         $today = now()->format('Y-m-d');
         // $todayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $today)->count();
-        $todayCompletedCounts = Booking::where('status','0')->whereDate('created_at', $today)->count();
+        $todayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $today)->count();
         $todayPendingCounts = Booking::where('status','1')->whereDate('created_at', $today)->count();
         $todayCanceledCounts = Booking::where('status','2')->whereDate('created_at', $today)->count();
-        $todayTotalPrice = Booking::where('status',0)->whereDate('created_at', $today)->sum('price');
+        $todayTotalPrice = Booking::where('status',3)->whereDate('created_at', $today)->sum('price');
 
 
         $yesterday = Carbon::yesterday()->format('Y-m-d');
         // $yesterdayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $yesterday)->count();
-        $yesterdayCompletedCounts = Booking::where('status','0')->whereDate('created_at', $yesterday)->count();
+        $yesterdayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $yesterday)->count();
         $yesterdayPendingCounts = Booking::where('status','1')->whereDate('created_at', $yesterday)->count();
         $yesterdayCanceledCounts = Booking::where('status','2')->whereDate('created_at', $yesterday)->count();
-        $yesterdayTotalPrice = Booking::where('status',0)->whereDate('created_at', $yesterday)->sum('price');
+        $yesterdayTotalPrice = Booking::where('status',3)->whereDate('created_at', $yesterday)->sum('price');
 
 
 
         $startOfMonth = now()->startOfMonth()->format('Y-m-d');
         $endOfMonth = now()->endOfMonth()->format('Y-m-d');
-        $thisMonthTotalPrice = Booking::where('status',0)->whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('price');
+        $thisMonthTotalPrice = Booking::where('status',3)->whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('price');
 
 
         $startOfLastMonth = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d');
         $endOfLastMonth = Carbon::now()->subMonth()->endOfMonth()->format('Y-m-d');
-        $lastMonthTotalPrice = Booking::where('status',0)->whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])->sum('price');
+        $lastMonthTotalPrice = Booking::where('status',3)->whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])->sum('price');
 
 
 
@@ -63,12 +63,12 @@ class StatisticalController extends AdminBaseController
 
 
 
-        $startDate = $request->input('startDate'); // Ngày bắt đầu (ví dụ: '2023-10-01')
-        $endDate = $request->input('endDate'); // Ngày kết thúc (ví dụ: '2023-10-31')
+        $startDate = $request->input('startDate'); // Ngày bắt đầu (ví dụ: '2323-13-31')
+        $endDate = $request->input('endDate'); // Ngày kết thúc (ví dụ: '2323-13-31')
 
         $chartBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
-            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+            DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
         )
@@ -81,7 +81,7 @@ class StatisticalController extends AdminBaseController
 
         $chart7DaysBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
-            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+            DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
         )
@@ -92,11 +92,11 @@ class StatisticalController extends AdminBaseController
 
         $orderSummary = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
-            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+            DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total'),
             DB::raw('COUNT(id) as booked_total'),
-            DB::raw('SUM(CASE WHEN status = 0 THEN price ELSE 0 END) as daily_revenue')
+            DB::raw('SUM(CASE WHEN status = 3 THEN price ELSE 3 END) as daily_revenue')
         )
         ->groupBy('order_date')
         ->orderBy('order_date', 'desc')
@@ -121,7 +121,7 @@ class StatisticalController extends AdminBaseController
 
     //     $chartBooking = Booking::select(
     //         DB::raw('DATE(created_at) as order_date'),
-    //         DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as completed_total'),
+    //         DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
     //         DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
     //         DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
     //     )
