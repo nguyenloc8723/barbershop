@@ -106,7 +106,7 @@
                             @endif
 
                             <li>
-                                <a class="dropdown-item " href="">
+                                <a class="dropdown-item " href="{{ route('client.show')}}">
                                     <i class="bx bx-cog me-2"></i>
                                     <span class="align-middle">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

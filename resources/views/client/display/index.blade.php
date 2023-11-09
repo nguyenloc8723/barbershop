@@ -37,15 +37,14 @@
 
 
     <!-- Parallax Image -->
-    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5"
-         data-background="{{asset('client/img/slider/12.jpg')}}">
+    <div class="banner-header full-height valign bg-img bg-fixed" data-overlay-dark="5" data-background="{{asset('client/img/slider/23.jpg')}}">
         <div class="container">
             <div class="row content-justify-center">
                 <div class="col-md-12 text-center">
                     <div class="v-middle">
-                        <h5>Stay sharp, Look good</h5>
-                        <h1>Chào mừng bạn đến với cửa hàng của tôi.</h1>
-                        <h5>Broadway St, NYC. Appointment: 855 100 4444</h5>
+                        <h5>Đẹp trai, Bản lĩnh, Tự tin</h5>
+                        <h1>LỰA CHỌN CỦA PHÁI MẠNH<br>6X-PRO BARBER SHOP.</h1>
+                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5> 
                         <div class="home__form-input">
                             <div class="form-input__form flex mt-1">
                                 @if (Auth::check())
@@ -69,7 +68,6 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -91,32 +89,28 @@
             <div class="row">
                 <div class="col-md-6 mb-30">
                     <div class="section-head mb-20">
-                        <div class="section-subtitle">Since 2006</div>
-                        <div class="section-title">Perukar Barber Shop</div>
+                        <div class="section-subtitle">Thành lập 2020</div>
+                        <div class="section-title">6X-Pro Barber-shop</div>
                     </div>
-                    <p>Come experience a unique and edgy barbershop for all your hair and beard needs. ravida haretra
-                        nuam enim mi obortis eset uctus enec accumsan eu justo alisuame amet auctor orci donec vitae
-                        vehicula risus.</p>
-                    <p>Barber utate ons amet ravida haretra nuam the duru miss uctus the drana accumsan justo aliquam
-                        sit amet auctor orci done vitae risus duise nisan sapien silver on the accumsan id mauris
-                        apien.</p>
+                    <p>Công ty cổ phần thương mại & dịch vụ 6X-Pro Barber-shop là nền tảng (lifestyle platform) phục vụ nhu cầu cắt tóc, gội đầu (relax), spa và cung cấp đa dạng sản phẩm chất lượng cao dành riêng cho nam giới.</p>
+                    <p>6X-Pro Barber-shop đầu tư mạnh mẽ vào nền tảng công nghệ giúp nâng cao trải nghiệm dịch vụ, hiệu suất vận hành, đồng thời liên tục nghiên cứu và phát triển các dịch vụ và trải nghiệm mới phù hợp với nhu cầu khách hàng nam giới hiện đại.</p>
                     <ul class="about-list list-unstyled mb-30">
                         <li>
                             <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
-                                <p>We're professional and certified barbers</p>
+                                <p>Chúng tôi là những thợ cắt tóc chuyên nghiệp và được chứng nhận.</p>
                             </div>
                         </li>
                         <li>
                             <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
-                                <p>We use quality products to make you look perfect</p>
+                                <p>Chúng tôi sử dụng sản phẩm chất lượng để làm cho vẻ ngoài của bạn trở nên hoàn hảo.</p>
                             </div>
                         </li>
                         <li>
                             <div class="about-list-icon"><span class="ti-check"></span></div>
                             <div class="about-list-text">
-                                <p>We care about our customers satisfaction</p>
+                                <p>Chúng tôi quan tâm đến sự hài lòng của khách hàng.</p>
                             </div>
                         </li>
                     </ul>
@@ -132,33 +126,39 @@
     <section class="services-box section-padding pt-0">
         <div class="container">
             <div class="row">
+                @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4">
-                    <div class="item"><span class="icon icon icon-icon-1-6"></span>
+                    <div class="item">
+                        <a href="services-page.html">
+                            @if ($item->id == 1)
+                            <span class="icon icon-icon-1-1"></span>
+                        @elseif ($item->id == 2)
+                            <span class="icon icon-icon-1-2"></span>
+                        @elseif ($item->id == 3)
+                            <span class="icon icon-icon-1-3"></span>
+                        @elseif ($item->id == 4)
+                            <span class="icon icon-icon-1-4"></span>
+                        @elseif ($item->id == 5)
+                            <span class="icon icon-icon-1-6"></span>
+                        @elseif ($item->id == 6)
+                            <span class="icon icon-icon-1-8"></span>
+                        @elseif ($item->id == 7)
+                            <span class="icon icon-icon-1-9"></span>
+                        @elseif ($item->id == 8)
+                            <span class="icon icon-icon-1-18"></span>
+                        @elseif ($item->id == 9)
+                            <span class="icon icon-icon-1-10"></span>
+                        @else
+                            <span class="icon icon-icon-1-9"></span>
+                        @endif
                         <div class="cont">
-                            <h5>Cuts</h5>
-                            <p>Cuts ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
-                                monte.</p>
+                            <h5>{{$item->name}}</h5>
+                            <p>{{$item->description}}</p>
                         </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item"><span class="icon icon-icon-1-3"></span>
-                        <div class="cont">
-                            <h5>Fades</h5>
-                            <p>Fades ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
-                                monte.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item"><span class="icon icon-icon-1-1"></span>
-                        <div class="cont">
-                            <h5>Shaves</h5>
-                            <p>Shaves ut nisl quam nestibulum drana odio elementum sceisue the can golden varius the dis
-                                monte.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -172,17 +172,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-head mb-20">
-                                <div class="section-subtitle">17 Year of Experience</div>
-                                <div class="section-title white">Making people look awesome since 2006</div>
+                                <div class="section-subtitle">3 NĂM KINH NGHIỆM</div>
+                                <div class="section-title white">Làm cho mọi người trông thật tuyệt vời kể từ năm 2020</div>
                             </div>
-                            <p>Come experience a unique and edgy barbershop for all your hair and beard needs. Vulputate
-                                ons amet ravida haretra nuam the drana miss uctus enec accumsan justo aliquam sit amet
-                                auctor orci done vitae risus duise nunc sapien.</p>
-                            <div class="about-bottom"><img src="{{asset('client/img/signature.svg')}}" alt=""
-                                                           class="image about-signature">
+                            <p>Vượt qua giới hạn của tiệm tóc truyền thống, 6X-Pro tạo dựng không gian trải nghiệm hoàn toàn mới với trang thiết bị công nghệ hiện đại.</p>
+                            <div class="about-bottom"> <img src="client/img/signature.svg" alt="" class="image about-signature">
                                 <div class="about-name-wrapper">
-                                    <div class="about-rol">Barber, Founder</div>
-                                    <div class="about-name">Harold Brown</div>
+                                    <div class="about-rol">Barber, Người sáng lập</div>
+                                    <div class="about-name">Đinh Tuấn Anh</div>
                                 </div>
                             </div>
                         </div>
@@ -197,69 +194,55 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">What we're offering</div>
-                        <div class="section-title">Barber Services</div>
+                        <div class="section-subtitle">NHỮNG GÌ CHÚNG TÔI ĐANG CUNG CẤP</div>
+                        <div class="section-title">Dịch vụ cắt tóc</div>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     <div class="item">
-                        <div class="position-re o-hidden"><img src="{{asset('client/img/services/2.jpg')}}" alt="">
-                        </div>
+                        <div class="position-re o-hidden">
+                            
+                             <img src="client/img/services/2.jpg" alt="">
+                         </div>
                         <div class="con">
-                            <div class="icon icon-icon-1-6"></div>
-                            <h5>Hair Cut</h5>
+                            <div class="">
+                                @if ($item->id == 1)
+                                <span class="icon icon-icon-1-1"></span>
+                            @elseif ($item->id == 2)
+                                <span class="icon icon-icon-1-2"></span>
+                            @elseif ($item->id == 3)
+                                <span class="icon icon-icon-1-3"></span>
+                            @elseif ($item->id == 4)
+                                <span class="icon icon-icon-1-4"></span>
+                            @elseif ($item->id == 5)
+                                <span class="icon icon-icon-1-6"></span>
+                            @elseif ($item->id == 6)
+                                <span class="icon icon-icon-1-8"></span>
+                            @elseif ($item->id == 7)
+                                <span class="icon icon-icon-1-9"></span>
+                            @elseif ($item->id == 8)
+                                <span class="icon icon-icon-1-18"></span>
+                            @elseif ($item->id == 9)
+                                <span class="icon icon-icon-1-10"></span>
+                            @else
+                                <span class="icon icon-icon-1-9"></span>
+                            @endif
+                            </div>
+                            <h5>{{$item->name}}</h5>
                             <div class="line"></div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <div class="permalink">Hair cut amet ravida haretra nuam the drana miss uctus enec
-                                        accumsan.
-                                    </div>
-                                    <h6>$30</h6>
+                                    <div class="permalink">{{$item->description}}</div>
+                                    <h6>{{number_format($item->price, 0, ".", ".")}}đ</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="item">
-                        <div class="position-re o-hidden"><img src="{{asset('client/img/services/1.jpg')}}" alt="">
-                        </div>
-                        <div class="con">
-                            <div class="icon icon-icon-1-1"></div>
-                            <h5>Beard Trim</h5>
-                            <div class="line"></div>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <div class="permalink">Shaves ons amet ravida haretra nuam the drana miss uctus enec
-                                        accumsan.
-                                    </div>
-                                    <h6>$20</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="item">
-                        <div class="position-re o-hidden"><img src="{{asset('client/img/services/3.jpg')}}" alt="">
-                        </div>
-                        <div class="con">
-                            <div class="icon icon-icon-1-4"></div>
-                            <h5>Hair Wash</h5>
-                            <div class="line"></div>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <div class="permalink">Hair wash amet ravida haretra nuam the drana miss uctus enec
-                                        accumsan.
-                                    </div>
-                                    <h6>$15</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -280,15 +263,12 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
-                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
-                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
-                                        neca the sene on satien.</p>
+                                    <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ không thất vọng!</p>
                                     <div class="info">
                                         <div class="author-img"><img src="{{asset('client/img/team/1.jpg')}}" alt="">
                                         </div>
                                         <div class="cont">
-                                            <h6>Andreas Brown</h6> <span>Customer review</span>
+                                            <h6>Vũ Duy Khánh</h6> <span>Đánh giá của khách hàng</span>
                                         </div>
                                     </div>
                                 </div>
@@ -343,8 +323,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Firs-Class</div>
-                        <div class="section-title white">Our Features</div>
+                        <div class="section-subtitle">HẠNG NHẤT</div>
+                        <div class="section-title white">Các tính năng của chúng tôi</div>
                     </div>
                 </div>
             </div>
@@ -354,16 +334,15 @@
                         <div class="square bg-img" data-background="client/img/barber.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Groom's Shave</h4>
+                                    <h4>Cạo râu</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Groom's Shave</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                                <h4>Cạo râu</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -373,16 +352,15 @@
                         <div class="square bg-img" data-background="client/img/kids.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Kids Cuts</h4>
+                                    <h4>Cắt tóc cho trẻ</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Kids Cuts</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                                <h4>Cắt tóc cho trẻ</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -392,17 +370,15 @@
                         <div class="square bg-img" data-background="client/img/team/b3.jpg">
                             <div class="square-container d-flex align-items-end justify-content-end">
                                 <div class="box-title">
-                                    <h4>Creative Barbers</h4>
+                                    <h4>Đào tạo Barber</h4>
                                 </div>
                             </div>
                             <div class="flip-overlay"></div>
                         </div>
                         <div class="square2">
                             <div class="square-container2">
-                                <h4>Creative Barbers</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our
-                                    Team<span></span></a>
+                                <h4>Đào tạo Barber</h4>
+                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our Team<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -417,7 +393,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="section-head text-center">
-                        <div class="section-title white">Watch Our Barbershop Promo Video</div>
+                        <div class="section-title white">Xem video quảng cáo tiệm cắt tóc của chúng tôi</div>
                     </div>
                 </div>
             </div>
@@ -437,8 +413,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-head text-center">
-                            <div class="section-subtitle">Pricing Plan</div>
-                            <div class="section-title">Barber Pricing</div>
+                            <div class="section-subtitle">Các gói giá</div>
+                            <div class="section-title">Giá các dịch vụ</div>
                         </div>
                     </div>
                 </div>
@@ -465,38 +441,38 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Our Barbers</div>
-                        <div class="section-title white">Hair Stylists</div>
+                        <div class="section-subtitle">Thợ cắt tóc của chúng tôi</div>
+                        <div class="section-title white">Các nhà tạo mẫu tóc</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
-{{--                        @foreach($stylists as $stylist)--}}
-{{--                            <div class="team-card mb-30">--}}
-{{--                                <div class="team-img"><img src="{{ asset('storage/image/'.$stylist->image)}}"--}}
-{{--                                                           style="height: 300px;width: 400px;" alt="" class="w-100">--}}
-{{--                                </div>--}}
-{{--                                <div class="team-content">--}}
-{{--                                    <h3 class="team-title"><span>Barber</span></h3>--}}
-{{--                                    <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro--}}
-{{--                                        vesatien arcuman ontese auctor ac aleuam aretra.</p>--}}
-{{--                                    <div class="social">--}}
-{{--                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i--}}
-{{--                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>--}}
-{{--                                            <a href="#"><i class="ti-instagram"></i></a></div>--}}
-{{--                                    </div>--}}
-{{--                                    <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>--}}
-{{--                                </div>--}}
-{{--                                <div class="title-box">--}}
-{{--                                    <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
+                       @foreach($stylists as $stylist)
+                           <div class="team-card mb-30">
+                               <div class="team-img"><img src="{{ asset('storage/'.$stylist->image)}}"
+                                                          style="height: 300px;width: 400px;" alt="" class="w-100">
+                               </div>
+                               <div class="team-content">
+                                   <h3 class="team-title"><span>Barber</span></h3>
+                                   <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
+                                       vesatien arcuman ontese auctor ac aleuam aretra.</p>
+                                   <div class="social">
+                                       <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
+                                                   class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
+                                           <a href="#"><i class="ti-instagram"></i></a></div>
+                                   </div>
+                                   <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                               </div>
+                               <div class="title-box">
+                                   <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
+                               </div>
+                           </div>
+                       @endforeach
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </section>
@@ -506,23 +482,66 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Our Services</div>
-                        <div class="section-title">We Also Offer</div>
+                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
+                        <div class="section-title">Chúng tôi cũng cung cấp</div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @foreach($data as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="services-page.html"> <span class="icon icon-icon-1-1"></span>
-                                <h5>{{$item->name}}</h5>
-                                <p>{{$item->description}}</p>
-                                <div class="shape"><span class="icon icon-icon-1-5"></span></div>
-                            </a>
-                        </div>
+                @foreach($data->slice(0, 3) as $item)
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="services-page.html">
+                            @if ($item->id == 1)
+                            <span class="icon icon-icon-1-1"></span>
+                        @elseif ($item->id == 2)
+                            <span class="icon icon-icon-1-2"></span>
+                        @elseif ($item->id == 3)
+                            <span class="icon icon-icon-1-3"></span>
+                        @elseif ($item->id == 4)
+                            <span class="icon icon-icon-1-4"></span>
+                        @elseif ($item->id == 5)
+                            <span class="icon icon-icon-1-6"></span>
+                        @elseif ($item->id == 6)
+                            <span class="icon icon-icon-1-8"></span>
+                        @elseif ($item->id == 7)
+                            <span class="icon icon-icon-1-9"></span>
+                        @elseif ($item->id == 8)
+                            <span class="icon icon-icon-1-18"></span>
+                        @elseif ($item->id == 9)
+                            <span class="icon icon-icon-1-10"></span>
+                        @else
+                            <span class="icon icon-icon-1-9"></span>
+                        @endif
+                            <h5>{{$item->name}}</h5>
+                            <p>{{$item->description}}</p>
+                            <div class="shape"> 
+                                @if ($item->id == 1)
+                                <span class="icon icon-icon-1-1"></span>
+                            @elseif ($item->id == 2)
+                                <span class="icon icon-icon-1-2"></span>
+                            @elseif ($item->id == 3)
+                                <span class="icon icon-icon-1-3"></span>
+                            @elseif ($item->id == 4)
+                                <span class="icon icon-icon-1-4"></span>
+                            @elseif ($item->id == 5)
+                                <span class="icon icon-icon-1-6"></span>
+                            @elseif ($item->id == 6)
+                                <span class="icon icon-icon-1-8"></span>
+                            @elseif ($item->id == 7)
+                                <span class="icon icon-icon-1-9"></span>
+                            @elseif ($item->id == 8)
+                                <span class="icon icon-icon-1-18"></span>
+                            @elseif ($item->id == 9)
+                                <span class="icon icon-icon-1-10"></span>
+                            @else
+                                <span class="icon icon-icon-1-9"></span>
+                            @endif    
+                            </div>
+                        </a>
                     </div>
-                @endforeach
+                </div>
+                @endforeach  
             </div>
         </div>
     </section>
@@ -532,23 +551,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">Latest news</div>
-                        <div class="section-title white">News & Blog</div>
+                        <div class="section-subtitle">Tin tức mới nhất</div>
+                        <div class="section-title white">Tin tức & Bài viết</div>
                     </div>
-
-                    <div class="col-md-12">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($blogs as $blog)
-                                <div class="item">
-                                    <div class="position-re o-hidden"><img
-                                            src="{{ asset('storage/image/'.$blog->image)}} "
-                                            style="height: 300px;width: 400px;" alt="">
-                                        <div class="date">
-                                            <a href="post.html"> <span>Dec</span> <i>29</i> </a>
-                                        </div>
-                                    </div>
-                                    <div class="con"> <span class="category">
-                                    <a href="blog.html">Hair Care</a>
+                       
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($blogs as $blog)
+                        <div class="item">
+                            <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}} " style="height: 350px;width: 560px;" alt="">
+                                <div class="date">
+                                    <a href="post.html"> <span>Dec</span> <i>29</i> </a>
+                                </div>
+                            </div>
+                            <div class="con"> <span class="category">
+                                    <a href="blog.html">Chăm sóc tóc</a>
                                 </span>
                                         <h5><a href="post.html">{{$blog->title}}</a></h5>
                                     </div>
@@ -556,7 +573,6 @@
                             @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -570,14 +586,12 @@
                 <div class="row">
                     <!-- Appointment call -->
                     <div class="col-md-5 mb-30 mt-60">
-                        <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i
-                                class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>We Are Best Barbers & Hair Cutting Salon at NYC.</h5>
+                        <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
+                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất tại Hà Nội</h5>
                         <div class="reservations mb-10">
                             <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
                             <div class="text">
-                                <p class="color-1">Appointment</p> <a class="color-1" href="tel:855-100-4444">855 100
-                                    4444</a>
+                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886 742</a>
                             </div>
                         </div>
                     </div>
@@ -585,44 +599,41 @@
                     <div class="col-md-5 offset-md-2">
                         <div class="booking-box">
                             <div class="head-box text-center">
-                                <h4>Make An Appointment</h4>
+                                <h4>Đặt một cuộc hẹn</h4>
                             </div>
                             <div class="booking-inner clearfix">
                                 <form class="form1 clearfix">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="input1_wrapper">
-                                                <label>Name</label>
+                                                <label>Tên</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Name"
-                                                           required>
+                                                    <input type="text" class="form-control input" placeholder="Tên" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input1_wrapper">
-                                                <label>Phone</label>
+                                                <label>Số điện thoại</label>
                                                 <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Phone"
-                                                           required>
+                                                    <input type="text" class="form-control input" placeholder="Số điện thoại" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input1_wrapper">
-                                                <label>Date</label>
+                                                <label>Ngày</label>
                                                 <div class="input1_inner">
-                                                    <input type="text" class="form-control input datepicker"
-                                                           placeholder="Date" required>
+                                                    <input type="text" class="form-control input datepicker" placeholder="Ngày" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Time</label>
+                                                <label>Thời gian</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Time</option>
+                                                        <option value="0">Thời gian</option>
                                                         <option value="1">10:00 am</option>
                                                         <option value="2">11:00 am</option>
                                                         <option value="3">12:00 pm</option>
@@ -636,25 +647,25 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Services</label>
+                                                <label>Dịch vụ</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Services</option>
-                                                        <option value="0">Hair Styling</option>
-                                                        <option value="1">Face Mask</option>
-                                                        <option value="2">Shaving</option>
-                                                        <option value="3">Beard Triming</option>
-                                                        <option value="4">Hair Wash</option>
+                                                        <option value="0">Dịch vụ</option>
+                                                        <option value="0">Tạo kiểu</option>
+                                                        <option value="1">Chăm sóc mặt</option>
+                                                        <option value="2">Cạo râu</option>
+                                                        <option value="3">Cắt tỉa râu</option>
+                                                        <option value="4">Gội đầu</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="select1_wrapper">
-                                                <label>Choose Barber</label>
+                                                <label>Chọn Barber</label>
                                                 <div class="select1_inner">
                                                     <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Choose Barber</option>
+                                                        <option value="0">Chọn Barber</option>
                                                         <option value="0">Philip</option>
                                                         <option value="1">Stephen</option>
                                                         <option value="2">Dennis</option>
@@ -664,8 +675,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Make Appointment
-                                            </button>
+                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn</button>
                                         </div>
                                     </div>
                                 </form>

@@ -51,6 +51,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Timesheet::class, 'stylist_time_sheet');
     }
     public function booking(){
-        return $this->hasMany(Booking::class);
+        return $this->hasOne(Booking::class);
     }
 }

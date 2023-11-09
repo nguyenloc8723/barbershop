@@ -26,26 +26,7 @@ class resultsController extends AdminBaseController
 
         $data = $this->model->paginate();
 
-
-        $booking = Booking::all();
-
-        $results = [];
-
-        foreach ($booking as $bookingData) {
-            // dd($bookingData['status']);
-            if ($bookingData['status'] == '1') {
-                $checkResult = Results::where('booking_id', $bookingData['id'])->first();
-                if (!$checkResult) {
-                    $results[] = [
-                        'booking_id' => $bookingData['id'],
-                        'image' => 'image'
-                    ];
-                }
-            }
-        }
-        foreach ($results as $resultData) {
-            DB::table('results')->insert($resultData);
-        }
+        $data = Results::all();
 
         return view($this->pathViews . '.' . 'index', compact('data'))->with('columns', $this->columns);
     }

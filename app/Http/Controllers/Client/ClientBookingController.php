@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\NotificationInterface;
 use App\Models\Booking;
 use App\Models\Booking_service;
 use App\Models\payment;
@@ -19,7 +20,7 @@ class ClientBookingController extends Controller
         return view('client.booking.index');
     }
 
-    public function bookingDone($booking_id)
+    public function bookingDone(NotificationInterface $notification, $booking_id)
     {
         $bookings = Booking::with('timeSheet')
             ->where('id', $booking_id)
@@ -27,14 +28,15 @@ class ClientBookingController extends Controller
             ->first();
         $stylist = User::where('id', $bookings->stylist_id)->first();
         // dd($stylist);
-        
         $combo = Booking_service::with('service')
             ->where('booking_id', $booking_id)
             ->get();
 
         $payment = payment::where('booking_id', $booking_id)->first();
-        
+
         // dd($combo);
+
+        $notification->sendMessage($booking_id, 'Thông báo có lịch đặt mới.');
         return view('client.booking.bookingDone', compact('booking_id', 'bookings', 'combo', 'payment', 'stylist'));
     }
 }

@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Our Blog</h5>
-                    <h1>Latest News</h1>
+                    <h5>Tin tức</h5>
+                    <h1>Tin tức mới nhất</h1>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 @foreach($blogs as $blog)
                 <div class="col-md-6">
                     <div class="item mb-60">
-                        <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}}" alt="">
+                        <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}}" style="height: 300px;width: 560px" alt="">
                             <div class="date">
                                 <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
                             </div>
