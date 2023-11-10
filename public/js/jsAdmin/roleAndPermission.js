@@ -5,6 +5,7 @@ $(document).ready(function () {
     const formModal = $('#addRoleForm');
     const actionMethod = $('input[name="actionMethod"]');
     const urlShow = '/api/roles';
+    const urlOverView = '/api/roles/overView';
     const addRoles = '/api/AddRoles';
     const roleDetail = '/api/getRoleDetail';
     const updateRole = '/api/updateRole';
@@ -22,11 +23,12 @@ $(document).ready(function () {
         }
     }
 
-    btnShow.on('click', showModal);
+    // btnShow.on('click', showModal);
     btnCancel.on('click', function () {
         showModal(false);
-
     });
+
+    $(document).on('click','.jquery-btn-create', showModal);
 
     // hành động khi click save
     formModal.on('submit', function (e) {
@@ -57,6 +59,58 @@ $(document).ready(function () {
         $('.jqr-checkbox').prop('checked', isChecked);
     } )
 
+    function roleOverView() {
+        $.ajax({
+            url: urlOverView,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('.jqr-overView').empty();
+                data.map(item => {
+                    $('.jqr-overView').append(`
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <h6 class="fw-normal fs-5">Tổng số ${item.users.length} người dùng</h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        <div class="role-heading">
+                                            <h4 class="mb-1 fw-bolder fs-3">${item.name}</h4>
+                                            <a href="javascript:;" class="role-edit-modal js-btn-update" data-id="${item.id}"><small>Edit Role</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+                $('.jqr-overView').append(`
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="card" style="height: 86%!important;">
+                            <div class="row" style="height: 86%!important;">
+                                <div class="col-sm-5">
+                                    <div class="d-flex align-items-end justify-content-center mt-sm-0 " style="height: 86%!important;">
+                                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/illustrations/sitting-girl-with-laptop-dark.png" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="card-body text-sm-end text-center ps-sm-0">
+                                        <button class="btn btn-primary mb-3 jquery-btn-create shadow-sm">Thêm vai trò mới</button>
+                                        <p class="mb-0">Thêm vai trò, nếu nó không tồn tại</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            },
+            error: function (error) {
+            }
+        });
+    }
+    roleOverView();
     function loadTable() {
         $.ajax({
             url: urlShow,
@@ -68,7 +122,11 @@ $(document).ready(function () {
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
-                          <td>${item.name}</td>
+                          <td class="w-75">
+                            <span style="background-color: ${item.color}" class="jqr-badge">
+                                ${item.name}
+                            </span>
+                          </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -107,6 +165,7 @@ $(document).ready(function () {
     loadTable();
 
     function add() {
+        console.log($('input[name="color"]').val());
         let formData = new FormData(formModal[0]);
         $.ajax({
             url: addRoles,
@@ -120,6 +179,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data)
+                roleOverView();
                 loadTable();
                 toastr['success']('Thêm mới dữ liệu thành công');
             },
@@ -137,13 +197,13 @@ $(document).ready(function () {
             success: function (data) {
                 // console.log(data);
                 $('.jqr_roleName').val(data.role.name);
+                $('.jqr_roleColor').val(data.role.color);
                 $('.jqr_roleGuardName').val('web');
                 data.permission.forEach(function(value) {
                     // Lặp qua tất cả các checkbox
                     $('.jqr-checkbox').each(function() {
                         // Lấy giá trị của checkbox
                         let checkboxValue = $(this).val();
-
                         // So sánh giá trị của biến a và giá trị của checkbox
                         if (value === checkboxValue) {
                             // Nếu trùng nhau, chọn (checked) checkbox đó
@@ -175,6 +235,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 showModal(false);
+                roleOverView();
                 loadTable();
                 toastr['success']('Cập nhật thành công');
             },
@@ -190,6 +251,7 @@ $(document).ready(function () {
             method: 'DELETE',
             dataType: 'json',
             success: function (data) {
+                roleOverView();
                 loadTable();
                 toastr['success']
                 ('Dữ liệu đã được xóa thành công.');

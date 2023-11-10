@@ -5,6 +5,7 @@ $(document).ready(function () {
     const formModal = $('#formModal');
     const actionMethod = $('input[name="actionMethod"]');
     const baseUrl = '/api/stylist';
+    const urlGetRole = '/api/roleUser';
     const fileInput = $('#image');
     const imgContainer = $('.selected-images');
     const btnUpdate = $('.js-btn-update');
@@ -75,7 +76,7 @@ $(document).ready(function () {
 
                                         <p class="text-muted font-13"><strong>Mobile :</strong><span class="ms-2">${item.phone_number}</span></p>
 
-                                        <p class="text-muted font-13"><strong>Location :</strong> <span class="ms-2">Hà Nội, Việt Nam</span></p>
+                                        <p class="text-muted font-13"><strong>Vai trò :</strong> <span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">  ${item.roles[0].name}</span></p>
                                     </div>
                                     <button type="button" class="btn btn-primary rounded-pill waves-effect waves-light js-btn-update" data-id="${item.id}">Cập nhật</button>
                                     <button type="button" class="btn btn-danger rounded-pill waves-effect waves-light js-btn-delete" data-id="${item.id}">Xóa</button>
@@ -150,8 +151,11 @@ $(document).ready(function () {
             url: baseUrl + '/' + id,
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
-                console.log(data.phone_number)
+            success: function (response) {
+                console.log(response)
+                let data = response.stylist;
+                let roleId = data.roles[0].id;
+                // console.log(roleId);
                 let isImage= `
                         <div class="item-images">
                         <img src="/storage/${data.image}"  alt=""/>
@@ -163,6 +167,18 @@ $(document).ready(function () {
                 $('input[name="phone_number"]').val(data.phone_number);
                 $('input[name="excerpt"]').val(data.excerpt);
                 imgContainer.html(isImage);
+
+                let roleSelect = $('#role');
+                roleSelect.empty();
+                for (let i = 0; i < response.role.length; i++){
+                         let option = $("<option></option>")
+                            .attr("value", response.role[i].id)
+                            .text(response.role[i].name);
+                         if (response.role[i].id === roleId){
+                             option.attr('selected', 'selected');
+                         }
+                    roleSelect.append(option);
+                }
                 showModal();
             },
             error: function (xhr, status, error) {
@@ -195,6 +211,28 @@ $(document).ready(function () {
             }
         });
     }
+
+    function setValue() {
+        $.ajax({
+            url: urlGetRole,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+                let role = `<select class="form-control" name="role" id="role">`;
+                for (let i = 0; i < data.length; i++){
+                    role += `<option value="${data[i].id}">${data[i].name}</option>`;
+                }
+                role += `</select>`;
+                $('#role').html(role);
+                // $("#role").selectize({ maxItems: 2 });
+            },
+            error: function (error) {
+                console.error(error);
+            },
+        });
+    }
+    setValue();
 
     fileInput.slideUp();
     fileInput.on('change', function () {

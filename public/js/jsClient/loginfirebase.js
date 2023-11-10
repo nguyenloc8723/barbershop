@@ -104,7 +104,7 @@ function verify() {
                 if (data.user_type === 'ADMIN') {
                     window.location.href = "/admin/dashboard"; // Chuyển hướng đến trang admin
                 }else if(data.user_type === 'STYLIST'){
-                    window.location.href = "/admin/dashboard";
+                    window.location.href = "/admin/booking_blade/index";
                 } else {
                     window.location.href = "/"; // Chuyển hướng đến trang người dùng thông thường
                 }

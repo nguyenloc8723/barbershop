@@ -14,11 +14,24 @@ class BookingResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        switch ($this->status) {
+            case 1:
+                $status = '<span class="badge bg-primary">Chờ xác nhận</span>';
+                break;
+            case 2:
+                $status = '<span class="badge bg-warning">Đang chờ cắt</span>';
+                break;
+            case 3:
+                $status = '<span class="badge bg-success">Đã cắt</span>';
+                break;
+            default:
+                $status = '<span class="badge bg-danger">không xác định</span>';
+        }
         return [
             'id' => $this->id,
             'user' => $this->user_phone,
             'date' => date('d/m/Y', strtotime($this->date)),
-            'status' => $this->status === 1 ? '<span class="badge bg-primary">Hoàn thành</span>' : '<span class="badge bg-danger">Chưa hoàn thành</span>',
+            'status' => $status,
             'stylist' => $this->stylist->name,
         ];
     }

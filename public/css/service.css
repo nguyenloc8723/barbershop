@@ -34,4 +34,16 @@
     box-shadow: 0 0.125rem 0.25rem rgba(161,172,184,.4);
     transition: all .23s ease .1s;
 }
-
+.jqr-badge{
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ct-badge-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    box-shadow: none;
+}
