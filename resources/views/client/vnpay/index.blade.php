@@ -107,11 +107,9 @@
                     <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="money" type="number" value="{{$booking->price}}" />
                 </div>
                 <div class="form-group">
-                    <div class="mb-3">
-                        <label for="" class="form-label">Nội dung chuyển khoản</label>
-                        <textarea class="form-control" name="description_payment" id="" maxlength="255" rows="10" col="30" oninput="checkLength(this)"></textarea>
-                        <div id="charCount"></div>
-                    </div>
+                    <label for="amount">Email</label><br>
+                    <div style="font-size: 10px; color: red;">Anh chị vui lòng nhập đúng địa chỉ email, nếu sai sảy ra lỗi chúng em sẽ không chịu trách nhiệm cho trường hợp này.</div>
+                    <input class="form-control" name="email" type="text" value="vietpham08062003@gmail.com"/>
                 </div>
                 <h4>Chọn phương thức thanh toán</h4>
                 <div class="form-group">

@@ -84,7 +84,10 @@ Route::get('admin/all-notification',[NotificationController::class, 'index'])->n
 Route::get('/delete-notification/{id}', [NotificationController::class, 'delete']);
 Route::get('/lay-so-luong-thong-bao', [NotificationController::class, 'laySoLuongThongBao']);
 Route::post('/confirm-booking/{id}', [NotificationController::class,'confirmBooking']);
-
+//mail
+Route::get('/bill', function () {
+    return view('client.email.bill');
+});
 // client route
 Route::get('/', function () {
     return view('client.display.index');
