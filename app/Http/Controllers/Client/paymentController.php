@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminMail;
 use App\Models\Booking;
 use App\Models\payment;
 use Illuminate\Http\Request;
@@ -162,7 +163,9 @@ class paymentController extends Controller
                     Mail::to($inputData['vnp_OrderInfo'])->send(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
                 }
 
-
+                //mail gửi admin khi có người dùng thanh toán thành công
+                $payment = payment::orderBy('created_at', 'desc')->first();
+                Mail::to('pvviet2k3@gmail.com')->send(new AdminMail($payment));
 
                 return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {

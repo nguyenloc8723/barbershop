@@ -285,7 +285,7 @@
                                                     Tổng tiền
                                                 </td>
                                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
-                                                    {{number_format($booking->price, 0,'.','.')}}
+                                                    {{number_format($booking->price, 0,'.','.')}}vnđ
                                                 </td>
                                             </tr>
                                         </tbody>

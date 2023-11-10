@@ -61,6 +61,7 @@ class BookingController extends Controller
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
+        
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
