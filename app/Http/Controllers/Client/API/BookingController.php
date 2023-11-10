@@ -56,7 +56,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        //Log::info($request->all());
+        Log::info($request->user_phone);
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
@@ -73,7 +73,7 @@ class BookingController extends Controller
             ]);
             $booking_service->save();
         }
-//        $this->sendSms($phone_number);
+        $this->sendSms($request->user_phone);
         return response()->json(['success'=>$bookingDone_id]);
     }
 
@@ -88,7 +88,7 @@ class BookingController extends Controller
     }
 
     public function bookingDestroy($id){
-        $this->booking::where('id', $id)->update(['status' => 2]);
+        $this->booking::where('id', $id)->update(['status' => 0]);
         $this->booking::where('id',$id)->delete();
 
         Booking_service::where('booking_id',$id)->delete();
