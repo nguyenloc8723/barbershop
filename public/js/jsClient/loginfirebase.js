@@ -115,33 +115,37 @@ function verify() {
     });
 }
 
-function sendOTPAgain() {
-    var phoneNumber = localStorage.getItem("phoneNumber");
-    console.log(phoneNumber);
+$("#resendOTP").on("click", function () {
+    // Hiển thị lại trang "sendOTP" và đóng trang "verifyOTP"
+    document.getElementById("popupContainer").style.display = "block";
+    document.getElementById("popupContainer2").style.display = "none";
+    // Gọi lại hàm sendOTP để gửi lại OTP
+    sendOTP();
+});
 
-
-        // Gửi lại OTP cho số điện thoại đã lưu sử dụng cùng một RecaptchaVerifier
-        firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-            .then(function (confirmationResult) {
-                window.confirmationResult = confirmationResult;
-                console.log(confirmationResult);
-
-                $("#successAuth").text("Gửi lại OTP thành công");
-                $("#successAuth").show();
-                localStorage.setItem("verificationId", confirmationResult.verificationId);
-                window.location.href = "/";
-            })
-            .catch(function (error) {
-                $("#error").text(error.message);
-                $("#error").show();
-            });
-
-}
-
-
-
-
-
+// Hàm gửi lại OTP mà không cần xác nhận reCAPTCHA
+// function resendOTP() {
+//     var phoneNumber = localStorage.getItem("phoneNumber");
+//     var verificationId = localStorage.getItem("verificationId");
+//     console.log(phoneNumber);
+//     if (phoneNumber && verificationId) {
+//         // Thực hiện gửi lại OTP bằng verificationId và số điện thoại đã lưu
+//         firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+//             .then(function (confirmationResult) {
+//                 // Cập nhật verificationId mới
+//                 localStorage.setItem("verificationId", confirmationResult.verificationId);
+//                 $("#successAuth").text("Gửi lại OTP thành công");
+//                 $("#successAuth").show();
+//             })
+//             .catch(function (error) {
+//                 $("#error").text(error.message);
+//                 $("#error").show();
+//             });
+//     } else {
+//         $("#error").text("Không có thông tin số điện thoại hoặc verificationId.");
+//         $("#error").show();
+//     }
+// }
 
 
 // thực hiện nút ấn
