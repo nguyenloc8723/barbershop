@@ -52,19 +52,8 @@ class StatisticalController extends AdminBaseController
 
 
 
-        // $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek()->format('Y-m-d');
-        // $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek()->format('Y-m-d');
-        // $lastWeekCounts = Booking::where('status','1')->whereBetween('date', [$startOfLastWeek, $endOfLastWeek])->count();
-        // $startOfWeek = now()->startOfWeek()->format('Y-m-d');
-        // $endOfWeek = now()->endOfWeek()->format('Y-m-d');
-        // $thisWeekCompletedCounts = Results::distinct('booking_id')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
-        // $thisWeekPendingCounts = Booking::where('status','1')->whereBetween('date', [$startOfWeek, $endOfWeek])->count();
-        // $thisWeekCanceledCounts = Booking::where('status','0')->whereBetween('date', [$startOfWeek, $endOfWeek])->count();
-
-
-
-        $startDate = $request->input('startDate'); // Ngày bắt đầu (ví dụ: '0303-13-31')
-        $endDate = $request->input('endDate'); // Ngày kết thúc (ví dụ: '0303-13-31')
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
 
         $chartBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
