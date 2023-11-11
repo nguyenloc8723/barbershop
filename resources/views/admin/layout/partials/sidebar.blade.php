@@ -107,7 +107,7 @@
                 <li>
                     <a href="{{route('route.booking_blade')}}">
                         <i class="mdi mdi-access-point-network"></i>
-                        <span> Booking </span>
+                        <span> Lịch đặt </span>
                     </a>
                 </li>
 
