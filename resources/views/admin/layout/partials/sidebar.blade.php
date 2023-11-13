@@ -82,7 +82,7 @@
                                 <a href="{{route('route.statistical')}}">Doanh thu</a>
                             </li>
                             <li>
-                                <a href="#">undefined</a>
+                                <a href="{{route('route.statistical.service')}}">Dịch vụ</a>
                             </li>
                         </ul>
                     </div>

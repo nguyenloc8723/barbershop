@@ -100,4 +100,7 @@ class StatisticalController extends AdminBaseController
                             'today','todayCompletedCounts','todayPendingCounts','todayCanceledCounts','todayTotalPrice',
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
     }
+    public function service(){
+        return view('admin.statistical.service');
+    }
 }
