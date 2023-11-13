@@ -15,6 +15,9 @@ class BookingResource extends JsonResource
     public function toArray(Request $request): array
     {
         switch ($this->status) {
+            case 0:
+                $status = '<span class="badge bg-danger">Đã bị hủy</span>';
+                break;
             case 1:
                 $status = '<span class="badge bg-primary">Chờ xác nhận</span>';
                 break;

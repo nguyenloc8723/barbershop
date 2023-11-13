@@ -19,7 +19,7 @@ class StatisticalController extends AdminBaseController
         // $bookedBooking = Results::distinct('booking_id')->count();
         $bookedBooking = Booking::where('status',3)->count();
         $notBookedBooking = Booking::where('status',1)->count();
-        $cancelledBooking = Booking::where('status',2)->count();
+        $cancelledBooking = Booking::where('status',0)->count();
         $totalBooking = $bookedBooking + $notBookedBooking + $cancelledBooking;
         $totalPrice = Booking::where('status',3)->sum('price');
 
@@ -28,7 +28,7 @@ class StatisticalController extends AdminBaseController
         // $todayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $today)->count();
         $todayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $today)->count();
         $todayPendingCounts = Booking::where('status','1')->whereDate('created_at', $today)->count();
-        $todayCanceledCounts = Booking::where('status','2')->whereDate('created_at', $today)->count();
+        $todayCanceledCounts = Booking::where('status','0')->whereDate('created_at', $today)->count();
         $todayTotalPrice = Booking::where('status',3)->whereDate('created_at', $today)->sum('price');
 
 
@@ -36,7 +36,7 @@ class StatisticalController extends AdminBaseController
         // $yesterdayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $yesterday)->count();
         $yesterdayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $yesterday)->count();
         $yesterdayPendingCounts = Booking::where('status','1')->whereDate('created_at', $yesterday)->count();
-        $yesterdayCanceledCounts = Booking::where('status','2')->whereDate('created_at', $yesterday)->count();
+        $yesterdayCanceledCounts = Booking::where('status','0')->whereDate('created_at', $yesterday)->count();
         $yesterdayTotalPrice = Booking::where('status',3)->whereDate('created_at', $yesterday)->sum('price');
 
 
@@ -52,25 +52,14 @@ class StatisticalController extends AdminBaseController
 
 
 
-        // $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek()->format('Y-m-d');
-        // $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek()->format('Y-m-d');
-        // $lastWeekCounts = Booking::where('status','1')->whereBetween('date', [$startOfLastWeek, $endOfLastWeek])->count();
-        // $startOfWeek = now()->startOfWeek()->format('Y-m-d');
-        // $endOfWeek = now()->endOfWeek()->format('Y-m-d');
-        // $thisWeekCompletedCounts = Results::distinct('booking_id')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
-        // $thisWeekPendingCounts = Booking::where('status','1')->whereBetween('date', [$startOfWeek, $endOfWeek])->count();
-        // $thisWeekCanceledCounts = Booking::where('status','2')->whereBetween('date', [$startOfWeek, $endOfWeek])->count();
-
-
-
-        $startDate = $request->input('startDate'); // Ngày bắt đầu (ví dụ: '2323-13-31')
-        $endDate = $request->input('endDate'); // Ngày kết thúc (ví dụ: '2323-13-31')
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
 
         $chartBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
-            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
+            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total')
         )
         ->groupBy('order_date')
         ->orderBy('order_date', 'asc')
@@ -83,7 +72,7 @@ class StatisticalController extends AdminBaseController
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
-            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
+            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total')
         )
         ->whereBetween(DB::raw('DATE(created_at)'), [$startOfWeek, $endOfWeek])
         ->groupBy('order_date')
@@ -94,9 +83,9 @@ class StatisticalController extends AdminBaseController
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
-            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total'),
+            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total'),
             DB::raw('COUNT(id) as booked_total'),
-            DB::raw('SUM(CASE WHEN status = 3 THEN price ELSE 3 END) as daily_revenue')
+            DB::raw('SUM(CASE WHEN status = 3 THEN price ELSE 0 END) as daily_revenue')
         )
         ->groupBy('order_date')
         ->orderBy('order_date', 'desc')
@@ -111,26 +100,4 @@ class StatisticalController extends AdminBaseController
                             'today','todayCompletedCounts','todayPendingCounts','todayCanceledCounts','todayTotalPrice',
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
     }
-
-    // public function filler_by_date(){
-
-    //     $from_date = $request->input('startDate');
-    //     $to_date = $request->input('endDate');
-
-    //     // dd(1232434);
-
-    //     $chartBooking = Booking::select(
-    //         DB::raw('DATE(created_at) as order_date'),
-    //         DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
-    //         DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
-    //         DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as canceled_total')
-    //     )
-    //     ->whereBetween(DB::raw('DATE(created_at)'), [$from_date, $to_date])
-    //     ->groupBy('order_date')
-    //     ->orderBy('order_date', 'desc')
-    //     ->get();
-
-    //     return response()->json(['chartBooking'=>$chartBooking]);
-    // }
-
 }
