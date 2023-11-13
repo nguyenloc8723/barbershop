@@ -8,10 +8,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 
 class MailSend extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable, SerializesModels,InteractsWithQueue;
 
     public $mailData;
     public $combo;

@@ -14,6 +14,9 @@ use App\Mail\MailSend;
 use App\Models\Booking_service;
 use App\Models\Results;
 use App\Models\User;
+use Illuminate\Contracts\Queue\Queue as QueueQueue;
+use Illuminate\Queue\Queue as IlluminateQueueQueue;
+use Illuminate\Support\Facades\Queue;
 
 class paymentController extends Controller
 {
@@ -139,7 +142,7 @@ class paymentController extends Controller
                 if (!$existingPayment) {
                     payment::query()->create([
                         "booking_id" => $inputData['vnp_TxnRef'],
-                        "money" => $inputData['vnp_Amount'],
+                        "money" => $inputData['vnp_Amount'] / 100,
                         "email" => $inputData['vnp_OrderInfo'],
                         "note" => "hihiih",
                         "vnp_response_code" => $inputData['vnp_ResponseCode'],
@@ -160,12 +163,20 @@ class paymentController extends Controller
                     $stylist = User::where('id', $booking->stylist_id)->first();
                     // dd($stylist);
                     // dd($mailData,$combo,$booking,$inputDatas);
-                    Mail::to($inputData['vnp_OrderInfo'])->send(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
+                    Queue::push(function ($job) use ($inputData, $mailData, $combo, $booking, $inputDatas, $stylist) {
+                        Mail::to($inputData['vnp_OrderInfo'])->send(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
+                        $job->delete();
+                    });
                 }
 
                 //mail gửi admin khi có người dùng thanh toán thành công
                 $payment = payment::orderBy('created_at', 'desc')->first();
-                Mail::to('pvviet2k3@gmail.com')->send(new AdminMail($payment));
+
+                Queue::push(function ($job) use ($payment) {
+                    $payment = payment::find($payment->id); // Lấy lại đối tượng payment để đảm bảo thông tin mới nhất
+                    Mail::to('vietpvph28454@fpt.edu.vn')->send(new AdminMail($payment));
+                    $job->delete();
+                });
 
                 return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
@@ -175,6 +186,7 @@ class paymentController extends Controller
         } else {
             Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
             echo "Chu ky khong hop le";
+            to_route('client.booking')->with('default', "Thanh toán thất bại");
         }
     }
 }
