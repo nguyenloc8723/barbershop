@@ -55,76 +55,33 @@
                         </div>
                         <div class="card-body">
                             <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/oneplus.png')}}" alt="oneplus">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Oneplus Nord</h6>
-                                            <small class="text-muted d-block mb-1">Oneplus</small>
+                                @php
+                                    $images = [
+                                        'be/assetsCopy/img/icons/unicons/oneplus.png',
+                                        'be/assetsCopy/img/icons/unicons/watch-primary.png',
+                                        'be/assetsCopy/img/icons/unicons/surface.png',
+                                        'be/assetsCopy/img/icons/unicons/iphone.png',
+                                        'be/assetsCopy/img/icons/unicons/earphone.png',
+                                    ];
+                                @endphp
+                                @foreach($totalPrices as $index => $totalPrice)
+                                    <li class="d-flex mb-4 pb-1">
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            @if(isset($images[$index]))
+                                                <img src="{{ asset($images[$index]) }}" alt="image-{{ $index }}">
+                                            @endif
                                         </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="fw-medium">$98,348</span>
+                                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                            <div class="me-2">
+                                                <h6 class="mb-0">{{ $totalPrice['name'] }}</h6>
+                                                {{-- <small class="text-muted d-block mb-1">{{ $totalPrice['description'] }}</small> --}}
+                                            </div>
+                                            <div class="user-progress d-flex align-items-center gap-1">
+                                                <span class="fw-medium">{{ number_format($totalPrice['total_price'], 0, ',', '.') }} VNĐ</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/watch-primary.png')}}" alt="smart band">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Smart Band 4</h6>
-                                            <small class="text-muted d-block mb-1">Xiaomi</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="fw-medium">$15,459</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/surface.png')}}" alt="Surface">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Surface Pro X</h6>
-                                            <small class="text-muted d-block mb-1">Miscrosoft</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="fw-medium">$4,589</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/iphone.png')}}" alt="iphone">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">iphone 13</h6>
-                                            <small class="text-muted d-block mb-1">Apple</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="fw-medium">$84,345</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/earphone.png')}}" alt="Bluetooth Earphone">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Bluetooth Earphone</h6>
-                                            <small class="text-muted d-block mb-1">Beats</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="fw-medium">$10,374</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -140,81 +97,34 @@
                         </div>
                         <div class="card-body">
                             <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/laptop-secondary.png')}}" alt="ENVY Laptop" class="rounded">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">ENVY Laptop</h6>
-                                            <small class="text-muted d-block mb-1">HP</small>
+                                @php
+                                    $images = [
+                                        'be/assetsCopy/img/icons/unicons/laptop-secondary.png',
+                                        'be/assetsCopy/img/icons/unicons/computer.png',
+                                        'be/assetsCopy/img/icons/unicons/watch.png',
+                                        'be/assetsCopy/img/icons/unicons/oneplus-success.png',
+                                        'be/assetsCopy/img/icons/unicons/pixel.png',
+                                    ];
+                                @endphp
+                                @foreach($totalOccurrences as $index => $totalOccurrence)
+                                    <li class="d-flex mb-4 pb-1">
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            @if(isset($images[$index]))
+                                                <img src="{{ asset($images[$index]) }}" alt="image-{{ $index }}">
+                                            @endif
                                         </div>
-                                        <div class="user-progress d-flex align-items-center gap-3">
-                                            <span class="fw-medium">124k</span>
-                                            <span class="badge bg-label-success">+12.4%</span>
+                                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                            <div class="me-2">
+                                                <h6 class="mb-0">{{$totalOccurrence['name']}}</h6>
+{{--                                                <small class="text-muted d-block mb-1">{{$totalOccurrence['description']}}</small>--}}
+                                            </div>
+                                            <div class="user-progress d-flex align-items-center gap-3">
+                                                <span class="fw-medium badge bg-label-success">{{$totalOccurrence['total_occurrences']}}</span>
+{{--                                                <span class="badge bg-label-success">+12.4%</span>--}}
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/computer.png')}}" alt="Apple" class="rounded">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Apple</h6>
-                                            <small class="text-muted d-block mb-1">iMac Pro</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-3">
-                                            <span class="fw-medium">74.9k</span>
-                                            <span class="badge bg-label-danger">-8.5%</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/watch.png')}}" alt="Smart Watch" class="rounded">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Smart Watch</h6>
-                                            <small class="text-muted d-block mb-1">Fitbit</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-3">
-                                            <span class="fw-medium">4.4k</span>
-                                            <span class="badge bg-label-success">+62.6%</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/oneplus-success.png')}}" alt="Oneplus RT" class="rounded">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Oneplus RT</h6>
-                                            <small class="text-muted d-block mb-1">Oneplus</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-3">
-                                            <span class="fw-medium">12,3k.71</span>
-                                            <span class="badge bg-label-success">+16.7%</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/pixel.png')}}" alt="Pixel 4a" class="rounded">
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Pixel 4a</h6>
-                                            <small class="text-muted d-block mb-1">Google</small>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-3">
-                                            <span class="fw-medium">834k</span>
-                                            <span class="badge bg-label-danger">-12.9%</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -234,15 +144,36 @@
                     </div>
                     <div class="col-sm-6 col-md-3 col-lg-6 mb-4">
                         <div class="card">
+{{--                            <div class="card-body">--}}
+{{--                                <div class="card-title d-flex align-items-start justify-content-between mb-4">--}}
+{{--                                    <div class="avatar flex-shrink-0">--}}
+{{--                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/cube-secondary.png')}}" alt="cube" class="rounded">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <span class="fw-medium d-block mb-1">Đặt lịch</span>--}}
+{{--                                <h4 class="card-title mb-2">$1,286</h4>--}}
+{{--                                <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> -13.24%</small>--}}
+{{--                            </div>--}}
+
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between mb-4">
                                     <div class="avatar flex-shrink-0">
-                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/cube-secondary.png')}}" alt="cube" class="rounded">
+                                        <img src="{{ asset('be/assetsCopy/img/icons/unicons/cube-secondary.png') }}" alt="cube" class="rounded">
                                     </div>
                                 </div>
                                 <span class="fw-medium d-block mb-1">Đặt lịch</span>
-                                <h4 class="card-title mb-2">$1,286</h4>
-                                <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> -13.24%</small>
+                                <h4 class="card-title mb-2">{{ number_format($revenueByMonth[1]->total, 0, ',', '.') }} VNĐ</h4>
+                                @if ($percentChange !== null)
+                                    @if ($revenueByMonth[1]->total > $revenueByMonth[0]->total)
+                                        <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChange[0]['percentage'],2) }}%</small>
+                                    @elseif ($revenueByMonth[1]->total < $revenueByMonth[0]->total)
+                                        <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> {{ number_format($percentChange[0]['percentage'],2) }}%</small>
+                                    @else
+                                        <small class="text-muted fw-medium"><i class='bx bx-minus'></i> 0%</small>
+                                    @endif
+                                @else
+                                    <small class="text-muted fw-medium"><i class='bx bx-minus'></i> N/A</small>
+                                @endif
                             </div>
                         </div>
                     </div>

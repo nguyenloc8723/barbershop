@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Booking_service;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
@@ -101,6 +102,82 @@ class StatisticalController extends AdminBaseController
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
     }
     public function service(){
-        return view('admin.statistical.service');
+//        $duplicateServices = Booking_Service::query()
+//            ->select('service_id', \DB::raw('COUNT(service_id) AS total_occurrences'))
+//            ->groupBy('service_id')
+//            ->havingRaw('COUNT(service_id) > 1')
+//            ->orderByDesc('total_occurrences')
+//            ->with('service:id,name,description,price') // Chỉ lấy những trường cần thiết từ bảng service
+//            ->get();
+
+
+        $duplicateServices = Booking_Service::query()
+            ->select('service_id', \DB::raw('COUNT(service_id) AS total_occurrences'))
+            ->whereMonth('created_at', '=', now()->month) // Chỉ lấy dữ liệu của tháng hiện tại
+            ->groupBy('service_id')
+            ->havingRaw('COUNT(service_id) > 1')
+            ->orderByDesc('total_occurrences')
+            ->with('service:id,name,description,price')
+            ->get();
+
+        $totalPrices = [];
+        // Sắp xếp theo tổng giá giảm dần
+        $duplicateServices = $duplicateServices->sortByDesc(function ($item) {
+            return $item->service->price * $item->total_occurrences;
+        });
+
+// Lấy ra 5 dòng đầu tiên
+        $duplicateServices = $duplicateServices->take(5);
+
+        foreach ($duplicateServices as $duplicateService) {
+            $service = $duplicateService->service;
+            $totalPrice = $service->price * $duplicateService->total_occurrences;
+
+            $totalPrices[] = [
+                'total_price' => $totalPrice,
+                'name' => $service->name,
+                'description' => $service->description,
+            ];
+        }
+
+        $totalOccurrences = $duplicateServices->take(5)->map(function ($duplicateService) {
+            $service = $duplicateService->service;
+
+            return [
+                'total_occurrences' => $duplicateService->total_occurrences,
+                'name' => $service->name,
+                'description' => $service->description,
+            ];
+        });
+
+        // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
+        $revenueByMonth = Booking::select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(price) as total'))
+            ->whereYear('created_at', '=', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+// Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu)
+        $percentChange = [];
+        if (count($revenueByMonth) >= 2) {
+            for ($i = 1; $i < count($revenueByMonth); $i++) {
+                $currentMonth = $revenueByMonth[$i]->total;
+                $prevMonth = $revenueByMonth[$i - 1]->total;
+
+                $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+
+                $percentChange[] = [
+                    'month' => $revenueByMonth[$i]->month,
+                    'percentage' => $percentage,
+                    'currentMonth' => $currentMonth,
+                    'prevMonth' => $prevMonth,
+                ];
+            }
+        }
+//        dd($revenueByMonth[0]->total, $percentChange);
+//        dd($percentChange);
+        return view('admin.statistical.service',
+            compact('totalPrices','totalOccurrences',
+                'revenueByMonth','percentChange'));
     }
 }
