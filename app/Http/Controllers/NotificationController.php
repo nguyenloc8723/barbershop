@@ -38,20 +38,20 @@ class NotificationController extends Controller
         $soLuongThongBao = count($notifications);
         return response()->json(['so_luong_thong_bao' => $soLuongThongBao]);
     }
-    public function delete($id) {
-        // Xóa thông báo từ cơ sở dữ liệu
-        Log::info($id);
-        $notification = Notification::find($id);
-        Log::info($notification);
-        if ($notification) {
-            Log::info('Điều kiện đúng');
-            $notification->delete();
-            return response()->json(['success' => true]);
-        } else {
-            Log::info('Điều kiện sai');
-            return response()->json(['success' => false]);
-        }
-    }
+//    public function delete($id) {
+//        // Xóa thông báo từ cơ sở dữ liệu
+//        Log::info($id);
+//        $notification = Notification::find($id);
+//        Log::info($notification);
+//        if ($notification) {
+//            Log::info('Điều kiện đúng');
+//            $notification->delete();
+//            return response()->json(['success' => true]);
+//        } else {
+//            Log::info('Điều kiện sai');
+//            return response()->json(['success' => false]);
+//        }
+//    }
 
     public function confirmBooking($id)
     {
@@ -65,11 +65,8 @@ class NotificationController extends Controller
                 if ($booking) {
                     $booking->status = 2; // Cập nhật trạng thái
                     $booking->save();
-                    return response()->json(['message' => 'Đã xác nhận đơn đặt.'], 200);
+                    return response()->json(['message' => 'Đã xác nhận lịch đặt.'], 200);
                 }
-                return response()->json(['message' => 'Không tìm thấy đơn đặt.'], 404);
-            } else {
-                return response()->json(['message' => 'Bạn không có quyền xác nhận.'], 404);
             }
         }
     }

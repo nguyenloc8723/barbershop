@@ -158,6 +158,7 @@ function confirmAppointment(button) {
     const row = button.closest('.row');
     const checkbox = row.querySelector('.input-form');
     const confirmButton = row.querySelector('.btn-success');
+
     const cancelButton = row.querySelector('.btn-danger');
 
     confirmButton.disabled = true;
@@ -169,9 +170,17 @@ function confirmAppointment(button) {
     button.innerHTML = 'Đã xác nhận';
     checkbox.style.display = 'none';
     checkbox.disabled =  button.disabled = true;
+    ButtonTopbar.remove();
+    // ButtonTopbar.style.position = 'absolute';
     confirmBooking();
     toastr['success']('Xác nhận lịch thành công');
 
+}
+
+function buttonTopbar(){
+    const row = div.closest('.notify-item');
+    const ButtonTopbar = row.getElementById('buttonTopbar');
+    ButtonTopbar.style.display = 'none';
 }
 
 function cancelAppointment(button) {

@@ -62,6 +62,7 @@
                 </span>
                                         @endif
                                         <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
+                                        <h5>Stylist: {{$item->stylist->name}}</h5>
                                     </div>
                                 </div>
                             </li>
