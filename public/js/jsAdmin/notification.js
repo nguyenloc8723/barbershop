@@ -38,7 +38,7 @@ function deleteNotification(notificationId) {
                 // Xóa thông báo trên giao diện
                 // Đây ta sử dụng $(this) để truy cập phần tử được click
                 $(this).parent().remove();
-                location.reload();
+                // location.reload();
             }
         },
         error: function(error) {
@@ -47,17 +47,7 @@ function deleteNotification(notificationId) {
     });
 }
 
-// $(document).ready(function() {
-//     $('#kiemTraButton').click(function() {
-//         $.ajax({
-//             type: 'GET',
-//             url: '/lay-so-luong-thong-bao',
-//             success: function(response) {
-//                 $('#soLuongThongBao').text(response.so_luong_thong_bao);
-//             }
-//         });
-//     });
-// });
+
 $(document).ready(function() {
     // Tải số lượng thông báo khi trang web được tải lên
     $.ajax({
@@ -69,6 +59,7 @@ $(document).ready(function() {
     });
 });
 
+let check = true;
 function confirmBooking() {
     $('.confirm-booking').on('click', function() {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -81,42 +72,15 @@ function confirmBooking() {
             },
             success: function(response) {
                 // Hiển thị thông báo thành công
-                toastr.success(response.message, 'Xác nhận thành công');
-
-                // Cập nhật giao diện tại đây (thay đổi trạng thái, ẩn nút xác nhận, ...)
-                // Ví dụ: Ẩn nút xác nhận sau khi xác nhận thành công
-                $('.confirm-booking').hide();
-                location.reload();
-            },
-            error: function(response) {
-                // Xử lý lỗi
-                toastr.error(response.responseJSON.message, 'Lỗi');
-            }
-        });
-    });
-}
-let check = true
-function confirmBooking() {
-    $('.confirm-booking').on('click', function() {
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
-        var bookingId = $(this).data('booking-id');
-        $.ajax({
-            method: 'POST',
-            url: '/confirm-booking/' + bookingId,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            success: function(response) {
-                // Hiển thị thông báo thành công
-                if(check){
-                    toastr.success(response.message, 'Xác nhận thành công');
-                    check = !check;
-                }
+                // if(check){
+                    toastr.success(response.message, 'Xác nhận lịch thành công');
+                //     check = !check;
+                // }
                 // toastr.success(response.message, 'Xác nhận thành công');
                 // Cập nhật giao diện tại đây (thay đổi trạng thái, ẩn nút xác nhận, ...)
                 // Ví dụ: Ẩn nút xác nhận sau khi xác nhận thành công
-                $('.confirm-booking').hide();
-                location.reload();
+                // $('.confirm-booking').hide();
+                // location.reload();
             },
             error: function(response) {
                 // Xử lý lỗi
@@ -184,15 +148,29 @@ function confirmAppointment(button) {
     const row = button.closest('.row');
     const checkbox = row.querySelector('.input-form');
     const confirmButton = row.querySelector('.btn-success');
+
     const cancelButton = row.querySelector('.btn-danger');
 
-    confirmButton.disabled = cancelButton.disabled =  true;
+    confirmButton.disabled = true;
+    cancelButton.style.display = 'none';
+
+    const parentDiv = confirmButton.closest('.col-2');
+    parentDiv.classList.remove('col-2');
+    parentDiv.classList.add('col-4');
     button.innerHTML = 'Đã xác nhận';
     checkbox.style.display = 'none';
     checkbox.disabled =  button.disabled = true;
+    ButtonTopbar.remove();
+    // ButtonTopbar.style.position = 'absolute';
     confirmBooking();
     // toastr['success']('Xác nhận lịch thành công');
 
+}
+
+function buttonTopbar(){
+    const row = div.closest('.notify-item');
+    const ButtonTopbar = row.getElementById('buttonTopbar');
+    ButtonTopbar.style.display = 'none';
 }
 
 function cancelAppointment(button) {
@@ -200,11 +178,24 @@ function cancelAppointment(button) {
     const checkbox = row.querySelector('.input-form');
     const confirmButton = row.querySelector('.btn-success');
     const cancelButton = row.querySelector('.btn-danger');
-    confirmButton.disabled = cancelButton.disabled = true;
-    button.innerHTML = 'Đã hủy';
+
+    const divContainer = confirmButton.closest('.col-2');
+    if (divContainer) {
+        divContainer.remove(); // Xóa cả thẻ div chứa nút xác nhận
+    }
+    cancelButton.disabled = true;
+    confirmButton.style.display = 'none';
+
+    const parentDiv = cancelButton.closest('.col-2');
+    parentDiv.classList.remove('col-2');
+    parentDiv.classList.add('col-4');
+    button.innerHTML = 'Đã hủy lịch';
     checkbox.style.display = 'none';
-    checkbox.disabled = button.disabled =  true;
+    checkbox.disabled =  button.disabled = true;
     deleteNotification();
-    toastr['success']('Hủy lịch thành công');
+    toastr['success']('Hủy lịch thành công. Thông báo sẽ tự động xóa khi tải lại trang');
+    // setTimeout(function() {
+    //     toastr['success']('Thông báo sẽ tự động xóa khi tải lại trang');
+    // }, 1000);
 
 }
