@@ -70,7 +70,7 @@
                                     <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="🥺 - 2 stars"></label>
                                     <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="😡 - 1 star"></label>
                                 </fieldset>
-                            </form>
+                            
                         </div>
                         <br>
                         <div class="block__box">
@@ -89,8 +89,6 @@
 
                     <div class="flex space-between text-center content-step ">
                         <button type="submit" class="right button-next pointer btn">Hoàn tất</button>
-
-
                     </div>
                     </form>
                 </div>
