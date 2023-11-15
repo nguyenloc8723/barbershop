@@ -47,17 +47,7 @@ function deleteNotification(notificationId) {
     });
 }
 
-// $(document).ready(function() {
-//     $('#kiemTraButton').click(function() {
-//         $.ajax({
-//             type: 'GET',
-//             url: '/lay-so-luong-thong-bao',
-//             success: function(response) {
-//                 $('#soLuongThongBao').text(response.so_luong_thong_bao);
-//             }
-//         });
-//     });
-// });
+
 $(document).ready(function() {
     // Tải số lượng thông báo khi trang web được tải lên
     $.ajax({
@@ -83,7 +73,7 @@ function confirmBooking() {
             success: function(response) {
                 // Hiển thị thông báo thành công
                 // if(check){
-                //     toastr.success(response.message, 'Xác nhận thành công');
+                    toastr.success(response.message, 'Xác nhận lịch thành công');
                 //     check = !check;
                 // }
                 // toastr.success(response.message, 'Xác nhận thành công');
@@ -173,7 +163,7 @@ function confirmAppointment(button) {
     ButtonTopbar.remove();
     // ButtonTopbar.style.position = 'absolute';
     confirmBooking();
-    toastr['success']('Xác nhận lịch thành công');
+    // toastr['success']('Xác nhận lịch thành công');
 
 }
 
