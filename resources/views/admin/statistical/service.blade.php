@@ -3,14 +3,14 @@
     <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/">
 
     <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                '../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');</script>
+{{--    <script>(function (w, d, s, l, i) {--}}
+{{--            w[l] = w[l] || []; w[l].push({--}}
+{{--                'gtm.start':--}}
+{{--                    new Date().getTime(), event: 'gtm.js'--}}
+{{--            }); var f = d.getElementsByTagName(s)[0],--}}
+{{--                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =--}}
+{{--                '../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);--}}
+{{--        })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');</script>--}}
     <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
@@ -105,7 +105,7 @@
                                         'be/assetsCopy/img/icons/unicons/oneplus-success.png',
                                         'be/assetsCopy/img/icons/unicons/pixel.png',
                                     ];
-                                @endphp
+//                                @endphp
                                 @foreach($totalOccurrences as $index => $totalOccurrence)
                                     <li class="d-flex mb-4 pb-1">
                                         <div class="avatar flex-shrink-0 me-3">
@@ -144,17 +144,6 @@
                     </div>
                     <div class="col-sm-6 col-md-3 col-lg-6 mb-4">
                         <div class="card">
-{{--                            <div class="card-body">--}}
-{{--                                <div class="card-title d-flex align-items-start justify-content-between mb-4">--}}
-{{--                                    <div class="avatar flex-shrink-0">--}}
-{{--                                        <img src="{{asset('be/assetsCopy/img/icons/unicons/cube-secondary.png')}}" alt="cube" class="rounded">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <span class="fw-medium d-block mb-1">Đặt lịch</span>--}}
-{{--                                <h4 class="card-title mb-2">$1,286</h4>--}}
-{{--                                <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> -13.24%</small>--}}
-{{--                            </div>--}}
-
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between mb-4">
                                     <div class="avatar flex-shrink-0">
@@ -162,7 +151,8 @@
                                     </div>
                                 </div>
                                 <span class="fw-medium d-block mb-1">Đặt lịch</span>
-                                <h4 class="card-title mb-2">{{ number_format($revenueByMonth[1]->total, 0, ',', '.') }} VNĐ</h4>
+                                <h4 class="card-title fs-5 mb-2">{{ number_format($revenueByMonth[1]->total, 0, ',', '.') }} VNĐ</h4>
+{{--                                <h4 class="card-title fs-5 mb-2">500.000.000 VNĐ</h4>--}}
                                 @if ($percentChange !== null)
                                     @if ($revenueByMonth[1]->total > $revenueByMonth[0]->total)
                                         <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChange[0]['percentage'],2) }}%</small>
@@ -187,11 +177,23 @@
                                             <small>Báo cáo hàng tháng</small>
                                         </div>
                                         <div class="chart-statistics">
-                                            <h3 class="card-title mb-1">4,230</h3>
-                                            <small class="text-success text-nowrap fw-medium"><i class='bx bx-up-arrow-alt'></i> +12.8%</small>
+                                            <h3 class="card-title mb-1">{{$userCounts[1]->count}}</h3>
+                                            @if ($userCounts !== null)
+                                                @if ($userCounts[1]->count > $userCounts[0]->count)
+                                                    <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChangeUser,2) }}%</small>
+                                                @elseif ($userCounts[1]->count < $userCounts[0]->count)
+                                                    <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> {{ number_format($percentChangeUser,2) }}%</small>
+                                                @else
+                                                    <small class="text-muted fw-medium"><i class='bx bx-minus'></i> 0%</small>
+                                                @endif
+                                            @else
+                                                <small class="text-muted fw-medium"><i class='bx bx-minus'></i> N/A</small>
+                                            @endif
                                         </div>
                                     </div>
-                                    <div id="leadsReportChart"></div>
+                                    <div id="leadsReportChart">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -298,7 +300,6 @@
             </div>
             <!--/ Sales Stats -->
         </div>
-
     </div>
 @endsection
 
@@ -313,14 +314,12 @@
 {{--    <script src="{{asset('be/assetsCopy/vendor/js/menu.js')}}"></script>--}}
 
     <!-- endbuild -->
-
+{{--<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>--}}
     <!-- Vendors JS -->
     <script src="{{asset('be/assetsCopy/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
     <!-- Main JS -->
     <script src="{{asset('be/assetsCopy/js/main.js')}}"></script>
-
-
     <!-- Page JS -->
     <script src="{{asset('be/assetsCopy/js/dashboards-crm.js')}}"></script>
 

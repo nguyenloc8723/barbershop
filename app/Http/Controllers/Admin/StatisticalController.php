@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Booking_service;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
@@ -102,15 +103,6 @@ class StatisticalController extends AdminBaseController
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
     }
     public function service(){
-//        $duplicateServices = Booking_Service::query()
-//            ->select('service_id', \DB::raw('COUNT(service_id) AS total_occurrences'))
-//            ->groupBy('service_id')
-//            ->havingRaw('COUNT(service_id) > 1')
-//            ->orderByDesc('total_occurrences')
-//            ->with('service:id,name,description,price') // Chỉ lấy những trường cần thiết từ bảng service
-//            ->get();
-
-
         $duplicateServices = Booking_Service::query()
             ->select('service_id', \DB::raw('COUNT(service_id) AS total_occurrences'))
             ->whereMonth('created_at', '=', now()->month) // Chỉ lấy dữ liệu của tháng hiện tại
@@ -140,15 +132,20 @@ class StatisticalController extends AdminBaseController
             ];
         }
 
-        $totalOccurrences = $duplicateServices->take(5)->map(function ($duplicateService) {
-            $service = $duplicateService->service;
+        $totalOccurrences = $duplicateServices
+            ->sortByDesc('total_occurrences')
+            ->take(5)
+            ->map(function ($duplicateService) {
+                $service = $duplicateService->service;
 
-            return [
-                'total_occurrences' => $duplicateService->total_occurrences,
-                'name' => $service->name,
-                'description' => $service->description,
-            ];
-        });
+                return [
+                    'total_occurrences' => $duplicateService->total_occurrences,
+                    'name' => $service->name,
+                    'description' => $service->description,
+                ];
+            });
+
+//        dd($totalOccurrences);
 
         // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
         $revenueByMonth = Booking::select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(price) as total'))
@@ -174,10 +171,22 @@ class StatisticalController extends AdminBaseController
                 ];
             }
         }
-//        dd($revenueByMonth[0]->total, $percentChange);
-//        dd($percentChange);
+
+        // Khách hàng tiềm năng được tạo ra
+        $userCounts = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', '=', date('Y'))
+            ->whereIn(DB::raw('MONTH(created_at)'), [Carbon::now()->month, Carbon::now()->subMonth()->month])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $percentChangeUser = 0;
+        if ($userCounts !== null) {
+            $percentChangeUser = (($userCounts[1]->count - $userCounts[0]->count) / $userCounts[0]->count) * 100;
+        }
+//        dd($percentChangeUser);
         return view('admin.statistical.service',
             compact('totalPrices','totalOccurrences',
-                'revenueByMonth','percentChange'));
+                'revenueByMonth','percentChange','userCounts','percentChangeUser'));
     }
 }
