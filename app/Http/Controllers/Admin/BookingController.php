@@ -48,9 +48,7 @@ class BookingController extends AdminBaseController
         $data = Booking::query()
             ->with('user')
             ->with('timesheet')
-            ->whereHas('user', function ($query) {
-            $query->where('user_type', 'STYLIST');
-            })
+            
             ->orderBy('id','desc')->get();
 //        dd($data);
         return view($this->pathViews . '/' . __FUNCTION__, compact('data'))
