@@ -28,20 +28,32 @@ class ViewProviderAdmin extends ServiceProvider
         $this->Notification();
     }
 
-    private function Notification() {
-        View::composer('admin.layout.partials.topbar', function ($view) {
-            $stylistId = Auth::user()->id; // ID của stylist bạn muốn truy vấn
-            // đầu tiên lấy ra " CỘT " id của bảng "BOOKING" theo id của stylist đang đăng nhập hiện tại (dòng 49)
-            $stylist = Booking::query()->where('stylist_id', $stylistId)->pluck('id');
-            // Sau đó sẽ lấy ra các bản ghi trong bảng thông báo dựa vào "MẢNG" id của booking đã lấy ở trên
-            $notifications = Notification::whereIn('booking_id', $stylist)
-                ->with('booking')
-                ->orderBy('id','desc')
-                ->get();
-//            Log::info($notifications[0]->booking->status);
-            Log::info($notifications);
+    private function Notification()
+    {
 
-            $view->with('notification', $notifications);
+        View::composer('admin.layout.partials.topbar', function ($view) {
+            $user = Auth::user()->user_type;
+            Log::info($user);
+            if ($user === 'STYLIST') {
+                $stylistId = Auth::user()->id; // ID của stylist bạn muốn truy vấn
+                // đầu tiên lấy ra " CỘT " id của bảng "BOOKING" theo id của stylist đang đăng nhập hiện tại (dòng 49)
+                $stylist = Booking::query()->where('stylist_id', $stylistId)->pluck('id');
+                // Sau đó sẽ lấy ra các bản ghi trong bảng thông báo dựa vào "MẢNG" id của booking đã lấy ở trên
+                $notifications = Notification::whereIn('booking_id', $stylist)
+                    ->with('booking')
+                    ->orderBy('id', 'desc')
+                    ->get();
+                $view->with('notification', $notifications);
+            }
+            if ($user === 'ADMIN') {
+                $notifications = Notification::query()
+                    ->with('booking')
+                    ->orderBy('id', 'desc')
+                    ->get();
+                $view->with('notification', $notifications);
+            }
         });
+
+
     }
 }

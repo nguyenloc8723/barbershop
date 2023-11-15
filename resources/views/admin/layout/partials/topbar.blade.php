@@ -166,7 +166,7 @@
                                     <button type="button"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .65rem;"
                                             class="btn btn-sm btn-outline-danger rounded-pill
-                                            {{-- delete-notification --}}
+                                             delete-notification
                                             "
                                             data-notification-id="{{ $item->id }}"
                                     >Hủy lịch

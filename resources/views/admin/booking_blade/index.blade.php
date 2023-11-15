@@ -48,26 +48,38 @@
                                     <div class="kanban-detail">
                                         @if($item->status == 1)
                                             <span
-                                                class="badge float-end bg-danger" >Chờ xác nhận
+                                                class="badge float-end bg-danger">Chờ xác nhận
                 </span>
                                         @endif
                                         @if($item->status == 2)
                                             <span
-                                                class="badge float-end bg-warning" >Đang chờ cắt
+                                                class="badge float-end bg-warning">Đang chờ cắt
                 </span>
                                         @endif
                                         @if($item->status == 3)
                                             <span
-                                                class="badge float-end bg-success" >Đã cắt
+                                                class="badge float-end bg-success">Đã cắt
                 </span>
                                         @endif
-                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
+                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}"
+                                                            class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
                                         <h5>Stylist: {{$item->stylist->name}}</h5>
+                                        <h5>Thời gian : {{$item->timesheet->hour}}h - {{$item->timesheet->minutes}}
+                                            ph</h5>
+                                        <h5>Ngày : {{$item->date}}</h5>
+                                        <h5>Yêu cầu đặc biệt: {{$item->special_requirement}}</h5>
+                                        <h5 style="color: {{$item->is_consultant == 1 ? "green" : "red" }};">
+                                            Yêu cầu tư vấn: {{$item->is_consultant == 1 ? "Có" : "Không" }}
+                                        </h5>
+
+                                        <h5 style="color: {{$item->is_accept_take_a_photo == 1 ? "green" : "red" }};">
+                                            Chụp ảnh sau khi cắt để làm mẫu cho lần
+                                            sau: {{$item->is_accept_take_a_photo == 1 ? "Có" : "Không" }}
+                                        </h5>
                                     </div>
                                 </div>
                             </li>
                         @endforeach
-
 
 
                     </ul>

@@ -47,6 +47,7 @@ class BookingController extends AdminBaseController
     {
         $data = Booking::query()
             ->with('user')
+            ->with('timesheet')
             ->whereHas('user', function ($query) {
             $query->where('user_type', 'STYLIST');
             })

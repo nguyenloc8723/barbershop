@@ -203,9 +203,9 @@ function cancelAppointment(button) {
     checkbox.style.display = 'none';
     checkbox.disabled =  button.disabled = true;
     deleteNotification();
-    toastr['success']('Hủy lịch thành công');
-    setTimeout(function() {
-        toastr['success']('Thông báo sẽ tự động xóa khi tải lại trang');
-    }, 1000);
+    toastr['success']('Hủy lịch thành công. Thông báo sẽ tự động xóa khi tải lại trang');
+    // setTimeout(function() {
+    //     toastr['success']('Thông báo sẽ tự động xóa khi tải lại trang');
+    // }, 1000);
 
 }
