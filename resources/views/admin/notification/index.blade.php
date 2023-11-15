@@ -28,7 +28,7 @@
                     <input class="form-check-input" type="checkbox" value="" id="selectAll"
                            onchange="toggleCheckboxes()">
                 </div>
-                <div class="col-3">
+                <div class="col-5">
                     <label class="form-check-label col-9 fs-4 fw-bolder" for="flexCheckDefault"> Chọn tất cả </label>
                 </div>
                 <div class="col-6" id="btnContainer" style="display: none;">
@@ -54,11 +54,11 @@
                         <div class="col-1">
                             <input class="form-check-input input-form" type="checkbox" value="" id="flexCheckDefault">
                         </div>
-                        <div class="col-7">
+                        <div class="col-3">
                             <label class="form-check-label col-9"
                                    for="flexCheckDefault">{{str_replace("+84", "", $items->booking->user_phone)}}</label>
                         </div>
-                        <div class="col-7">
+                        <div class="col-4">
                             <label class="form-check-label col-9" for="flexCheckDefault">{{$items->messege}}</label>
                         </div>
                         @if($items->booking->status === 1)
