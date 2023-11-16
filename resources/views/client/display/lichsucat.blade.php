@@ -128,21 +128,9 @@
                                 <div class="row">
                                     <div class="col-5" style="margin-left: 30px;">
 
-                                        @php
-                                            $hasImage = false; // Biến kiểm tra xem có ảnh cho booking này hay không
-                                        @endphp
-                                        @foreach($images as $img)
-                                            @if (isset($img->booking_id) == $reviewId->id)
-                                                <img src="/storage/{{$img->image}}" alt=""
+                                    <img src="{{asset('client/img/6xpro.jpg')}}" alt=""
                                                      style="font-size: 130px; height: 230px;">
-                                                @php
-                                                    $hasImage = true;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                        @if (!$hasImage)
-                                            <img src="" alt="">
-                                        @endif
+                                    
 
                                     </div>
                                     <div class="col-6" style="margin-top: 40px;">
@@ -173,7 +161,7 @@
                         <br>
                     </div>
                     <div style="background-color: #fff; padding: 10px;" class="d-flex justify-content-center">
-                        <a href="{{route('client.booking')}}" class="btn btn-primary">Đăng kí ngay</a>
+                        <a href="{{route('client.display.index')}}" class="btn btn-primary">Đăng kí ngay</a>
 
                     </div>
 

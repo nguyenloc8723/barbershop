@@ -46,6 +46,7 @@
 
                     <div class="row">
                         <div class="col-5">
+                            <h6 class="text-center">Album ảnh</h6>
                             @foreach($image as $images)
                             <img src="/storage/{{$images->image}}" alt="" style="width: 50px; height: 50px;" class="smallImage">
 
