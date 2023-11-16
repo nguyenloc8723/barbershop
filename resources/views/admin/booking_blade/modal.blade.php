@@ -23,8 +23,9 @@
                     aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            <form class="d-flex justify-content-between flex-wrap"
-                  id="formModalService" action="" enctype="multipart/form-data">
+            <form class="d-flex justify-content-between flex-wrap" method="post"
+                  id="formModalService" action="{{route('route.booking_blade.post', $data->id)}}" enctype="multipart/form-data">
+                  @csrf
                 <div class="col-xl-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên thợ</label>
@@ -93,7 +94,7 @@
 
                 <div class="w-100 text-center">
                     <button type="submit" class="btn btn-success waves-effect waves-light"
-                            data-bs-dismiss="modal">Save
+                            data-bs-dismiss="modal">Cập nhật
                     </button>
                     <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
                     >Cancel

@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (action) {
             $('.jquery-main-modal').show()
         } else {
-        $('.jquery-main-modal').hide()
+            $('.jquery-main-modal').hide();
+            imgContainer.empty();
         }
     }
 

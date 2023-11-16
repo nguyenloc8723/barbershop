@@ -163,7 +163,7 @@
                                     </div>
                                 </form>
                             @endif
-                            <button type="button" class="btn btn-warning jqr-btn-edit">Edit</button>
+                            <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
 
                         </div>
 
