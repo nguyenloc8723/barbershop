@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Results;
 use App\Models\Stylist;
 use App\Models\User;
+use App\Models\Timesheet;
 use Illuminate\Http\Request;
 
 class BookingController extends AdminBaseController
@@ -27,8 +28,6 @@ class BookingController extends AdminBaseController
 
     public function getDetail(string $id)
     {
-
-//        $stylist = Stylist::find(1)->orderBy('name')->get();
         $data = Booking::query()->where('id', $id)
             ->with('timesheet')
             ->with('service')
@@ -36,9 +35,10 @@ class BookingController extends AdminBaseController
             ->with('reviews')
             ->first();
         $stylist = User::where('id', $data->stylist_id)->first();
-//        dd($data);
-//        dd($stylist);
-        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist'))
+        $stylists = User::where('user_type', 'STYLIST')->get();
+        $timeSheets = Timesheet::all();
+        //dd($timeSheets);
+        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets'))
             ->with('columns', $this->columns);
     }
 
