@@ -153,7 +153,6 @@
                                                             class="btn btn-success waves-effect waves-light me-1">
                                                         Update
                                                     </button>
-
                                                     <button id="cancelButton" class="btn btn-secondary">Cancel</button>
                                                 </div>
                                             </div>
