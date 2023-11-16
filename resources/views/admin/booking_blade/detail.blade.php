@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
-{{--@section('style')--}}
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/service.css')}}">
+@endsection
 @section('content')
     <div class="content">
 
@@ -160,15 +162,19 @@
                                     </div>
                                 </form>
                             @endif
+                            <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
 
                         </div>
 
                     </div>
                 </div>
 
-            </div><!-- end col -->
+            </div>
+            <!-- end col -->
 
-
+            <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
+                @include('admin.booking_blade.modal')
+            </div>
         </div>
 
         <!-- end row -->
