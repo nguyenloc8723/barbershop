@@ -64,6 +64,10 @@ class NotificationController extends Controller
         if ($notification) {
             Log::info('Điều kiện đúng');
             $notification->delete();
+            $id = $notification->booking_id;
+            $booking = Booking::find($id);
+            $booking->status = 0;
+            $booking->save();
             return response()->json(['success' => true]);
         } else {
             Log::info('Điều kiện sai');

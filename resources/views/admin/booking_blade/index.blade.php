@@ -1,35 +1,10 @@
 @extends('admin.layout.master')
-{{--@section('style')--}}
-{{--    <link rel="stylesheet" href="{{asset('css/service.css')}}">--}}
-{{--@endsection--}}
+
 @section('content')
-    {{--    <div class="row">--}}
-    {{--        <div class="col-12">--}}
-    {{--            <div class="card">--}}
-    {{--                <div class="card-body">--}}
-    {{--                    <div class="row justify-content-between">--}}
-    {{--                        <div class="col-md-4">--}}
-    {{--                            <div class="mt-3 mt-md-0">--}}
-
-    {{--                                <button type="button"--}}
-    {{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
-    {{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
-    {{--                                </button>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body taskboard-box">
-
 
                     <h4 class="header-title mt-0 mb-3 text-primary">Quản lí lịch đặt</h4>
 
@@ -61,6 +36,11 @@
                                                 class="badge float-end bg-success">Đã cắt
                 </span>
                                         @endif
+                                            @if($item->status == 0)
+                                                <span
+                                                    class="badge float-end bg-secondary">Đã hủy
+                </span>
+                                            @endif
                                         <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}"
                                                             class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
                                         <h5>Stylist: {{$item->stylist->name}}</h5>
@@ -89,11 +69,6 @@
 
         </div><!-- end col -->
     </div><!-- end row -->
-
-    {{--    <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">--}}
-    {{--        @include('admin.booking.modal')--}}
-    {{--    </div>--}}
-
 @endsection
 
 
