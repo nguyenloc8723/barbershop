@@ -148,3 +148,4 @@ Route::get('team-details', function () {
 })->name('team-details');
 
 Route::get('search', [StylistController::class, 'getSearch'])->name('search');
+
