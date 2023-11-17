@@ -24,7 +24,7 @@
         </div>
         <div class="modal-body">
             <form class="d-flex justify-content-between flex-wrap" method="post"
-                  id="formModalBooking" action="{{route('booking_blade.detail.post', $data->id)}}" enctype="multipart/form-data">
+                  id="formModalBooking" action="{{route('booking_blade.detail.post', $data->id)}}" data-id="{{$data->id}}" enctype="multipart/form-data">
                   @csrf
                 <div class="col-xl-6">
                     <div class="mb-3">

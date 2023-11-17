@@ -32,7 +32,6 @@ class BookingController extends AdminBaseController
             ->with('timesheet')
             ->with('service')
             ->with('results')
-            ->with('reviews')
             ->first();
         $stylist = User::where('id', $data->stylist_id)->first();
         $stylists = User::where('user_type', 'STYLIST')->get();
@@ -40,6 +39,20 @@ class BookingController extends AdminBaseController
         //dd($timeSheets);
         return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets'))
             ->with('columns', $this->columns);
+    }
+
+    public function getDetailAPI(string $id)
+    {
+//        dd($id);
+        $data = Booking::query()->where('id', $id)
+            ->with('timesheet')
+            ->with('service')
+            ->with('results')
+            ->with('stylist')
+            ->first();
+//        $stylist = User::where('id', $data->stylist_id)->first();
+//        dd($data);
+        return response()->json($data);
     }
 
 
