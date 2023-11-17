@@ -153,9 +153,9 @@
                                                 <div class="text-end">
                                                     <button type="submit"
                                                             class="btn btn-success waves-effect waves-light me-1">
-                                                        Update
+                                                        Xác nhận cắt xong
                                                     </button>
-                                                    <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+{{--                                                    <button id="cancelButton" class="btn btn-secondary">Cancel</button>--}}
                                                 </div>
                                             </div>
                                         </div>

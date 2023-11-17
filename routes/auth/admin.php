@@ -111,11 +111,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 //    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
-    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
+//    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
 //    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
 //    Route::post('/update-data/{id}', [BookingController::class,'update'])->name('update.data');
     Route::post('booking_blade/detail/post/{id}',[BookingController::class,'update'])->name('booking_blade.detail.post');
-
+    Route::post('booking_blade/post/{id}', [BookingController::class, 'hoanThanhCat'])->name('route.booking_blade.post');
 
     Route::resource('stylists',StylistController::class);
     Route::resource('portfolios',PortfolioController::class);
