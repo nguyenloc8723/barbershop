@@ -153,10 +153,11 @@ class StatisticalController extends AdminBaseController
         )
             ->whereYear('created_at', '=', date('Y'))
             ->where('status', 3)
+            ->whereIn(DB::raw('MONTH(created_at)'), [date('n'), date('n') - 1])
             ->groupBy('month')
             ->orderBy('month')
             ->get();
-
+//        dd($revenueByMonth);
 // Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu
         $percentChange = [];
 //        if (count($revenueByMonth) >= 2) {
