@@ -163,20 +163,17 @@ class paymentController extends Controller
                     $stylist = User::where('id', $booking->stylist_id)->first();
                     // dd($stylist);
                     // dd($mailData,$combo,$booking,$inputDatas);
-                    Queue::push(function ($job) use ($inputData, $mailData, $combo, $booking, $inputDatas, $stylist) {
-                        Mail::to($inputData['vnp_OrderInfo'])->send(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
-                        $job->delete();
-                    });
+                    
+                        Mail::to($inputData['vnp_OrderInfo'])->queue(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
+                        
+    
                 }
 
                 //mail gửi admin khi có người dùng thanh toán thành công
                 $payment = payment::orderBy('created_at', 'desc')->first();
-
-                Queue::push(function ($job) use ($payment) {
                     $payment = payment::find($payment->id); // Lấy lại đối tượng payment để đảm bảo thông tin mới nhất
-                    Mail::to('vietpvph28454@fpt.edu.vn')->send(new AdminMail($payment));
-                    $job->delete();
-                });
+                    Mail::to('vietpvph28454@fpt.edu.vn')->queue(new AdminMail($payment));
+                
 
                 return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
