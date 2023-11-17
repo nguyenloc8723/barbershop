@@ -126,7 +126,10 @@
                             @endforeach
 
                             <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
-
+                            <form method="POST" action="{{ route('route.booking_blade.post', $data->id }}">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Hoàn thành cắt</button>
+                            </form>
                         </div>
 
                     </div>
