@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </h4>
 
                             <h4>
-
+                                 Trạng thái: ${is_status}
                             </h4>
 
 
