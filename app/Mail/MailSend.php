@@ -30,6 +30,7 @@ class MailSend extends Mailable
         $this->booking = $booking;
         $this->inputDatas = $inputDatas;
         $this->stylist = $stylist;
+        $this->queue = 'email';
     }
 
     /**

@@ -25,6 +25,7 @@ class AdminMail extends Mailable
     {
         //
         $this->payment = $payment;
+        $this->queue = 'email';
     }
 
     /**

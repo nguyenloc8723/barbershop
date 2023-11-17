@@ -80,7 +80,7 @@ class BookingController extends Controller
         $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
         Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
-        Mail::to($stylist->email)->send(new MailStylist($booking,$service));
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
         //end send mail stylist
         $this->sendSms($request->user_phone);
         return response()->json(['success'=>$bookingDone_id]);
