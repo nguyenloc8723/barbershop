@@ -17,6 +17,10 @@
                             <input type="tel" class="form-control" name="phone_number" id="phone_number" required/>
                         </div>
                         <div class="mb-3">
+                            <label for="name" class="form-label">Email</label>
+                            <input type="tel" class="form-control" name="email" id="email" required/>
+                        </div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">Mô tả ngắn</label>
                             <input type="text" class="form-control" name="excerpt" id="excerpt" required/>
                         </div>

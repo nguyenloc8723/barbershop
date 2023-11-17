@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Admin\API\ApiStylistController;
 use App\Http\Controllers\Admin\StylistController;
+use App\Http\Controllers\Admin\ThanhToanCtrl;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\BannerController;
 
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\Client\paymentController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PricingController;
@@ -70,7 +72,9 @@ Route::middleware(['admin'])->group(function () {
 
     Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
     Route::resource('user', UserController::class);
-
+    //payment
+    Route::resource('payment',ThanhToanCtrl::class);
+    Route::post('searchPayment', [ThanhToanCtrl::class, 'index'])->name('searchPayment');
 
 
     Route::resource('member', MemberController::class);
