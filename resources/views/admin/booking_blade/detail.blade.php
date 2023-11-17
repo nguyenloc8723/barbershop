@@ -126,10 +126,27 @@
                             @endforeach
 
                             <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
-                            <form method="POST" action="{{ route('route.booking_blade.post', $data->id }}">
+                            @if($data->status == 2)
+                            <form class="d-flex justify-content-between flex-wrap"
+                                  method="post"
+                                  action="{{route('route.booking_blade.post', $data->id)}}"
+                                  >
                                 @csrf
-                                <button type="submit" class="btn btn-success">Hoàn thành cắt</button>
+                                @method('POST')
+                                <div class="attached-files mt-1 col-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="text-end">
+                                                <button type="submit"
+                                                        class="btn btn-success waves-effect waves-light me-1">
+                                                    Hoàn thành cắt
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
+                            @endif
                         </div>
 
                     </div>
