@@ -79,11 +79,14 @@
                     <div class="collapse" id="statical">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('route.statistical')}}">Doanh thu</a>
+                                <a href="{{route('route.statistical')}}">Đặt lịch</a>
                             </li>
                             <li>
                                 <a href="{{route('route.statistical.service')}}">Dịch vụ</a>
                             </li>
+{{--                            <li>--}}
+{{--                                <a href="{{route('route.statistical.revenue')}}">Doanh thu</a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                 </li>

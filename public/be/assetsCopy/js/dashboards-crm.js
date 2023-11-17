@@ -342,65 +342,66 @@
 "use strict";
 
 function drawDonutChart() {
-    let o, e, r, t, a, s, i, n, l, d;
-    d = isDarkStyle ? (o = config.colors_dark.cardColor, e = config.colors_dark.headingColor, r = config.colors_dark.textMuted, t = config.colors_dark.bodyColor, s = config.colors_dark.borderColor, a = "dark", i = "#4f51c0", n = "#595cd9", l = "#8789ff", "#c3c4ff") : (o = config.colors.white, e = config.colors.headingColor, r = config.colors.textMuted, t = config.colors.bodyColor, s = config.colors.borderColor, a = "", i = "#e1e2ff", n = "#c3c4ff", l = "#a5a7ff", "#696cff");
-
-    var c = {
-        donut: {
-            series1: config.colors.success,
-            series2: "rgba(113, 221, 55, 0.6)",
-            series3: "rgba(113, 221, 55, 0.4)",
-            series4: "rgba(113, 221, 55, 0.2)"
-        }
-    };
-
-    var p = {
-        chart: { height: 157, width: 135, parentHeightOffset: 0, type: "donut" },
-        labels: ["Electronic", "Sports"],
-        series: [45, 58],
-        colors: [c.donut.series1, c.donut.series2, c.donut.series3, c.donut.series4],
-        stroke: { width: 0 },
-        dataLabels: {
-            enabled: !1, formatter: function (o, e) {
-                return parseInt(o) + "%"
+        let o, e, r, t, a, s, i, n, l, d;
+        d = isDarkStyle ? (o = config.colors_dark.cardColor, e = config.colors_dark.headingColor, r = config.colors_dark.textMuted, t = config.colors_dark.bodyColor, s = config.colors_dark.borderColor, a = "dark", i = "#4f51c0", n = "#595cd9", l = "#8789ff", "#c3c4ff") : (o = config.colors.white, e = config.colors.headingColor, r = config.colors.textMuted, t = config.colors.bodyColor, s = config.colors.borderColor, a = "", i = "#e1e2ff", n = "#c3c4ff", l = "#a5a7ff", "#696cff");
+        var c = {
+            donut: {
+                series1: config.colors.success,
+                series2: "rgba(113, 221, 55, 0.6)",
+                series3: "rgba(113, 221, 55, 0.4)",
+                series4: "rgba(113, 221, 55, 0.2)"
             }
-        },
-        legend: { show: !1 },
-        tooltip: { theme: !1 },
-        grid: { padding: { top: 5, bottom: 5 } },
-        plotOptions: {
-            pie: {
-                donut: {
-                    size: "75%",
-                    labels: {
-                        show: !0,
-                        value: {
-                            fontSize: "1.5rem",
-                            fontFamily: "Public Sans",
-                            color: e,
-                            fontWeight: 500,
-                            offsetY: -15,
-                            formatter: function (o) {
-                                return parseInt(o) + "%"
-                            }
-                        },
-                        name: { offsetY: 20, fontFamily: "Public Sans" },
-                        total: {
-                            show: !0, fontSize: ".7rem", label: "1 Week", color: t, formatter: function (o) {
-                                return "32%"
+        };
+        var lastMonthValue = document.querySelector('.userCounts_lastMonth').value;
+        var currentMonth = document.querySelector('.userCounts_currentMonth').value;
+        var percentChangeUser = document.querySelector('.percentChangeUser').value;
+        var p = {
+            chart: { height: 157, width: 135, parentHeightOffset: 0, type: "donut" },
+            labels: ["Tháng trước", "Tháng này"],
+            series: [+lastMonthValue, +currentMonth],
+            colors: [c.donut.series1, c.donut.series2, c.donut.series3, c.donut.series4],
+            stroke: { width: 0 },
+            dataLabels: {
+                enabled: !1, formatter: function (o, e) {
+                    return parseInt(o) + "%"
+                }
+            },
+            legend: { show: !1 },
+            tooltip: { theme: !1 },
+            grid: { padding: { top: 5, bottom: 5 } },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: "75%",
+                        labels: {
+                            show: !0,
+                            value: {
+                                fontSize: "1.5rem",
+                                fontFamily: "Public Sans",
+                                color: e,
+                                fontWeight: 500,
+                                offsetY: -15,
+                                formatter: function (o) {
+                                    return parseInt(o) + "%"
+                                }
+                            },
+                            name: { offsetY: 20, fontFamily: "Public Sans" },
+                            total: {
+                                show: !0, fontSize: ".7rem", label: "1 Month", color: t, formatter: function (o) {
+                                    return percentChangeUser + ' '+ '%';
+                                }
                             }
                         }
                     }
                 }
             }
+        };
+
+        let chartElement = document.querySelector("#leadsReportChart");
+
+        if (chartElement) {
+            new ApexCharts(chartElement, p).render();
         }
-    };
-
-    let chartElement = document.querySelector("#leadsReportChart");
-
-    if (chartElement) {
-        new ApexCharts(chartElement, p).render();
-    }
 }
 
 // hàm cho sessionsChart
@@ -542,17 +543,62 @@ function drawSalesAnalyticsChart() {
     }
 }
 
+// ------------------------- salesStats
+// function drawSalesStatsChart() {
+//     var s = config.colors.dark.borderColor;
+//     var e = config.colors.dark.headingColor;
+//
+//     var salesStatsChart = document.querySelector("#salesStats");
+//     if (salesStatsChart !== null) {
+//         var p = {
+//             chart: { height: 340, type: "radialBar" },
+//             series: [75],
+//             labels: ["Sales"],
+//             plotOptions: {
+//                 radialBar: {
+//                     startAngle: 0,
+//                     endAngle: 360,
+//                     strokeWidth: "70",
+//                     hollow: {
+//                         margin: 50,
+//                         size: "75%",
+//                         image: assetsPath + "img/icons/misc/arrow-star.png",
+//                         imageWidth: 65,
+//                         imageHeight: 55,
+//                         imageOffsetY: -35,
+//                         imageClipped: false
+//                     },
+//                     track: { strokeWidth: "50%", background: s },
+//                     dataLabels: {
+//                         show: true,
+//                         name: { offsetY: 60, show: true, color: config.colors.dark.textMuted, fontSize: "15px" },
+//                         value: {
+//                             formatter: function (o) {
+//                                 return parseInt(o) + "%";
+//                             }, offsetY: 20, color: e, fontSize: "32px", show: true
+//                         }
+//                     }
+//                 }
+//             },
+//             fill: { type: "solid", colors: config.colors.success },
+//             stroke: { lineCap: "round" },
+//             states: { hover: { filter: { type: "none" } }, active: { filter: { type: "none" } } }
+//         };
+//
+//         new ApexCharts(salesStatsChart, p).render();
+//     }
+// }
+
 // Gọi hàm để vẽ biểu đồ
-drawSalesAnalyticsChart();
+// drawSalesStatsChart();
 
-
-
-
-
-//------------
+window.addEventListener("load", function() {
+    // Gọi hàm để vẽ biểu đồ
+    drawSalesAnalyticsChart();
 // Gọi hàm để vẽ biểu đồ cho salesAnalyticsChart
-reportBarChart();
+    reportBarChart();
 // Gọi hàm để vẽ biểu đồ cho sessionsChart
-drawSessionsChart();
+    drawSessionsChart();
 // Call the function to draw the donut chart
-drawDonutChart();
+    drawDonutChart();
+});

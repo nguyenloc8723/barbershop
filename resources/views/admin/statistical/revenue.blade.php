@@ -16,7 +16,7 @@
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{asset('be/assetsCopy/vendor/css/rtl/core.css')}}"  />
-{{--    class="template-customizer-core-css" và  class bất ổn class="template-customizer-theme-css"  --}}
+    {{--    class="template-customizer-core-css" và  class bất ổn class="template-customizer-theme-css"  --}}
     <link rel="stylesheet" href="{{asset('be/assetsCopy/vendor/css/rtl/theme-default.css')}}"  />
     <link rel="stylesheet" href="{{asset('be/assetsCopy/css/demo.css')}}" />
 
@@ -104,11 +104,11 @@
                                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                             <div class="me-2">
                                                 <h6 class="mb-0">{{$totalOccurrence['name']}}</h6>
-{{--                                                <small class="text-muted d-block mb-1">{{$totalOccurrence['description']}}</small>--}}
+                                                {{--                                                <small class="text-muted d-block mb-1">{{$totalOccurrence['description']}}</small>--}}
                                             </div>
                                             <div class="user-progress d-flex align-items-center gap-3">
                                                 <span class="fw-medium badge bg-label-success">{{$totalOccurrence['total_occurrences']}}</span>
-{{--                                                <span class="badge bg-label-success">+12.4%</span>--}}
+                                                {{--                                                <span class="badge bg-label-success">+12.4%</span>--}}
                                             </div>
                                         </div>
                                     </li>
@@ -139,12 +139,12 @@
                                     </div>
                                 </div>
                                 <span class="fw-medium d-block mb-1">Đặt lịch</span>
-                                <h4 class="card-title fs-5 mb-2">{{ number_format($revenueCurrentMonth['total'], 0, ',', '.') }} VNĐ</h4>
-{{--                                <h4 class="card-title fs-5 mb-2">500.000.000 VNĐ</h4>--}}
+                                <h4 class="card-title fs-5 mb-2">{{ number_format($revenueByMonth[1]->total, 0, ',', '.') }} VNĐ</h4>
+                                {{--                                <h4 class="card-title fs-5 mb-2">500.000.000 VNĐ</h4>--}}
                                 @if ($percentChange !== null)
-                                    @if ($revenueCurrentMonth['total'] > $revenueLastMonth['total'])
+                                    @if ($revenueByMonth[1]->total > $revenueByMonth[0]->total)
                                         <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChange[0]['percentage'],2) }}%</small>
-                                    @elseif ($revenueCurrentMonth['total'] < $revenueLastMonth['total'])
+                                    @elseif ($revenueByMonth[1]->total < $revenueByMonth[0]->total)
                                         <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> {{ number_format($percentChange[0]['percentage'],2) }}%</small>
                                     @else
                                         <small class="text-muted fw-medium"><i class='bx bx-minus'></i> 0%</small>
@@ -270,28 +270,6 @@
             </div>
             <!--/ Earning Reports -->
 
-
-
-            <!-- Sales Stats -->
-{{--            <div class="col-md-6 col-lg-4 mb-4">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <div class="card-header d-flex align-items-center justify-content-between mb-30">--}}
-{{--                        <h5 class="card-title m-0 me-2">Thống kê lịch đặt</h5>--}}
-{{--                    </div>--}}
-{{--                    <div id="salesStats"></div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="d-flex justify-content-around">--}}
-{{--                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">--}}
-{{--                                <span class="badge badge-dot bg-success me-2"></span> Tỉ lệ chuyển đổi--}}
-{{--                            </div>--}}
-{{--                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">--}}
-{{--                                <span class="badge badge-dot bg-label-secondary me-2"></span> Tổng số yêu cầu--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <!--/ Sales Stats -->
         </div>
     </div>
 @endsection

@@ -137,7 +137,6 @@ class StatisticalController extends AdminBaseController
             ->take(5)
             ->map(function ($duplicateService) {
                 $service = $duplicateService->service;
-
                 return [
                     'total_occurrences' => $duplicateService->total_occurrences,
                     'name' => $service->name,
@@ -148,20 +147,48 @@ class StatisticalController extends AdminBaseController
 //        dd($totalOccurrences);
 
         // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
-        $revenueByMonth = Booking::select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(price) as total'))
+        $revenueByMonth = Booking::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as total')
+        )
             ->whereYear('created_at', '=', date('Y'))
+            ->where('status', 3)
             ->groupBy('month')
             ->orderBy('month')
             ->get();
 
-// Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu)
+// Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu
         $percentChange = [];
-        if (count($revenueByMonth) >= 2) {
-            for ($i = 1; $i < count($revenueByMonth); $i++) {
+//        if (count($revenueByMonth) >= 2) {
+//            for ($i = 1; $i < count($revenueByMonth); $i++) {
+//                $currentMonth = $revenueByMonth[$i]->total;
+//                $prevMonth = $revenueByMonth[$i - 1]->total;
+//
+//                $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+//
+//                $percentChange[] = [
+//                    'month' => $revenueByMonth[$i]->month,
+//                    'percentage' => $percentage,
+//                    'currentMonth' => $currentMonth,
+//                    'prevMonth' => $prevMonth,
+//                ];
+//            }
+//        }
+
+        $count = count($revenueByMonth);
+
+        if ($count >= 2) {
+            for ($i = 1; $i < $count; $i++) {
                 $currentMonth = $revenueByMonth[$i]->total;
                 $prevMonth = $revenueByMonth[$i - 1]->total;
 
-                $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+                // Kiểm tra trước khi tính phần trăm
+                if ($prevMonth != 0) {
+                    $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+                } else {
+                    // Trường hợp giá trị của tháng trước đó là 0
+                    $percentage = ($currentMonth != 0) ? 100 : 0; // Phần trăm tăng so với 0 hoặc giảm từ 0
+                }
 
                 $percentChange[] = [
                     'month' => $revenueByMonth[$i]->month,
@@ -170,8 +197,39 @@ class StatisticalController extends AdminBaseController
                     'prevMonth' => $prevMonth,
                 ];
             }
+        } else {
+            // Trường hợp không có đủ dữ liệu cho việc tính phần trăm
+            // Bạn có thể xử lý hoặc báo cáo tùy thuộc vào yêu cầu của bạn
+            // Dưới đây tôi sẽ đặt giá trị mặc định cho phần trăm là 0
+            $percentChange[] = [
+                'month' => 0,
+                'percentage' => 0,
+                'currentMonth' => 0,
+                'prevMonth' => 0,
+            ];
         }
 
+        // Tạo mảng kết quả với các tháng và giá trị mặc định là null
+        $resultByMonth = array_fill_keys(range(1, 12), ['month' => 0, 'total' => 0]);
+
+// Điền dữ liệu thực tế từ kết quả truy vấn vào mảng kết quả
+        foreach ($revenueByMonth as $item) {
+            $resultByMonth[$item['month']] = [
+                'month' => $item['month'],
+                'total' => $item['total'],
+            ];
+        }
+// Bây giờ $resultByMonth chứa dữ liệu của tất cả các tháng, thậm chí cả tháng không có dữ liệu.
+
+// Truy xuất dữ liệu từ biến $resultByMonth
+        $revenueCurrentMonth = $resultByMonth[date('n')];
+        $revenueLastMonth = $resultByMonth[date('n') - 1];
+
+// Bảo đảm rằng cả hai biến đều là mảng
+        $revenueCurrentMonth = $revenueCurrentMonth ?? ['month' => 0, 'total' => 0];
+        $revenueLastMonth = $revenueLastMonth ?? ['month' => 0, 'total' => 0];
+
+//        dd($percentChange);
         // Khách hàng tiềm năng được tạo ra
         $userCounts = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
             ->whereYear('created_at', '=', date('Y'))
@@ -184,9 +242,10 @@ class StatisticalController extends AdminBaseController
         if ($userCounts !== null) {
             $percentChangeUser = (($userCounts[1]->count - $userCounts[0]->count) / $userCounts[0]->count) * 100;
         }
-//        dd($percentChangeUser);
+//        dd($userCounts);
         return view('admin.statistical.service',
-            compact('totalPrices','totalOccurrences',
-                'revenueByMonth','percentChange','userCounts','percentChangeUser'));
+            compact('totalPrices','totalOccurrences'
+                ,'percentChange','userCounts','percentChangeUser',
+                'revenueCurrentMonth','revenueLastMonth'));
     }
 }
