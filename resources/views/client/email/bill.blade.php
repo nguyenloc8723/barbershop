@@ -151,7 +151,7 @@
                                             <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                                                 <tbody>
                                                     <tr>
-                                                        <td align="left"> <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/399130621_1504907773697660_5221871130763708321_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=QqCiKzhTYRkAX_OfDip&_nc_ht=scontent.fhan17-1.fna&oh=00_AfBBXoIBYXceflb9FKSlEqoYm0pyKGnNkR_CjhvhhnQPCw&oe=6552AC2A" width="100" height="100" alt="logo" border="0" /></td>
+                                                        <td align="left"> <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/399571715_1504906063697831_8121219165422488345_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=cTycIElGk2kAX8WfZZC&_nc_ht=scontent.fhan17-1.fna&oh=00_AfALO1LH4zBT44osTFR4znl2PgpEzpQSRH9LjD1bGE1xlg&oe=655D095C" width="100" height="100" alt="logo" border="0" /></td>
                                                     </tr>
                                                     <tr class="hiddenMobile">
                                                         <td height="40"></td>

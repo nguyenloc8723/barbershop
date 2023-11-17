@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,14 @@ Route::post('/confirm-booking/{id}', [NotificationController::class,'confirmBook
 Route::get('/bill', function () {
     return view('client.email.bill');
 });
+Route::get('/check-quan-tri', function () {
+    if (Auth::check() && isset(Auth::user()->user_type) == 'STYLIST' || isset(Auth::user()->user_type) == 'ADMIN') {
+        return redirect()->route('route.booking_blade');
+    } else {
+        return redirect('/');
+    }
+})->name('route.check');
+
 // client route
 Route::get('/', function () {
     return view('client.display.index');

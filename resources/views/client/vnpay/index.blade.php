@@ -104,7 +104,7 @@
                 <input type="hidden" name="user_phone" value="{{$booking->user_phone}}">
                 <div class="form-group">
                     <label for="amount">Số tiền</label>
-                    <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="money" type="number" value="{{$booking->price}}" disabled/>
+                    <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="money" type="number" value="{{$booking->price}}" readonly/>
                 </div>
                 <div class="form-group">
                     <label for="amount">Email</label><br>

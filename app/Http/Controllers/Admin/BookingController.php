@@ -50,7 +50,7 @@ class BookingController extends AdminBaseController
             ->with('timesheet')
 
             ->orderBy('id','desc')->get();
-        dd($data);
+        // dd($data);
         return view($this->pathViews . '/' . __FUNCTION__, compact('data'))
             ->with('columns', $this->columns);
 

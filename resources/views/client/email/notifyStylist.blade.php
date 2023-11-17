@@ -155,7 +155,7 @@
             </tr>
         </tbody>
     <table>
-                <a href="{{route('route.booking_blade')}}" style="padding: 10px; border-radius: 4px; background-color: palegoldenrod; color: #000; text-decoration: none;">Check</a>
+                <a href="{{route('route.check')}}" style="padding: 10px; border-radius: 4px; background-color: palegoldenrod; color: #000; text-decoration: none;">Check</a>
 </body>
 
 </html>

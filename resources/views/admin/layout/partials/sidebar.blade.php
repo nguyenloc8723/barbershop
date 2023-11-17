@@ -119,6 +119,12 @@
                         <span> Lịch đặt </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('payment.index')}}">
+                        <i class="bi bi-credit-card-fill"></i>
+                        <span> Thanh toán online </span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{route('route.service')}}">
