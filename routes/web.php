@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,17 @@ Route::get('admin/all-notification',[NotificationController::class, 'index'])->n
 Route::get('/delete-notification/{id}', [NotificationController::class, 'delete']);
 Route::get('/lay-so-luong-thong-bao', [NotificationController::class, 'laySoLuongThongBao']);
 Route::post('/confirm-booking/{id}', [NotificationController::class,'confirmBooking']);
+//mail
+Route::get('/bill', function () {
+    return view('client.email.bill');
+});
+Route::get('/check-quan-tri', function () {
+    if (Auth::check() && isset(Auth::user()->user_type) == 'STYLIST' || isset(Auth::user()->user_type) == 'ADMIN') {
+        return redirect()->route('route.booking_blade');
+    } else {
+        return redirect('/');
+    }
+})->name('route.check');
 
 // client route
 Route::get('/', function () {

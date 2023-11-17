@@ -112,8 +112,8 @@
                                 <br>
                             </div>
                             <div style="background-color: #fff; padding: 10px;" class="d-flex justify-content-center">
-                                <a href="{{route('client.booking')}}" class="btn btn-primary">Đăng kí ngay</a>
-
+                                <a href="{{route('client.booking', ['phone'=>str_replace('+84', '', Auth::user()->phone_number)])}}" class="btn btn-primary">Đăng kí ngay</a>
+                                
                             </div>
 
                         @endif
@@ -127,23 +127,10 @@
                                 style="background-color: #fff; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                                 <div class="row">
                                     <div class="col-5" style="margin-left: 30px;">
-
-                                        @php
-                                            $hasImage = false; // Biến kiểm tra xem có ảnh cho booking này hay không
-                                        @endphp
-                                        @foreach($images as $img)
-                                            @if (isset($img->booking_id) == $reviewId->id)
-                                                <img src="/storage/{{$img->image}}" alt=""
-                                                     style="font-size: 130px; height: 230px;">
-                                                @php
-                                                    $hasImage = true;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                        @if (!$hasImage)
-                                            <img src="" alt="">
-                                        @endif
-
+                                    @foreach($reviewId->results->take(1) as $result)
+                                            
+                                        <img src="/storage/{{$result->image}}" alt="" style="font-size: 130px; height: 230px;">
+                                    @endforeach
                                     </div>
                                     <div class="col-6" style="margin-top: 40px;">
                                         <h6 style="display: inline-block;">Số điện thoại
@@ -164,16 +151,15 @@
                             </div>
                             <br>
                         @endforeach
-                </div>
+                    </div>
                 @else
                     <div style="background-color: #fff; padding: 10px; " class="d-flex justify-content-center">
-                        <b class="text-center" style="font-family: 'Outfit', sans-serif; font-size: 20px;">Anh chị chưa
-                            đăng kí dịch vụ nào bên em. <br> Anh chị bấm đăng kí bên dưới 👇 để trải nghiêm dịch vụ bên
-                            em ạ !</b>
+                        <b class="text-center" style="font-family: 'Outfit', sans-serif; font-size: 20px;">Anh chị chưa đăng kí dịch vụ nào bên em. <br> Anh chị bấm đăng kí bên dưới 👇 để trải nghiêm dịch vụ bên em ạ !</b>
+
                         <br>
                     </div>
                     <div style="background-color: #fff; padding: 10px;" class="d-flex justify-content-center">
-                        <a href="{{route('client.booking')}}" class="btn btn-primary">Đăng kí ngay</a>
+                        <a href="{{route('client.display.index')}}" class="btn btn-primary">Đăng kí ngay</a>
 
                     </div>
 

@@ -1,0 +1,17 @@
+@php
+                                            $hasImage = false; // Biến kiểm tra xem có ảnh cho booking này hay không
+                                        @endphp
+                                        @foreach($images as $img)
+                                            @if (isset($img->booking_id) == $reviewId->id)
+                                                
+                                                @php
+                                                    $hasImage = true;
+                                                @endphp
+                                               
+                                            @endif
+                                            
+                                        @endforeach
+                                        
+                                        @if (!$hasImage)
+                                            <img src="" alt="">
+                                        @endif
