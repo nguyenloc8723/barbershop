@@ -36,5 +36,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     })
+
+
+    $('#formModalBooking').submit(function (e) {
+        e.preventDefault();
+
+        var formData = new FormData($(this)[0]);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                // Xử lý phản hồi từ server
+                toastr['success']('Cập nhật dịch vụ thành công');
+                showModal(false);
+                // $('#formModalService').closest('.modal').modal('hide');
+            },
+            error: function () {
+                // Xử lý khi có lỗi kết nối đến server
+                console.log('Error connecting to server');
+            }
+        });
+    });
 });
 
