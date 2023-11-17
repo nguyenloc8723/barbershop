@@ -157,7 +157,7 @@
                                     <button type="button"
                                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .65rem;"
                                             class="btn btn-sm btn-outline-success rounded-pill confirm-booking "
-                                            onchange="buttonTopbar()"
+{{--                                            onchange="buttonTopbar()"--}}
                                             data-booking-id="{{ $item->booking_id }}"
                                     >Xác nhận
                                     </button>
