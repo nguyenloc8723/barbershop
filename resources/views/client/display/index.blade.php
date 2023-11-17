@@ -342,7 +342,7 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Cạo râu</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                                <p><i>Với bàn tay khéo léo của đội ngũ nghệ nhân cạo râu tài năng, chúng tôi cam kết đưa ra mỗi đường nét cạo râu không chỉ là một quá trình làm đẹp, mà còn là một tác phẩm nghệ thuật tinh tế trên khuôn mặt của bạn. Khám phá sự thư thái và tự tin mới qua từng cú dao lướt nhẹ, và hòa mình vào không khí lịch lãm tại không gian của chúng tôi.</i></p> <a href="{{ route('index')}}" class="button-2 mt-15">Đặt lịch ngay<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -360,7 +360,7 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Cắt tóc cho trẻ</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="#0" class="button-2 mt-15">Appointment<span></span></a>
+                                <p><i>Hãy đưa con bạn đến và trải nghiệm không khí ấm cúng, nụ cười trẻ thơ, và sự sáng tạo tại không gian chăm sóc tóc dành riêng cho trẻ em của chúng tôi. Chúng tôi tin rằng mỗi bức ảnh và kí ức về mái tóc mới của bé sẽ là khoảnh khắc đáng nhớ trên hành trình lớn lên của họ.</i></p> <a href="{{ route('index')}}" class="button-2 mt-15">Đặt lịch ngay<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -378,7 +378,7 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Đào tạo Barber</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau manis dis arturient monte.</i></p> <a href="team.html" class="button-2 mt-15">Our Team<span></span></a>
+                                <p><i>Đội ngũ giáo viên của chúng tôi không chỉ là những chuyên gia hàng đầu trong ngành barbering, mà còn là những người có tâm huyết chia sẻ kiến thức và kinh nghiệm. Chúng tôi cam kết hỗ trợ học viên không chỉ trên hành trình học tập, mà còn trong việc phát triển sự sáng tạo và phong cách cá nhân.</i></p> <a href="{{ route('team')}}" class="button-2 mt-15">Đội ngũ<span></span></a>
                             </div>
                         </div>
                     </div>
