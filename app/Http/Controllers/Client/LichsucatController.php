@@ -33,24 +33,28 @@ class LichsucatController extends Controller
             ->first();
 
         //lấy tất cả dữ liệu booking có user_id
-        $booking = Booking::with('User', 'timeSheet', 'reviews')
+        $booking = Booking::with('User', 'timeSheet', 'reviews', 'results')
             ->where('user_id', $user)
             ->where('status', 3)
             ->get();
+
+        // dd($booking);
         $reviewIds = []; // Mảng để lưu trữ tất cả các booking_id 'rating', 'stylist',
         $images = [];
         // $reviews = [];
         foreach ($booking as $review) {
 
             $reviewIds[] = $review;
+            // $images[] = $review->results;
             // dd($review->id);
-            $image = Results::where('booking_id', $review->id)->first();
-            $images[] = $image;
+            // $image = Results::where('booking_id', $review->id)->first();
+            // $images[] = $image;
         }
+        // dd($reviewIds['results']);
+        
 
-//         dd($bookings);
-        return view('client.display.lichsucat', compact('bookings','reviewIds', 'images'));
-
+        //         dd($bookings);
+        return view('client.display.lichsucat', compact('bookings', 'reviewIds', 'images'));
     }
 
     public function create(NotificationInterface $notification, Request $request)

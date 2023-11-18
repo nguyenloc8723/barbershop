@@ -20,7 +20,7 @@ class StatisticalController extends AdminBaseController
     {
         // $bookedBooking = Results::distinct('booking_id')->count();
         $bookedBooking = Booking::where('status',3)->count();
-        $notBookedBooking = Booking::where('status',1)->count();
+        $notBookedBooking = Booking::where('status',2)->count();
         $cancelledBooking = Booking::where('status',0)->count();
         $totalBooking = $bookedBooking + $notBookedBooking + $cancelledBooking;
         $totalPrice = Booking::where('status',3)->sum('price');
@@ -29,7 +29,7 @@ class StatisticalController extends AdminBaseController
         $today = now()->format('Y-m-d');
         // $todayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $today)->count();
         $todayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $today)->count();
-        $todayPendingCounts = Booking::where('status','1')->whereDate('created_at', $today)->count();
+        $todayPendingCounts = Booking::where('status','2')->whereDate('created_at', $today)->count();
         $todayCanceledCounts = Booking::where('status','0')->whereDate('created_at', $today)->count();
         $todayTotalPrice = Booking::where('status',3)->whereDate('created_at', $today)->sum('price');
 
@@ -37,7 +37,7 @@ class StatisticalController extends AdminBaseController
         $yesterday = Carbon::yesterday()->format('Y-m-d');
         // $yesterdayCompletedCounts = Results::distinct('booking_id')->whereDate('created_at', $yesterday)->count();
         $yesterdayCompletedCounts = Booking::where('status','3')->whereDate('created_at', $yesterday)->count();
-        $yesterdayPendingCounts = Booking::where('status','1')->whereDate('created_at', $yesterday)->count();
+        $yesterdayPendingCounts = Booking::where('status','2')->whereDate('created_at', $yesterday)->count();
         $yesterdayCanceledCounts = Booking::where('status','0')->whereDate('created_at', $yesterday)->count();
         $yesterdayTotalPrice = Booking::where('status',3)->whereDate('created_at', $yesterday)->sum('price');
 
@@ -60,7 +60,7 @@ class StatisticalController extends AdminBaseController
         $chartBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
-            DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total')
         )
         ->groupBy('order_date')
@@ -73,7 +73,7 @@ class StatisticalController extends AdminBaseController
         $chart7DaysBooking = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
-            DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total')
         )
         ->whereBetween(DB::raw('DATE(created_at)'), [$startOfWeek, $endOfWeek])
@@ -84,14 +84,14 @@ class StatisticalController extends AdminBaseController
         $orderSummary = Booking::select(
             DB::raw('DATE(created_at) as order_date'),
             DB::raw('COUNT(CASE WHEN status = 3 THEN 1 END) as completed_total'),
-            DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as pending_total'),
+            DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as pending_total'),
             DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as canceled_total'),
-            DB::raw('COUNT(id) as booked_total'),
+            DB::raw('COUNT(CASE WHEN status = 3 OR status = 2 OR status = 0 THEN 1 END) as booked_total'),
             DB::raw('SUM(CASE WHEN status = 3 THEN price ELSE 0 END) as daily_revenue')
         )
         ->groupBy('order_date')
         ->orderBy('order_date', 'desc')
-        ->limit(5)
+        //->limit(5)
         ->get();
 
         return view($this->pathViews,

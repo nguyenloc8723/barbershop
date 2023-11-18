@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailStylist;
 use App\Models\Booking;
 use App\Models\Booking_service;
 use App\Models\Service;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -56,11 +58,12 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        Log::info($request->user_phone);
+//        Log::info($request->user_phone);
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
+
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
@@ -73,6 +76,12 @@ class BookingController extends Controller
             ]);
             $booking_service->save();
         }
+        //Send mail tới stylist khi có đơn hàng mới
+        $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
+//        Log::info($service);
+        $stylist = User::query()->where('id', $request->stylist_id)->first();
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
+        //end send mail stylist
         $this->sendSms($request->user_phone);
         return response()->json(['success'=>$bookingDone_id]);
     }

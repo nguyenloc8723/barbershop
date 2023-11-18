@@ -1,35 +1,10 @@
 @extends('admin.layout.master')
-{{--@section('style')--}}
-{{--    <link rel="stylesheet" href="{{asset('css/service.css')}}">--}}
-{{--@endsection--}}
+
 @section('content')
-    {{--    <div class="row">--}}
-    {{--        <div class="col-12">--}}
-    {{--            <div class="card">--}}
-    {{--                <div class="card-body">--}}
-    {{--                    <div class="row justify-content-between">--}}
-    {{--                        <div class="col-md-4">--}}
-    {{--                            <div class="mt-3 mt-md-0">--}}
-
-    {{--                                <button type="button"--}}
-    {{--                                        class="btn btn-success waves-effect waves-light query-btn-show-modal"><i--}}
-    {{--                                        class="mdi mdi-plus-circle me-1 "></i> Thêm dịch vụ--}}
-    {{--                                </button>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body taskboard-box">
-
 
                     <h4 class="header-title mt-0 mb-3 text-primary">Quản lí lịch đặt</h4>
 
@@ -48,25 +23,43 @@
                                     <div class="kanban-detail">
                                         @if($item->status == 1)
                                             <span
-                                                class="badge float-end bg-danger" >Chờ xác nhận
+                                                class="badge float-end bg-danger">Chờ xác nhận
                 </span>
                                         @endif
                                         @if($item->status == 2)
                                             <span
-                                                class="badge float-end bg-warning" >Đang chờ cắt
+                                                class="badge float-end bg-warning">Đang chờ cắt
                 </span>
                                         @endif
                                         @if($item->status == 3)
                                             <span
-                                                class="badge float-end bg-success" >Đã cắt
+                                                class="badge float-end bg-success">Đã cắt
                 </span>
                                         @endif
-                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}" class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
+                                            @if($item->status == 0)
+                                                <span
+                                                    class="badge float-end bg-secondary">Đã hủy
+                </span>
+                                            @endif
+                                        <h5 class="mt-0"><a href="{{route('route.booking_blade.detail', $item->id)}}"
+                                                            class="text-dark">Khách hàng: {{$item->user_phone}}</a></h5>
+                                        <h5>Stylist: {{$item->stylist->name}}</h5>
+                                        <h5>Thời gian : {{$item->timesheet->hour}}h - {{$item->timesheet->minutes}}
+                                            ph</h5>
+                                        <h5>Ngày : {{$item->date}}</h5>
+                                        <h5>Yêu cầu đặc biệt: {{$item->special_requirement}}</h5>
+                                        <h5 style="color: {{$item->is_consultant == 1 ? "green" : "red" }};">
+                                            Yêu cầu tư vấn: {{$item->is_consultant == 1 ? "Có" : "Không" }}
+                                        </h5>
+
+                                        <h5 style="color: {{$item->is_accept_take_a_photo == 1 ? "green" : "red" }};">
+                                            Chụp ảnh sau khi cắt để làm mẫu cho lần
+                                            sau: {{$item->is_accept_take_a_photo == 1 ? "Có" : "Không" }}
+                                        </h5>
                                     </div>
                                 </div>
                             </li>
                         @endforeach
-
 
 
                     </ul>
@@ -76,11 +69,6 @@
 
         </div><!-- end col -->
     </div><!-- end row -->
-
-    {{--    <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">--}}
-    {{--        @include('admin.booking.modal')--}}
-    {{--    </div>--}}
-
 @endsection
 
 
