@@ -58,12 +58,12 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        Log::info($request->user_phone);
+//        Log::info($request->user_phone);
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
-        
+
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
@@ -78,7 +78,7 @@ class BookingController extends Controller
         }
         //Send mail tới stylist khi có đơn hàng mới
         $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
-        Log::info($service);
+//        Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
         Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
         //end send mail stylist
