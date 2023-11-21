@@ -33,7 +33,7 @@
                                 <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64"
                                      src="{{asset('client/img/logobarber.png')}}">
                                 <div class="flex-grow-1">
-                                    <h4 class="media-heading mt-0">{{$data->phone_number}}</h4>
+                                    <h4 class="media-heading mt-0">{{$data->user_phone}}</h4>
 
                                     @if($data->status == 1)
                                         <span
@@ -124,47 +124,29 @@
                                      alt="img" srcset="">
                                 {{--                                    </div>--}}
                             @endforeach
-                            @if($data->status === 2 || $data->status === 3)
-                                <form class="d-flex justify-content-between flex-wrap"
-                                      id="formModalService" method="post"
-                                      action="{{route('route.booking_blade.post', $data->id)}}"
-                                      enctype="multipart/form-data">
-                                    @csrf
-                                    @method('POST')
-                                    <div class="attached-files mt-1 col-12">
-                                        <h5>Files đính kèm </h5>
 
-                                        <div class="col-xl-6 p-3">
-                                            <div class="row text-center">
-                                                <input type="file" name="imageFile[]" hidden="hidden" id="file-input"
-                                                       multiple/>
-                                                <label for="file-input" style="font-size: 20px">Tải ảnh lên <i
-                                                        class="upload font-22"></i></label>
-                                                <span class="show-error text-danger" data-name="imageFile"></span>
-                                            </div>
-
-                                            <div id="image-container">
-
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="text-end">
-                                                    <button type="submit"
-                                                            class="btn btn-success waves-effect waves-light me-1">
-                                                        Update
-                                                    </button>
-
-                                                    <button id="cancelButton" class="btn btn-secondary">Cancel</button>
-                                                </div>
+                            <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
+                            @if($data->status == 2)
+                            <form class="d-flex justify-content-between flex-wrap"
+                                  method="post"
+                                  action="{{route('route.booking_blade.post', $data->id)}}"
+                                  >
+                                @csrf
+                                @method('POST')
+                                <div class="attached-files mt-1 col-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="text-end">
+                                                <button type="submit"
+                                                        class="btn btn-success waves-effect waves-light me-1">
+                                                    Hoàn thành cắt
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                             @endif
-                            <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
-
                         </div>
 
                     </div>
