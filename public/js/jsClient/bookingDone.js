@@ -1,13 +1,16 @@
 $(document).ready(function () {
     let booking_id = $('#booking_id').data('booking_id');
+    let phone_booking;
     function bookingDone() {
         $.ajax({
             url: '/api/booking/success' +'/' + booking_id,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                // console.log(response)
-                // console.log(response.service)
+                // console.log(response.user_phone)
+                phone_booking = (response.user_phone).replace("+84","")
+                update();
+                console.log(response.service)
                 $('.jqr-serviceName').empty();
                 let price = 0;
                 response.service.map(item => {
@@ -24,18 +27,19 @@ $(document).ready(function () {
                 $('.jqr-servicePrice').html(`
                     <div class="text-sm font-light jqr-text">Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span></div>
                 `);
+                
             },
             error: function (error) {
                 console.error(error);
             }
         });
     }
+    
+    
     bookingDone();
 
-    $(document).on('click','.jqr-change', function () {
-        console.log('đổi lịch');
-        destroy(booking_id);
-        window.location.href = '/user/booking';
+    $(document).on('click','.jqr-change', function update() {
+        window.location.href = '/user/booking?phone='+ phone_booking + '&&booking_id=' + booking_id;
     });
 
     $(document).on('click','.jqr-destroy', function () {
