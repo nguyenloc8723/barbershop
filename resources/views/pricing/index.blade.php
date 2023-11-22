@@ -46,7 +46,6 @@
                           <th>Tên chính sách</th>
                           <th>Giá</th>
                           <th>image</th>
-                          <th>Description</th>
                             
                             <th>action</th>
                         </tr>

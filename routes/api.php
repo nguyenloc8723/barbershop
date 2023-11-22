@@ -105,6 +105,7 @@ Route::group([],function (){
 
     Route::get('service/booking', [BookingController::class, 'loadService']);
     Route::post('pullRequest/booking', [BookingController::class, 'pullRequest']);
+    Route::post('updateRequest/booking/{id}', [BookingController::class, 'updateRequest']);
 
     Route::get('booking/success/{id}', [BookingController::class, 'bookingDone']);
     Route::get('booking/destroy/{id}', [BookingController::class, 'bookingDestroy']);
