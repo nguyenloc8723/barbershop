@@ -48,7 +48,8 @@ Route::group([],function (){
     Route::post('post/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'store']);
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
-    Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+    Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroyAll']);
+    Route::post('deleteDetail/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'destroy']);
 
     Route::get('roleUser',[ApiUserController::class, 'roles']);
 //    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
