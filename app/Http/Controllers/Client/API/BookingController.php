@@ -11,6 +11,7 @@ use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -92,16 +93,16 @@ class BookingController extends Controller
 
         // Tìm booking theo $id
         $booking = Booking::findOrFail($id);
-    
+
         // Cập nhật thông tin của booking
         $booking->update($bookingData);
-    
+
         // Lấy danh sách service từ request
         $serviceIds = $request->arrayIDService;
-    
+
         // Xóa tất cả các dịch vụ cũ liên quan đến booking
         Booking_service::where('booking_id', $id)->delete();
-    
+
         // Thêm các dịch vụ mới vào booking
         foreach ($serviceIds as $serviceId) {
             Booking_service::create([
@@ -113,6 +114,10 @@ class BookingController extends Controller
         $service = Booking_service::with('service')->where('booking_id', $id)->get();
         Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
+
+        $noti = Notification::query()->where('booking_id', $id)->first();
+        $noti->delete();
+
         Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
         //end send mail stylist
         $this->sendSms($request->user_phone);
