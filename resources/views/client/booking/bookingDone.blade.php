@@ -69,7 +69,9 @@
                         <div class="divide-y divide-gray-300">
                             <div class="">
                                 <div class="text-sm font-normal color-111111 pb-1">Dịch vụ</div>
-                                <div class="text-sm font-light pb-2 jqr-serviceName"></div>
+                                @foreach($combo as $value)
+                                <div class="text-sm font-light pb-2 booking-service__group-wrap-item jqr-serviceName">{{$value->service->name}}</div>
+                                @endforeach
                                 <div class="text-sm font-light pb-4 text-danger" style="font-size: 17px;">Tổng tiền anh cần thanh toán: {{number_format($bookings->price, 0,'.','.')}}đ 
 
                                 @if($payment)

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Booking_service;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
@@ -99,5 +101,154 @@ class StatisticalController extends AdminBaseController
                             'startOfLastMonth','endOfLastMonth','lastMonthTotalPrice',
                             'today','todayCompletedCounts','todayPendingCounts','todayCanceledCounts','todayTotalPrice',
                             'yesterday','yesterdayCompletedCounts','yesterdayPendingCounts','yesterdayCanceledCounts','yesterdayTotalPrice',));
+    }
+    public function service(){
+        $duplicateServices = Booking_Service::query()
+            ->select('service_id', \DB::raw('COUNT(service_id) AS total_occurrences'))
+            ->whereMonth('created_at', '=', now()->month) // Chỉ lấy dữ liệu của tháng hiện tại
+            ->groupBy('service_id')
+            ->havingRaw('COUNT(service_id) > 1')
+            ->orderByDesc('total_occurrences')
+            ->with('service:id,name,description,price')
+            ->get();
+
+        $totalPrices = [];
+        // Sắp xếp theo tổng giá giảm dần
+        $duplicateServices = $duplicateServices->sortByDesc(function ($item) {
+            return $item->service->price * $item->total_occurrences;
+        });
+
+// Lấy ra 5 dòng đầu tiên
+        $duplicateServices = $duplicateServices->take(5);
+
+        foreach ($duplicateServices as $duplicateService) {
+            $service = $duplicateService->service;
+            $totalPrice = $service->price * $duplicateService->total_occurrences;
+
+            $totalPrices[] = [
+                'total_price' => $totalPrice,
+                'name' => $service->name,
+                'description' => $service->description,
+            ];
+        }
+        // $totalPrice là biến lưu giá trị của các doanh số
+        $totalOccurrences = $duplicateServices
+            ->sortByDesc('total_occurrences')
+            ->take(5)
+            ->map(function ($duplicateService) {
+                $service = $duplicateService->service;
+                return [
+                    'total_occurrences' => $duplicateService->total_occurrences,
+                    'name' => $service->name,
+                    'description' => $service->description,
+                ];
+            });
+        // $totalOccurrences là biến lưu số lượng được đặt của các dịch vụ
+//        dd($totalOccurrences);
+
+
+        // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
+        $revenueByMonth = Booking::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as total')
+        )
+            ->whereYear('created_at', '=', date('Y'))
+            ->where('status', 3)
+            ->whereIn(DB::raw('MONTH(created_at)'), [date('n'), date('n') - 1])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+//        dd($revenueByMonth);
+// Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu
+        $percentChange = [];
+        $count = count($revenueByMonth);
+        if ($count >= 2) {
+            for ($i = 1; $i < $count; $i++) {
+                $currentMonth = $revenueByMonth[$i]->total;
+                $prevMonth = $revenueByMonth[$i - 1]->total;
+
+                // Kiểm tra trước khi tính phần trăm
+                if ($prevMonth != 0) {
+                    $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+                } else {
+                    // Trường hợp giá trị của tháng trước đó là 0
+                    $percentage = ($currentMonth != 0) ? 100 : 0; // Phần trăm tăng so với 0 hoặc giảm từ 0
+                }
+
+                $percentChange[] = [
+                    'month' => $revenueByMonth[$i]->month,
+                    'percentage' => $percentage,
+                    'currentMonth' => $currentMonth,
+                    'prevMonth' => $prevMonth,
+                ];
+            }
+        } else {
+            // Trường hợp không có đủ dữ liệu cho việc tính phần trăm
+            // Đặt giá trị mặc định cho phần trăm là 0
+            $percentChange[] = [
+                'month' => 0,
+                'percentage' => 0,
+                'currentMonth' => 0,
+                'prevMonth' => 0,
+            ];
+        }
+
+        // Tạo mảng kết quả với các tháng và giá trị mặc định là null
+        $resultByMonth = array_fill_keys(range(1, 12), ['month' => 0, 'total' => 0]);
+
+// Điền dữ liệu thực tế từ kết quả truy vấn vào mảng kết quả
+        foreach ($revenueByMonth as $item) {
+            $resultByMonth[$item['month']] = [
+                'month' => $item['month'],
+                'total' => $item['total'],
+            ];
+        }
+// Bây giờ $resultByMonth chứa dữ liệu của tất cả các tháng, thậm chí cả tháng không có dữ liệu.
+
+// Truy xuất dữ liệu từ biến $resultByMonth
+        $revenueCurrentMonth = $resultByMonth[date('n')];
+        $revenueLastMonth = $resultByMonth[date('n') - 1];
+
+// Bảo đảm rằng cả hai biến đều là mảng
+        $revenueCurrentMonth = $revenueCurrentMonth ?? ['month' => 0, 'total' => 0];
+        $revenueLastMonth = $revenueLastMonth ?? ['month' => 0, 'total' => 0];
+
+//        dd($percentChange);
+        // Khách hàng tiềm năng được tạo ra
+        $userCounts = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', '=', date('Y'))
+            ->whereIn(DB::raw('MONTH(created_at)'), [Carbon::now()->month, Carbon::now()->subMonth()->month])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $currentMonthData = collect($userCounts)->firstWhere('month', Carbon::now()->month);
+        $lastMonthData = collect($userCounts)->firstWhere('month', Carbon::now()->subMonth()->month);
+
+        if ($currentMonthData === null) {
+            $currentMonthData = ['month' => Carbon::now()->month, 'count' => 0];
+        }
+
+        if ($lastMonthData === null) {
+            $lastMonthData = ['month' => Carbon::now()->subMonth()->month, 'count' => 0];
+        }
+//        dd($userCounts);
+        $percentChangeUser = 0;
+        if ($userCounts->isNotEmpty() && $lastMonthData['count'] !== 0) {
+//            dd(123);
+            $percentChangeUser = (($currentMonthData['count'] - $lastMonthData['count']) / $lastMonthData['count']) * 100;
+        }else{
+            $percentChangeUser = 0.00;
+        }
+//        dd($percentChangeUser);
+        return view('admin.statistical.service',
+            compact('totalPrices','totalOccurrences'
+                ,'percentChange','userCounts','percentChangeUser',
+                'revenueCurrentMonth','revenueLastMonth','currentMonthData','lastMonthData'));
+    }
+
+    public function revenue(){
+
+        return view('admin.statistical.revenue');
     }
 }

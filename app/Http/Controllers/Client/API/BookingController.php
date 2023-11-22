@@ -58,12 +58,12 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        Log::info($request->user_phone);
+//        Log::info($request->user_phone);
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
-        
+
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
@@ -78,12 +78,45 @@ class BookingController extends Controller
         }
         //Send mail tới stylist khi có đơn hàng mới
         $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
-        Log::info($service);
+//        Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
-        Mail::to($stylist->email)->send(new MailStylist($booking,$service));
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
         //end send mail stylist
         $this->sendSms($request->user_phone);
         return response()->json(['success'=>$bookingDone_id]);
+    }
+
+    public function updateRequest(Request $request, $id)
+    {
+        $bookingData = $request->all();
+
+        // Tìm booking theo $id
+        $booking = Booking::findOrFail($id);
+    
+        // Cập nhật thông tin của booking
+        $booking->update($bookingData);
+    
+        // Lấy danh sách service từ request
+        $serviceIds = $request->arrayIDService;
+    
+        // Xóa tất cả các dịch vụ cũ liên quan đến booking
+        Booking_service::where('booking_id', $id)->delete();
+    
+        // Thêm các dịch vụ mới vào booking
+        foreach ($serviceIds as $serviceId) {
+            Booking_service::create([
+                'booking_id' => $id,
+                'service_id' => $serviceId,
+            ]);
+        }
+        //Send mail tới stylist khi có đơn hàng mới
+        $service = Booking_service::with('service')->where('booking_id', $id)->get();
+        Log::info($service);
+        $stylist = User::query()->where('id', $request->stylist_id)->first();
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
+        //end send mail stylist
+        $this->sendSms($request->user_phone);
+        return response()->json(['success'=>$id]);
     }
 
     public function stylistDetail(string $id){

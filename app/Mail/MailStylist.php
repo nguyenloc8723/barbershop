@@ -23,6 +23,7 @@ class MailStylist extends Mailable
         //
         $this->booking = $booking;
         $this->service = $service;
+        $this->queue = 'email';
     }
 
     /**

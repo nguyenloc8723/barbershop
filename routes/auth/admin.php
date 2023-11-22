@@ -87,13 +87,16 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
     Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
+    Route::get('statistical/service', [StatisticalController::class, 'service'])->name('route.statistical.service');
+    Route::get('statistical/revenue', [StatisticalController::class, 'revenue'])->name('route.statistical.revenue');
     // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
     Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
-    Route::resource('review', ReviewController::class);
-    Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
+    // Route::resource('review', ReviewController::class);
+    Route::get('adminReview',[ReviewController::class, 'admin'])->name('review.index');
+    Route::match(['GET', 'POST'], 'reply', [ReviewController::class, 'reply'])->name('replyReview');
 
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
