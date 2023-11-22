@@ -131,7 +131,7 @@ class StatisticalController extends AdminBaseController
                 'description' => $service->description,
             ];
         }
-
+        // $totalPrice là biến lưu giá trị của các doanh số
         $totalOccurrences = $duplicateServices
             ->sortByDesc('total_occurrences')
             ->take(5)
@@ -143,8 +143,9 @@ class StatisticalController extends AdminBaseController
                     'description' => $service->description,
                 ];
             });
-
+        // $totalOccurrences là biến lưu số lượng được đặt của các dịch vụ
 //        dd($totalOccurrences);
+
 
         // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
         $revenueByMonth = Booking::select(
@@ -160,24 +161,7 @@ class StatisticalController extends AdminBaseController
 //        dd($revenueByMonth);
 // Tính phần trăm tăng giảm (nếu có ít nhất hai tháng dữ liệu
         $percentChange = [];
-//        if (count($revenueByMonth) >= 2) {
-//            for ($i = 1; $i < count($revenueByMonth); $i++) {
-//                $currentMonth = $revenueByMonth[$i]->total;
-//                $prevMonth = $revenueByMonth[$i - 1]->total;
-//
-//                $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
-//
-//                $percentChange[] = [
-//                    'month' => $revenueByMonth[$i]->month,
-//                    'percentage' => $percentage,
-//                    'currentMonth' => $currentMonth,
-//                    'prevMonth' => $prevMonth,
-//                ];
-//            }
-//        }
-
         $count = count($revenueByMonth);
-
         if ($count >= 2) {
             for ($i = 1; $i < $count; $i++) {
                 $currentMonth = $revenueByMonth[$i]->total;
@@ -200,8 +184,7 @@ class StatisticalController extends AdminBaseController
             }
         } else {
             // Trường hợp không có đủ dữ liệu cho việc tính phần trăm
-            // Bạn có thể xử lý hoặc báo cáo tùy thuộc vào yêu cầu của bạn
-            // Dưới đây tôi sẽ đặt giá trị mặc định cho phần trăm là 0
+            // Đặt giá trị mặc định cho phần trăm là 0
             $percentChange[] = [
                 'month' => 0,
                 'percentage' => 0,
@@ -239,14 +222,33 @@ class StatisticalController extends AdminBaseController
             ->orderBy('month')
             ->get();
 
-        $percentChangeUser = 0;
-        if ($userCounts !== null) {
-            $percentChangeUser = (($userCounts[1]->count - $userCounts[0]->count) / $userCounts[0]->count) * 100;
+        $currentMonthData = collect($userCounts)->firstWhere('month', Carbon::now()->month);
+        $lastMonthData = collect($userCounts)->firstWhere('month', Carbon::now()->subMonth()->month);
+
+        if ($currentMonthData === null) {
+            $currentMonthData = ['month' => Carbon::now()->month, 'count' => 0];
+        }
+
+        if ($lastMonthData === null) {
+            $lastMonthData = ['month' => Carbon::now()->subMonth()->month, 'count' => 0];
         }
 //        dd($userCounts);
+        $percentChangeUser = 0;
+        if ($userCounts->isNotEmpty() && $lastMonthData['count'] !== 0) {
+//            dd(123);
+            $percentChangeUser = (($currentMonthData['count'] - $lastMonthData['count']) / $lastMonthData['count']) * 100;
+        }else{
+            $percentChangeUser = 0.00;
+        }
+//        dd($percentChangeUser);
         return view('admin.statistical.service',
             compact('totalPrices','totalOccurrences'
                 ,'percentChange','userCounts','percentChangeUser',
-                'revenueCurrentMonth','revenueLastMonth'));
+                'revenueCurrentMonth','revenueLastMonth','currentMonthData','lastMonthData'));
+    }
+
+    public function revenue(){
+
+        return view('admin.statistical.revenue');
     }
 }

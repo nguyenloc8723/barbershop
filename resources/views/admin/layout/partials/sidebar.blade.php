@@ -84,9 +84,9 @@
                             <li>
                                 <a href="{{route('route.statistical.service')}}">Dịch vụ</a>
                             </li>
-{{--                            <li>--}}
-{{--                                <a href="{{route('route.statistical.revenue')}}">Doanh thu</a>--}}
-{{--                            </li>--}}
+                            <li>
+                                <a href="{{route('route.statistical.revenue')}}">Doanh thu</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

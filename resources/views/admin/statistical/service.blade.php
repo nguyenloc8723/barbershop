@@ -93,7 +93,7 @@
                                         'be/assetsCopy/img/icons/unicons/oneplus-success.png',
                                         'be/assetsCopy/img/icons/unicons/pixel.png',
                                     ];
-//                                @endphp
+                                @endphp
                                 @foreach($totalOccurrences as $index => $totalOccurrence)
                                     <li class="d-flex mb-4 pb-1">
                                         <div class="avatar flex-shrink-0 me-3">
@@ -166,15 +166,15 @@
                                         </div>
                                         <div class="chart-statistics">
                                             <div data-last_month=""></div>
-                                            <input type="hidden" class="userCounts_lastMonth" value="{{$userCounts[0]->count}}">
-                                            <input type="hidden" class="userCounts_currentMonth" value="{{$userCounts[1]->count}}">
+                                            <input type="hidden" class="userCounts_lastMonth" value="{{$lastMonthData['count']}}">
+                                            <input type="hidden" class="userCounts_currentMonth" value="{{$currentMonthData['count']}}">
                                             <input type="hidden" class="percentChangeUser" value="{{number_format($percentChangeUser,2) }}">
 
-                                            <h3 class="card-title mb-1">{{$userCounts[1]->count}}</h3>
+                                            <h3 class="card-title mb-1">{{$currentMonthData['count']}}</h3>
                                             @if ($userCounts !== null)
-                                                @if ($userCounts[1]->count > $userCounts[0]->count)
+                                                @if ($currentMonthData['count'] > $lastMonthData['count'])
                                                     <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChangeUser,2) }}%</small>
-                                                @elseif ($userCounts[1]->count < $userCounts[0]->count)
+                                                @elseif ($currentMonthData['count'] < $lastMonthData['count'])
                                                     <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> {{ number_format($percentChangeUser,2) }}%</small>
                                                 @else
                                                     <small class="text-muted fw-medium"><i class='bx bx-minus'></i> 0%</small>
@@ -273,24 +273,24 @@
 
 
             <!-- Sales Stats -->
-{{--            <div class="col-md-6 col-lg-4 mb-4">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <div class="card-header d-flex align-items-center justify-content-between mb-30">--}}
-{{--                        <h5 class="card-title m-0 me-2">Thống kê lịch đặt</h5>--}}
-{{--                    </div>--}}
-{{--                    <div id="salesStats"></div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="d-flex justify-content-around">--}}
-{{--                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">--}}
-{{--                                <span class="badge badge-dot bg-success me-2"></span> Tỉ lệ chuyển đổi--}}
-{{--                            </div>--}}
-{{--                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">--}}
-{{--                                <span class="badge badge-dot bg-label-secondary me-2"></span> Tổng số yêu cầu--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between mb-30">
+                        <h5 class="card-title m-0 me-2">Thống kê lịch đặt</h5>
+                    </div>
+                    <div id="salesStats"></div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-around">
+                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">
+                                <span class="badge badge-dot bg-success me-2"></span> Tỉ lệ chuyển đổi
+                            </div>
+                            <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">
+                                <span class="badge badge-dot bg-label-secondary me-2"></span> Tổng số yêu cầu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--/ Sales Stats -->
         </div>
     </div>
