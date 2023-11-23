@@ -9,6 +9,7 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log(response.user_phone)
                 phone_booking = (response.user_phone).replace("+84","")
+                // console.log(phone_booking)
                 update();
                 console.log(response.service)
                 $('.jqr-serviceName').empty();
@@ -27,15 +28,15 @@ $(document).ready(function () {
                 $('.jqr-servicePrice').html(`
                     <div class="text-sm font-light jqr-text">Tổng số tiền anh cần thanh toán:  <span class="font-normal">${formattedMoney}</span></div>
                 `);
-                
+
             },
             error: function (error) {
                 console.error(error);
             }
         });
     }
-    
-    
+
+
     bookingDone();
 
     $(document).on('click','.jqr-change', function update() {
