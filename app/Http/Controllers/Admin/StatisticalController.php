@@ -196,7 +196,6 @@ class StatisticalController extends AdminBaseController
         // Tạo mảng kết quả với các tháng và giá trị mặc định là null
         $resultByMonth = array_fill_keys(range(1, 12), ['month' => 0, 'total' => 0]);
 
-// Điền dữ liệu thực tế từ kết quả truy vấn vào mảng kết quả
         foreach ($revenueByMonth as $item) {
             $resultByMonth[$item['month']] = [
                 'month' => $item['month'],
@@ -212,6 +211,7 @@ class StatisticalController extends AdminBaseController
 // Bảo đảm rằng cả hai biến đều là mảng
         $revenueCurrentMonth = $revenueCurrentMonth ?? ['month' => 0, 'total' => 0];
         $revenueLastMonth = $revenueLastMonth ?? ['month' => 0, 'total' => 0];
+
 
 //        dd($percentChange);
         // Khách hàng tiềm năng được tạo ra
@@ -249,6 +249,125 @@ class StatisticalController extends AdminBaseController
 
     public function revenue(){
 
-        return view('admin.statistical.revenue');
+        // Tạo một mảng với giá trị mặc định cho tất cả các tháng trong năm
+        $monthsInYear = range(1, 12);
+        $revenueByYear = array_fill_keys($monthsInYear, ['month' => 0, 'total' => 0]);
+
+// Truy vấn thu nhập của tất cả các tháng trong năm
+        $actualRevenue = Booking::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as total')
+        )
+            ->whereYear('created_at', '=', date('Y'))
+            ->where('status', 3)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+// Ghi đè giá trị trong mảng với dữ liệu thực tế
+        foreach ($actualRevenue as $item) {
+            $revenueByYear[$item['month']] = $item;
+        }
+        // ---------------------------------------------------------------------------------------
+
+        // Lấy tổng tiền đặt lịch theo tháng (Đặt Lịch)
+        $revenueByMonth = Booking::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as total')
+        )
+            ->whereYear('created_at', '=', date('Y'))
+            ->where('status', 3)
+            ->whereIn(DB::raw('MONTH(created_at)'), [date('n'), date('n') - 1])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+//        dd($revenueByMonth);
+// Tính Trung bình
+        $totalRevenue = 0;
+        $monthCount = count($revenueByMonth);
+
+        foreach ($revenueByMonth as $month) {
+            $totalRevenue += $month->total;
+        }
+
+        $averageRevenue = $monthCount > 0 ? $totalRevenue / $monthCount : 0;
+//        dd($percentChange);
+        // Tạo mảng kết quả với các tháng và giá trị mặc định là null
+        $resultByMonth = array_fill_keys(range(1, 12), ['month' => 0, 'total' => 0]);
+        foreach ($revenueByMonth as $item) {
+            $resultByMonth[$item['month']] = [
+                'month' => $item['month'],
+                'total' => $item['total'],
+            ];
+        }
+// Truy xuất dữ liệu từ biến $resultByMonth
+        $revenueCurrentMonth = $resultByMonth[date('n')];
+        $revenueLastMonth = $resultByMonth[date('n') - 1];
+
+// Bảo đảm rằng cả hai biến đều là mảng
+        $revenueCurrentMonth = $revenueCurrentMonth ?? ['month' => 0, 'total' => 0];
+        $revenueLastMonth = $revenueLastMonth ?? ['month' => 0, 'total' => 0];
+        $expenseCurrentMonth = 600000;
+        $expenseLastMonth = 500000;
+        $profitCurrentMonth = $revenueCurrentMonth['total'] - $expenseCurrentMonth;
+        $profitLastMonth = $revenueLastMonth['total'] - $expenseLastMonth;
+
+        //-------------------------------------------------------------------------
+        // tính %
+        $percentChange = [];
+        $count = count($revenueByMonth);
+        if ($count >= 2) {
+            for ($i = 1; $i < $count; $i++) {
+                $currentMonth = $revenueByMonth[$i]->total;
+                $prevMonth = $revenueByMonth[$i - 1]->total;
+
+                // Kiểm tra trước khi tính phần trăm
+                if ($prevMonth != 0) {
+                    $percentage = (($currentMonth - $prevMonth) / $prevMonth) * 100;
+                } else {
+                    // Trường hợp giá trị của tháng trước đó là 0
+                    $percentage = ($currentMonth != 0) ? 100 : 0; // Phần trăm tăng so với 0 hoặc giảm từ 0
+                }
+
+                $percentChange[] = [
+                    'month' => $revenueByMonth[$i]->month,
+                    'percentage' => $percentage,
+                    'currentMonth' => $currentMonth,
+                    'prevMonth' => $prevMonth,
+                ];
+            }
+        } else {
+            // Trường hợp không có đủ dữ liệu cho việc tính phần trăm
+            // Đặt giá trị mặc định cho phần trăm là 0
+            $percentChange[] = [
+                'month' => 0,
+                'percentage' => 0,
+                'currentMonth' => 0,
+                'prevMonth' => 0,
+            ];
+        }
+
+        $previousYearRevenue = Booking::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as total')
+        )
+            ->whereYear('created_at', '=', date('Y') - 1) // Thay đổi năm để lấy từ năm trước
+            ->where('status', 3)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+        $lastYear = array_fill_keys(range(1, 12), ['month' => 0, 'total' => 0]);
+        foreach ($previousYearRevenue as $item) {
+            $lastYear[$item['month']] = [
+                'month' => $item['month'],
+                'total' => $item['total'],
+            ];
+        }
+//        dd($resultlastYear);
+        return view('admin.statistical.revenue',
+            compact('revenueByYear','averageRevenue',
+            'revenueCurrentMonth','revenueLastMonth','expenseCurrentMonth',
+            'expenseLastMonth','profitCurrentMonth','profitLastMonth','percentChange',
+            'lastYear'));
     }
 }
