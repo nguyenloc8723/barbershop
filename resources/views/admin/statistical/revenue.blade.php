@@ -34,6 +34,13 @@
 @section('content')
     <div class="flex-grow-1 container-p-y">
         <div class="row">
+            @foreach($revenueByYear as $key=>$value)
+                <input type="hidden" id="{{$key}}" value="{{$value['total']}}">
+            @endforeach
+{{--            @dd($resultlastYear);--}}
+                @foreach($lastYear as $key=>$value)
+                    <input type="hidden" id="lastYear_{{$key}}" value="{{$value['total']}}">
+                @endforeach
             <!-- Total Income -->
             <div class="col-md-12 col-lg-8 mb-4">
                 <div class="card">
@@ -51,7 +58,8 @@
                             <div class="card-header d-flex justify-content-between">
                                 <div>
                                     <h5 class="card-title mb-0">Báo cáo</h5>
-                                    <small class="card-subtitle">Trung bình hàng tháng. $45.578k</small>
+                                    <small class="card-subtitle">Trung bình hàng tháng. {{ number_format($averageRevenue, 0, ',', '.') }}₫
+                                    </small>
                                 </div>
                                 <div class="dropdown">
                                     <button class="btn p-0" type="button" id="totalIncome" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,9 +82,22 @@
                                             <div class="d-flex justify-content-between align-items-end w-100 flex-wrap gap-2">
                                                 <div class="d-flex flex-column">
                                                     <span>Thu nhập</span>
-                                                    <h5 class="mb-0">$42,845</h5>
+                                                    <h5 class="mb-0">{{ "₫" . number_format($revenueCurrentMonth['total'] / 1000, 0, ',', '.') . "k" }}</h5>
                                                 </div>
-                                                <small class="text-success">+2.34k</small>
+                                                @if ($revenueCurrentMonth['total'] > $revenueLastMonth['total'])
+                                                    <small class="text-success">
+                                                        +{{ "₫" . number_format(($revenueCurrentMonth['total'] - $revenueLastMonth['total']) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+
+                                                @elseif ($revenueCurrentMonth['total'] < $revenueLastMonth['total'])
+                                                    <small class="text-danger">
+                                                        -{{ "₫" . number_format(($revenueCurrentMonth['total'] - $revenueLastMonth['total']) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+                                                @else
+                                                    <small class="text-muted">
+                                                        0
+                                                    </small>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -88,9 +109,23 @@
                                             <div class="d-flex justify-content-between align-items-end w-100 flex-wrap gap-2">
                                                 <div class="d-flex flex-column">
                                                     <span>Chi phí</span>
-                                                    <h5 class="mb-0">$38,658</h5>
+                                                    <h5 class="mb-0">{{ "₫" . number_format($expenseCurrentMonth / 1000, 0, ',', '.') . "k" }}</h5>
                                                 </div>
-                                                <small class="text-danger">-1.15k</small>
+                                                @if ($expenseCurrentMonth > $expenseLastMonth)
+                                                    <small class="text-danger">
+                                                        +   {{ "₫" . number_format(($expenseCurrentMonth - $expenseLastMonth) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+
+                                                @elseif ($expenseCurrentMonth < $expenseLastMonth)
+                                                    <small class="text-success">
+                                                        -{{ "₫" . number_format(($expenseLastMonth - $expenseCurrentMonth) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+                                                @else
+                                                    <small class="text-muted">
+                                                        0
+                                                    </small>
+                                                @endif
+{{--                                                <small class="text-muted">{{ "₫" . number_format($expenseCurrentMonth / 1000, 0, ',', '.') . "k" }}</small>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -102,9 +137,24 @@
                                             <div class="d-flex justify-content-between align-items-end w-100 flex-wrap gap-2">
                                                 <div class="d-flex flex-column">
                                                     <span>Lợi nhuận</span>
-                                                    <h5 class="mb-0">$18,220</h5>
+                                                    <h5 class="mb-0">
+                                                        {{ "₫" . number_format(($revenueCurrentMonth['total'] - $expenseCurrentMonth) / 1000, 0, ',', '.') . "k" }}
+                                                    </h5>
                                                 </div>
-                                                <small class="text-success">+1.35k</small>
+                                                @if ($profitCurrentMonth > $profitLastMonth)
+                                                    <small class="text-success">
+                                                        +{{ "₫" . number_format(($profitCurrentMonth - $profitLastMonth) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+
+                                                @elseif ($profitCurrentMonth < $profitLastMonth)
+                                                    <small class="text-danger">
+                                                        -{{ "₫" . number_format(($profitLastMonth - $profitCurrentMonth) / 1000, 0, ',', '.') . "k" }}
+                                                    </small>
+                                                @else
+                                                    <small class="text-muted">
+                                                        0
+                                                    </small>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +185,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
-                                <small>Thu nhập: <span class="fw-medium">$846.17</span></small>
+                                <small>Thu nhập: <span class="fw-medium">
+                                        {{ "₫" . number_format($revenueCurrentMonth['total'] / 1000, 0, ',', '.') . "k" }}
+                                    </span></small>
                             </div>
                             <div class="col-6">
                                 <small>Doanh số: <span class="fw-medium">25.7M</span></small>
@@ -149,7 +201,6 @@
 
         </div>
         <div class="row">
-
             <!-- Conversion rate -->
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
@@ -251,18 +302,25 @@
                                     </div>
                                 </div>
                                 <span class="d-block mb-1">Doanh thu</span>
-                                <h3 class="card-title text-nowrap mb-2">$42,389</h3>
-                                <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +52.18%</small>
+                                <h3 class="card-title text-nowrap mb-2">{{ "₫" . number_format($revenueCurrentMonth['total'] / 1000, 0, ',', '.') . "k" }}</h3>
+                                @if ($revenueCurrentMonth['total'] > $revenueLastMonth['total'])
+                                    <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i>+{{number_format($percentChange[0]['percentage'],2) }}%</small>
+                                @elseif ($revenueCurrentMonth['total'] < $revenueLastMonth['total'])
+                                    <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> {{ number_format($percentChange[0]['percentage'],2) }}%</small>
+                                @else
+                                    <small class="text-muted fw-medium"><i class='bx bx-minus'></i> 0%</small>
+                                @endif
+
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 col-lg-6 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <span class="d-block fw-medium">Việc bán hàng</span>
+                                <span class="d-block fw-medium">Việc đặt lịch</span>
                                 <h3 class="card-title mb-2">482k</h3>
                                 <span class="badge bg-label-info mb-3">+34%</span>
-                                <small class="text-muted d-block">Mục tiêu bán hàng</small>
+                                <small class="text-muted d-block">Mục tiêu</small>
                                 <div class="d-flex align-items-center">
                                     <div class="progress w-75 me-2" style="height: 8px;">
                                         <div class="progress-bar bg-info" style="width: 78%" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
