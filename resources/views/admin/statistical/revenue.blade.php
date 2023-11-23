@@ -190,7 +190,7 @@
                                     </span></small>
                             </div>
                             <div class="col-6">
-                                <small>Doanh số: <span class="fw-medium">25.7M</span></small>
+
                             </div>
                         </div>
                     </div>
