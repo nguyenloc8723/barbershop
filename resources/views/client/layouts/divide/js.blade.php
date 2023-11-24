@@ -22,3 +22,4 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script type="text/javascript" src="{{asset('/js/jsClient/loginfirebase.js')}}"></script>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

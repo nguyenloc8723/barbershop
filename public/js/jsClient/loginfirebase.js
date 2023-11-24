@@ -1,20 +1,20 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
-    authDomain: "fir-6cd66.firebaseapp.com",
-    databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
-    projectId: "fir-6cd66",
-    storageBucket: "fir-6cd66.appspot.com",
-    messagingSenderId: "167315184992",
-    appId: "1:167315184992:web:9bfc9570f1fd3179611205",
-    measurementId: "G-0195R4LR4V"
+    // apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
+    // authDomain: "fir-6cd66.firebaseapp.com",
+    // databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
+    // projectId: "fir-6cd66",
+    // storageBucket: "fir-6cd66.appspot.com",
+    // messagingSenderId: "167315184992",
+    // appId: "1:167315184992:web:9bfc9570f1fd3179611205",
+    // measurementId: "G-0195R4LR4V"
 
-    // apiKey: "AIzaSyCJ8pbe36jbzUmVQK_pFOZlPKXRW6JNoG8",
-    // authDomain: "test2-5f15d.firebaseapp.com",
-    // projectId: "test2-5f15d",
-    // storageBucket: "test2-5f15d.appspot.com",
-    // messagingSenderId: "660182456617",
-    // appId: "1:660182456617:web:89d3c4ddf2b96307efff38",
-    // measurementId: "G-31DTR2L4VF"
+    apiKey: "AIzaSyCJ8pbe36jbzUmVQK_pFOZlPKXRW6JNoG8",
+    authDomain: "test2-5f15d.firebaseapp.com",
+    projectId: "test2-5f15d",
+    storageBucket: "test2-5f15d.appspot.com",
+    messagingSenderId: "660182456617",
+    appId: "1:660182456617:web:89d3c4ddf2b96307efff38",
+    measurementId: "G-31DTR2L4VF"
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -114,39 +114,32 @@ function verify() {
         $("#error1").show();
     });
 }
-
-$("#resendOTP").on("click", function () {
-    // Hiển thị lại trang "sendOTP" và đóng trang "verifyOTP"
-    document.getElementById("popupContainer").style.display = "block";
-    document.getElementById("popupContainer2").style.display = "none";
-    // Gọi lại hàm sendOTP để gửi lại OTP
-    sendOTP();
-});
-
-// Hàm gửi lại OTP mà không cần xác nhận reCAPTCHA
-// function resendOTP() {
-//     var phoneNumber = localStorage.getItem("phoneNumber");
-//     var verificationId = localStorage.getItem("verificationId");
-//     console.log(phoneNumber);
-//     if (phoneNumber && verificationId) {
-//         // Thực hiện gửi lại OTP bằng verificationId và số điện thoại đã lưu
-//         firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-//             .then(function (confirmationResult) {
-//                 // Cập nhật verificationId mới
-//                 localStorage.setItem("verificationId", confirmationResult.verificationId);
-//                 $("#successAuth").text("Gửi lại OTP thành công");
-//                 $("#successAuth").show();
-//             })
-//             .catch(function (error) {
-//                 $("#error").text(error.message);
-//                 $("#error").show();
-//             });
-//     } else {
-//         $("#error").text("Không có thông tin số điện thoại hoặc verificationId.");
-//         $("#error").show();
-//     }
-// }
-
+function resendOTP() {
+    var phoneNumber = localStorage.getItem("phoneNumber");
+    var verificationId = localStorage.getItem("verificationId");
+    var appRecaptchaVerifier =  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+        'size': 'invisible',
+        'callback': (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            onSignInSubmit();
+        }
+    });
+    // Thực hiện gửi lại OTP bằng cách sử dụng verificationId đã lưu trữ
+    firebase.auth().signInWithPhoneNumber(phoneNumber,appRecaptchaVerifier)
+        .then(function (confirmationResult) {
+            window.confirmationResult = confirmationResult;
+            console.log(confirmationResult);
+            $("#error1").text("Gửi lại OTP thành công");
+            $("#error1").show();
+            // Cập nhật lại verificationId mới
+            localStorage.setItem("verificationId", confirmationResult.verificationId);
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi gửi lại OTP:", error);
+            $("#error1").text("Lỗi khi gửi lại OTP");
+            $("#error1").show();
+        });
+}
 
 // thực hiện nút ấn
 var openButton = document.getElementById("openPopupButton");
