@@ -4,10 +4,8 @@
 
         <!-- User box -->
         <div class="user-box text-center">
-
-            <img src="{{asset('be/assets/images/users/user-13.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
             <div class="dropdown">
-                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false">6X pro :))</a>
+                <a href="{{route('route.dashboard')}}" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false">6XPRO + 1</a>
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
@@ -79,10 +77,13 @@
                     <div class="collapse" id="statical">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('route.statistical')}}">Doanh thu</a>
+                                <a href="{{route('route.statistical')}}">Đặt lịch</a>
                             </li>
                             <li>
-                                <a href="#">undefined</a>
+                                <a href="{{route('route.statistical.service')}}">Dịch vụ</a>
+                            </li>
+                            <li>
+                                <a href="{{route('route.statistical.revenue')}}">Doanh thu</a>
                             </li>
                         </ul>
                     </div>
@@ -117,6 +118,12 @@
                     <a href="{{route('route.booking_blade')}}">
                         <i class="mdi mdi-access-point-network"></i>
                         <span> Lịch đặt </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('payment.index')}}">
+                        <i class="bi bi-credit-card-fill"></i>
+                        <span> Thanh toán online </span>
                     </a>
                 </li>
 

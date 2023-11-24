@@ -12,6 +12,7 @@ class payment extends Model
     protected $fillable = [
         "booking_id",
         "money",
+        "email",
         "note",
         "vnp_response_code",
         "code_vnpay",

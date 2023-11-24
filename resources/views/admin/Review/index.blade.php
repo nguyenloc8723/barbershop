@@ -1,6 +1,31 @@
 @extends('admin.layout.master')
 @section('style')
 <link rel="stylesheet" href="{{asset('css/service.css')}}">
+<style>
+    .card {
+        border: none;
+        box-shadow: 5px 6px 6px 2px #e9ecef;
+        border-radius: 4px;
+    }
+
+    .reply {
+        margin-left: 12px;
+    }
+
+    .reply small {
+        color: #b7b4b4;
+    }
+
+    .reply small:hover {
+        color: green;
+        cursor: pointer;
+    }
+
+    .reply-form {
+        display: none;
+        margin-top: 10px;
+    }
+</style>
 @endsection
 @section('content')
 
@@ -9,76 +34,107 @@
     <h4 class="modal-title" id="myCenterModalLabel">Rating and Comment</h4>
 </div>
 <br>
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <table id="datatable" class="table dt-responsive table-responsive nowrap text-center align-content-sm-center">
-                    <thead class="table-light">
 
-                        <tr class="">
-                            
-                            @foreach($columns as $key => $column)
-                            <th>{{$column}}</th>
-                            @endforeach
-                            <th>action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $item)
-                        <tr>
-                            
-                            @foreach($columns as $key => $column)
-                            <td>
-
-                                @if(in_array($key, ['image']))
-                                <img src="https://tse1.mm.bing.net/th?id=OIP.OF59vsDmwxPP1tw7b_8clQHaE8&pid=Api&rs=1&c=1&qlt=95&w=185&h=123" alt="">
-                                @else
-                                {{$item->$key}}
-                                @endif
-                            </td>
-                            @endforeach
+<div class="container">
+    <div class="row">
+        @foreach($data as $item)
+        <div class="col-md-6">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-1 mr-3">
+                            <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/404244278_737025671791322_4792204290520883710_n.jpg?stp=dst-jpg_s640x640&_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=HVKqY8w_I0UAX9lXeY6&_nc_ht=scontent.fhan17-1.fna&oh=00_AfCcmDhqt8U8Q5iV7jbD7tJdmkCszhPYD5k4mB9Aep7KuQ&oe=6560002F" alt="" width="30" height="30" class="user-img rounded-circle">
+                        </div>
+                        <div class="col-8">
+                            <span>
+                                <small class="fw-bolder text-red fs-5">
+                                    {{str_replace('+84', '',$item->booking->user->phone_number)}} </small>({{str_replace('+84', '',$item->booking->user_phone)}}):
+                                    <br>
+                                
+                                <small class="font-weight-bold text-dark">
+                                    {{$item->comment}}.
+                                </small>
+                            </span>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <small>{{$item->created_at}}</small>
+                        </div>
+                    </div>
 
 
-                            <td class="text-center">
-                                <div class="btn-group dropdown">
-                                    <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none " data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/General/Settings-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <rect x="0" y="0" width="24" height="24" />
-                                                    <path d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z" fill="#8950fc" />
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{route('replyReview', ['id'=> $item->id])}}" class="dropdown-item js-btn-update">
-                                            Cập nhật
-                                        </a>
 
-                                    </div>
+                </div>
+                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                    <div class="reply d-flex px-4">
+                        <small class="reply-trigger">Reply</small>
+                    </div>
+                    <div class="icons align-items-center">
+                        @for($j = 0; $j<$item->rating; $j++)
+                            <i class="fa fa-star text-warning"></i>
+                            @endfor
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-11">
+                        <div class="reply-form">
+                            <form class="form" id="formReview" action="{{ route('replyReview') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                    <label for="replyContent" class="form-label">Your Reply:</label>
+                                    <textarea class="form-control" id="replyContent" name="reply" rows="3"></textarea>
                                 </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                
-
+                                <button type="submit" class="btn btn-primary updateReply"><i class="bi bi-send-check"></i></button>
+                            </form>
+                        </div>
+                        <hr>
+                        <div class="replies-container">
+                            <?php if ($item->reply) {
+                                echo '<i class="ti ti-corner-down-right-double fw-bolder fs-5"></i>';
+                            } ?> {{$item->reply}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        @endforeach
 
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements with the class "reply-trigger"
+        var replyTriggers = document.querySelectorAll('.reply-trigger');
+
+        // Iterate over each reply trigger
+        replyTriggers.forEach(function(replyTrigger) {
+            // Add a click event listener to each reply trigger
+            replyTrigger.addEventListener('click', function() {
+                // Find the parent card element
+                var card = replyTrigger.closest('.card');
+
+                // Toggle the display of the reply form within the card
+                var replyForm = card.querySelector('.reply-form');
+                if (replyForm) {
+                    replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+        });
 
 
+    });
+</script>
 @endsection
 
 
 @section('script')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <!-- third party js -->
-<script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<!-- <script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js')}}"></script>
@@ -90,12 +146,12 @@
 <script src="{{asset('be/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
-<script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+<script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script> -->
 <!-- third party js ends -->
 
 <!-- Datatables init -->
-<script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+<!-- <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script> -->
 
 
-<script src="{{asset('js/jsAdmin/service.js')}}"></script>
+<!-- <script src="{{asset('js/jsAdmin/service.js')}}"></script> -->
 @endsection

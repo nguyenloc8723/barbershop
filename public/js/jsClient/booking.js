@@ -5,6 +5,12 @@ $(document).ready(function () {
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
+    const updateRequest = '/api/updateRequest/booking';
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingId = urlParams.get('booking_id');
+    // 
+    
+    // 
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
@@ -555,6 +561,7 @@ $(document).ready(function () {
     })
     $(document).on('click', '.jqr-completed', function () {
         if (arrayIDService.length === 0) {
+            console.log(arrayIDService)
             $('.jqr-validateService').removeClass('d-none');
         } else if ($('input[name="date"]').val() == '') {
             $('.jqr-validateDate').removeClass('d-none');
@@ -562,7 +569,12 @@ $(document).ready(function () {
             $('.jqr-validateDate').addClass('d-none');
             $('.jqr-validateTime').removeClass('d-none');
         } else {
-            pushRequest();
+            if(bookingId){
+                updateBooking(bookingId)
+            }else{
+                pushRequest();
+            }
+            
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -611,56 +623,111 @@ $(document).ready(function () {
         });
     }
 
-    function pushRequest() {
-        let status = 1;
-        let pttt;
-        let date = $('input[name="date"]').val();
-        $('input[type="radio"][name="pttt"]').each(function () {
-            if ($(this).is(':checked')) {
-                pttt = $(this).val();
-                console.log('Selected value: ' + pttt);
-            }
-        });
-        let arrayBooking = {
-            user_phone: user_phone,
-            user_id: user_info,
-            stylist_id: stylist,
-            timesheet_id: time,
-            price: countPrice,
-            is_consultant: is_consultant,
-            is_accept_take_a_photo: is_accept_take_a_photo,
-            date: date,
-            arrayIDService: arrayIDService,
-            status: status,
-            pttt: pttt
-        };
-        $.ajax({
-            url: pullRequestUrl,
-            method: 'POST',
-            data: arrayBooking,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            success: function (response) {
-                console.log(response.success)
-                if (pttt == 2) {
-                    phone = user_phone.replace("+84", "");
-                    window.location.href = 'index-payment/' + phone;
-                    console.log(response.success)
-                } else {
-                    // toastr['success']('Đặt lịch thành công');
-                    window.location.href = 'booking/success/' + response.success;
+
+    if (bookingId) {
+        function updateBooking(bookingId) {
+           console.log(arrayIDService);
+            let status = 1;
+            let pttt;
+            let date = $('input[name="date"]').val();
+            $('input[type="radio"][name="pttt"]').each(function () {
+                if ($(this).is(':checked')) {
+                    pttt = $(this).val();
+                    console.log('Selected value: ' + pttt);
+                    
                 }
-                // phone = user_phone.replace("+84", "");
-                // window.location.href = 'index-payment/' + phone;
-
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
+            });
+            let arrayBooking = {
+                user_phone: user_phone,
+                user_id: user_info,
+                stylist_id: stylist,
+                timesheet_id: time,
+                price: countPrice,
+                is_consultant: is_consultant,
+                is_accept_take_a_photo: is_accept_take_a_photo,
+                date: date,
+                arrayIDService: arrayIDService,
+                status: status,
+                pttt: pttt
+            };
+            $.ajax({
+                url: updateRequest + '/' + bookingId,
+                method: 'POST',
+                data: arrayBooking,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    console.log(response.success)
+                    if (pttt == 2) {
+                        phone = user_phone.replace("+84", "");
+                        window.location.href = 'index-payment/' + phone;
+                        console.log(response.success)
+                    } else {
+                        console.log(arrayIDService);
+                        // toastr['success']('Đặt lịch thành công');
+                        window.location.href = 'booking/success/' + response.success;
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        
+    } else {
+        function pushRequest() {
+            let status = 1;
+            let pttt;
+            let date = $('input[name="date"]').val();
+            $('input[type="radio"][name="pttt"]').each(function () {
+                if ($(this).is(':checked')) {
+                    pttt = $(this).val();
+                    console.log('Selected value: ' + pttt);
+                }
+            });
+            let arrayBooking = {
+                user_phone: user_phone,
+                user_id: user_info,
+                stylist_id: stylist,
+                timesheet_id: time,
+                price: countPrice,
+                is_consultant: is_consultant,
+                is_accept_take_a_photo: is_accept_take_a_photo,
+                date: date,
+                arrayIDService: arrayIDService,
+                status: status,
+                pttt: pttt
+            };
+            $.ajax({
+                url: pullRequestUrl,
+                method: 'POST',
+                data: arrayBooking,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    console.log(response.success)
+                    if (pttt == 2) {
+                        phone = user_phone.replace("+84", "");
+                        window.location.href = 'index-payment/' + phone;
+                        console.log(response.success)
+                    } else {
+                        // toastr['success']('Đặt lịch thành công');
+                        window.location.href = 'booking/success/' + response.success;
+                    }
+                    // phone = user_phone.replace("+84", "");
+                    // window.location.href = 'index-payment/' + phone;
+    
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
     }
-
+    
+   
 
 });
 

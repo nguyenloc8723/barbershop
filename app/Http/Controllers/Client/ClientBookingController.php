@@ -32,6 +32,7 @@ class ClientBookingController extends Controller
             ->where('booking_id', $booking_id)
             ->get();
 
+            
         $payment = payment::where('booking_id', $booking_id)->first();
 
         // dd($combo);
