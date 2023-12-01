@@ -78,6 +78,10 @@
                                 Chụp ảnh sau khi cắt để làm mẫu cho lần
                                 sau: {{$data->is_accept_take_a_photo == 1 ? "Có" : "Không" }}
                             </h4>
+                            <h5 style="color: {{$data->pttt == 2 ? "green" : "red" }};">
+                                Trạng thái thanh toán
+                                sau: {{$data->pttt == 2 ? "Đã thanh toán" : "Thanh toán tại quầy" }}
+                            </h5>
 
                             <h4>
                                 Trạng thái: @if($data->status == 1)

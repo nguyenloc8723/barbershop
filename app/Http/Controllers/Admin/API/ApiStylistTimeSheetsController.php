@@ -87,7 +87,6 @@ class ApiStylistTimeSheetsController extends Controller
         try{
             $timeSheet = $request->input('timesheet_id');
             foreach ($timeSheet as $key => $value){
-                Log::info($value);
                 StylistTimeSheet::query()->updateOrCreate([
                     'user_id' => $request->input('user_id'),
                     'timesheet_id' => $value,

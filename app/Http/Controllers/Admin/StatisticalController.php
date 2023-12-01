@@ -120,7 +120,6 @@ class StatisticalController extends AdminBaseController
 
 // Lấy ra 5 dòng đầu tiên
         $duplicateServices = $duplicateServices->take(5);
-
         foreach ($duplicateServices as $duplicateService) {
             $service = $duplicateService->service;
             $totalPrice = $service->price * $duplicateService->total_occurrences;
@@ -240,7 +239,7 @@ class StatisticalController extends AdminBaseController
         }else{
             $percentChangeUser = 0.00;
         }
-//        dd($percentChangeUser);
+//        dd($totalPrices);
         return view('admin.statistical.service',
             compact('totalPrices','totalOccurrences'
                 ,'percentChange','userCounts','percentChangeUser',
