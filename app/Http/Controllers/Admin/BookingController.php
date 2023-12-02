@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Results;
 use App\Models\Stylist;
 use App\Models\User;
+use App\Models\Service_categories;
 use App\Models\Timesheet;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,9 @@ class BookingController extends AdminBaseController
         $stylist = User::where('id', $data->stylist_id)->first();
         $stylists = User::where('user_type', 'STYLIST')->get();
         $timeSheets = Timesheet::all();
+        $categories = Service_categories::with('service')->get();
         //dd($timeSheets);
-        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets'))
+        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets','categories'))
             ->with('columns', $this->columns);
     }
 
