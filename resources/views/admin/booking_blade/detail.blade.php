@@ -1,6 +1,9 @@
 @extends('admin.layout.master')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+    <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
+
 @endsection
 @section('content')
     <div class="content">
@@ -106,14 +109,20 @@
                                     <th>Tên dịch vụ</th>
                                     <th>Giá dịch vụ</th>
                                     <th>Trạng thái</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody id="jquery-list">
                                 @foreach($data->service as $item)
-                                    <tr>
+                                    <tr id="service_{{ $item->id }}">
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->price}}</td>
                                         <td>{{$item->is_active == 1 ? "Hoạt động" : "Không hoạt động"}}</td>
+                                        <td>
+                                            <button class="js-btn-delete" data-booking-id="{{ $data->id }}" data-service-id="{{ $item->id }}">
+                                                Xóa
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

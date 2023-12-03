@@ -121,4 +121,7 @@ Route::get('/monthlyRevenue', [ApiDashboardController::class, 'monthlyRevenue'])
 Route::get('/latestStylist', [ApiDashboardController::class, 'latestStylist']);
 Route::get('/latestBooking', [ApiDashboardController::class, 'latestBooking']);
 
+Route::group([],function (){
+    Route::get('service/booking_blade', [\App\Http\Controllers\Admin\BookingController::class, 'loadService']);
+});
 

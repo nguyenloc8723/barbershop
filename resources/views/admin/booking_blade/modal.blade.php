@@ -1,5 +1,5 @@
 
-<div class="modal-dialog modal-full-width">
+<div class="modal-dialog modal-full-width"  id="jqr-displayBooking">
     <div class="modal-content">
         <div class="modal-header bg-light text-center">
             <h4>
@@ -76,7 +76,35 @@
                         </select>
                     </div>
                 </div>
+                <table
+                    class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
+                    <thead>
+                    <tr>
+                        <th>Tên dịch vụ</th>
+                        <th>Giá dịch vụ</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    </thead>
+                    <tbody id="jquery-list">
+                    @foreach($data->service as $item)
+                        <tr>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->price}}</td>
+                            <td>{{$item->is_active == 1 ? "Hoạt động" : "Không hoạt động"}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <button class="pr-0.5 overflow-hidden whitespace-nowrap overflow-ellipsis w-full text-sm color-111111 jqr-showAllService">
+                                    Chọn lại dịch vụ
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
 
+                </table>
                     <div class="col-xl-6 p-3">
                         <div class="row text-center">
                             <input type="file" name="imageFile[]" id="service-image" multiple/>
@@ -93,9 +121,9 @@
 
 
                 <div class="w-100 text-center">
-                    <button type="submit" class="btn btn-success waves-effect waves-light"
-                            data-bs-dismiss="modal">Cập nhật
-                    </button>
+{{--                    <button type="submit" class="btn btn-success waves-effect waves-light"--}}
+{{--                            data-bs-dismiss="modal">Cập nhật--}}
+{{--                    </button>--}}
                     <button type="button" class="btn btn-danger waves-effect waves-light ms-1 jquery-btn-cancel"
                     >Cancel
                     </button>

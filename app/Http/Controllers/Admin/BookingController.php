@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Models\Booking;
+use App\Models\Booking_service;
 use App\Models\Results;
+use App\Models\Service;
+use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\User;
 use App\Models\Timesheet;
@@ -13,6 +16,8 @@ use Illuminate\Http\Request;
 class BookingController extends AdminBaseController
 {
     public $model = Booking::class;
+    public $modelChooService = Service_categories::class;
+    public $imgService = Service::class;
     public $pathViews = 'admin.booking_blade';
     public $columns = [
         'id' => 'id',
@@ -114,5 +119,27 @@ class BookingController extends AdminBaseController
         $data->save();
 
         return response()->json(['success' => true, 'message' => 'Cập nhật thành công']);
+    }
+
+    public function loadService()
+    {
+        $data = $this->modelChooService::query()->with('service')->get();
+        $service = $this->imgService::query()->with('images')->get();
+        return response()->json(['data' => $data, 'service' => $service]);
+    }
+
+    public function xoaDichVuBooking($bookingId, $serviceId)
+    {
+        $bookingService = Booking_service::where('booking_id', $bookingId)
+            ->where('service_id', $serviceId)
+            ->first();
+
+        if (!$bookingService) {
+            return response()->json(['message' => 'Dịch vụ không tồn tại trong lịch đặt.'], 404);
+        }
+
+        $bookingService->delete();
+
+        return response()->json(['message' => 'Đã xóa dịch vụ khỏi lịch đặt thành công.']);
     }
 }
