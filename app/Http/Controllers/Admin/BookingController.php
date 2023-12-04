@@ -12,6 +12,7 @@ use App\Models\Stylist;
 use App\Models\User;
 use App\Models\Timesheet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends AdminBaseController
 {
@@ -41,8 +42,9 @@ class BookingController extends AdminBaseController
         $stylist = User::where('id', $data->stylist_id)->first();
         $stylists = User::where('user_type', 'STYLIST')->get();
         $timeSheets = Timesheet::all();
+        $categories = Service_categories::with('service')->get();
         //dd($timeSheets);
-        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets'))
+        return view($this->pathViews . '/' . 'detail', compact('data', 'stylist','stylists','timeSheets','categories'))
             ->with('columns', $this->columns);
     }
 
@@ -141,5 +143,28 @@ class BookingController extends AdminBaseController
         $bookingService->delete();
 
         return response()->json(['message' => 'Đã xóa dịch vụ khỏi lịch đặt thành công.']);
+    }
+
+    public function luuDichVuBooking(Request $request)
+    {
+        try {
+            $bookingId = $request->input('booking_id');
+            $serviceIds = $request->input('service_ids');
+//            dd($serviceIds);
+            if (!$serviceIds || !$bookingId) {
+                return response()->json(['message' => 'Dữ liệu không hợp lệ.'], 400);
+            }
+
+            foreach ($serviceIds as $serviceId) {
+                Booking_service::create([
+                    'booking_id' => $bookingId,
+                    'service_id' => $serviceId,
+                ]);
+            }
+
+            return response()->json(['message' => 'Đã lưu dịch vụ vào lịch đặt thành công.']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Có lỗi xảy ra khi lưu dịch vụ vào lịch đặt.'], 500);
+        }
     }
 }

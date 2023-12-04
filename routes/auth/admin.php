@@ -121,7 +121,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('booking_blade/post/{id}', [BookingController::class, 'hoanThanhCat'])->name('route.booking_blade.post');
     Route::get('booking_blade/api/detail/{id}', [BookingController::class, 'getDetailAPI' ])->name('route.booking_blade.api.detail');
     Route::delete('booking_blade/xoa-dich-vu-booking/{bookingId}/{serviceId}', [BookingController::class, 'xoaDichVuBooking'])->name('booking.xoaDichVu');
-
+    Route::post('booking_blade/luu-dich-vu-booking', [BookingController::class, 'luuDichVuBooking'])->name('booking.luuDichVu');
 
     Route::resource('stylists',StylistController::class);
     Route::resource('portfolios',PortfolioController::class);
