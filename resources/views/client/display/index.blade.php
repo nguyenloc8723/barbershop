@@ -51,27 +51,39 @@
                                 @if (Auth::check())
                                     <div class="form__input">
                                         <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input"
-                                               value="{{Auth::user()->phone_number}}">
+                                               value="{{Auth::user()->phone_number}}"  oninput="validatePhoneNumber(this)" required>
                                     </div>
+                                                                    <a class="jqr_routeBooking" data-booking-url="#">
+                                    <div class="form__button content-center-middle css_booking" role="presentation">
+                                        <button class="btn_booking">
+                                            ĐẶT LỊCH NGAY
+                                        </button>
+                                    </div>
+                                                                    </a>
                                 @else
                                     <div class="form__input">
-                                        <input placeholder="Nhập SĐT để đặt lịch" type="tel" class="my-input" value="">
+                                        <input placeholder="Nhập SĐT để đặt lịch" id="numberBooking"
+                                               name="numberBooking" type="tel" class="my-input" value=""
+                                               oninput="validatePhoneNumber(this)" required>
                                     </div>
-                                @endif
-                                <a class="jqr_routeBooking" data-booking-url="#">
+                                    {{--                                <a class="" data-booking-url="#">--}}
                                     <div class="form__button content-center-middle css_booking" role="presentation">
-                                        <div class="btn_booking">
+                                        <button class="btn_booking" type="button" onclick="sendOTPBooking();">
                                             ĐẶT LỊCH NGAY
-                                        </div>
+                                        </button>
                                     </div>
-                                </a>
+                                    {{--                                </a>--}}
+                                @endif
+
                             </div>
+
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
+        <div id="sign-in-booking"></div>
         <!-- arrow down -->
         <div class="arrow bounce text-center">
             <a href="#" data-scroll-nav="1" class=""> <i class="ti-arrow-down"></i> </a>
