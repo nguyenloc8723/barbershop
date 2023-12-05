@@ -13443,7 +13443,7 @@ body[data-leftbar-size=condensed] .user-box {
     }
 
     .left-side-menu {
-        /*display: none;*/
+        display: block !important;
         z-index: 10 !important
     }
 

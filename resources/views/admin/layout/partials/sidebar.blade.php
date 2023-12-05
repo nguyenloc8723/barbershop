@@ -90,11 +90,20 @@
                 </li>
 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
-                        <i class="mdi mdi-account-multiple-plus-outline"></i>
-                        <span>Vai trò và quyền </span>
-                        <span class="menu-arrow"></span>
-                    </a>
+                    @if(\Gate::check('roles.indexRole'))
+                        <a href="#sidebarAuth" data-bs-toggle="collapse">
+                            <i class="mdi mdi-account-multiple-plus-outline"></i>
+                            <span>Vai trò và quyền </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-account-multiple-plus-outline"></i>
+                            <span>Vai trò và quyền </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+
                     <div class="collapse" id="sidebarAuth">
                         <ul class="nav-second-level">
                             <li>

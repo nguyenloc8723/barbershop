@@ -44,7 +44,7 @@
                     <div class="v-middle">
                         <h5>Đẹp trai, Bản lĩnh, Tự tin</h5>
                         <h1>LỰA CHỌN CỦA PHÁI MẠNH<br>6X-PRO BARBER SHOP.</h1>
-                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5> 
+                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5>
                         <div class="home__form-input">
                             <div class="form-input__form flex mt-1">
                                 @if (Auth::check())
@@ -66,6 +66,23 @@
                                         </div>
                                     </div>
                                 </a>
+{{--                                    @if (Auth::check())--}}
+{{--                                        <a class="jqr_routeBooking" data-booking-url="#">--}}
+{{--                                            <div class="form__button content-center-middle css_booking" role="presentation">--}}
+{{--                                                <div class="btn_booking">--}}
+{{--                                                    ĐẶT LỊCH NGAY--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </a>--}}
+{{--                                    @else--}}
+{{--                                        <a class="" data-booking-url="#">--}}
+{{--                                            <div class="form__button content-center-middle css_booking" role="presentation">--}}
+{{--                                                <div class="btn_booking">--}}
+{{--                                                    ĐẶT LỊCH NGAY--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </a>--}}
+{{--                                    @endif--}}
                             </div>
                         </div>
                     </div>
@@ -204,7 +221,7 @@
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     <div class="item">
                         <div class="position-re o-hidden">
-                            
+
                              <img src="client/img/services/2.jpg" alt="">
                          </div>
                         <div class="con">
@@ -472,7 +489,7 @@
                        @endforeach
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -515,7 +532,7 @@
                         @endif
                             <h5>{{$item->name}}</h5>
                             <p>{{$item->description}}</p>
-                            <div class="shape"> 
+                            <div class="shape">
                                 @if ($item->id == 1)
                                 <span class="icon icon-icon-1-1"></span>
                             @elseif ($item->id == 2)
@@ -536,12 +553,12 @@
                                 <span class="icon icon-icon-1-10"></span>
                             @else
                                 <span class="icon icon-icon-1-9"></span>
-                            @endif    
+                            @endif
                             </div>
                         </a>
                     </div>
                 </div>
-                @endforeach  
+                @endforeach
             </div>
         </div>
     </section>
@@ -554,7 +571,7 @@
                         <div class="section-subtitle">Tin tức mới nhất</div>
                         <div class="section-title white">Tin tức & Bài viết</div>
                     </div>
-                       
+
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         @foreach($blogs as $blog)
