@@ -34,7 +34,6 @@ class ApiRoleController extends Controller
     }
 
     public function update(Request $request, string $id){
-//        Log::info($request->all());
         $model = Role::query()->findOrFail($id);
         $model->fill($request->all());
         $model->save();

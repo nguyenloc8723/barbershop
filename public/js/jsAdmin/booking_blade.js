@@ -147,11 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 sau: ${data.is_accept_take_a_photo === 1 ? "Có" : "Không"}
                             </h4>
 
+                            <h5 style="color: ${data.pttt == 2 ? "green" : "red"};">
+                                Trạng thái thanh toán : ${data.pttt == 2 ? "Đã thanh toán" : "Thanh toán tại quầy" }
+                            </h5>
+
                             <h4>
                                  Trạng thái: ${is_status}
                             </h4>
-
-
 
                             <table
                                 class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
@@ -316,28 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(tongTien);
         // Hiển thị tổng tiền trên cột cuối cùng
         $('#tong-tien-cell').text(tongTien.toLocaleString() + 'đ');
-        // $('#tong-tien-row').html(`
-        // <td colspan="1" style="text-align: center; font-weight: bold;">Tổng tiền</td>
-        //                     <td colspan="3" id="tong-tien-cell" style="font-weight: bold;">${tongTien.toLocaleString() + 'đ'}</td>
-        // `)
     }
-
-    // function updateTongTien() {
-    //     // Lấy tất cả giá dịch vụ từ cột thứ 2 của bảng
-    //     console.log('Đã chạy hàm update');
-    //     var giaDichVuArray = $('#jquery-list:first td:nth-child(2)').map(function() {
-    //         return parseFloat($(this).text().replace(',', '').replace('đ', ''));
-    //     }).get();
-    //
-    //     // Tính tổng giá dịch vụ
-    //     var tongTien = giaDichVuArray.reduce(function(total, giaDichVu) {
-    //         return total + giaDichVu;
-    //     }, 0);
-    //     console.log(tongTien);
-    //     // Hiển thị tổng tiền trong ô "tong-tien-cell"
-    //     $('#tong-tien-cell').text(tongTien.toLocaleString('en-US') + 'đ');
-    // }
-
     updateTongTien();
 });
 
