@@ -13,6 +13,9 @@
 <div id="popupContainer2" class="popup-container2">
 @include('auth.otp')
 </div>
+<div id="popupContainer3" class="popup-container2">
+    @include('auth.OtpBooking')
+</div>
 <!-- Begin Page Content -->
 @yield('content')
 <!-- Footer -->

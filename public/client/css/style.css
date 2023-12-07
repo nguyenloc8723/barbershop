@@ -1160,7 +1160,7 @@ blockquote cite:before {
         background-color: transparent;
     }
     .nav-scroll .logo-img {
-        width: 110px;
+        width: 85px;
     }
     .navbar .logo {
         text-align: left;
@@ -1169,7 +1169,7 @@ blockquote cite:before {
     .nav-scroll .logo {}
     .logo-img {
         margin-bottom: 0px;
-        width: 120px;
+        width: 90px;
     }
     .navbar button {
         margin-right: 0px;

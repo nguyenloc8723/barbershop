@@ -1,5 +1,4 @@
 var firebaseConfig = {
-
     apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
     authDomain: "fir-6cd66.firebaseapp.com",
     databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
@@ -35,12 +34,20 @@ function checkEnter(event) {
 }
 
 function render() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    // window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+        'size': 'invisible',
+        'callback': (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            // onSignInSubmit();
+        }
+    });
     recaptchaVerifier.render();
 }
 
 
 var coderesult;
+
 function validatePhoneNumber(input) {
     var phoneNumber = input.value;
     var formattedPhoneNumber = '';
@@ -53,6 +60,7 @@ function validatePhoneNumber(input) {
         input.value = formattedPhoneNumber;
     }
 }
+
 function sendOTP() {
 
     var number = "+84" + $("#number").val();
@@ -64,19 +72,31 @@ function sendOTP() {
             window.confirmationResult = confirmationResult;
             coderesult = confirmationResult;
             console.log(coderesult);
-            $("#successAuth").text("Gửi OTP thành công");
-            $("#successAuth").show();
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            };
+            toastr['success']
+            ('Gửi OTP thành công');
             localStorage.setItem("phoneNumber", number);
             localStorage.setItem("verificationId", confirmationResult.verificationId); // Lưu verificationId vào localStorage
             document.getElementById("popupContainer2").style.display = "block";
             document.getElementById("popupContainer").style.display = "none";
+
+            const resendOTPButton = document.getElementById('resendOTPButton');
+            resendOTPButton.classList.remove('fxt-btn-resend'); // Remove the class
+            resendOTPButton.disabled = true;
+            resendButtonCooldown = true;
+            startCountdown(60);
         }).catch(function (error) {
             $("#error").text(error.message);
             $("#error").show();
         });
     } else {
-        $("#error").text("Số điện thoại không hợp lệ.");
-        $("#error").show();
+        toastr.options = {
+            "positionClass": "toast-top-center",
+        };
+        toastr['error']
+        ('Xin vui lòng nhập số điện thoại');
     }
 }
 
@@ -87,8 +107,11 @@ function verify() {
     // console.log(phoneNumber);
     const verificationId = localStorage.getItem("verificationId");
     if (!code) {
-        $("#error1").text("Bạn chưa nhập OTP.");
-        $("#error1").show();
+        toastr.options = {
+            "positionClass": "toast-top-center",
+        };
+        toastr['error']
+        ('Bạn chưa nhập OTP.');
         return;
     }
     const confirmationResult = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
@@ -111,23 +134,145 @@ function verify() {
             },
         });
     }).catch(function (error) {
-        $("#error1").text("Mã OTP không hợp lệ.");
-        $("#error1").show();
+        toastr.options = {
+            "positionClass": "toast-top-center",
+        };
+        toastr['error']
+        ('Mã OTP không hợp lệ.');
     });
+}
+function resendOTP() {
+    var phoneNumber = localStorage.getItem("phoneNumber");
+    var verificationId = localStorage.getItem("verificationId");
+    // Thực hiện gửi lại OTP bằng cách sử dụng verificationId đã lưu trữ
+    firebase.auth().signInWithPhoneNumber(phoneNumber,window.recaptchaVerifier)
+        .then(function (confirmationResult) {
+            window.confirmationResult = confirmationResult;
+            console.log(confirmationResult);
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            };
+            toastr['success']
+            ('Gửi lại OTP thành công');
+            // Cập nhật lại verificationId mới
+            localStorage.setItem("verificationId", confirmationResult.verificationId);
+
+            const resendOTPButton = document.getElementById('resendOTPButton');
+            resendOTPButton.classList.remove('fxt-btn-resend'); // Remove the class
+            resendOTPButton.disabled = true;
+            resendButtonCooldown = true;
+            startCountdown(60);
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi gửi lại OTP:", error);
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            };
+            toastr['error']
+            ('Lỗi khi gửi lại OTP');
+        });
 }
 
 // thực hiện nút ấn
-    var openButton = document.getElementById("openPopupButton");
-    var closeButton = document.getElementById("closePopupButton");
-    var closeOTP = document.getElementById("closePopupOTP");
-    openButton.addEventListener("click", function () {
+var openButton = document.getElementById("openPopupButton");
+var closeButton = document.getElementById("closePopupButton");
+var closeOTP = document.getElementById("closePopupOTP");
+var closePopupBooking = document.getElementById("closePopupBooking");
+openButton.addEventListener("click", function () {
     popupContainer.style.display = "block";
 });
-    closeButton.addEventListener("click", function () {
+closeButton.addEventListener("click", function () {
     popupContainer.style.display = "none";
 });
-    closeOTP.addEventListener("click", function () {
+closeOTP.addEventListener("click", function () {
     popupContainer2.style.display = "none";
 });
+closePopupBooking.addEventListener("click", function () {
+    popupContainer3.style.display = "none";
+});
 
+let countdown;
+let isCounting = false;
+let resendButtonCooldown = false;
 
+function startCountdown(seconds) {
+    if (!isCounting) {
+        isCounting = true;
+        const countdownDisplay = document.getElementById('countdown');
+        const resendOTPButton = document.getElementById('resendOTPButton');
+
+        countdownDisplay.textContent = formatTime(seconds);
+
+        countdown = setInterval(() => {
+            seconds--;
+
+            if (seconds < 0) {
+                clearInterval(countdown);
+                countdownDisplay.textContent = '';
+                isCounting = false;
+                resendButtonCooldown = false;
+                resendOTPButton.disabled = false;
+            } else {
+                countdownDisplay.textContent = formatTime(seconds);
+            }
+        }, 1000);
+    }
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+function sendOTPBooking() {
+
+    var numberBooking = "+84" + $("#numberBooking").val();
+    var phonePattern = /^(\+84|0)[0-9]{9,10}$/;
+
+    if (phonePattern.test(numberBooking)) {
+        // kiểm tra số điện thoại
+        firebase.auth().signInWithPhoneNumber(numberBooking, window.recaptchaVerifier).then(function (confirmationResult) {
+            window.confirmationResult = confirmationResult;
+            coderesult = confirmationResult;
+            console.log(coderesult);
+            $("#successAuth").text("Gửi OTP thành công");
+            $("#successAuth").show();
+            localStorage.setItem("phoneNumber", numberBooking);
+            localStorage.setItem("verificationIBooking", confirmationResult.verificationId); // Lưu verificationId vào localStorage
+            document.getElementById("popupContainer3").style.display = "block";
+            //
+            const resendOTPButton = document.getElementById('resendOTPButton');
+            resendOTPButton.classList.remove('fxt-btn-resend'); // Remove the class
+            resendOTPButton.disabled = true;
+            resendButtonCooldown = true;
+            startCountdown(60);
+        }).catch(function (error) {
+            $("#error").text(error.message);
+            $("#error").show();
+        });
+    } else {
+        toastr.options = {
+            "positionClass": "toast-top-center",
+        };
+        toastr['error']('Xin vui lòng nhập số điện thoại');
+    }
+}
+function verifyBooking() {
+    var code = $("#verificationIBooking").val();
+    var phoneNumber = localStorage.getItem("phoneNumber");
+    var cleanedPhoneNumber = phoneNumber.replace(/^\+84/, ''); // Loại bỏ tiền tố +84
+    const verificationId = localStorage.getItem("verificationIBooking");
+    if (!code) {
+        toastr['error']
+        ('Bạn chưa nhập OTP.');
+        return;
+    }
+    const confirmationResult = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+    firebase.auth().signInWithCredential(confirmationResult).then(function (result) {
+        window.location.href = '/user/booking?phone='+cleanedPhoneNumber;
+    }).catch(function (error) {
+        toastr['error']
+        ('Mã OTP không hợp lệ.');
+    });
+}
