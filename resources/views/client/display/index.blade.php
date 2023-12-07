@@ -69,7 +69,7 @@
                                     </div>
                                     {{--                                <a class="" data-booking-url="#">--}}
                                     <div class="form__button content-center-middle css_booking" role="presentation">
-                                        <button class="btn_booking" type="button" onclick="sendOTPBooking();">
+                                        <button class="btn_booking" id="sendOTPButton2" type="button" onclick="sendOTP('numberBooking','button2');">
                                             ĐẶT LỊCH NGAY
                                         </button>
                                     </div>

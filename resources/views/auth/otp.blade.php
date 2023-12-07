@@ -15,19 +15,20 @@
                 </div>
                 <div class="fxt-form-btn fxt-transformY-50 fxt-transition-delay-4">
                     <div class="text-center mb-3">
-                        <button type="button" class="fxt-btn-fill" onclick="verify()">Xác minh</button>
+                        <button type="button" class="fxt-btn-fill" onclick="verify('redirectPayment')">Xác minh</button>
                     </div>
                 </div>
 
                 <div class="fxt-footer">
                     <div class="fxt-transformY-50 fxt-transition-delay-9">
                         <div id="sign-in-button"></div>
-                        <p class="fxt-resend-wrap">Không nhận được mã OTP?
-                            <button type="button" id="resendOTPButton" class="fxt-btn-resend" onclick="resendOTP()" disabled>Gửi
+                        <div class="fxt-resend-wrap">Không nhận được mã OTP?
+                            <button type="button" id="resendOTPButton" class="" onclick="resendOTP()" disabled>Gửi
                                 lại
                             </button>
-                        </p>
-                        <div id="countdown"></div>
+                        <div id="countdown"  ></div>
+                        </div>
+
                     </div>
                 </div>
             </form>
