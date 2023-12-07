@@ -33,7 +33,6 @@ class ViewProviderAdmin extends ServiceProvider
 
         View::composer('admin.layout.partials.topbar', function ($view) {
             $user = Auth::user()->user_type;
-            Log::info($user);
             if ($user === 'STYLIST') {
                 $stylistId = Auth::user()->id; // ID của stylist bạn muốn truy vấn
                 // đầu tiên lấy ra " CỘT " id của bảng "BOOKING" theo id của stylist đang đăng nhập hiện tại (dòng 49)

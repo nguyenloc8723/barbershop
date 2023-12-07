@@ -57,7 +57,10 @@ $(document).ready(function () {
                           <td>${item.id}</td>
                           <td>${item.phone_number}</td>
                           <td>
-                          <span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>
+                            ${item.roles.length > 0 ?
+                                `<span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>` :
+                                'Chưa sét vai trò'
+                            }
                           </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">

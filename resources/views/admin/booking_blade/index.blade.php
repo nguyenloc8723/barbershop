@@ -56,11 +56,14 @@
                                             Chụp ảnh sau khi cắt để làm mẫu cho lần
                                             sau: {{$item->is_accept_take_a_photo == 1 ? "Có" : "Không" }}
                                         </h5>
+                                            <h5 style="color: {{$item->pttt == 2 ? "green" : "red" }};">
+                                                Trạng thái thanh toán
+                                                sau: {{$item->pttt == 2 ? "Đã thanh toán" : "Thanh toán tại quầy" }}
+                                            </h5>
                                     </div>
                                 </div>
                             </li>
                         @endforeach
-
 
                     </ul>
 

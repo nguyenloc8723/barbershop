@@ -58,7 +58,6 @@ class NotificationController extends Controller
     }
     public function delete($id) {
         // Xóa thông báo từ cơ sở dữ liệu
-        Log::info($id);
         $notification = Notification::find($id);
         Log::info($notification);
         if ($notification) {

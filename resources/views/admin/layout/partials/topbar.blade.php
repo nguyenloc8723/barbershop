@@ -265,6 +265,10 @@
 
     <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
         <li>
+{{--            <input type="checkbox" id="menu-toggle" class="button-menu-mobile">--}}
+{{--            <label for="menu-toggle" class="button-menu-mobile-label disable-btn waves-effect">--}}
+{{--                <i class="fe-menu"></i>--}}
+{{--            </label>--}}
             <button class="button-menu-mobile disable-btn waves-effect">
                 <i class="fe-menu"></i>
             </button>
