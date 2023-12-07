@@ -108,16 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                </div>
+
                             </div>
                             <div class="d-flex mb-3">
                                 <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64"
@@ -204,12 +195,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             <td colspan="3" id="tong-tien-cell" style="font-weight: bold;">0</td>
                         </tr>
                    `);
+                updateTongTien();
             },
             error: function (error) {
                 console.error(error);
             }
         });
-        updateTongTien();
+
     }
 
     $(document).on('click', '.js-btn-delete', function () {
@@ -324,6 +316,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(tongTien);
         // Hiển thị tổng tiền trên cột cuối cùng
         $('#tong-tien-cell').text(tongTien.toLocaleString() + 'đ');
+        // $('#tong-tien-row').html(`
+        // <td colspan="1" style="text-align: center; font-weight: bold;">Tổng tiền</td>
+        //                     <td colspan="3" id="tong-tien-cell" style="font-weight: bold;">${tongTien.toLocaleString() + 'đ'}</td>
+        // `)
     }
 
     // function updateTongTien() {
