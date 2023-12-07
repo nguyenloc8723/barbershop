@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnCancel = $('.jquery-btn-cancel');
     const fileInput = $('#service-image');
     const imgContainer = $('.selected-images');
-    const showService = '/api/service/booking_blade';
 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     function showModal(action = true) {
         if (action) {
             $('.jquery-main-modal').show()
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnCancel.on('click', function () {
         showModal(false);
     });
-    btnShowModal.on('click', showModal);
+    $(document).on('click', '.jqr-btn-edit', showModal);
 
     fileInput.slideUp();
     fileInput.on('change', function () {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function loadAll(id) {
-        // console.log('123');
+        console.log('Đã chạy loadAll');
         $.ajax({
             url: '/admin/booking_blade/api/detail/' + id,
             method: 'GET',
@@ -87,17 +87,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 console.log(service);
                 let is_status = '';
-                if(data.status === 3){
+                if (data.status === 3) {
                     is_status = `<span
                                            class="badge bg-success" >Đã cắt
                               </span>`
                 }
-                if(data.status === 1){
+                if (data.status === 1) {
                     is_status = `<span
                                             class="badge bg-danger" >Chờ xác nhận
                                         </span>`
                 }
-                if(data.status === 2){
+                if (data.status === 2) {
                     is_status = `<span
                                             class="badge bg-warning" >Chờ xác nhận
                                         </span>`
@@ -147,13 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             <h4>Yêu cầu đặc biệt:</h4>
 
 
-                            <h4 style="color: ${data.is_consultant == 1 ? "green" : "red" };">
-                                Yêu cầu tư vấn: ${data.is_consultant === 1 ? "Có" : "Không" }
+                            <h4 style="color: ${data.is_consultant == 1 ? "green" : "red"};">
+                                Yêu cầu tư vấn: ${data.is_consultant === 1 ? "Có" : "Không"}
                             </h4>
 
-                            <h4 style="color: ${data.is_accept_take_a_photo == 1 ? "green" : "red" };">
+                            <h4 style="color: ${data.is_accept_take_a_photo == 1 ? "green" : "red"};">
                                 Chụp ảnh sau khi cắt để làm mẫu cho lần
-                                sau: ${data.is_accept_take_a_photo === 1 ? "Có" : "Không" }
+                                sau: ${data.is_accept_take_a_photo === 1 ? "Có" : "Không"}
                             </h4>
 
                             <h4>
@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <th>Tên dịch vụ</th>
                                     <th>Giá dịch vụ</th>
                                     <th>Trạng thái</th>
+                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody id="jquery-list">
@@ -181,32 +182,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
                     `);
-                $.each(service, function(index, item) {
+                $.each(service, function (index, item) {
                     $('#jquery-list').append(`
                     <tr>
                         <td>${item.name}</td>
                         <td>${item.price}</td>
                         <td>${item.is_active === 1 ? "Hoạt động" : "Không hoạt động"}</td>
+                        <td>
+                            <button class="js-btn-delete" data-booking-id="${data.id}" data-service-id="${item.id}" >
+                                Xóa
+                            </button>
+                        </td>
                     </tr>
-                `);
-                });
 
+                    `);
+                });
+                $('#jquery-list').append(`
+
+                        <tr id="tong-tien-row">
+                            <td colspan="1" style="text-align: center; font-weight: bold;">Tổng tiền</td>
+                            <td colspan="3" id="tong-tien-cell" style="font-weight: bold;">0</td>
+                        </tr>
+                   `);
             },
             error: function (error) {
                 console.error(error);
             }
         });
+        updateTongTien();
     }
 
-    $(document).on('click','.js-btn-delete', function (){
-        if (confirm('Bạn có chắc chắn muốn xóa ?')){
+    $(document).on('click', '.js-btn-delete', function () {
+        if (confirm('Bạn có chắc chắn muốn xóa ?')) {
             bookingId = $(this).data('booking-id');
             serviceId = $(this).data('service-id');
             token = $('meta[name="csrf-token"]').attr('content');
             deleteBooking();
         }
     });
-    function deleteBooking(){
+
+    function deleteBooking() {
 
         $.ajax({
             url: '/admin/booking_blade/xoa-dich-vu-booking/' + bookingId + '/' + serviceId,
@@ -214,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
             success: function (response) {
                 alert(response.message);
                 $('#service_' + serviceId).remove();
+                loadAll(bookingId);
+
             },
             error: function (error) {
                 alert('Đã có lỗi xảy ra.');
@@ -232,7 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var isSelected = $(this).data('selected');
         // Chuyển đổi trạng thái và cập nhật giao diện
         isSelected = !isSelected;
-
         if (isSelected) {
             selectedServiceIds.push(serviceId);
             // Nếu đã chọn, thêm vào tổng tiền
@@ -240,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(this).removeClass('btn-outline-primary').addClass('btn-primary');
             $(this).text('Đã chọn');
         } else {
-            selectedServiceIds = selectedServiceIds.filter(function(id) {
+            selectedServiceIds = selectedServiceIds.filter(function (id) {
                 return id !== serviceId;
             });
             // Nếu chưa chọn, giảm từ tổng tiền
@@ -269,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bookingId = $(this).data('booking-id');
         console.log(selectedServiceIds);
         console.log(bookingId);
+        showService(false);
 
         // Gửi yêu cầu Ajax để lưu dữ liệu vào bảng booking_service
         $.ajax({
@@ -293,20 +310,55 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    function updateTongTien() {
+        var tongTien = 0;
+        // var servicePrice = $(".js-btn-delete:first").data("service-price");
+        // console.log(servicePrice);
+        $('#jquery-list:first tr').each(function () {
+            var giaDichVu = parseFloat($(this).find('td:eq(1)').text().replace(',', '').replace('đ', ''));
+            if (!isNaN(giaDichVu)) {
+                tongTien += giaDichVu;
+            }
+        });
+        console.log(tongTien);
+        // Hiển thị tổng tiền trên cột cuối cùng
+        $('#tong-tien-cell').text(tongTien.toLocaleString() + 'đ');
+    }
+
+    // function updateTongTien() {
+    //     // Lấy tất cả giá dịch vụ từ cột thứ 2 của bảng
+    //     console.log('Đã chạy hàm update');
+    //     var giaDichVuArray = $('#jquery-list:first td:nth-child(2)').map(function() {
+    //         return parseFloat($(this).text().replace(',', '').replace('đ', ''));
+    //     }).get();
+    //
+    //     // Tính tổng giá dịch vụ
+    //     var tongTien = giaDichVuArray.reduce(function(total, giaDichVu) {
+    //         return total + giaDichVu;
+    //     }, 0);
+    //     console.log(tongTien);
+    //     // Hiển thị tổng tiền trong ô "tong-tien-cell"
+    //     $('#tong-tien-cell').text(tongTien.toLocaleString('en-US') + 'đ');
+    // }
+
+    updateTongTien();
 });
 
-    const btnCancel = $('.jquery-btn-sv-cancel');
-    function showService(action = true) {
-        if (action) {
-            $('.jquery-service-modal').show();
-        } else {
-            $('.jquery-service-modal').hide();
-        }
+const btnCancel = $('.jquery-btn-sv-cancel');
 
+function showService(action = true) {
+    if (action) {
+        $('.jquery-service-modal').show();
+    } else {
+        $('.jquery-service-modal').hide();
     }
-    btnCancel.on('click', function () {
-        showService(false);
-    });
+
+}
+
+btnCancel.on('click', function () {
+    showService(false);
+});
 
 
 
