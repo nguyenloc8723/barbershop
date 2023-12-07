@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <div class="fxt-transformY-50 fxt-transition-delay-4">
-                        <button type="button" class="fxt-btn-fill" onclick="sendOTP();">Gửi mã OTP
+                        <button type="button" id="sendOTPButton1" class="fxt-btn-fill" onclick="sendOTP('number','button1');">Gửi mã OTP
                         </button>
                     </div>
                 </div>
