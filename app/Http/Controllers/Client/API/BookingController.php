@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailStylist;
 use App\Models\Booking;
 use App\Models\Booking_service;
 use App\Models\Service;
@@ -10,10 +11,12 @@ use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -27,19 +30,19 @@ class BookingController extends Controller
     private $user_phone = '';
     public function index()
     {
-        $data = $this->model::all();
+//        $data = $this->model::all();
+        $data = User::query()->where('user_type', 'STYLIST')->get();
         return response()->json($data);
     }
     public function timeSheetDetail(string $id)
     {
-        $dataStylist = $this->model::query()->with('timeSheet')->where('id',$id)->first();
+        $dataStylist = User::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
-//        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
     public function randomStylist(){
-        $stylist = Stylist::inRandomOrder()->first();
+        $stylist =User::inRandomOrder()->where('user_type', 'STYLIST')->first();
         return response()->json($stylist);
     }
 
@@ -55,13 +58,11 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        //Log::info($request->all());
         $booking = $request->all();
-        $phone_number=$request->user_phone;
-        Log::info($phone_number);
         $model = new $this->booking;
         $model->fill($booking);
         $model->save();
+
         $bookingDone_id = $model->id;
         $service = $request->arrayIDService;
 
@@ -74,12 +75,53 @@ class BookingController extends Controller
             ]);
             $booking_service->save();
         }
-//        $this->sendSms($phone_number);
+        //Send mail tới stylist khi có đơn hàng mới
+        $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
+        $stylist = User::query()->where('id', $request->stylist_id)->first();
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
+        //end send mail stylist
+        $this->sendSms($request->user_phone);
         return response()->json(['success'=>$bookingDone_id]);
     }
 
+    public function updateRequest(Request $request, $id)
+    {
+        $bookingData = $request->all();
+
+        // Tìm booking theo $id
+        $booking = Booking::findOrFail($id);
+
+        // Cập nhật thông tin của booking
+        $booking->update($bookingData);
+
+        // Lấy danh sách service từ request
+        $serviceIds = $request->arrayIDService;
+
+        // Xóa tất cả các dịch vụ cũ liên quan đến booking
+        Booking_service::where('booking_id', $id)->delete();
+
+        // Thêm các dịch vụ mới vào booking
+        foreach ($serviceIds as $serviceId) {
+            Booking_service::create([
+                'booking_id' => $id,
+                'service_id' => $serviceId,
+            ]);
+        }
+        //Send mail tới stylist khi có đơn hàng mới
+        $service = Booking_service::with('service')->where('booking_id', $id)->get();
+        $stylist = User::query()->where('id', $request->stylist_id)->first();
+
+        $noti = Notification::query()->where('booking_id', $id)->first();
+        $noti->delete();
+
+        Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
+        //end send mail stylist
+        $this->sendSms($request->user_phone);
+        return response()->json(['success'=>$id]);
+    }
+
     public function stylistDetail(string $id){
-        $data = $this->model::query()->where('id',$id)->first();
+        $data = User::query()->where('id',$id)->first();
         return response()->json($data);
     }
 
@@ -89,7 +131,7 @@ class BookingController extends Controller
     }
 
     public function bookingDestroy($id){
-        $this->booking::where('id', $id)->update(['status' => 2]);
+        $this->booking::where('id', $id)->update(['status' => 0]);
         $this->booking::where('id',$id)->delete();
 
         Booking_service::where('booking_id',$id)->delete();
@@ -98,7 +140,6 @@ class BookingController extends Controller
 
     function setUserPhone(Request $request){
         $user_phone = $request->user_phone;
-        Log::info($user_phone);
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
 
@@ -122,7 +163,6 @@ class BookingController extends Controller
         $APIKey = "44A12426B71D5CDBD86F3EB12DD2F4";
         $SecretKey = "3FDAB16BC3DBB1DD12814080488663";
         $YourPhone = $phoneNumber;
-        Log::info($YourPhone);
         $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
 
         $SendContent = urlencode($Content);

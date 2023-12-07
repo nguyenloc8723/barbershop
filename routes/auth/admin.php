@@ -18,20 +18,16 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\StylistController;
+use App\Http\Controllers\Admin\StylistController;
+use App\Http\Controllers\Admin\ThanhToanCtrl;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
 
-
-use App\Http\Controllers\Client\ClientBookingController;
-use App\Http\Controllers\Client\ClientServiceController;
-
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PricingController;
 use Illuminate\Support\Facades\Route;
-
-
-
-use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +47,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('booking-statistics', [BookingController::class, 'getBookingStatistics'])->name('booking.statistics');
 
     Route::resource('category', CategoryServiceController::class);
+    Route::resource('stylist', StylistController::class);
     Route::resource('timesheets', TimesheetController::class);
-    // Route::get('admin/delete/{id}',TimesheetController::class,'destroy')->name('route.delete');
     Route::get('/admin/timesheets/{id}/delete', [TimeSheetController::class,'delete'])->name('timesheets.delete');
     Route::match(['GET', 'POST'],'/admin/timesheets/{id}/edit', [TimeSheetController::class, 'edit'])->name('timesheets.edit');
     //setting
@@ -66,7 +62,9 @@ Route::middleware(['admin'])->group(function () {
 
     Route::resource('stylistTimeSheets', StylistTimeSheetsController::class);
     Route::resource('user', UserController::class);
-
+    //payment
+    Route::resource('payment',ThanhToanCtrl::class);
+    Route::post('searchPayment', [ThanhToanCtrl::class, 'index'])->name('searchPayment');
 
 
     Route::resource('member', MemberController::class);
@@ -79,13 +77,14 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('stylistTimeSheets', [StylistTimeSheetsController::class, 'index'])->name('route.stylistTimeSheets');
     Route::get('statistical', [StatisticalController::class, 'statistical'])->name('route.statistical');
-    // Route::get('statistical/filler-by-date', 'StatisticalController@filler_by_date')->name('route.statistical');
+    Route::get('statistical/service', [StatisticalController::class, 'service'])->name('route.statistical.service');
+    Route::get('statistical/revenue', [StatisticalController::class, 'revenue'])->name('route.statistical.revenue');
 
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
     Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
-    Route::resource('review', ReviewController::class);
-    Route::match(['GET', 'POST'], 'reply/{id}', [ReviewController::class, 'reply'])->name('replyReview');
+    Route::get('adminReview',[ReviewController::class, 'admin'])->name('review.index');
+    Route::match(['GET', 'POST'], 'reply', [ReviewController::class, 'reply'])->name('replyReview');
 
     Route::match(['GET', 'POST'], 'destroy/{id}', [BannerSettingCtl::class, 'delete'])->name('destroy.banner');
     Route::match(['GET', 'POST'], 'edit/{id}', [BannerSettingCtl::class, 'edit'])->name('edit.banner');
@@ -101,19 +100,18 @@ Route::middleware(['admin'])->group(function () {
         Route::get('service', [TrashController::class, 'Service'])->name('trash.service');
     });
 
-    //Booking
-//    Route::get('booking', [BookingController::class, 'index'])->name('route.booking');
-//    Route::resource('booking_blade', BookingController::class);
     Route::get('booking_blade/index', [BookingController::class, 'index' ])->name('route.booking_blade');
     Route::get('booking_blade/detail/{id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
-//    Route::get('booking_blade/detail/{id}', [BookingController::class, 'showBookingComments' ])->name('route.booking_blade.detail');
-    Route::post('booking_blade/post/{id}', [BookingController::class, 'fileUpload'])->name('route.booking_blade.post');
-
-//    Route::get('booking_blade/detail?{$id}', [BookingController::class, 'getDetail' ])->name('route.booking_blade.detail');
-
+    Route::post('booking_blade/detail/post/{id}',[BookingController::class,'update'])->name('booking_blade.detail.post');
+    Route::post('booking_blade/post/{id}', [BookingController::class, 'hoanThanhCat'])->name('route.booking_blade.post');
+    Route::get('booking_blade/api/detail/{id}', [BookingController::class, 'getDetailAPI' ])->name('route.booking_blade.api.detail');
 
     Route::resource('stylists',StylistController::class);
+    Route::resource('portfolios',PortfolioController::class);
+    Route::resource('faqs',FaqController::class);
     Route::resource('blogs',BlogController::class);
+    Route::resource('pricings',PricingController::class);
+    Route::delete('deleteMultipleStylists', 'StylistController@deleteMultiple')->name('deleteMultipleStylists');
 
     Route::group([],function (){
         Route::get('roles', [RoleController::class, 'index' ])->name('role');

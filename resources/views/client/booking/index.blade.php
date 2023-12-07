@@ -1,14 +1,13 @@
 @extends('client.layouts.layout')
-
 @section('style')
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
 
 @endsection
-
 @section('content')
-
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
+
+<div id="user-info" data-user_id="{{(Auth::check()) ? Auth::id(): '0'}}"></div>
 <div class="fix-hed">
 
 </div>
@@ -18,6 +17,7 @@
             <div class="col-md-6" id="jqr-displayBooking">
                 <div class="new-top-navigator pointer " style="background-color: #14100c; color: #fff;"><span class="text-center">Đặt lịch giữ chỗ</span></div>
                 <div class="main-screen">
+
                     <div class="main-screen__block main-screen__block--done" id="serviceAttributeId">
                         <div class="font-medium text-lg mb-3">1. Chọn dịch vụ</div>
                         <div class="cursor-pointer flex item-center bg-f7f7f7 rounded" style="height: 2.75rem; padding-left: 0.625rem; padding-right: 0.625rem;" aria-hidden="true">
@@ -128,8 +128,18 @@
                                 <div id=""></div>
                             </div>
                         </div>
-                        <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
-                        <div class="text-base jqr-textBase">
+                        <div class="text-base">
+                            <div class="">
+                                <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="1">
+                                    <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="2" checked>
+                                    <label class="form-check-label" for="radio2">Thanh toán online</label>
+                                </div>
+                            </div>
                             <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
@@ -161,10 +171,12 @@
         </div>
     </div>
 </section>
-@endsection
 
+@endsection
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
+<script>
 
+</script>
 @endsection

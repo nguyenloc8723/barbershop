@@ -87,6 +87,7 @@ $(document).ready(function() {
         method: 'GET',
         dataType: 'json',
         success: function(res) {
+            console.log(res)
             if(res.length){
                 const element = $('#user-info');
                 element.html(`<div class="container">

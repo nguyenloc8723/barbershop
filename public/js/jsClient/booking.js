@@ -1,22 +1,29 @@
 $(document).ready(function () {
     let csrfToken = $('meta[name="csrf-token"]').attr('content');
-    const showStylist = '/api/stylist/booking';
+    const showStylist = '/api/list/stylist/booking';
     const showTimeSheet = '/api/timeSheet/booking';
     const showService = '/api/service/booking';
     const pullRequestUrl = '/api/pullRequest/booking';
     const stylistDetail = '/api/stylistDetail/booking';
+    const updateRequest = '/api/updateRequest/booking';
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingId = urlParams.get('booking_id');
+    // 
+    
+    // 
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
     let stylist = 0;
     let user_phone = $('#user_phone').data('user_phone');
+    let user_info = $('#user-info').data('user_id');
     let countSelect = 0;
     let time = 0;
     let isContentVisible = false;
     let is_selectConsultant = true;
     let is_selectTakePhoto = true;
     $('.jqr-contentStylist').css({
-       'display': 'none',
+        'display': 'none',
     });
     $('.jqr-messageStylist').css({
         'display': 'none',
@@ -27,7 +34,6 @@ $(document).ready(function () {
     function formatCurrency(amount) {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
-
 
     let arrayIDService = [];
 
@@ -60,12 +66,13 @@ $(document).ready(function () {
     }
     loadStylist();
 
-    function messageSty(id){
+    function messageSty(id) {
         $.ajax({
             url: stylistDetail + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('.jqr-messageStylist').html(`
                    <div class="stylist-selected">
                       <div class="stylist__top">
@@ -94,7 +101,7 @@ $(document).ready(function () {
                    </div>
                 `);
             },
-            error:function (error) {
+            error: function (error) {
                 console.error(error);
             }
         });
@@ -325,6 +332,17 @@ $(document).ready(function () {
                             </div>
                              <p class="jqr-validateTime d-none validateBooking">Mời bạn chọn giờ cắt để hoàn tất đặt lịch</p>
                             <div class="text-base jqr-textBase">
+                                <div class="">
+                                    <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
+                                    <div class="form-check">
+                                        <input type="radio" class="" id="" name="pttt" value="1">
+                                        <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="" id="" name="pttt" value="2" checked>
+                                        <label class="form-check-label" for="radio2">Thanh toán online</label>
+                                    </div>
+                                </div>
                                 <div class="flex space-between is_height">
                                     <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                     <label class="switch">
@@ -352,6 +370,7 @@ $(document).ready(function () {
                             <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
                         </div>
                     </div>
+                    </form>
                 `);
                 $('.jqr-messageStylist').css({
                     'display': 'none',
@@ -432,28 +451,28 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click','.jqr-consultant',function () {
+    $(document).on('click', '.jqr-consultant', function () {
         is_selectConsultant = !is_selectConsultant;
-        if (is_selectConsultant){
+        if (is_selectConsultant) {
             $('.jqr-textConsultant').html(`
                 <p class="jqr-textConsultant">Bạn cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
             `);
             is_consultant = 1;
-        }else {
+        } else {
             $('.jqr-textConsultant').html(`
                 <p class="jqr-textConsultant">Bạn không cho phép chúng mình giới thiệu về các dịch vụ tốt nhất dành cho bạn.</p>
             `);
             is_consultant = 0;
         }
     });
-    $(document).on('click','.jqr-accept_take_a_photo',function () {
-         is_selectTakePhoto = !is_selectTakePhoto;
-        if (is_selectTakePhoto){
+    $(document).on('click', '.jqr-accept_take_a_photo', function () {
+        is_selectTakePhoto = !is_selectTakePhoto;
+        if (is_selectTakePhoto) {
             $('.jqr-acceptTakeAPhoto').html(`
                 <p class="jqr-acceptTakeAPhoto">Bạn cho phép chúng mình chụp hình lưu lại kiểu tóc, để lần sau không phải mô tả lại cho thợ khác.</p>
             `);
             is_accept_take_a_photo = 1;
-        }else {
+        } else {
             $('.jqr-acceptTakeAPhoto').html(`
                 <p class="jqr-acceptTakeAPhoto">Bạn không cho phép chụp ảnh, không cần thợ lần sau biết.</p>
             `);
@@ -470,7 +489,7 @@ $(document).ready(function () {
 
         if (!arrayIDService.includes(id)) {
             arrayIDService.push(id);
-        }else {
+        } else {
             let index = arrayIDService.indexOf(id);
             if (index !== -1) {
                 arrayIDService.splice(index, 1);
@@ -504,7 +523,7 @@ $(document).ready(function () {
     $(document).on('click', '.jqr-detail', function () {
         stylist = $(this).data('id');
         $('.jqr-messageStylist').css({
-           'display': 'block',
+            'display': 'block',
         });
         $('.jqr-detail .jqr-img').css({
             'border': '3px solid #FFFFFF',
@@ -516,7 +535,7 @@ $(document).ready(function () {
         messageSty(stylist);
         timeSheet(stylist);
     });
-    $(document).on('click','.jqr-randomStylist', function () {
+    $(document).on('click', '.jqr-randomStylist', function () {
         $('.jqr-messageStylist').css({
             'display': 'block',
         });
@@ -541,15 +560,21 @@ $(document).ready(function () {
         mainBooking(arrayIDService);
     })
     $(document).on('click', '.jqr-completed', function () {
-        if (arrayIDService.length === 0){
+        if (arrayIDService.length === 0) {
+            console.log(arrayIDService)
             $('.jqr-validateService').removeClass('d-none');
-        }else if ($('input[name="date"]').val() == ''){
+        } else if ($('input[name="date"]').val() == '') {
             $('.jqr-validateDate').removeClass('d-none');
-        }else if (time === 0){
+        } else if (time === 0) {
             $('.jqr-validateDate').addClass('d-none');
             $('.jqr-validateTime').removeClass('d-none');
-        } else{
-            pushRequest();
+        } else {
+            if(bookingId){
+                updateBooking(bookingId)
+            }else{
+                pushRequest();
+            }
+            
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -567,18 +592,17 @@ $(document).ready(function () {
             'color': '#000',
         });
     });
-    $(document).on('click','.jqr-ChooseStylist',function () {
-         isContentVisible = !isContentVisible;
-         if (isContentVisible){
-             $('.jqr-contentStylist').css({
-                 'display': 'flex',
-             });
-         }else {
-             $('.jqr-contentStylist').css({
-                 'display': 'none',
-             });
-         }
-
+    $(document).on('click', '.jqr-ChooseStylist', function () {
+        isContentVisible = !isContentVisible;
+        if (isContentVisible) {
+            $('.jqr-contentStylist').css({
+                'display': 'flex',
+            });
+        } else {
+            $('.jqr-contentStylist').css({
+                'display': 'none',
+            });
+        }
     });
 
     function randomStylist() {
@@ -599,39 +623,111 @@ $(document).ready(function () {
         });
     }
 
-    function pushRequest() {
-        let status = 1;
-        let date = $('input[name="date"]').val();
-        let arrayBooking = {
-            user_phone: user_phone,
-            stylist_id: stylist,
-            timesheet_id: time,
-            price: countPrice,
-            is_consultant: is_consultant,
-            is_accept_take_a_photo: is_accept_take_a_photo,
-            date: date,
-            arrayIDService: arrayIDService,
-            status: status
-        };
-        $.ajax({
-            url: pullRequestUrl,
-            method: 'POST',
-            data: arrayBooking,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            success: function (response) {
-                console.log(response.success)
-                // toastr['success']('Đặt lịch thành công');
-                window.location.href = 'booking/success/' + response.success;
 
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
+    if (bookingId) {
+        function updateBooking(bookingId) {
+           console.log(arrayIDService);
+            let status = 1;
+            let pttt;
+            let date = $('input[name="date"]').val();
+            $('input[type="radio"][name="pttt"]').each(function () {
+                if ($(this).is(':checked')) {
+                    pttt = $(this).val();
+                    console.log('Selected value: ' + pttt);
+                    
+                }
+            });
+            let arrayBooking = {
+                user_phone: user_phone,
+                user_id: user_info,
+                stylist_id: stylist,
+                timesheet_id: time,
+                price: countPrice,
+                is_consultant: is_consultant,
+                is_accept_take_a_photo: is_accept_take_a_photo,
+                date: date,
+                arrayIDService: arrayIDService,
+                status: status,
+                pttt: pttt
+            };
+            $.ajax({
+                url: updateRequest + '/' + bookingId,
+                method: 'POST',
+                data: arrayBooking,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    console.log(response.success)
+                    if (pttt == 2) {
+                        phone = user_phone.replace("+84", "");
+                        window.location.href = 'index-payment/' + phone;
+                        console.log(response.success)
+                    } else {
+                        console.log(arrayIDService);
+                        // toastr['success']('Đặt lịch thành công');
+                        window.location.href = 'booking/success/' + response.success;
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        
+    } else {
+        function pushRequest() {
+            let status = 1;
+            let pttt;
+            let date = $('input[name="date"]').val();
+            $('input[type="radio"][name="pttt"]').each(function () {
+                if ($(this).is(':checked')) {
+                    pttt = $(this).val();
+                    console.log('Selected value: ' + pttt);
+                }
+            });
+            let arrayBooking = {
+                user_phone: user_phone,
+                user_id: user_info,
+                stylist_id: stylist,
+                timesheet_id: time,
+                price: countPrice,
+                is_consultant: is_consultant,
+                is_accept_take_a_photo: is_accept_take_a_photo,
+                date: date,
+                arrayIDService: arrayIDService,
+                status: status,
+                pttt: pttt
+            };
+            $.ajax({
+                url: pullRequestUrl,
+                method: 'POST',
+                data: arrayBooking,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    console.log(response.success)
+                    if (pttt == 2) {
+                        phone = user_phone.replace("+84", "");
+                        window.location.href = 'index-payment/' + phone;
+                        console.log(response.success)
+                    } else {
+                        // toastr['success']('Đặt lịch thành công');
+                        window.location.href = 'booking/success/' + response.success;
+                    }
+                    // phone = user_phone.replace("+84", "");
+                    // window.location.href = 'index-payment/' + phone;
+    
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
     }
-
+    
+   
 
 });
 

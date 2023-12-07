@@ -26,7 +26,6 @@ class APIBookingController extends Controller
     {
         $files = $request->file('files');
         $slug = Str::slug($request->input('name'));
-//                Log::info($request->input('category_id'));
         $service = Booking::create([
             'category_id' => $request->input('category_id'),
             'name' => $request->input('name'),
@@ -39,14 +38,12 @@ class APIBookingController extends Controller
         if ($request->hasFile('files')){
             $result = $this->uploadFile('images', $files);
             foreach ($result as $value){
-//                Log::info($value);
                 ImageBooking::create([
                     'url' => $value['url'],
                     'service_id' => $id,
                 ]);
             }
         }
-//        Log::info($request->file('files'));
         return response()->json(['success','Thêm mới thành công']);
     }
 

@@ -121,8 +121,8 @@ $(document).ready(function () {
                             <td>${item.id}</td>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>${item.description}</td>
-                            <td>
+                            <td class="w-50">${item.description}</td>
+                            <td class="w-5">
                                 ${item.is_active}
                             </td>
                             <td class="text-center">

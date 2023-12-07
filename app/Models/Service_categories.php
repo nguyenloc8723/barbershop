@@ -9,6 +9,8 @@ class Service_categories extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table = 'service_categories';
+
     protected $fillable = ['id','name', 'is_active'];
 
     public function service(){

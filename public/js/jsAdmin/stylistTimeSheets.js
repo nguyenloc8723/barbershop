@@ -9,6 +9,7 @@ $(document).ready(function () {
     const urlPost = '/api/post/stylistTimeSheets';
     const urlShowEdit = '/api/edit/stylistTimeSheets';
     const urlDelete = '/api/delete/stylistTimeSheets';
+    const urlDeleteDetail = '/api/deleteDetail/stylistTimeSheets';
     const urlPut = '/api/put/stylistTimeSheets';
     const urlGetValue = '/api/get/getvalue';
     let idUpdate;
@@ -31,7 +32,6 @@ $(document).ready(function () {
 
     btnShow.on('click', showModal);
     btnCancel.on('click', function () {
-
         showModal(false);
 
     });
@@ -48,53 +48,55 @@ $(document).ready(function () {
         }
     })
 
-
     function loadTable() {
         $.ajax({
             url: urlShow,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
                 $('#jquery-list').empty();
-                data.map(item => {
+                data.forEach(item => {
                     $('#jquery-list').append(`
-                        <tr>
-                          <td>${item.id}</td>
-                          <td>${item.stylist_id}</td>
-                          <td>${item.timesheet_id}</td>
-                          <td>${item.is_active}</td>
-                          <td>${item.is_block}</td>
-                          <td class="text-center">
-                              <div class="btn-group dropdown">
-                                  <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
-                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/General/Settings-2.svg--><svg
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                     height="24px" viewBox="0 0 24 24" version="1.1">
-                                          <g stroke="none" stroke-width="1" fill="none"
-                                                     fill-rule="evenodd">
-                                                <rect x="0" y="0" width="24" height="24"/>
-                                            <path d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z"
-                                               fill="#8950fc"/>
-                                          </g>
-                                          </svg>
-                                        </span>
-                                  </a>
-                                  <div class="dropdown-menu dropdown-menu-end">
-                                        <button class="dropdown-item js-btn-update" data-id="${item.id}">
-                                          Cập nhật
-                                        </button>
-                                      <button class="dropdown-item js-btn-delete" data-id="${item.id}">
-                                          Xóa
-                                      </button>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>`
-                    );
-                })
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <ul class="sortable-list list-unstyled taskList" id="upcoming">
+                                            <li>
+                                            <div class="dropdown float-end top-right">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                                <!-- item-->
+                                                <button class="dropdown-item js-btn-update" data-id="${item.id}">
+                                                  Cập nhật
+                                                </button>
+                                                <!-- item-->
+                                                <button class="dropdown-item js-btn-detail" data-id="${item.id}">
+                                                  Chi tiết
+                                                </button>
+                                                <!-- item-->
+                                                <button class="dropdown-item js-btn-delete" data-id="${item.id}">
+                                                  Xóa tất cả
+                                                </button>
+                                            </div>
+                                        </div>
+                                               <div class="" style="margin-left: 10px">${item.name}</div>
+                                               ${item.time_sheet.map(value => {
+                                                   return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                                                            data-id="${value.id}" data-userId="${item.id}">
+                                                            ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
+                                                            </div>`;
+                                               }).join('')}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
             },
             error: function (error) {
             }
@@ -103,16 +105,25 @@ $(document).ready(function () {
 
     loadTable();
 
-    $(document).on('click','.js-btn-update', function (){
+    $(document).on('click', '.js-btn-update', function () {
         let itemId = $(this).data('id');
         idUpdate = itemId;
         actionMethod.val('update')
-        loadValueDetail(itemId);
+        loadTimeSheet(itemId);
     });
-    $(document).on('click','.js-btn-delete', function (){
-        if (confirm('Bạn có chắc chắn muốn xóa ?')){
+    $(document).on('click', '.js-btn-delete', function () {
+        if (confirm('Bạn có chắc chắn muốn xóa ?')) {
             idUpdate = $(this).data('id');
-            destroy();
+            destroyAll();
+        }
+    });
+    $(document).on('click','.jqr-badge', function (){
+        let timeSheetId = $(this).data('id');
+        let userId = $(this).attr('data-userId');
+        console.log(timeSheetId)
+        console.log(userId)
+        if (confirm('Bạn có chắc chắn muốn xóa ?')) {
+            destroyDetail(userId,timeSheetId);
         }
     });
 
@@ -138,15 +149,34 @@ $(document).ready(function () {
         });
     }
 
-    function destroy() {
+    function destroyAll() {
         $.ajax({
-            url: urlDelete +'/' + idUpdate,
+            url: urlDelete + '/' + idUpdate,
             method: 'DELETE',
             dataType: 'json',
             success: function (data) {
-               loadTable();
-               toastr['success']
-               ('Dữ liệu đã được xóa thành công.');
+                loadTable();
+                toastr['success']
+                ('Dữ liệu đã được xóa thành công.');
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+    function destroyDetail(usserId, timeSheetId) {
+        $.ajax({
+            url: urlDeleteDetail,
+            method: 'post',
+            data: {
+                user_id: usserId,
+                timesheet_id: timeSheetId,
+            },
+            dataType: 'json',
+            success: function (data) {
+                loadTable();
+                toastr['success']
+                ('Dữ liệu đã được xóa thành công.');
             },
             error: function (error) {
                 console.error(error);
@@ -154,65 +184,99 @@ $(document).ready(function () {
         });
     }
 
-    function loadValueDetail(id) {
+
+    function loadTimeSheet(id) {
+        console.log(id);
         $.ajax({
             url: urlShowEdit + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                let valueStylistTimeSheets = data.dataStylistTimeSheets;
-                let valueStylist = data.dataStylist;
-                let valueTimeSheet = data.dataTimeSheet;
-
-                // Stylist
-                let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`
-                let resultStylist = '';
-                for (let i = 0; i < valueStylist.length; i++){
-                    if (valueStylist[i].id === valueStylistTimeSheets.stylist_id){
-                        resultStylist = 'selected';
+                console.log(data)
+                let StylistDetail = data.dataStylist[0];
+                let listStylist = data.stylist;
+                let stylistSelected = '';
+                let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`;
+                isStylist += `<option>Choose stylist</option>`
+                for (let i = 0; i < listStylist.length; i++) {
+                    if (listStylist[i].id === StylistDetail.id){
+                        stylistSelected = 'selected';
+                    }else {
+                        stylistSelected = '';
                     }
-                    else{
-                        resultStylist = '';
-                    }
-                    isStylist+= `<option value="${valueStylist[i].id}" ${resultStylist}>${valueStylist[i].name}</option>`;
+                    isStylist += `<option value="${listStylist[i].id}" ${stylistSelected}>${listStylist[i].name}</option>`;
                 }
                 isStylist += `</select>`;
 
-                //TimeSheet
-                let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`
-                let resultTimeSheet = '';
-                for (let i = 0; i < valueTimeSheet.length; i++){
-                    if (valueTimeSheet[i].id === valueStylistTimeSheets.timesheet_id){
-                        resultTimeSheet = 'selected';
-                    }
-                    else{
-                        resultTimeSheet = '';
-                    }
-                    isTimeSheet+= `<option value="${valueTimeSheet[i].id}" ${resultTimeSheet}>${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
-                }
-                isTimeSheet += `</select>`;
 
-                let is_activeSelect = `
-                <label for="" class="form-label">Is_active</label>
-                    <select class="form-control" name="is_active">
-                `;
-                let option = ['Không hoạt động','Hoạt động'];
-                for (let i = 0; i < option.length; i++){
-                    let selected = '';
-                    if (valueStylistTimeSheets.is_active === 1){
-                        selected = 'selected';
-                    }
-                    is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
-                }
-
-                is_activeSelect+= `</select>`
-
-                $('.is_active').html(is_activeSelect);
-                actionMethod.val('update');
                 $('#stylist_id').html(isStylist);
-                $('#timesheet_id').html(isTimeSheet);
-                $('select[name="is_active"]').val(valueStylistTimeSheets.is_active);
-                $('select[name="is_block"]').val(valueStylistTimeSheets.is_block);
+                // $('#timesheet_id').html(isTimeSheet);
+                showModal();
+            },
+            error: function (xhr, status, error) {
+
+                console.error(error);
+            }
+        });
+    }
+    function loadValueDetail(id) {
+        console.log(id);
+        $.ajax({
+            url: urlShowEdit + '/' + id,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // let valueStylistTimeSheets = data.dataStylistTimeSheets;
+                // let valueStylist = data.dataStylist;
+                // let valueTimeSheet = data.dataTimeSheet;
+                //
+                // // Stylist
+                // let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`
+                // let resultStylist = '';
+                // for (let i = 0; i < valueStylist.length; i++) {
+                //     if (valueStylist[i].id === valueStylistTimeSheets.stylist_id) {
+                //         resultStylist = 'selected';
+                //     } else {
+                //         resultStylist = '';
+                //     }
+                //     isStylist += `<option value="${valueStylist[i].id}" ${resultStylist}>${valueStylist[i].name}</option>`;
+                // }
+                // isStylist += `</select>`;
+
+                //TimeSheet
+                // let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`
+                // let resultTimeSheet = '';
+                // for (let i = 0; i < valueTimeSheet.length; i++) {
+                //     if (valueTimeSheet[i].id === valueStylistTimeSheets.timesheet_id) {
+                //         resultTimeSheet = 'selected';
+                //     } else {
+                //         resultTimeSheet = '';
+                //     }
+                //     isTimeSheet += `<option value="${valueTimeSheet[i].id}" ${resultTimeSheet}>${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
+                // }
+                // isTimeSheet += `</select>`;
+
+                // let is_activeSelect = `
+                // <label for="" class="form-label">Is_active</label>
+                //     <select class="form-control" name="is_active">
+                // `;
+                // let option = ['Không hoạt động', 'Hoạt động'];
+                // for (let i = 0; i < option.length; i++) {
+                //     let selected = '';
+                //     if (valueStylistTimeSheets.is_active === 1) {
+                //         selected = 'selected';
+                //     }
+                //     is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
+                // }
+                //
+                // is_activeSelect += `</select>`
+                //
+                // $('.is_active').html(is_activeSelect);
+                // actionMethod.val('update');
+                // $('#stylist_id').html(isStylist);
+                // $('#timesheet_id').html(isTimeSheet);
+                // $('select[name="is_active"]').val(valueStylistTimeSheets.is_active);
+                // $('select[name="is_block"]').val(valueStylistTimeSheets.is_block);
                 showModal();
             },
             error: function (xhr, status, error) {
@@ -225,7 +289,7 @@ $(document).ready(function () {
     function update() {
         let formData = new FormData(formModal[0]);
         $.ajax({
-            url: urlPut +'/' + idUpdate,
+            url: urlPut + '/' + idUpdate,
             method: 'post',
             data: formData,
             processData: false,
@@ -254,17 +318,16 @@ $(document).ready(function () {
                 let valueStylist = data.dataStylist;
                 let valueTimeSheet = data.dataTimeSheet;
 
-                // Stylist
                 let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`;
                 isStylist += `<option>Choose stylist</option>`
-                for (let i = 0; i < valueStylist.length; i++){
+                for (let i = 0; i < valueStylist.length; i++) {
                     isStylist += `<option value="${valueStylist[i].id}">${valueStylist[i].name}</option>`;
                 }
                 isStylist += `</select>`;
 
                 //TimeSheet
                 let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`;
-                for (let i = 0; i < valueTimeSheet.length; i++){
+                for (let i = 0; i < valueTimeSheet.length; i++) {
                     isTimeSheet += `<option value="${valueTimeSheet[i].id}">${valueTimeSheet[i].hour}:${valueTimeSheet[i].minutes}</option>`;
                 }
                 isTimeSheet += `</select>`;
@@ -273,22 +336,23 @@ $(document).ready(function () {
                 <label for="" class="form-label">Is_active</label>
                     <select class="form-control" name="is_active">
                 `;
-                let option = ['Không hoạt động','Hoạt động'];
-                for (let i = 0; i < option.length; i++){
+                let option = ['Không hoạt động', 'Hoạt động'];
+                for (let i = 0; i < option.length; i++) {
                     is_activeSelect += `<option value="${i}">${option[i]}</option>`;
                 }
-                is_activeSelect+= `</select>`
+                is_activeSelect += `</select>`
 
                 $('.is_active').html(is_activeSelect);
                 $('#stylist_id').html(isStylist);
                 $('#timesheet_id').html(isTimeSheet);
 
-                $("#timesheet_id").selectize({ maxItems: 100 });
+                $("#timesheet_id").selectize({maxItems: 100});
             },
             error: function (error) {
                 console.error(error);
             },
         });
     }
+
     setValue();
 });

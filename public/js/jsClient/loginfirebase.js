@@ -124,8 +124,10 @@ function verify() {
                 phone_number: phoneNumber, // Truyền giá trị số điện thoại vào yêu cầu POST
             },
             success: function (data) {
-                if (data.user_type === 'admin') {
+                if (data.user_type === 'ADMIN') {
                     window.location.href = "/admin/dashboard"; // Chuyển hướng đến trang admin
+                }else if(data.user_type === 'STYLIST'){
+                    window.location.href = "/admin/booking_blade/index";
                 } else {
                     window.location.href = "/"; // Chuyển hướng đến trang người dùng thông thường
                 }

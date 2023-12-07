@@ -15,9 +15,10 @@ class ApiDashboardController extends Controller
 {
     public function dailySales()
     {
-        $data['totalUser'] = User::whereDate('created_at', now()->toDateString())->count();
-        $data['totalBooking'] = Booking::whereDate('date', now()->toDateString())->count();
-        $data['totalResult'] = Results::whereDate('created_at', now()->toDateString())->count();
+//        $data['totalUser'] = User::whereDate('created_at', now()->toDateString())->count();
+        $data['totalUser'] = User::query()->whereNotIn('user_type', ['admin'])->count();
+        $data['totalBooking'] = Booking::query()->count();
+        $data['totalResult'] = Results::query()->count();
 
         return response()->json($data);
     }
@@ -31,9 +32,9 @@ class ApiDashboardController extends Controller
             $startOfMonth = Carbon::now()->subMonths($i)->startOfMonth();
             $endOfMonth = Carbon::now()->subMonths($i)->endOfMonth();
 
-            $userCount = User::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+            $userCount = User::query()->where('user_type','USER')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
-            $stylistCount = Stylist::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+            $stylistCount = User::query()->where('user_type','STYLIST')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
             $data[] = [
                 'month' => $startOfMonth->format('M'),
@@ -75,13 +76,12 @@ class ApiDashboardController extends Controller
                 ];
             }
         }
-
         return response()->json($data);
     }
 
     public function latestStylist()
     {
-        $data = Stylist::orderByDesc('id')->get()->take(6);
+        $data =User::query()->where('user_type','STYLIST')->orderByDesc('id')->get()->take(6);
         return response()->json($data);
     }
 

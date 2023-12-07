@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StylistTimeSheet;
 use App\Models\Stylist;
 use App\Models\Timesheet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +17,7 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function index()
     {
-        $data = StylistTimeSheet::all();
+        $data = User::query()->where('user_type', 'STYLIST')->with('timeSheet')->get();
         return response()->json($data);
     }
 
@@ -26,13 +27,30 @@ class ApiStylistTimeSheetsController extends Controller
     public function store(Request $request)
     {
         $time = $request->input('timesheet_id');
-        foreach ($time as $value){
-            StylistTimeSheet::create([
-                'stylist_id' => $request->input('stylist_id'),
-                'timesheet_id' => $value,
-                'is_active' => $request->input('is_active'),
-                'is_block' => $request->input('is_block'),
-            ]);
+//        Log::info($time);
+        foreach ($time as $value) {
+            // Tìm kiếm bản ghi với timesheet_id và user_id tương ứng
+            $existingRecord = StylistTimeSheet::where('timesheet_id', $value)
+                ->where('user_id', $request->input('user_id'))
+                ->first();
+
+            // Nếu bản ghi đã tồn tại, cập nhật nó
+            if ($existingRecord) {
+                $existingRecord->update([
+                    'user_id' => $request->input('user_id'),
+                    'timesheet_id' => $value,
+                    'is_active' => $request->input('is_active'),
+                    'is_block' => $request->input('is_block'),
+                ]);
+            } else {
+                // Nếu không, tạo mới bản ghi
+                StylistTimeSheet::create([
+                    'user_id' => $request->input('user_id'),
+                    'timesheet_id' => $value,
+                    'is_active' => $request->input('is_active'),
+                    'is_block' => $request->input('is_block'),
+                ]);
+            }
         }
 
         return response()->json(['success','Created successfully']);
@@ -43,19 +61,19 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function show(string $id)
     {
-        $dataStylistTimeSheets = StylistTimeSheet::query()->findOrFail($id);
+        $Stylist = User::query()->where('user_type','STYLIST')->get();
 
-        $dataStylist = Stylist::all();
+        $dataStylist = User::query()->where('id', $id)->with('timeSheet')->get();
 
         $dataTimeSheet = Timesheet::all();
 
-        return response()->json(['dataStylistTimeSheets' => $dataStylistTimeSheets,
+        return response()->json(['stylist' => $Stylist,
                                  'dataStylist'=>$dataStylist,
                                  'dataTimeSheet'=>$dataTimeSheet]);
     }
     public function getvalue()
     {
-        $dataStylist = Stylist::all();
+        $dataStylist = User::query()->where('user_type', 'STYLIST')->get();
         $dataTimeSheet = Timesheet::all();
 
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
@@ -67,12 +85,19 @@ class ApiStylistTimeSheetsController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            $stylistTimeSheets = StylistTimeSheet::query()->where('id',$id)->update([
-                'stylist_id' => $request->input('stylist_id'),
-                'timesheet_id' => json_decode($request->input('timesheet_id')),
-                'is_active' => $request->input('is_active'),
-                'is_block' => $request->input('is_block'),
-            ]);
+            $timeSheet = $request->input('timesheet_id');
+            foreach ($timeSheet as $key => $value){
+                StylistTimeSheet::query()->updateOrCreate([
+                    'user_id' => $request->input('user_id'),
+                    'timesheet_id' => $value,
+                    'is_active' => $request->input('is_active'),
+                    'is_block' => $request->input('is_block'),
+                ]);
+            }
+            StylistTimeSheet::query()
+                ->where('user_id', $id)
+                ->whereNotIn('timesheet_id', array_values($timeSheet))
+                ->delete();
             return response()->json(['success'=>'Cập nhật thành công']);
         }catch (\Exception $e){
 
@@ -83,10 +108,22 @@ class ApiStylistTimeSheetsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroyAll(string $id)
     {
-        $data = StylistTimeSheet::find($id);
-        $data->delete();
+        StylistTimeSheet::query()
+            ->where('user_id', $id)
+            ->delete();
+        return response()->json(['success','Moved successfully']);
+    }
+    public function destroy(Request $request)
+    {
+//        dd($request->all());
+        $userId = $request->user_id;
+        $timesheetId = $request->timesheet_id;
+        StylistTimeSheet::query()
+            ->where('user_id' ,$userId)
+            ->where('timesheet_id' ,$timesheetId)
+            ->delete();
         return response()->json(['success','Moved successfully']);
     }
 }

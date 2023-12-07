@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ViewProviderAdmin::class
     ])->toArray(),
 
     /*
@@ -181,8 +182,13 @@ return [
     |
     */
 
+//    'aliases' => Facade::defaultAliases()->merge([
+//        // 'Example' => App\Facades\Example::class,
+//    ])->toArray(),
+
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Pusher' => Pusher\Pusher::class,
     ])->toArray(),
 
 ];

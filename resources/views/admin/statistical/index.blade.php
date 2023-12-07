@@ -144,14 +144,19 @@
                                 fillOpacity:0.85,
                                 data: [
                                     <?php foreach($chartBooking as $key){ ?>
-                                    {time: '<?=$key->order_date ?>', booked: <?=$key->completed_total ?>, pending: <?=$key->pending_total ?>, canceled: <?=$key->canceled_total ?>},
+                                    {
+                                        'time': <?=$key->order_date ?>,
+                                        'booked': <?=$key->completed_total ?>,
+                                        'pending': <?=$key->pending_total ?>,
+                                        'canceled': <?=$key->canceled_total ?>
+                                    },
                                     <?php } ?>
                                 ],
                                 xkey: 'time',
                                 redraw: true,
                                 ykeys: ['booked', 'pending', 'canceled'],
-                                labels: ['Hoàn thành', 'Chưa hoàn thành', 'Bị hủy'],
-                            });
+                                labels: ['Hoàn thành', 'Chưa hoàn thành', 'Bị hủy']
+                            })
                         </script>
                     </div>
                 </div>

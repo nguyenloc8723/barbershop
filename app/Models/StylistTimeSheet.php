@@ -12,13 +12,13 @@ class StylistTimeSheet extends Model
     protected $table = 'stylist_time_sheet';
     protected $fillable = [
         'id',
-        'stylist_id',
+        'user_id',
         'timesheet_id',
         'is_active',
         'is_block',
     ];
     public function stylist(){
-        return $this->belongsTo(Stylist::class,'stylist_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
     public function TimeSheet(){

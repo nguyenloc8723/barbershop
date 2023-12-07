@@ -10,7 +10,7 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('be/assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('be/assets/images/logovop.png')}}">
 
     @yield('link_css')
     <!-- App css -->
@@ -92,9 +92,10 @@
 <script src="{{asset('be/assets/libs/waypoints/lib/jquery.waypoints.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/jquery.counterup/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('be/assets/libs/feather-icons/feather.min.js')}}"></script>
-
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('script')
+<script src="{{asset('js/jsAdmin/notification.js')}}"></script>
 
 <script src="{{asset('be/assets/js/app.min.js')}}"></script>
 <script>

@@ -56,6 +56,12 @@ $(document).ready(function () {
                         <tr>
                           <td>${item.id}</td>
                           <td>${item.phone_number}</td>
+                          <td>
+                            ${item.roles.length > 0 ?
+                                `<span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">${item.roles[0].name}</span>` :
+                                'Chưa sét vai trò'
+                            }
+                          </td>
                           <td class="text-center">
                               <div class="btn-group dropdown">
                                   <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none "
@@ -210,7 +216,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
 
                 let isRole = `<select class="form-control" name="role" id="role">`;
                 for (let i = 0; i < data.length; i++){
