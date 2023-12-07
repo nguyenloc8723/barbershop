@@ -1,4 +1,5 @@
 var firebaseConfig = {
+
     // apiKey: "AIzaSyB2CqirEwrZeVC6YKIHitaIHCxLHygOlAs",
     // authDomain: "fir-6cd66.firebaseapp.com",
     // databaseURL: "https://fir-6cd66-default-rtdb.firebaseio.com",
