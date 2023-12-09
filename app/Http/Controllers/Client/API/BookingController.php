@@ -42,7 +42,6 @@ class BookingController extends Controller
     {
         $dataStylist = User::query()->with('timeSheet')->where('id',$id)->first();
         $dataTimeSheet = Timesheet::all();
-        Log::info($dataTimeSheet);
         return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
     }
 
@@ -63,7 +62,6 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-//        Log::info($request->user_phone);
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
@@ -83,7 +81,6 @@ class BookingController extends Controller
         }
         //Send mail tới stylist khi có đơn hàng mới
         $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
-//        Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
         Mail::to($stylist->email)->queue(new MailStylist($booking,$service));
         //end send mail stylist
@@ -116,7 +113,6 @@ class BookingController extends Controller
         }
         //Send mail tới stylist khi có đơn hàng mới
         $service = Booking_service::with('service')->where('booking_id', $id)->get();
-        Log::info($service);
         $stylist = User::query()->where('id', $request->stylist_id)->first();
 
         $noti = Notification::query()->where('booking_id', $id)->first();
@@ -162,7 +158,6 @@ class BookingController extends Controller
 
     function setUserPhone(Request $request){
         $user_phone = $request->user_phone;
-        Log::info($user_phone);
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
 
@@ -186,7 +181,6 @@ class BookingController extends Controller
         $APIKey = "44A12426B71D5CDBD86F3EB12DD2F4";
         $SecretKey = "3FDAB16BC3DBB1DD12814080488663";
         $YourPhone = $phoneNumber;
-        Log::info($YourPhone);
         $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
 
         $SendContent = urlencode($Content);
