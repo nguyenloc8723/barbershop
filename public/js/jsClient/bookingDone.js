@@ -46,7 +46,7 @@ $(document).ready(function () {
     $(document).on('click','.jqr-destroy', function () {
         Swal.fire({
             title: 'Bạn chắc chắn muốn hủy lịch?',
-            text: "Bạn sẽ không thể hoàn nguyên điều này!",
+            text: "Bạn sẽ không thể hoàn nguyên điều này! Nếu bạn đã thanh toán, bạn chỉ nhận được 95% số tiền đó.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
