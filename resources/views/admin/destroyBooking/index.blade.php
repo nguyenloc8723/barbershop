@@ -30,6 +30,7 @@
 
 <div class="modal-header bg-white">
     <h4 class="modal-title" id="myCenterModalLabel">Thanh toán hủy lịch</h4>
+    <a href="https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm" class="btn btn-primary">Hoàn tiền</a>
 </div>
 <br>
 
@@ -51,7 +52,7 @@
                             </span>
                         </div>
                         <div class="col-4 d-flex justify-content-end">
-                            @if($item->status == 0)
+                            @if($item->status == 0 )
                             <a href="{{route('confirm', ['id'=> $item->booking_id])}}" class=" me-2"><i class="bi bi-check-circle" style="font-size: 30px;"></i></a>
                             <a href="{{route('restore',['id'=> $item->booking_id])}}" class="ms-2"><i class="bi bi-arrow-repeat " style="font-size: 30px;"></i></a>
                             @endif
