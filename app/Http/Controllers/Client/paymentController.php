@@ -38,8 +38,8 @@ class paymentController extends Controller
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('client.return.vnpay');
-        $vnp_TmnCode = "403UXSRZ"; //Mã website tại VNPAY
-        $vnp_HashSecret = "KRXTPRDDDVBRCWPRRBJXDVSOWGCSAICT"; //Chuỗi bí mật
+        $vnp_TmnCode = "TTVOYSZW"; //Mã website tại VNPAY
+        $vnp_HashSecret = "DHWPAHJHGIHXDUCOQWAOJSDMOBMIIUNW"; //Chuỗi bí mật
         $vnp_TxnRef = $_POST['booking_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo =  $_POST['email'];
         $vnp_OrderType = "Haircut payment";
@@ -104,7 +104,7 @@ class paymentController extends Controller
     public function return(Request $request)
     {
         // dd($request->all());
-        $vnp_HashSecret = "KRXTPRDDDVBRCWPRRBJXDVSOWGCSAICT";
+        $vnp_HashSecret = "DHWPAHJHGIHXDUCOQWAOJSDMOBMIIUNW";
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
         $inputData = $request->all();
 
@@ -177,13 +177,15 @@ class paymentController extends Controller
 
                 return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
+                $booking = Booking::where('id',$inputData['vnp_TxnRef'])->first();
                 Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
-                to_route('client.booking')->with('default', "Thanh toán thất bại");
+                return redirect()->route('client.booking', ['phone' => str_replace('+84', '',$booking->user_phone)])->with('default', "Thanh toán thất bại");
             }
         } else {
+            $booking = Booking::where('id',$inputData['vnp_TxnRef'])->first();
             Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
             echo "Chu ky khong hop le";
-            to_route('client.booking')->with('default', "Thanh toán thất bại");
+            return redirect()->route('client.booking', ['phone' => str_replace('+84', '',$booking->user_phone)])->with('default', "Thanh toán thất bại");
         }
     }
 }

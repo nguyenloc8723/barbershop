@@ -2,9 +2,17 @@
 @section('style')
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-
+<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
+
+@if(@session('default'))
+<script>
+    swal( "Oops" ,  "Thanh toán thất bại!" ,  "error" )
+</script>
+@endif
+
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 
 <div id="user-info" data-user_id="{{(Auth::check()) ? Auth::id(): '0'}}"></div>
@@ -176,7 +184,4 @@
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
-<script>
-
-</script>
 @endsection

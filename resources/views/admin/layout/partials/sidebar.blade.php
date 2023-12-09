@@ -191,6 +191,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('destroy.index')}}">
+                        <i class="bi bi-images"></i>
+                        <span>Thanh toán hủy lịch</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#contacts" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>
                         <span> Thùng rác </span>

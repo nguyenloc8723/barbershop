@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Client\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminMail;
+use App\Mail\destroyBooking;
 use App\Mail\MailStylist;
 use App\Models\Booking;
 use App\Models\Booking_service;
+use App\Models\destroyBooking as ModelsDestroyBooking;
 use App\Models\Service;
 use App\Models\Service_categories;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
 use App\Models\Notification;
+use App\Models\payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -139,6 +143,20 @@ class BookingController extends Controller
         $this->booking::where('id',$id)->delete();
 
         Booking_service::where('booking_id',$id)->delete();
+        $softDelete = $this->booking::onlyTrashed()->where('id',$id)->first();
+        if ($softDelete->pttt == 2) {
+            $payment = payment::where('booking_id', $id)->first();
+            if($payment && $softDelete->pttt == 2){
+                ModelsDestroyBooking::create([
+                    'booking_id' => $softDelete->id,
+                    'user_phone' => $softDelete->user_phone,
+                    'price' => $softDelete->price,
+                    'status' => '0'
+                ]);
+                $payment = payment::where('booking_id', $id)->first(); //lấy thông tin payment
+                    Mail::to('pvviet2k3@gmail.com')->queue(new destroyBooking($softDelete, $payment));
+            }
+        }
         return response()->json(['success'=>'Xóa thành công']);
     }
 
