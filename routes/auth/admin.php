@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Admin\API\ApiStylistController;
+use App\Http\Controllers\Admin\destroyBookingCtrl;
 use App\Http\Controllers\Admin\StylistController;
 use App\Http\Controllers\Admin\ThanhToanCtrl;
 use App\Http\Controllers\TimesheetController;
@@ -83,6 +85,15 @@ Route::middleware(['admin'])->group(function () {
     Route::get('result', [resultsController::class, 'result'])->name('route.result');
     Route::resource('banner', BannerSettingCtl::class);
     Route::delete('checkDelete', [BannerSettingCtl::class, 'checkDelete'])->name('checkDelete');
+    // Route::resource('review', ReviewController::class);
+
+
+    Route::get('destroyBooking',[destroyBookingCtrl::class, 'index'])->name('destroy.index');
+    Route::match(['GET', 'POST'],'confirm-destroyBooking/{id}',[destroyBookingCtrl::class, 'confirm'])->name('confirm');
+    Route::match(['GET', 'POST'],'restore-destroyBooking/{id}',[destroyBookingCtrl::class, 'restore'])->name('restore');
+
+
+
     Route::get('adminReview',[ReviewController::class, 'admin'])->name('review.index');
     Route::match(['GET', 'POST'], 'reply', [ReviewController::class, 'reply'])->name('replyReview');
 
