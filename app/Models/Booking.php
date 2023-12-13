@@ -19,6 +19,7 @@ class Booking extends Model
         'timesheet_id',
         'price',
         'date',
+        'special_requirements',
         'is_consultant',
         'is_accept_take_a_photo',
         'status',

@@ -62,6 +62,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
+        Log::info($request->all());
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
@@ -137,7 +138,7 @@ class BookingController extends Controller
     public function bookingDestroy($id){
         $this->booking::where('id', $id)->update(['status' => 0]);
         $this->booking::where('id',$id)->delete();
-
+        Notification::where('booking_id',$id)->delete();
         Booking_service::where('booking_id',$id)->delete();
         $softDelete = $this->booking::onlyTrashed()->where('id',$id)->first();
         if ($softDelete->pttt == 2) {

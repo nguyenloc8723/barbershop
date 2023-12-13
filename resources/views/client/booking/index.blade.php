@@ -149,6 +149,12 @@
                                 </div>
                             </div>
                             <div class="flex space-between is_height">
+                                <p class="fw-bold fs-5">Yêu cầu đặc biệt</p>
+                            </div>
+                            <div class="note__input">
+                                <textarea placeholder="VD: Tư vấn kiểu tóc..." class="ant-input" style="height: 35px;font-weight: 600;border-color: rgb(145, 118, 90);border-top: none;border-left: none;border-right: none;border-radius: 0;margin-bottom: 0;padding: 5px;"></textarea>
+                            </div>
+                            <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
                                     <input type="checkbox" checked>

@@ -8,9 +8,9 @@ $(document).ready(function () {
     const updateRequest = '/api/updateRequest/booking';
     const urlParams = new URLSearchParams(window.location.search);
     const bookingId = urlParams.get('booking_id');
-    // 
-    
-    // 
+    //
+
+    //
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
@@ -112,6 +112,7 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 let dataStylist = data.dataStylist;
                 let dataTimeSheet = data.dataTimeSheet;
                 $('.jqr-timesheet').html('');
@@ -344,6 +345,12 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                                 <div class="flex space-between is_height">
+                                <p class="fw-bold fs-5">Yêu cầu đặc biệt</p>
+                            </div>
+                            <div class="note__input">
+                                <textarea placeholder="VD: Tư vấn kiểu tóc..." name="jqr-requirements" class="ant-input" style="height: 35px;font-weight: 600;border-color: rgb(145, 118, 90);border-top: none;border-left: none;border-right: none;border-radius: 0;margin-bottom: 0;padding: 5px;"></textarea>
+                            </div>
+                                <div class="flex space-between is_height">
                                     <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                     <label class="switch">
                                         <input type="checkbox" checked>
@@ -574,7 +581,7 @@ $(document).ready(function () {
             }else{
                 pushRequest();
             }
-            
+
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -624,9 +631,11 @@ $(document).ready(function () {
     }
 
 
+
     if (bookingId) {
         function updateBooking(bookingId) {
-           console.log(arrayIDService);
+           // console.log(arrayIDService);
+            let requirements = $('textarea[name="jqr-requirements"]').val();
             let status = 1;
             let pttt;
             let date = $('input[name="date"]').val();
@@ -634,7 +643,7 @@ $(document).ready(function () {
                 if ($(this).is(':checked')) {
                     pttt = $(this).val();
                     console.log('Selected value: ' + pttt);
-                    
+
                 }
             });
             let arrayBooking = {
@@ -646,6 +655,7 @@ $(document).ready(function () {
                 is_consultant: is_consultant,
                 is_accept_take_a_photo: is_accept_take_a_photo,
                 date: date,
+                special_requirements: requirements,
                 arrayIDService: arrayIDService,
                 status: status,
                 pttt: pttt
@@ -674,9 +684,10 @@ $(document).ready(function () {
                 }
             });
         }
-        
+
     } else {
         function pushRequest() {
+            let requirements = $('textarea[name="jqr-requirements"]').val();
             let status = 1;
             let pttt;
             let date = $('input[name="date"]').val();
@@ -686,6 +697,7 @@ $(document).ready(function () {
                     console.log('Selected value: ' + pttt);
                 }
             });
+
             let arrayBooking = {
                 user_phone: user_phone,
                 user_id: user_info,
@@ -695,6 +707,7 @@ $(document).ready(function () {
                 is_consultant: is_consultant,
                 is_accept_take_a_photo: is_accept_take_a_photo,
                 date: date,
+                special_requirements: requirements,
                 arrayIDService: arrayIDService,
                 status: status,
                 pttt: pttt
@@ -718,7 +731,7 @@ $(document).ready(function () {
                     }
                     // phone = user_phone.replace("+84", "");
                     // window.location.href = 'index-payment/' + phone;
-    
+
                 },
                 error: function (error) {
                     console.error(error);
@@ -726,8 +739,8 @@ $(document).ready(function () {
             });
         }
     }
-    
-   
+
+
 
 });
 
