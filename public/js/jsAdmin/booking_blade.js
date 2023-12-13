@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                             </div>
 
-                            <h4>Yêu cầu đặc biệt:</h4>
+                            <h4>Yêu cầu đặc biệt: ${data.special_requirements}</h4>
 
 
                             <h4 style="color: ${data.is_consultant == 1 ? "green" : "red"};">
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${item.price}</td>
                         <td>${item.is_active === 1 ? "Hoạt động" : "Không hoạt động"}</td>
                         <td>
-                            <button class="js-btn-delete" data-booking-id="${data.id}" data-service-id="${item.id}" >
+                            <button class="js-btn-delete btn btn-danger" ${data.status === 0 || data.status === 3 ? 'disabled' : ''} data-booking-id="${data.id}" data-service-id="${item.id}" >
                                 Xóa
                             </button>
                         </td>

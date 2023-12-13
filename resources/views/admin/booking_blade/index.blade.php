@@ -43,7 +43,7 @@
                                         <h5>Thời gian : {{ $item->timesheet->hour }}h - {{ $item->timesheet->minutes }}
                                             ph</h5>
                                         <h5>Ngày : {{ $item->date }}</h5>
-                                        <h5>Yêu cầu đặc biệt: {{ $item->special_requirement }}</h5>
+                                        <h5>Yêu cầu đặc biệt: {{ $item->special_requirements }}</h5>
                                         <h5 style="color: {{ $item->is_consultant == 1 ? 'green' : 'red' }};">
                                             Yêu cầu tư vấn: {{ $item->is_consultant == 1 ? 'Có' : 'Không' }}
                                         </h5>
