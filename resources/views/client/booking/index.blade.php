@@ -2,9 +2,17 @@
 @section('style')
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-
+<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
+
+@if(@session('default'))
+<script>
+    swal( "Oops" ,  "Thanh toán thất bại!" ,  "error" )
+</script>
+@endif
+
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
 
 <div id="user-info" data-user_id="{{(Auth::check()) ? Auth::id(): '0'}}"></div>
@@ -141,6 +149,12 @@
                                 </div>
                             </div>
                             <div class="flex space-between is_height">
+                                <p class="fw-bold fs-5">Yêu cầu đặc biệt</p>
+                            </div>
+                            <div class="note__input">
+                                <textarea placeholder="VD: Tư vấn kiểu tóc..." class="ant-input" style="font-family: inherit; height: 35px;font-weight: 300;border-color: rgb(145, 118, 90);border-top: none;border-left: none;border-right: none;border-radius: 0;margin-bottom: 0;padding: 5px;"></textarea>
+                            </div>
+                            <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
                                 <label class="switch ">
                                     <input type="checkbox" checked>
@@ -176,7 +190,4 @@
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
-<script>
-
-</script>
 @endsection
