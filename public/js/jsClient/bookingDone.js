@@ -42,6 +42,13 @@ $(document).ready(function () {
     $(document).on('click','.jqr-change', function update() {
         window.location.href = '/user/booking?phone='+ phone_booking + '&&booking_id=' + booking_id;
     });
+    $(document).on('click','.jqr-change-payment', function () {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Bạn đã thanh toán và không thể cập nhật lại lịch, vui lòng đến quầy để cập nhật!",
+          });
+    });
 
     $(document).on('click','.jqr-destroy', function () {
         Swal.fire({
