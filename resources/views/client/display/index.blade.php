@@ -1,6 +1,7 @@
 @extends('client.layouts.layout')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 @endsection
 @section('content')
     <style>
@@ -92,6 +93,9 @@
 
     @if (Auth::check())
         <div id="user-info" data-user-phone="{{Auth::user()->phone_number}}">
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
+        </div>
+        <div id="user-id" data-iduser-phone="{{Auth::user()->id}}">
             <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
     @endif
