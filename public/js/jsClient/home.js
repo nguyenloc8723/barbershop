@@ -50,12 +50,14 @@ $(document).ready(function () {
 // ==================================
 $(document).ready(function () {
     var user_phone = $('#user-info').data('user-phone');
+    var id = $('#user-id').data('iduser-phone');
+    console.log(id);
     let phone_booking;
 
 
     function notify() {
         $.ajax({
-            url: '/api/booking/notification/' + user_phone,
+            url: '/api/booking/notification/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (res) {
@@ -76,6 +78,10 @@ $(document).ready(function () {
                                                     <div class="body-content">
                                                         <div class="content-item mb-3">
                                                             <div>Thông tin lịch hẹn sắp tới:</div>
+                                                        </div>
+                                                        <div class="content-item">
+                                                            <i class="bi bi-telephone"></i>
+                                                            <span>Số điện thoại đặt lịch: ${(value.user_phone).replace("+84","")}</span>
                                                         </div>
                                                         <div class="content-item">
                                                             <i class="fa fa-calendar" aria-hidden="true"></i>

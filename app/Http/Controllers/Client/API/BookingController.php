@@ -162,9 +162,8 @@ class BookingController extends Controller
         return response()->json(['user_phone'=>$user_phone])->view('client.booking.index');
     }
 
-    public function bookingNotification($user_phone){
-        $bookings = Booking::query()->with('timeSheet','stylist')->where('user_phone', $user_phone)
-
+    public function bookingNotification($id){
+        $bookings = Booking::query()->with('timeSheet','stylist')->where('user_id', $id)
                     ->where('status', 1)
                     ->whereDoesntHave('results')
                     ->orderBy('date', 'asc')
