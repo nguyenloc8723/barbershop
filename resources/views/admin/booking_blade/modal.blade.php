@@ -50,6 +50,12 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="flex space-between is_height">
+                        <p class="fw-bold fs-5">Yêu cầu đặc biệt</p>
+                    </div>
+                    <div class="note__input">
+                        <textarea placeholder="VD: Tư vấn kiểu tóc..." name="jqr-requirements" class="ant-input" style="height: 35px;font-weight: 600;border-color: rgb(145, 118, 90);border-top: none;border-left: none;border-right: none;border-radius: 0;margin-bottom: 0;padding: 5px;">{{$data->special_requirements}}</textarea>
+                    </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Yêu cầu tư vấn</label>
                         <select class="form-select" id=""name="is_consultant">
@@ -109,11 +115,7 @@
 
                         </div>
                     </div>
-                    <input type="hidden" name="actionMethod">
-                    <div class="selected-images">
 
-
-                    </div>
 
 
                 <div class="w-100 text-center">
