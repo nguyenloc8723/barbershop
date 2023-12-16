@@ -19,7 +19,7 @@
                         <div class="">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Key</label>
-                                <input type="date" class="form-control" name="day" />
+                                <input type="date" class="form-control" name="day" required />
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Is_active</label>
