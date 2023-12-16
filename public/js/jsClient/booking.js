@@ -8,9 +8,10 @@ $(document).ready(function () {
     const updateRequest = '/api/updateRequest/booking';
     const urlParams = new URLSearchParams(window.location.search);
     const bookingId = urlParams.get('booking_id');
-    //
+
 
     //
+
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
@@ -31,6 +32,14 @@ $(document).ready(function () {
     $('.jqr-textBase').css({
 
     });
+    // Lấy ngày hiện tại
+    function currentDate(){
+        var current_Date = new Date().toISOString().split('T')[0];
+        // Đặt giá trị mặc định cho input type date (ngày cắt)
+        $('#jqr-selectedDate').val(current_Date);
+    }
+    currentDate()
+    let selectedDate = $('#jqr-selectedDate').val();
     function formatCurrency(amount) {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
@@ -65,14 +74,13 @@ $(document).ready(function () {
         })
     }
     loadStylist();
-
     function messageSty(id) {
         $.ajax({
             url: stylistDetail + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('.jqr-messageStylist').html(`
                    <div class="stylist-selected">
                       <div class="stylist__top">
@@ -106,15 +114,22 @@ $(document).ready(function () {
             }
         });
     }
+
+
+    // console.log(selectedDate);
+
     function timeSheet(id) {
         $.ajax({
             url: showTimeSheet + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 let dataStylist = data.dataStylist;
                 let dataTimeSheet = data.dataTimeSheet;
+                let work_day = data.workDay;
+                let stylist_time_sheet = data.stylist_time_sheet;
+                // console.log(stylist_time_sheet);
                 $('.jqr-timesheet').html('');
                 let count = 0;
 
@@ -131,7 +146,10 @@ $(document).ready(function () {
                         if (index < dataTimeSheet.length) {
                             let unavailable = "unavailable";
                             for (let k = 0; k < dataStylist.time_sheet.length; k++) {
-                                if (dataStylist.time_sheet[k].id === dataTimeSheet[index].id) {
+                                // console.log(k +"-----"+ dataStylist.work_day[k]);
+                                if (dataStylist.time_sheet[k].id === dataTimeSheet[index].id &&
+                                    dataStylist.work_day[k].day === selectedDate &&
+                                    stylist_time_sheet[k].is_block === 1) {
                                     unavailable = "";
                                     break;
                                 }
@@ -303,7 +321,7 @@ $(document).ready(function () {
                                         <div class="relative" id="datebookId">
                                             <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                                <input type="date" class="form-control" name="date">
+                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate">
                                             </div>
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
@@ -387,6 +405,7 @@ $(document).ready(function () {
                 });
                 loadStylist();
                 randomStylist();
+                currentDate();
             },
             error: function (error) {
                 console.error(error);
@@ -542,6 +561,13 @@ $(document).ready(function () {
         messageSty(stylist);
         timeSheet(stylist);
     });
+
+    $(document).on('change','#jqr-selectedDate',function () {
+        // Lấy giá trị ngày được chọn
+        selectedDate = $(this).val();
+        console.log(selectedDate);
+        timeSheet(stylist);
+    })
     $(document).on('click', '.jqr-randomStylist', function () {
         $('.jqr-messageStylist').css({
             'display': 'block',
@@ -617,6 +643,7 @@ $(document).ready(function () {
             url: '/api/booking/randomStylist',
             method: 'GET',
             success: function (data) {
+
                 stylist = data.id;
                 messageSty(data.id);
                 $('.jqr-messageStylist').css({

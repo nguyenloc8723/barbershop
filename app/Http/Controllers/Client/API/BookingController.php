@@ -12,10 +12,12 @@ use App\Models\destroyBooking as ModelsDestroyBooking;
 use App\Models\Service;
 use App\Models\Service_categories;
 use App\Models\Stylist;
+use App\Models\StylistTimeSheet;
 use App\Models\Timesheet;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\payment;
+use App\Models\WorkDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -40,9 +42,14 @@ class BookingController extends Controller
     }
     public function timeSheetDetail(string $id)
     {
-        $dataStylist = User::query()->with('timeSheet')->where('id', $id)->first();
+        $dataStylist = User::query()->with('timeSheet','workDay')->where('id', $id)->first();
         $dataTimeSheet = Timesheet::all();
-        return response()->json(['dataStylist' => $dataStylist, 'dataTimeSheet' => $dataTimeSheet]);
+        $workDay = WorkDay::all();
+        $stylist_time_sheet = StylistTimeSheet::query()->where('user_id',$id)->get();
+        return response()->json(['dataStylist' => $dataStylist,
+                                'dataTimeSheet' => $dataTimeSheet,
+                                 'workDay' => $workDay,
+                                 'stylist_time_sheet' => $stylist_time_sheet]);
     }
 
     public function randomStylist()
@@ -63,7 +70,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        Log::info($request->all());
+//        Log::info($request->all());
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
