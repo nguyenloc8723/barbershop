@@ -103,9 +103,16 @@
                             </div>
                         </div>
                         <div class="divide-y divide-gray-300 -my-4">
-                            <button class="block flex item-center w-full py-4 jqr-change">
-                                <div class="flex text-sm font-normal color-111111">Đổi lịch</div>
-                            </button>
+                                @if($payment)
+                                <button class="block flex item-center w-full py-4 jqr-change-payment">
+                                    <div class="flex text-sm font-normal color-111111">Đổi lịch</div>
+                                </button>   
+                                @else
+                                <button class="block flex item-center w-full py-4 jqr-change">
+                                    <div class="flex text-sm font-normal color-111111">Đổi lịch</div>
+                                </button>
+                                @endif
+                            
                             <button class="block flex item-center w-full py-4 jqr-destroy">
                                 <div class="flex text-sm font-normal color-111111">Hủy lịch</div>
                             </button>
