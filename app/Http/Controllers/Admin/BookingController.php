@@ -114,9 +114,11 @@ class BookingController extends AdminBaseController
         $data->stylist_id = $request->input('stylist_id');
         $data->date = $request->input('date');
         $data->timesheet_id = $request->input('timeSheet_id');
+        $data->special_requirements = $request->input('jqr-requirements');
         $data->is_consultant = $request->input('is_consultant');
         $data->is_accept_take_a_photo = $request->input('is_accept_take_a_photo');
 //        dd($data);
+        Log:info($data);
         $this->fileUpload($request,$id);
         $data->save();
 
