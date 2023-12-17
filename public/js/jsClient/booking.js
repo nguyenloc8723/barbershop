@@ -8,10 +8,13 @@ $(document).ready(function () {
     const updateRequest = '/api/updateRequest/booking';
     const urlParams = new URLSearchParams(window.location.search);
     const bookingId = urlParams.get('booking_id');
-
+    const urlDate = '/api/date/booking';
+    const urlWorkDayTime = '/api/workDay/booking';
 
     //
-
+    let clearTime;
+    let validateTimeSheet = true;
+    let date_Id = 0;
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
@@ -114,11 +117,13 @@ $(document).ready(function () {
             }
         });
     }
-
-
     // console.log(selectedDate);
-
     function timeSheet(id) {
+        if (!validateTimeSheet) {
+            return;
+        }
+        let timeOut = id;
+        console.log(timeOut);
         $.ajax({
             url: showTimeSheet + '/' + id,
             method: 'GET',
@@ -129,7 +134,6 @@ $(document).ready(function () {
                 let dataTimeSheet = data.dataTimeSheet;
                 let work_day = data.workDay;
                 let stylist_time_sheet = data.stylist_time_sheet;
-                // console.log(stylist_time_sheet);
                 $('.jqr-timesheet').html('');
                 let count = 0;
 
@@ -146,7 +150,6 @@ $(document).ready(function () {
                         if (index < dataTimeSheet.length) {
                             let unavailable = "unavailable";
                             for (let k = 0; k < dataStylist.time_sheet.length; k++) {
-                                // console.log(k +"-----"+ dataStylist.work_day[k]);
                                 if (dataStylist.time_sheet[k].id === dataTimeSheet[index].id &&
                                     dataStylist.work_day[k].day === selectedDate &&
                                     stylist_time_sheet[k].is_block === 1) {
@@ -165,9 +168,15 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
+        clearTime = setTimeout(() => timeSheetCallback(stylist), 10000);
     }
 
-
+    function timeSheetCallback(stylist) {
+        // Kiểm tra xem shouldRunTimeSheet có là true hay không trước khi gọi lại timeSheet
+        if (validateTimeSheet) {
+            timeSheet(stylist);
+        }
+    }
 
     $(document).on('click', '.jqr-showAllService', function () {
         allService();
@@ -547,6 +556,7 @@ $(document).ready(function () {
         }
     })
     $(document).on('click', '.jqr-detail', function () {
+        validateTimeSheet = true;
         stylist = $(this).data('id');
         $('.jqr-messageStylist').css({
             'display': 'block',
@@ -565,9 +575,10 @@ $(document).ready(function () {
     $(document).on('change','#jqr-selectedDate',function () {
         // Lấy giá trị ngày được chọn
         selectedDate = $(this).val();
-        console.log(selectedDate);
         timeSheet(stylist);
-    })
+        dateID();
+    });
+
     $(document).on('click', '.jqr-randomStylist', function () {
         $('.jqr-messageStylist').css({
             'display': 'block',
@@ -575,6 +586,9 @@ $(document).ready(function () {
         randomStylist();
     });
     $(document).on('click', '.box_time_item', function () {
+        clearTimeout(clearTime);
+        clearTime = null;
+        validateTimeSheet = false;
         time = $(this).data('id');
         $('.box_time_item').not('.unavailable').css({
             'background': '#fff',
@@ -606,6 +620,7 @@ $(document).ready(function () {
                 updateBooking(bookingId)
             }else{
                 pushRequest();
+                blockTimeSheet();
             }
 
         }
@@ -638,6 +653,44 @@ $(document).ready(function () {
         }
     });
 
+    function dateID(){
+        $.ajax({
+            url: urlDate,
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                response.map(item => {
+                    if (item.day === selectedDate){
+                        date_Id = item.id;
+                    }
+                })
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+    function blockTimeSheet() {
+        let arrayTimeSheet = {
+            user_id: stylist,
+            timesheet_id: time,
+            work_day_id: date_Id,
+        };
+        $.ajax({
+            url: urlWorkDayTime,
+            method: 'POST',
+            data: arrayTimeSheet,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
     function randomStylist() {
         $.ajax({
             url: '/api/booking/randomStylist',
@@ -650,6 +703,7 @@ $(document).ready(function () {
                     'display': 'block',
                 });
                 timeSheet(data.id);
+                dateID();
             },
             error: function (error) {
                 console.error(error);

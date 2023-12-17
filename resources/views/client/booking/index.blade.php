@@ -105,8 +105,11 @@
                                     <div class="relative" id="datebookId">
                                         <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                            <input type="date" class="form-control" name="date" id="jqr-selectedDate">
+                                            <input type="date" class="form-control" name="date" id="jqr-selectedDate" min="<?php echo date('Y-m-d'); ?>">
                                         </div>
+
+
+
                                         <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                     </div>
                                 </div>
