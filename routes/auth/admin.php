@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\API\ApiStylistController;
 use App\Http\Controllers\Admin\destroyBookingCtrl;
 use App\Http\Controllers\Admin\StylistController;
 use App\Http\Controllers\Admin\ThanhToanCtrl;
+use App\Http\Controllers\Admin\wordDaysController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BannerController;
@@ -92,7 +93,10 @@ Route::middleware(['admin'])->group(function () {
     Route::match(['GET', 'POST'],'confirm-destroyBooking/{id}',[destroyBookingCtrl::class, 'confirm'])->name('confirm');
     Route::match(['GET', 'POST'],'restore-destroyBooking/{id}',[destroyBookingCtrl::class, 'restore'])->name('restore');
 
-
+    Route::resource('workDay', wordDaysController::class);
+    Route::match(['GET', 'POST'], 'destroy-workday/{id}',[wordDaysController::class, 'delete'])->name('workday.delete');
+    Route::match(['GET', 'POST'], 'edit-workday/{id}',[wordDaysController::class, 'edit'])->name('workday.edit');
+    Route::match(['GET', 'POST'], 'update-workday/{id}',[wordDaysController::class, 'update'])->name('workday.update');
 
     Route::get('adminReview',[ReviewController::class, 'admin'])->name('review.index');
     Route::match(['GET', 'POST'], 'reply', [ReviewController::class, 'reply'])->name('replyReview');
