@@ -1,6 +1,9 @@
 @extends('admin.layout.master')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/service.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+    <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
+
 @endsection
 @section('content')
     <div class="content">
@@ -35,19 +38,23 @@
                                 <div class="flex-grow-1">
                                     <h4 class="media-heading mt-0">{{$data->user_phone}}</h4>
 
-                                    @if($data->status == 1)
+                                    @if ($data->status === 0)
+                                        <span class="badge bg-secondary">Đã hủy
+                                            </span>
+                                    @endif
+                                    @if($data->status === 1)
                                         <span
-                                            class="badge bg-danger" >Chờ xác nhận
+                                            class="badge bg-danger">Chờ xác nhận
                                         </span>
                                     @endif
-                                    @if($data->status == 2)
+                                    @if($data->status === 2)
                                         <span
-                                            class="badge bg-warning" >Đang chờ cắt
+                                            class="badge bg-warning">Đang chờ cắt
                                         </span>
                                     @endif
-                                    @if($data->status == 3)
+                                    @if($data->status === 3)
                                         <span
-                                            class="badge bg-success" >Đã cắt
+                                            class="badge bg-success">Đã cắt
                                         </span>
                                     @endif
                                 </div>
@@ -67,40 +74,44 @@
                                 </div>
                             </div>
 
-                            <h4>Yêu cầu đặc biệt: {{$data->special_requirement}}</h4>
+                            <h4>Yêu cầu đặc biệt: {{$data->special_requirements}}</h4>
 
 
-                            <h4 style="color: {{$data->is_consultant == 1 ? "green" : "red" }};">
-                                Yêu cầu tư vấn: {{$data->is_consultant == 1 ? "Có" : "Không" }}
+                            <h4 style="color: {{$data->is_consultant === 1 ? "green" : "red" }};">
+                                Yêu cầu tư vấn: {{$data->is_consultant === 1 ? "Có" : "Không" }}
                             </h4>
 
-                            <h4 style="color: {{$data->is_accept_take_a_photo == 1 ? "green" : "red" }};">
+                            <h4 style="color: {{$data->is_accept_take_a_photo === 1 ? "green" : "red" }};">
                                 Chụp ảnh sau khi cắt để làm mẫu cho lần
-                                sau: {{$data->is_accept_take_a_photo == 1 ? "Có" : "Không" }}
+                                sau: {{$data->is_accept_take_a_photo === 1 ? "Có" : "Không" }}
                             </h4>
-                            <h5 style="color: {{$data->pttt == 2 ? "green" : "red" }};">
-                                Trạng thái thanh toán
-                                sau: {{$data->pttt == 2 ? "Đã thanh toán" : "Thanh toán tại quầy" }}
+                            <h5 style="color: {{$data->pttt === 2 ? "green" : "red" }};">
+                                Trạng thái thanh toán : {{$data->pttt === 2 ? "Đã thanh toán" : "Thanh toán tại quầy" }}
                             </h5>
 
                             <h4>
-                                Trạng thái: @if($data->status == 1)
+
+                                Trạng thái:
+                                @if ($data->status === 0)
+                                    <span class="badge bg-secondary">Đã hủy
+                                            </span>
+                                @endif
+                                @if($data->status === 1)
                                     <span
-                                        class="badge bg-danger" >Chờ xác nhận
+                                        class="badge bg-danger">Chờ xác nhận
                                         </span>
                                 @endif
-                                @if($data->status == 2)
+                                @if($data->status === 2)
                                     <span
-                                        class="badge bg-warning" >Đang chờ cắt
+                                        class="badge bg-warning">Đang chờ cắt
                                         </span>
                                 @endif
-                                @if($data->status == 3)
+                                @if($data->status === 3)
                                     <span
-                                        class="badge bg-success" >Đã cắt
+                                        class="badge bg-success">Đã cắt
                                         </span>
                                 @endif
                             </h4>
-
 
 
                             <table
@@ -110,46 +121,66 @@
                                     <th>Tên dịch vụ</th>
                                     <th>Giá dịch vụ</th>
                                     <th>Trạng thái</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
+
                                 <tbody id="jquery-list">
                                 @foreach($data->service as $item)
-                                    <tr>
+                                    <tr id="service_{{ $item->id }}">
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->price}}</td>
-                                        <td>{{$item->is_active == 1 ? "Hoạt động" : "Không hoạt động"}}</td>
+                                        <td>{{$item->is_active === 1 ? "Hoạt động" : "Không hoạt động"}}</td>
+                                        <td>
+                                            <button
+                                                class="js-btn-delete btn btn-danger @if($data->status === 0 || $data->status === 3 ) disabled @endif "
+                                                data-booking-id="{{ $data->id }}"
+                                                data-service-id="{{ $item->id }}"
+                                            >
+                                                Xóa
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
+                                <tr id="tong-tien-row">
+                                    <td colspan="1" style="text-align: center; font-weight: bold;">Tổng tiền</td>
+                                    <td colspan="3" id="tong-tien-cell" style="font-weight: bold;">0</td>
+                                </tr>
                                 </tbody>
                             </table>
                             @foreach($data->results as $item)
                                 {{--                                    <div class="col">--}}
-                                <img src="/storage/{{$item->image}}" style="border: 1px solid #000; max-width: 150px; margin: 10px;"
+                                <img src="/storage/{{$item->image}}"
+                                     style="border: 1px solid #000; max-width: 150px; margin: 10px;"
                                      alt="img" srcset="">
                                 {{--                                    </div>--}}
                             @endforeach
 
-                            <button type="button" class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit">Cập nhật</button>
-                            @if($data->status == 2)
-                            <form class="d-flex justify-content-between flex-wrap"
-                                  method="post"
-                                  action="{{route('route.booking_blade.post', $data->id)}}"
-                                  >
-                                @csrf
-                                @method('POST')
-                                <div class="attached-files mt-1 col-12">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="text-end">
-                                                <button type="submit"
-                                                        class="btn btn-success waves-effect waves-light me-1">
-                                                    Hoàn thành cắt
-                                                </button>
+                            <button type="button"
+                                    class="btn btn-warning position-absolute bottom-0 end-50 rounded jqr-btn-edit @if($data->status === 0 || $data->status === 3) disabled @endif">
+                                Cập
+                                nhật
+                            </button>
+                            @if($data->status === 2)
+                                <form class="d-flex justify-content-between flex-wrap"
+                                      method="post"
+                                      action="{{route('route.booking_blade.post', $data->id)}}"
+                                >
+                                    @csrf
+                                    @method('POST')
+                                    <div class="attached-files mt-1 col-12">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="text-end">
+                                                    <button type="submit"
+                                                            class="btn btn-success waves-effect waves-light me-1">
+                                                        Hoàn thành cắt
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
                             @endif
                         </div>
 

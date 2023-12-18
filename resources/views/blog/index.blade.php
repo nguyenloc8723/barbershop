@@ -46,12 +46,12 @@
                           <th>Title</th>
                           <th>image</th>
                           <th>Description</th>
-                            
+
                             <th>action</th>
                         </tr>
                     </thead>
                     <tbody id="jquery-list">
-                      
+
                     @foreach ($blogs as $blog)
                     <tr>
                     <td>{{ $blog->id }}</td>
@@ -66,7 +66,7 @@
                 <button type="submit" class="btn btn-danger">Xoá blog</button>
                 </form>
         </td>
-                    
+
                 </tr>
                 @endforeach
                     </tbody>

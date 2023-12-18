@@ -1,6 +1,7 @@
 @extends('client.layouts.layout')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 @endsection
 @section('content')
     <style>
@@ -94,6 +95,9 @@
         <div id="user-info" data-user-phone="{{Auth::user()->phone_number}}">
             <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
         </div>
+        <div id="user-id" data-iduser-phone="{{Auth::user()->id}}">
+            <!-- Đây là nơi bạn muốn hiển thị thông tin người dùng -->
+        </div>
     @endif
 
     <section class="about section-padding" data-scroll-index="1">
@@ -146,7 +150,7 @@
                 @foreach($data->slice(0, 3) as $item)
                     <div class="col-md-4">
                         <div class="item">
-                            <a href="services-page.html">
+                            <a href="{{route('services-page', $item)}}">
                                 @if ($item->id == 1)
                                     <span class="icon icon-icon-1-1"></span>
                                 @elseif ($item->id == 2)
@@ -498,9 +502,9 @@
                                     <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
                                         vesatien arcuman ontese auctor ac aleuam aretra.</p>
                                     <div class="social">
-                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
-                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
-                                            <a href="#"><i class="ti-instagram"></i></a></div>
+                                        <div class="full-width"><a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-linkedin"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i
+                                                    class="ti-facebook"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
+                                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i></a></div>
                                     </div>
                                     <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
                                 </div>
@@ -617,119 +621,6 @@
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-    <!-- Appointment Form -->
-    <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/20.jpg"
-             data-overlay-dark="6">
-            <div class="container">
-                <div class="row">
-                    <!-- Appointment call -->
-                    <div class="col-md-5 mb-30 mt-60">
-                        <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i
-                                class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất tại Hà Nội</h5>
-                        <div class="reservations mb-10">
-                            <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
-                            <div class="text">
-                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886
-                                    742</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Appointment form -->
-                    <div class="col-md-5 offset-md-2">
-                        <div class="booking-box">
-                            <div class="head-box text-center">
-                                <h4>Đặt một cuộc hẹn</h4>
-                            </div>
-                            <div class="booking-inner clearfix">
-                                <form class="form1 clearfix">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Tên</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Tên"
-                                                           required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Số điện thoại</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input"
-                                                           placeholder="Số điện thoại" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Ngày</label>
-                                                <div class="input1_inner">
-                                                    <input type="text" class="form-control input datepicker"
-                                                           placeholder="Ngày" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Thời gian</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Thời gian</option>
-                                                        <option value="1">10:00 am</option>
-                                                        <option value="2">11:00 am</option>
-                                                        <option value="3">12:00 pm</option>
-                                                        <option value="4">14:00 pm</option>
-                                                        <option value="5">16:00 pm</option>
-                                                        <option value="6">18:00 pm</option>
-                                                        <option value="7">20:00 pm</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Dịch vụ</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Dịch vụ</option>
-                                                        <option value="0">Tạo kiểu</option>
-                                                        <option value="1">Chăm sóc mặt</option>
-                                                        <option value="2">Cạo râu</option>
-                                                        <option value="3">Cắt tỉa râu</option>
-                                                        <option value="4">Gội đầu</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Chọn Barber</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Chọn Barber</option>
-                                                        <option value="0">Philip</option>
-                                                        <option value="1">Stephen</option>
-                                                        <option value="2">Dennis</option>
-                                                        <option value="3">Helen</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- Clients -->

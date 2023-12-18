@@ -42,11 +42,18 @@ $(document).ready(function () {
     $(document).on('click','.jqr-change', function update() {
         window.location.href = '/user/booking?phone='+ phone_booking + '&&booking_id=' + booking_id;
     });
+    $(document).on('click','.jqr-change-payment', function () {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Bạn đã thanh toán và không thể cập nhật lại lịch, vui lòng đến quầy để cập nhật!",
+          });
+    });
 
     $(document).on('click','.jqr-destroy', function () {
         Swal.fire({
             title: 'Bạn chắc chắn muốn hủy lịch?',
-            text: "Bạn sẽ không thể hoàn nguyên điều này!",
+            text: "Bạn sẽ không thể hoàn nguyên điều này! Nếu bạn đã thanh toán, bạn chỉ nhận được 95% số tiền đó.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

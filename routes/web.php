@@ -55,21 +55,8 @@ Route::post('/confirm-booking/{id}', [NotificationController::class,'confirmBook
 Route::get('/bill', function () {
     return view('client.email.bill');
 });
-Route::get('/check-quan-tri', function () {
-    if (Auth::check() && isset(Auth::user()->user_type) == 'STYLIST' || isset(Auth::user()->user_type) == 'ADMIN') {
-        return redirect()->route('route.booking_blade');
-    } else {
-        return redirect('/');
-    }
-})->name('route.check');
-
 // client route
-Route::get('/', function () {
-    return view('client.display.index');
-})->name('index');
-Route::get('404', function () {
-    return view('client.display.404');
-})->name('404');
+
 Route::get('/' , [ClientIndexController::class, 'index'])->name('index');
 Route::get('about' , [ClientIndexController::class, 'about'])->name('about');
 Route::get('portfolio' , [ClientIndexController::class, 'portfolio'])->name('portfolio');
