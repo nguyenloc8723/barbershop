@@ -169,7 +169,7 @@
                                 <a href="{{route('stylist.index')}}">Danh sách nhân viên</a>
                             </li>
                             <li>
-                                <a href="{{route('member.index')}}">Lịch làm việc</a>
+                                <a href="{{route('workDay.index')}}">Ngày làm việc</a>
                             </li>
                         </ul>
                     </div>

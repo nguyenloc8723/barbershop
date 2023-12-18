@@ -12,10 +12,12 @@ use App\Models\destroyBooking as ModelsDestroyBooking;
 use App\Models\Service;
 use App\Models\Service_categories;
 use App\Models\Stylist;
+use App\Models\StylistTimeSheet;
 use App\Models\Timesheet;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\payment;
+use App\Models\WorkDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -40,9 +42,14 @@ class BookingController extends Controller
     }
     public function timeSheetDetail(string $id)
     {
-        $dataStylist = User::query()->with('timeSheet')->where('id', $id)->first();
+        $dataStylist = User::query()->with('timeSheet','workDay')->where('id', $id)->first();
         $dataTimeSheet = Timesheet::all();
-        return response()->json(['dataStylist' => $dataStylist, 'dataTimeSheet' => $dataTimeSheet]);
+        $workDay = WorkDay::all();
+        $stylist_time_sheet = StylistTimeSheet::query()->where('user_id',$id)->get();
+        return response()->json(['dataStylist' => $dataStylist,
+                                'dataTimeSheet' => $dataTimeSheet,
+                                 'workDay' => $workDay,
+                                 'stylist_time_sheet' => $stylist_time_sheet]);
     }
 
     public function randomStylist()
@@ -50,8 +57,6 @@ class BookingController extends Controller
         $stylist = User::inRandomOrder()->where('user_type', 'STYLIST')->first();
         return response()->json($stylist);
     }
-
-
 
     // hàm loadService dùng khi chọn dịch vụ cắt
     public function loadService()
@@ -63,7 +68,7 @@ class BookingController extends Controller
 
     public function pullRequest(Request $request)
     {
-        Log::info($request->all());
+//        Log::info($request->all());
         $booking = $request->all();
         $model = new $this->booking;
         $model->fill($booking);
@@ -90,6 +95,21 @@ class BookingController extends Controller
         return response()->json(['success' => $bookingDone_id]);
     }
 
+    public function bookingDate(Request $request){
+       $value = WorkDay::all();
+       return response()->json($value);
+    }
+    public function blockWorkDay(Request $request){
+        $data = StylistTimeSheet::all();
+        foreach ($data as $key=>$value){
+            if ($value->user_id == $request->user_id &&
+                $value->timesheet_id == $request->timesheet_id &&
+                $value->work_day_id == $request->work_day_id){
+                $value->update(['is_block' => 0]);
+            }
+        }
+        return response()->json(['success'=>'success']);
+    }
     public function updateRequest(Request $request, $id)
     {
         $bookingData = $request->all();
@@ -137,9 +157,30 @@ class BookingController extends Controller
         $data = $this->booking::query()->where('id', $id)->with('service', 'timeSheet')->first();
         return response()->json($data);
     }
-
     public function bookingDestroy($id)
     {
+        $bk_workID = null;
+        $booking = Booking::query()->where('id',$id)->first();
+        $workDay = WorkDay::all();
+        $bk_stylist = $booking->stylist_id;
+        $bk_time = $booking->timesheet_id;
+        $bk_work = $booking->date;
+
+        foreach ($workDay as $value){
+            if ($bk_work == $value->day){
+                $bk_workID = $value->id;
+                break;
+            }
+        }
+        $stylistTimeSheet = StylistTimeSheet::all();
+        foreach ($stylistTimeSheet as $key=>$value){
+            if ($value->user_id == $bk_stylist &&
+                $value->timesheet_id == $bk_time &&
+                $value->work_day_id == $bk_workID){
+                $value->update(['is_block' => 1]);
+            }
+        }
+        //-----------------------------------------------------------
         $this->booking::where('id', $id)->update(['status' => 0]);
         $this->booking::where('id', $id)->delete();
         Notification::where('booking_id', $id)->delete();
@@ -160,13 +201,11 @@ class BookingController extends Controller
         }
         return response()->json(['success' => 'Xóa thành công']);
     }
-
     function setUserPhone(Request $request)
     {
         $user_phone = $request->user_phone;
         return response()->json(['user_phone' => $user_phone])->view('client.booking.index');
     }
-
     public function bookingNotification($id)
     {
         $bookings = Booking::query()
@@ -180,7 +219,6 @@ class BookingController extends Controller
             ->get();
         return response()->json($bookings);
     }
-
     public function sendSms($phoneNumber)
     {
         if (Str::startsWith($phoneNumber, '+84')) {
