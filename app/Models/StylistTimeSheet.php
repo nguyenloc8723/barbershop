@@ -20,7 +20,9 @@ class StylistTimeSheet extends Model
     public function stylist(){
         return $this->belongsTo(User::class,'user_id','id');
     }
-
+    public function workDay(){
+        return $this->belongsTo(WorkDay::class,'work_day_id','id');
+    }
     public function TimeSheet(){
         return $this->belongsTo(Timesheet::class,'timesheet_id','id');
     }
