@@ -14,6 +14,7 @@ class StylistTimeSheet extends Model
         'id',
         'user_id',
         'timesheet_id',
+        'work_day_id',
         'is_active',
         'is_block',
     ];

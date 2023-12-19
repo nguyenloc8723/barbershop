@@ -17,6 +17,13 @@
                                 </select>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Ngày làm việc</label>
+                                <select class="form-select" name="work_day_id" id="work_day_id">
+
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
                                 <label class="form-label">Time-Sheets</label>
                                 <select name="timesheet_id[]" id="timesheet_id">
 

@@ -53,10 +53,21 @@ $(document).ready(function () {
             url: urlShow,
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
+            success: function (response) {
+                let data = response.data;
+                let timeSheet = response.timeSheet;
+                // console.log(response)
+                // console.log(timeSheet)
                 $('#jquery-list').empty();
-                data.forEach(item => {
-                    $('#jquery-list').append(`
+
+                for (let i = 0; i < data.length; i++){
+                    // console.log(data[i])
+                    let uniqueArray = data[i].work_day.filter((value, index, self) =>
+                        index === self.findIndex((v) => v.id === value.id && v.day === value.day)
+                    );
+                    // console.log(uniqueArray)
+                    for (let j = 0; j < uniqueArray.length; j++){
+                        $('#jquery-list').append(`
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -69,34 +80,88 @@ $(document).ready(function () {
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end" style="">
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-update" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-update" data-id="${data[i].id}">
                                                   Cập nhật
                                                 </button>
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-detail" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-detail" data-id="${data[i].id}">
                                                   Chi tiết
                                                 </button>
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-delete" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-delete" data-id="${data[i].id}">
                                                   Xóa tất cả
                                                 </button>
                                             </div>
-                                        </div>
-                                               <div class="" style="margin-left: 10px">${item.name}</div>
-                                               ${item.time_sheet.map(value => {
-                                                   return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
-                                                            data-id="${value.id}" data-userId="${item.id}">
+                                          </div>
+
+                                               <div class="" style="margin-left: 10px">${data[i].name}</div>
+                                               <p>${uniqueArray[j].day}</p>
+                                               ${data[i].time_sheet.map(value => {
+                                                            return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                                                            data-id="${value.id}" data-userId="${data[i].id}">
                                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
                                                             </div>`;
                                                }).join('')}
+                                               <hr>
                                             </li>
                                         </ul>
+                                        </br>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `);
-                });
+                    }
+
+                }
+
+                // data.forEach(item => {
+                //     $('#jquery-list').append(`
+                //         <div class="row">
+                //             <div class="col-12">
+                //                 <div class="card">
+                //                     <div class="card-body">
+                //                         <ul class="sortable-list list-unstyled taskList" id="upcoming">
+                //                             <li>
+                //                             <div class="dropdown float-end top-right">
+                //                             <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                //                                 <i class="mdi mdi-dots-vertical"></i>
+                //                             </a>
+                //                             <div class="dropdown-menu dropdown-menu-end" style="">
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-update" data-id="${item.id}">
+                //                                   Cập nhật
+                //                                 </button>
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-detail" data-id="${item.id}">
+                //                                   Chi tiết
+                //                                 </button>
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-delete" data-id="${item.id}">
+                //                                   Xóa tất cả
+                //                                 </button>
+                //                             </div>
+                //                           </div>
+                //
+                //                                <div class="" style="margin-left: 10px">${item.name}</div>
+                //
+                //                                ${item.time_sheet.map(value => {
+                //                                    return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                //                                             data-id="${value.id}" data-userId="${item.id}">
+                //                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
+                //                                             </div>`;
+                //                                }).join('')}
+                //                                <hr>
+                //                             </li>
+                //
+                //                         </ul>
+                //                         </br>
+                //                     </div>
+                //                 </div>
+                //             </div>
+                //         </div>
+                //     `);
+                // });
             },
             error: function (error) {
             }
@@ -317,6 +382,7 @@ $(document).ready(function () {
             success: function (data) {
                 let valueStylist = data.dataStylist;
                 let valueTimeSheet = data.dataTimeSheet;
+                let valueWorkDay = data.dataWorkDay;
 
                 let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`;
                 isStylist += `<option>Choose stylist</option>`
@@ -324,6 +390,13 @@ $(document).ready(function () {
                     isStylist += `<option value="${valueStylist[i].id}">${valueStylist[i].name}</option>`;
                 }
                 isStylist += `</select>`;
+
+                //work_day
+                let isWorkDay = `<select class="form-select" name="work_day_id" id="work_day_id">`;
+                for (let i = 0; i < valueWorkDay.length; i++) {
+                    isWorkDay += `<option value="${valueWorkDay[i].id}">${valueWorkDay[i].day}</option>`;
+                }
+                isWorkDay += `</select>`;
 
                 //TimeSheet
                 let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`;
@@ -345,6 +418,7 @@ $(document).ready(function () {
                 $('.is_active').html(is_activeSelect);
                 $('#stylist_id').html(isStylist);
                 $('#timesheet_id').html(isTimeSheet);
+                $('#work_day_id').html(isWorkDay);
 
                 $("#timesheet_id").selectize({maxItems: 100});
             },
