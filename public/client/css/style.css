@@ -3200,6 +3200,7 @@ hr.border-2 {
 /* ======= Services-1 style ======= */
 
 .services-1 .item {
+    height: 280px;
     background: #fdfbf8;
     padding: 40px 20px;
     -webkit-transition: .5s;
@@ -3243,6 +3244,9 @@ hr.border-2 {
 }
 
 .services-1 .item p {
+    line-height: 1.5; /* Điều chỉnh giá trị này để đạt được khoảng cách giữa các dòng mong muốn */
+    max-height: 4.5em; /* 3 dòng * 1.5 (line-height) */
+    overflow: hidden;
     margin: 0;
     color: #14100c;
 }
