@@ -206,17 +206,31 @@
                 @foreach($data->slice(0, 3) as $item)
                     <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                         <div class="item">
-                            <div class="position-re o-hidden">
-
-                                <img src="client/img/services/2.jpg" alt="">
-                            </div>
-                            <div class="con">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="item">
-                                <a href="services-page.html">
-
+                            <a href="{{route('services-page', $item)}}">
+                                @if ($item->id == 1)
+                                    <span class="icon icon-icon-1-1"></span>
+                                @elseif ($item->id == 2)
+                                    <span class="icon icon-icon-1-2"></span>
+                                @elseif ($item->id == 3)
+                                    <span class="icon icon-icon-1-3"></span>
+                                @elseif ($item->id == 4)
+                                    <span class="icon icon-icon-1-4"></span>
+                                @elseif ($item->id == 5)
+                                    <span class="icon icon-icon-1-6"></span>
+                                @elseif ($item->id == 6)
+                                    <span class="icon icon-icon-1-8"></span>
+                                @elseif ($item->id == 7)
+                                    <span class="icon icon-icon-1-9"></span>
+                                @elseif ($item->id == 8)
+                                    <span class="icon icon-icon-1-18"></span>
+                                @elseif ($item->id == 9)
+                                    <span class="icon icon-icon-1-10"></span>
+                                @else
+                                    <span class="icon icon-icon-1-9"></span>
+                                @endif
+                                <h5>{{$item->name}}</h5>
+                                <p>{{$item->description}}</p>
+                                <div class="shape">
                                     @if ($item->id == 1)
                                         <span class="icon icon-icon-1-1"></span>
                                     @elseif ($item->id == 2)
@@ -263,6 +277,7 @@
                                             <span class="icon icon-icon-1-9"></span>
                                         @endif
                                     </div>
+                                </div>
                                 </a>
                             </div>
                         </div>
@@ -310,10 +325,12 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
-                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
-                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
-                                        neca the sene on satien.</p>
+                                    <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách
+                                        hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được
+                                        phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội
+                                        ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không
+                                        gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ
+                                        không thất vọng!</p>
                                     <div class="info">
                                         <div class="author-img"><img src="{{asset('client/img/team/2.jpg')}}" alt="">
                                         </div>
@@ -329,10 +346,12 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
-                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
-                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
-                                        neca the sene on satien.</p>
+                                    <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách
+                                        hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được
+                                        phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội
+                                        ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không
+                                        gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ
+                                        không thất vọng!</p>
                                     <div class="info">
                                         <div class="author-img"><img src="{{asset('client/img/team/3.jpg')}}" alt="">
                                         </div>
@@ -636,13 +655,13 @@
                                             src="{{ asset('storage/image/'.$blog->image)}} "
                                             style="height: 350px;width: 560px;" alt="">
                                         <div class="date">
-                                            <a href="post.html"> <span>Dec</span> <i>29</i> </a>
+                                                <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
                                         </div>
                                     </div>
-                                    <div class="con">
-                                        <span class="category">
-                                            <a href="blog.html">Chăm sóc tóc</a>
-                                        </span>
+
+                                    <div class="con"> <span class="category">
+                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
+                                </span>
                                         <h5><a href="{{route('detail.blog',$blog->id)}}">{{$blog->title}}</a></h5>
                                     </div>
                                 </div>
@@ -660,21 +679,19 @@
                 <div class="col-md-7">
                     <div class="owl-carousel owl-theme">
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0">
-                                <img src="{{asset('client/img/clients/6.png')}}" alt="">
-                            </a>
+                            <a href="#"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>

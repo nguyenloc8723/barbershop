@@ -45,7 +45,7 @@ Route::group([],function (){
 
     Route::get('get/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'index']);
     Route::get('get/getvalue',[ApiStylistTimeSheetsController::class, 'getvalue']);
-    Route::post('post/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'store']);
+    Route::match(['GET','POST'],'post/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'store']);
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
     Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroyAll']);
