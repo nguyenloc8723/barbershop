@@ -186,7 +186,7 @@
                 @foreach($data->slice(0, 3) as $item)
                     <div class="col-md-4">
                         <div class="item">
-                            <a href="services-page.html">
+                            <a href="{{route('services-page', $item)}}">
                                 @if ($item->id == 1)
                                     <span class="icon icon-icon-1-1"></span>
                                 @elseif ($item->id == 2)
@@ -278,10 +278,12 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
-                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
-                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
-                                        neca the sene on satien.</p>
+                                    <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách
+                                        hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được
+                                        phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội
+                                        ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không
+                                        gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ
+                                        không thất vọng!</p>
                                     <div class="info">
                                         <div class="author-img"><img src="{{asset('client/img/team/2.jpg')}}" alt="">
                                         </div>
@@ -297,10 +299,12 @@
                                         <i class="star-rating"></i>
                                         <i class="star-rating"></i>
                                     </span>
-                                    <p>Lorem dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the
-                                        lemon sanleo nectan feugiat erat hendrerit necuis ve ante viventa miss sapien
-                                        silver on the duiman lorem ipsum amet silver miss rana duru at finibus viverra
-                                        neca the sene on satien.</p>
+                                    <p>6X-Pro là một trong những địa chỉ làm tóc nam đẹp nhất Hà Nội hiện nay. Khách
+                                        hàng đến đây không chỉ được tận hưởng dịch vụ cắt tóc chất lượng, mà còn được
+                                        phục vụ tận tình và chuyên nghiệp. Với không gian sang trọng, hiện đại và đội
+                                        ngũ nhân viên tay nghề cao, 6X-Pro chắc chắn sẽ đem đến cho khách hàng không
+                                        gian thư giãn và trải nghiệm làm tóc tuyệt vời. Hãy đến và trải nghiệm, bạn sẽ
+                                        không thất vọng!</p>
                                     <div class="info">
                                         <div class="author-img"><img src="{{asset('client/img/team/3.jpg')}}" alt="">
                                         </div>
@@ -456,7 +460,7 @@
                                                     class="ti-facebook"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
                                             <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i></a></div>
                                     </div>
-                                    <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                                    <a href="{{route('team')}}" class="button-1 mt-15">Team Details<span></span></a>
                                 </div>
                                 <div class="title-box">
                                     <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
@@ -479,7 +483,6 @@
                         <div class="section-subtitle">Tin tức mới nhất</div>
                         <div class="section-title white">Tin tức & Bài viết</div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
                             @foreach($blogs as $blog)
@@ -488,13 +491,13 @@
                                             src="{{ asset('storage/image/'.$blog->image)}} "
                                             style="height: 350px;width: 560px;" alt="">
                                         <div class="date">
-                                            <a href="post.html"> <span>Dec</span> <i>29</i> </a>
+                                                <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
                                         </div>
                                     </div>
                                     <div class="con"> <span class="category">
-                                    <a href="blog.html">Chăm sóc tóc</a>
+                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
                                 </span>
-                                        <h5><a href="post.html">{{$blog->title}}</a></h5>
+                                        <h5><a href="{{route('detail.blog',$blog->id)}}">{{$blog->title}}</a></h5>
                                     </div>
                                 </div>
                             @endforeach
@@ -512,19 +515,19 @@
                 <div class="col-md-7">
                     <div class="owl-carousel owl-theme">
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/2.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/3.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/4.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/5.png')}}" alt=""></a>
                         </div>
                         <div class="clients-logo">
-                            <a href="#0"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('client/img/clients/6.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>

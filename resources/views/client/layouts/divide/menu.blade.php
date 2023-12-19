@@ -59,12 +59,12 @@
         <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('index') }}">Trang chủ </a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('/') || Request::is('booking*')? 'active' : '' }}" href="{{ route('index') }}">Trang chủ </a></li>
                 <li class="nav-item"><a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ route('about') }}">Giới thiệu </a></li>
-                <li class="nav-item"><a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ route('services') }}">Dịch vụ</a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('services')|| Request::is('services-page*') ? 'active' : '' }}" href="{{ route('services') }}">Dịch vụ</a></li>
                 <li class="nav-item"><a class="nav-link {{ Request::is('portfolio') ? 'active' : '' }}" href="{{ route('portfolio') }}">Kiểu tóc</a></li>
                 <li class="nav-item"><a class="nav-link {{ Request::is('team') ? 'active' : '' }}" href="{{ route('team') }}">Đội ngũ</a></li>
-                <li class="nav-item"><a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="{{ route('blog') }}">Tin tức </a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('blogs-list')|| Request::is('detail-blog*') ? 'active' : '' }}" href="{{ route('blog') }}">Tin tức </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ Request::is('contact')|| Request::is('pricing*')|| Request::is('faq*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown"
                        data-bs-auto-close="outside"
