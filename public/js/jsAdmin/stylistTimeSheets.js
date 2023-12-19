@@ -81,16 +81,24 @@ $(document).ready(function () {
                                                   Xóa tất cả
                                                 </button>
                                             </div>
-                                        </div>
+                                          </div>
+
                                                <div class="" style="margin-left: 10px">${item.name}</div>
+
+                                                    ${item.work_day.map(values =>{
+                                                        return `${values.day}`;
+                                                    })}
                                                ${item.time_sheet.map(value => {
                                                    return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
                                                             data-id="${value.id}" data-userId="${item.id}">
                                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
                                                             </div>`;
                                                }).join('')}
+                                               <hr>
                                             </li>
+                                            
                                         </ul>
+                                        </br>
                                     </div>
                                 </div>
                             </div>
@@ -317,6 +325,7 @@ $(document).ready(function () {
             success: function (data) {
                 let valueStylist = data.dataStylist;
                 let valueTimeSheet = data.dataTimeSheet;
+                let valueWorkDay = data.dataWorkDay;
 
                 let isStylist = `<select class="form-select" name="stylist_id" id="stylist_id">`;
                 isStylist += `<option>Choose stylist</option>`
@@ -324,6 +333,13 @@ $(document).ready(function () {
                     isStylist += `<option value="${valueStylist[i].id}">${valueStylist[i].name}</option>`;
                 }
                 isStylist += `</select>`;
+
+                //work_day
+                let isWorkDay = `<select class="form-select" name="work_day_id" id="work_day_id">`;
+                for (let i = 0; i < valueWorkDay.length; i++) {
+                    isWorkDay += `<option value="${valueWorkDay[i].id}">${valueWorkDay[i].day}</option>`;
+                }
+                isWorkDay += `</select>`;
 
                 //TimeSheet
                 let isTimeSheet = `<select class="form-select" name="timesheet_id" id="timesheet_id">`;
@@ -345,6 +361,7 @@ $(document).ready(function () {
                 $('.is_active').html(is_activeSelect);
                 $('#stylist_id').html(isStylist);
                 $('#timesheet_id').html(isTimeSheet);
+                $('#work_day_id').html(isWorkDay);
 
                 $("#timesheet_id").selectize({maxItems: 100});
             },

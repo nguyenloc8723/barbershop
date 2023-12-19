@@ -7,7 +7,9 @@ use App\Models\StylistTimeSheet;
 use App\Models\Stylist;
 use App\Models\Timesheet;
 use App\Models\User;
+use App\Models\WorkDay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class ApiStylistTimeSheetsController extends Controller
@@ -18,6 +20,19 @@ class ApiStylistTimeSheetsController extends Controller
     public function index()
     {
         $data = User::query()->where('user_type', 'STYLIST')->with('timeSheet')->get();
+    //     $data = StylistTimeSheet::query()
+    // ->whereHas('stylist', function ($query) {
+    //     $query->where('user_type', 'STYLIST');
+    // })
+    // ->with(['stylist', 'workDay'])
+    // ->distinct('user_id', 'work_day_id')
+    // ->get();
+
+        
+        
+    
+        // $data = WorkDay::query()->with('timeSheet','stylist')->get();
+        // return response()->json([$data, $day]);
         return response()->json($data);
     }
 
@@ -30,27 +45,29 @@ class ApiStylistTimeSheetsController extends Controller
 //        Log::info($time);
         foreach ($time as $value) {
             // Tìm kiếm bản ghi với timesheet_id và user_id tương ứng
-            $existingRecord = StylistTimeSheet::where('timesheet_id', $value)
-                ->where('user_id', $request->input('user_id'))
-                ->first();
+            // $existingRecord = StylistTimeSheet::where('timesheet_id', $value)
+            //     ->where('user_id', $request->input('user_id'))
+            //     ->first();
 
             // Nếu bản ghi đã tồn tại, cập nhật nó
-            if ($existingRecord) {
-                $existingRecord->update([
-                    'user_id' => $request->input('user_id'),
-                    'timesheet_id' => $value,
-                    'is_active' => $request->input('is_active'),
-                    'is_block' => $request->input('is_block'),
-                ]);
-            } else {
+            // if ($existingRecord) {
+            //     $existingRecord->update([
+            //         'user_id' => $request->input('user_id'),
+            //         'timesheet_id' => $value,
+            //         'work_day_id' => $request->input('work_day_id'),
+            //         'is_active' => $request->input('is_active'),
+            //         'is_block' => $request->input('is_block'),
+            //     ]);
+            // } else {
                 // Nếu không, tạo mới bản ghi
                 StylistTimeSheet::create([
                     'user_id' => $request->input('user_id'),
                     'timesheet_id' => $value,
+                    'work_day_id' => $request->input('work_day_id'),
                     'is_active' => $request->input('is_active'),
                     'is_block' => $request->input('is_block'),
                 ]);
-            }
+            // }
         }
 
         return response()->json(['success','Created successfully']);
@@ -66,17 +83,20 @@ class ApiStylistTimeSheetsController extends Controller
         $dataStylist = User::query()->where('id', $id)->with('timeSheet')->get();
 
         $dataTimeSheet = Timesheet::all();
+        $dataWorkDay = WorkDay::all();
 
         return response()->json(['stylist' => $Stylist,
                                  'dataStylist'=>$dataStylist,
-                                 'dataTimeSheet'=>$dataTimeSheet]);
+                                 'dataTimeSheet'=>$dataTimeSheet,
+                                 'dataWorkDay'=>$dataWorkDay]);
     }
     public function getvalue()
     {
         $dataStylist = User::query()->where('user_type', 'STYLIST')->get();
         $dataTimeSheet = Timesheet::all();
+        $dataWorkDay = WorkDay::all();
 
-        return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet]);
+        return response()->json(['dataStylist'=>$dataStylist, 'dataTimeSheet'=>$dataTimeSheet,'dataWorkDay'=>$dataWorkDay]);
     }
 
     /**
