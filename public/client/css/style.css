@@ -959,6 +959,7 @@ blockquote cite:before {
     color: #14100c;
 }
 .navbar .navbar-nav .nav-link:hover {
+    width: 100%;
     color: #91765a;
 }
 .navbar .navbar-nav .active {
