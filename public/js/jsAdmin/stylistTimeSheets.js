@@ -53,16 +53,21 @@ $(document).ready(function () {
             url: urlShow,
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
-                console.log(data)
+            success: function (response) {
+                let data = response.data;
+                let timeSheet = response.timeSheet;
+                // console.log(response)
+                // console.log(timeSheet)
                 $('#jquery-list').empty();
 
                 for (let i = 0; i < data.length; i++){
-                    for (let j = 0; j < data[i].work_day.length; j++){
-                        // console.log(data[i].work_day[j].day);
-
+                    // console.log(data[i])
+                    let uniqueArray = data[i].work_day.filter((value, index, self) =>
+                        index === self.findIndex((v) => v.id === value.id && v.day === value.day)
+                    );
+                    // console.log(uniqueArray)
+                    for (let j = 0; j < uniqueArray.length; j++){
                         $('#jquery-list').append(`
-<!--                           <h1>${data[i].work_day[j].day}</h1>-->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -90,13 +95,13 @@ $(document).ready(function () {
                                           </div>
 
                                                <div class="" style="margin-left: 10px">${data[i].name}</div>
-                                               <p>${data[i].work_day[j].day}</p>
+                                               <p>${uniqueArray[j].day}</p>
                                                ${data[i].time_sheet.map(value => {
-                            return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                                                            return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
                                                             data-id="${value.id}" data-userId="${data[i].id}">
                                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
                                                             </div>`;
-                        }).join('')}
+                                               }).join('')}
                                                <hr>
                                             </li>
                                         </ul>

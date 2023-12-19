@@ -28,12 +28,12 @@ class ApiStylistTimeSheetsController extends Controller
     // ->distinct('user_id', 'work_day_id')
     // ->get();
 
-
+        $timeSheet = StylistTimeSheet::all();
 
 
         // $data = WorkDay::query()->with('timeSheet','stylist')->get();
         // return response()->json([$data, $day]);
-        return response()->json($data);
+        return response()->json(['data'=>$data,'timeSheet'=>$timeSheet]);
     }
 
     /**
