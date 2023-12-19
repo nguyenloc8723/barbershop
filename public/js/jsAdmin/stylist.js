@@ -9,6 +9,8 @@ $(document).ready(function () {
     const fileInput = $('#image');
     const imgContainer = $('.selected-images');
     const btnUpdate = $('.js-btn-update');
+    const roleEdit = $('.jqr-roleEdit').val();
+    const roleDelete = $('.jqr-roleDelete').val();
     let idUpdate;
     $('#example').DataTable({
         ajax: baseUrl,
@@ -78,13 +80,17 @@ $(document).ready(function () {
 
                                         <p class="text-muted font-13"><strong>Vai trò :</strong> <span style="background-color: ${item.roles[0].color}" class="jqr-badge jqr-roleUser">  ${item.roles[0].name}</span></p>
                                     </div>
-                                    <button type="button" class="btn btn-primary rounded-pill waves-effect waves-light js-btn-update" data-id="${item.id}">Cập nhật</button>
-                                    <button type="button" class="btn btn-danger rounded-pill waves-effect waves-light js-btn-delete" data-id="${item.id}">Xóa</button>
+                                    ${roleEdit === 'true' ? `
+                                        <button type="button" class="btn btn-primary rounded-pill waves-effect waves-light js-btn-update" data-id="${item.id}">Cập nhật</button>` : `<button type="button" class="btn btn-primary rounded-pill waves-effect waves-light" disabled>Cập nhật</button>`
+                                    }
+                                    ${roleDelete === 'true' ? `
+                                        <button type="button" class="btn btn-danger rounded-pill waves-effect waves-light js-btn-delete" data-id="${item.id}">Xóa</button>` : `<button type="button" class="btn btn-danger rounded-pill waves-effect waves-light" disabled>Xóa</button>`
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div> `
-                    );
+                                );
                 })
             },
             error: function (error) {

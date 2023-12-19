@@ -55,13 +55,13 @@ class ThanhToanCtrl extends Controller
 
             // Lấy danh sách tên cột trong bảng
             $columns = Schema::getColumnListing($tableName);
-        
+
             $query = DB::table($tableName);
-        
+
             foreach ($columns as $column) {
                 $query->orWhere($column, 'like', '%' . $request->searchPayment . '%');
             }
-        
+
             $data = $query->get();
         }
         return view($this->pathViews . '.' . __FUNCTION__, compact('data'))
