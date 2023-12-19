@@ -1,54 +1,54 @@
 $(document).ready(function () {
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-    const btnShow = $('.jquery-btn-create');
-    const btnCancel = $('.jquery-close');
-    const formModal = $('#formModal');
-    const actionMethod = $('input[name="actionMethod"]');
-    const baseUrl = '/api/category';
-    const btnUpdate = $('.js-btn-update');
-    let idUpdate;
+    var csrfToken = $('meta[name="csrf-token"]').attr('content')
+    const btnShow = $('.jquery-btn-create')
+    const btnCancel = $('.jquery-close')
+    const formModal = $('#formModal')
+    const actionMethod = $('input[name="actionMethod"]')
+    const baseUrl = '/api/category'
+    const btnUpdate = $('.js-btn-update')
+    const roleEdit = $('.jqr-roleEdit').val();
+    const roleDelete = $('.jqr-roleDelete').val();
+    let idUpdate
     $('#example').DataTable({
-        ajax: baseUrl,
-    });
+        ajax: baseUrl
+    })
 
     // Điều khiển modal
-    function showModal(action = true) {
+    function showModal (action = true) {
         if (action) {
-            $('.jquery-main-modal').show();
+            $('.jquery-main-modal').show()
         } else {
-            formModal[0].reset();
-            actionMethod.val('');
-            $('.is_active').empty();
-            $('.jquery-main-modal').hide();
+            formModal[0].reset()
+            actionMethod.val('')
+            $('.is_active').empty()
+            $('.jquery-main-modal').hide()
         }
     }
 
-    btnShow.on('click', showModal);
+    btnShow.on('click', showModal)
     btnCancel.on('click', function () {
-        showModal(false);
-
-    });
+        showModal(false)
+    })
 
     // hành động khi click save
     formModal.on('submit', function (e) {
-        e.preventDefault();
+        e.preventDefault()
         if (actionMethod.val() === 'update') {
-            update();
+            update()
         } else {
-            add();
+            add()
         }
-        showModal(false);
+        showModal(false)
     })
 
-
-    function loadTable() {
+    function loadTable () {
         $.ajax({
             url: baseUrl,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
                 // console.log(data);
-                $('#jquery-list').empty();
+                $('#jquery-list').empty()
                 data.map(item => {
                     $('#jquery-list').append(`
                         <tr>
@@ -73,43 +73,39 @@ $(document).ready(function () {
                                         </span>
                                   </a>
                                   <div class="dropdown-menu dropdown-menu-end">
-                                        <button class="dropdown-item js-btn-update" data-id="${item.id}">
-                                          Cập nhật
-                                        </button>
-                                      <button class="dropdown-item js-btn-delete" data-id="${item.id}">
-                                          Xóa
-                                      </button>
+                                    ${roleEdit === 'true' ? `
+                                        <button class="dropdown-item js-btn-update" data-id="${item.id}">Cập nhật</button>` : '<button class="dropdown-item" disabled>Cập nhật</button>'
+                                    }
+                                    ${roleDelete === 'true' ? `
+                                      <button class="dropdown-item js-btn-delete" data-id="${item.id}">Xóa</button>` : '<button class="dropdown-item" disabled>Xóa</button>'
+                                    }
                                   </div>
                               </div>
                           </td>
-                      </tr>`
-                    );
+                      </tr>
+                      `)
                 })
             },
-            error: function (error) {
-            }
-        });
+            error: function (error) {}
+        })
     }
 
-    loadTable();
+    loadTable()
 
-
-    $(document).on('click','.js-btn-update', function (){
-        let itemId = $(this).data('id');
-        idUpdate = itemId;
-        loadValueDetai(itemId);
-    });
-    $(document).on('click','.js-btn-delete', function (){
-        if (confirm('Bạn có chắc chắn muốn xóa ?')){
-            idUpdate = $(this).data('id');
-            destroy();
+    $(document).on('click', '.js-btn-update', function () {
+        let itemId = $(this).data('id')
+        idUpdate = itemId
+        loadValueDetai(itemId)
+    })
+    $(document).on('click', '.js-btn-delete', function () {
+        if (confirm('Bạn có chắc chắn muốn xóa ?')) {
+            idUpdate = $(this).data('id')
+            destroy()
         }
-    });
+    })
 
-
-
-    function add() {
-        let formData = formModal.serialize();
+    function add () {
+        let formData = formModal.serialize()
         $.ajax({
             url: baseUrl,
             method: 'POST',
@@ -119,32 +115,33 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                loadTable();
-                toastr['success']('Thêm mới dữ liệu thành công');
+                loadTable()
+                toastr['success']('Thêm mới dữ liệu thành công')
             },
             error: function (error) {
-                console.error(error);
+                console.error(error)
             }
-        });
+        })
     }
 
-    function destroy() {
+    function destroy () {
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
+            url: baseUrl + '/' + idUpdate,
             method: 'DELETE',
             dataType: 'json',
             success: function (data) {
                 // console.log(data);
-               loadTable();
-               toastr['success']
-               ('Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó');
+                loadTable()
+                toastr['success'](
+                    'Dữ liệu đã được đưa vào thùng rác! bạn có thể khôi phục tại đó'
+                )
             },
             error: function (error) {
-                console.error(error);
+                console.error(error)
             }
-        });
+        })
     }
-    function loadValueDetai(id) {
+    function loadValueDetai (id) {
         $.ajax({
             url: baseUrl + '/' + id,
             method: 'GET',
@@ -153,37 +150,34 @@ $(document).ready(function () {
                 let is_activeSelect = `
                 <label for="" class="form-label">Is_active</label>
                     <select class="form-control" name="is_active">
-                `;
-                let option = ['Không hoạt động','Hoạt động'];
-                for (let i = 0; i < option.length; i++){
-                    let selected = '';
-                    if (data.is_active === 1){
-                        selected = 'selected';
+                `
+                let option = ['Không hoạt động', 'Hoạt động']
+                for (let i = 0; i < option.length; i++) {
+                    let selected = ''
+                    if (data.is_active === 1) {
+                        selected = 'selected'
                     }
-                    is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`;
+                    is_activeSelect += `<option value="${i}" ${selected}>${option[i]}</option>`
                 }
 
-                is_activeSelect+= `</select>`
+                is_activeSelect += `</select>`
 
-                $('.is_active').html(is_activeSelect);
-                actionMethod.val('update');
-                $('input[name="name"]').val(data.name);
-                showModal();
+                $('.is_active').html(is_activeSelect)
+                actionMethod.val('update')
+                $('input[name="name"]').val(data.name)
+                showModal()
             },
             error: function (xhr, status, error) {
-
-                console.error(error);
+                console.error(error)
             }
-        });
+        })
     }
 
-
-
-    function update() {
-        let formData = formModal.serialize();
+    function update () {
+        let formData = formModal.serialize()
         // formData.delete('actionMethod');
         $.ajax({
-            url: baseUrl +'/' + idUpdate,
+            url: baseUrl + '/' + idUpdate,
             method: 'PUT',
             data: formData,
             headers: {
@@ -192,13 +186,13 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 showModal(false)
-                loadTable();
+                loadTable()
                 // console.log(data)
-                toastr['success']('Cập nhật thành công');
+                toastr['success']('Cập nhật thành công')
             },
             error: function (xhr, status, error) {
-                console.error(error);
+                console.error(error)
             }
-        });
+        })
     }
-});
+})

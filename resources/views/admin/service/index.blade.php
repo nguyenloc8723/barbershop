@@ -7,10 +7,10 @@
 {{--        <h1>{{Auth::id()}
     }</h1>--}}
 {{--    @endif--}}
-    @can('roles.editService')
+    @can('roles.editCategory')
         <input type="hidden" class="jqr-roleEdit" value="true">
     @endcan
-    @can('roles.deleteService')
+    @can('roles.deleteCategory')
         <input type="hidden" class="jqr-roleDelete" value="true">
     @endcan
     <div class="row">
@@ -72,6 +72,9 @@
 
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.service.modal')
+    </div>
+    <div class="modal fade show js-img" tabIndex="-1" aria-hidden="true">
+
     </div>
 
 

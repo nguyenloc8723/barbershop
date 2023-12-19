@@ -1,8 +1,14 @@
 @extends('admin.layout.master')
 @section('style')
-    <link rel="stylesheet" href="{{asset('css/service.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
 @endsection
 @section('content')
+    @can('roles.editMember')
+        <input type="hidden" class="jqr-roleEdit" value="true">
+    @endcan
+    @can('roles.deleteMember')
+        <input type="hidden" class="jqr-roleDelete" value="true">
+    @endcan
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -10,9 +16,16 @@
                     <div class="row justify-content-between">
                         <div class="col-md-4">
                             <div class="mt-3 mt-md-0">
-                                <button type="button" class="btn btn-success waves-effect waves-light jquery-btn-create">
-                                    <i class="mdi mdi-plus-circle me-1"></i> Thêm nhân viên
-                                </button>
+                                @if (\Gate::check('roles.createMember'))
+                                    <button type="button"
+                                        class="btn btn-success waves-effect waves-light jquery-btn-create">
+                                        <i class="mdi mdi-plus-circle me-1"></i> Thêm nhân viên
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-success waves-effect waves-light" disabled>
+                                        <i class="mdi mdi-plus-circle me-1"></i> Thêm nhân viên
+                                    </button>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -29,7 +42,8 @@
                                 </div>
                                 <label for="inputPassword2" class="visually-hidden">Search</label>
                                 <div>
-                                    <input type="search" class="form-control my-1 my-md-0" id="inputPassword2" placeholder="Search...">
+                                    <input type="search" class="form-control my-1 my-md-0" id="inputPassword2"
+                                        placeholder="Search...">
                                 </div>
                             </form>
                         </div>
@@ -51,24 +65,24 @@
 @endsection
 @section('script')
     <!-- third party js -->
-    <script src="{{asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/datatables.net-select/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('be/assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
     <!-- third party js ends -->
 
     <!-- Datatables init -->
-    <script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
+    <script src="{{ asset('be/assets/js/pages/datatables.init.js') }}"></script>
 
-    <script src="{{asset('js/jsAdmin/toast.js')}}"></script>
-    <script src="{{asset('js/jsAdmin/stylist.js')}}"></script>
+    <script src="{{ asset('js/jsAdmin/toast.js') }}"></script>
+    <script src="{{ asset('js/jsAdmin/stylist.js') }}"></script>
 @endsection
