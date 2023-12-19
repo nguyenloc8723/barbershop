@@ -139,45 +139,7 @@
             </div>
         </div>
     </section>
-    <section class="services-box section-padding pt-0">
-        <div class="container">
-            <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="{{route('services-page',$item)}}">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <div class="cont">
-                                    <h5>{{$item->name}}</h5>
-                                    <p>{{$item->description}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+
     <section class="about section-padding bg-darkbrown">
         <div class="container">
             <div class="row">
@@ -202,6 +164,56 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services-1 section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-head text-center">
+                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
+                        <div class="section-title">Chúng tôi cũng cung cấp</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/1">
+                            <span class="icon icon-icon-1-1"></span>
+                            <h5>Cắt Tóc</h5>
+                            <p>Stylist cắt tóc tạo kiểu (Không gội &amp; massage)</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-1"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/2">
+                            <span class="icon icon-icon-1-2"></span>
+                            <h5>SHINE CUT</h5>
+                            <p>Stylist cắt - xả - vuốt sáp tạo kiểu (Không gội &amp; massage)</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-2"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/3">
+                            <span class="icon icon-icon-1-3"></span>
+                            <h5>ShineCombo cắt gội 15 bước</h5>
+                            <p>Cắt Gội Massage 10 bước +5 trải nghiệm độc quyền Công nghệ xông mặt chuẩn SPA Tinh dầu thảo mộc thư giãn Công nghệ súng massage giảm đau nhức vai gáy Nâng cấp quy trình cắt (chỉn chu, trọn vẹn hơn) Đổi mới trải nghiệm gội riêng cho phái mạnh</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-3"></span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -426,7 +438,7 @@
                                                     class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
                                             <a href="#"><i class="ti-instagram"></i></a></div>
                                     </div>
-                                    <a href="{{route('team-details',$stylist->id)}}" class="button-1 mt-15">Team Details<span></span></a>
+                                    <a href="{{ url('/team-details/' . $stylist->id) }}" class="button-1 mt-15">Team Details<span></span></a>
                                 </div>
                                 <div class="title-box">
                                     <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
@@ -468,27 +480,6 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    <div class="col-md-12">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($blogs as $blog)
-                                <div class="item">
-                                    <div class="position-re o-hidden"><img
-                                            src="{{ asset('storage/image/'.$blog->image)}} "
-                                            style="height: 350px;width: 560px;" alt="">
-                                        <div class="date">
-                                                <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="con"> <span class="category">
-                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
-                                </span>
-                                        <h5><a href="{{route('detail.blog',$blog->id)}}">{{$blog->title}}</a></h5>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
                     </div>
                 </div>
             </div>
