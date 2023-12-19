@@ -19,7 +19,7 @@ class ApiStylistTimeSheetsController extends Controller
      */
     public function index()
     {
-        $data = User::query()->where('user_type', 'STYLIST')->with('timeSheet')->get();
+        $data = User::query()->where('user_type', 'STYLIST')->with('timeSheet', 'workDay')->get();
     //     $data = StylistTimeSheet::query()
     // ->whereHas('stylist', function ($query) {
     //     $query->where('user_type', 'STYLIST');
@@ -28,9 +28,9 @@ class ApiStylistTimeSheetsController extends Controller
     // ->distinct('user_id', 'work_day_id')
     // ->get();
 
-        
-        
-    
+
+
+
         // $data = WorkDay::query()->with('timeSheet','stylist')->get();
         // return response()->json([$data, $day]);
         return response()->json($data);

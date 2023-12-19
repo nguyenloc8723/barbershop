@@ -54,9 +54,15 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
+                console.log(data)
                 $('#jquery-list').empty();
-                data.forEach(item => {
-                    $('#jquery-list').append(`
+
+                for (let i = 0; i < data.length; i++){
+                    for (let j = 0; j < data[i].work_day.length; j++){
+                        // console.log(data[i].work_day[j].day);
+
+                        $('#jquery-list').append(`
+<!--                           <h1>${data[i].work_day[j].day}</h1>-->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -69,34 +75,30 @@ $(document).ready(function () {
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end" style="">
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-update" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-update" data-id="${data[i].id}">
                                                   Cập nhật
                                                 </button>
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-detail" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-detail" data-id="${data[i].id}">
                                                   Chi tiết
                                                 </button>
                                                 <!-- item-->
-                                                <button class="dropdown-item js-btn-delete" data-id="${item.id}">
+                                                <button class="dropdown-item js-btn-delete" data-id="${data[i].id}">
                                                   Xóa tất cả
                                                 </button>
                                             </div>
                                           </div>
 
-                                               <div class="" style="margin-left: 10px">${item.name}</div>
-
-                                                    ${item.work_day.map(values =>{
-                                                        return `${values.day}`;
-                                                    })}
-                                               ${item.time_sheet.map(value => {
-                                                   return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
-                                                            data-id="${value.id}" data-userId="${item.id}">
+                                               <div class="" style="margin-left: 10px">${data[i].name}</div>
+                                               <p>${data[i].work_day[j].day}</p>
+                                               ${data[i].time_sheet.map(value => {
+                            return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                                                            data-id="${value.id}" data-userId="${data[i].id}">
                                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
                                                             </div>`;
-                                               }).join('')}
+                        }).join('')}
                                                <hr>
                                             </li>
-                                            
                                         </ul>
                                         </br>
                                     </div>
@@ -104,7 +106,57 @@ $(document).ready(function () {
                             </div>
                         </div>
                     `);
-                });
+                    }
+
+                }
+
+                // data.forEach(item => {
+                //     $('#jquery-list').append(`
+                //         <div class="row">
+                //             <div class="col-12">
+                //                 <div class="card">
+                //                     <div class="card-body">
+                //                         <ul class="sortable-list list-unstyled taskList" id="upcoming">
+                //                             <li>
+                //                             <div class="dropdown float-end top-right">
+                //                             <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                //                                 <i class="mdi mdi-dots-vertical"></i>
+                //                             </a>
+                //                             <div class="dropdown-menu dropdown-menu-end" style="">
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-update" data-id="${item.id}">
+                //                                   Cập nhật
+                //                                 </button>
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-detail" data-id="${item.id}">
+                //                                   Chi tiết
+                //                                 </button>
+                //                                 <!-- item-->
+                //                                 <button class="dropdown-item js-btn-delete" data-id="${item.id}">
+                //                                   Xóa tất cả
+                //                                 </button>
+                //                             </div>
+                //                           </div>
+                //
+                //                                <div class="" style="margin-left: 10px">${item.name}</div>
+                //
+                //                                ${item.time_sheet.map(value => {
+                //                                    return `<div class="jqr-badge " style="background-color: #88de7d; margin: 10px 5px 0 5px"
+                //                                             data-id="${value.id}" data-userId="${item.id}">
+                //                                             ${value.hour}:${value.minutes} ${value.hour < 12 ? 'AM' : 'PM'}
+                //                                             </div>`;
+                //                                }).join('')}
+                //                                <hr>
+                //                             </li>
+                //
+                //                         </ul>
+                //                         </br>
+                //                     </div>
+                //                 </div>
+                //             </div>
+                //         </div>
+                //     `);
+                // });
             },
             error: function (error) {
             }
