@@ -14,6 +14,7 @@ $(document).ready(function () {
     //
     let clearTime;
     let validateTimeSheet = true;
+    let checkTimeSheet = true;
     let date_Id = 0;
     let countPrice = 0;
     let is_consultant = 1;
@@ -40,6 +41,7 @@ $(document).ready(function () {
         var current_Date = new Date().toISOString().split('T')[0];
         // Đặt giá trị mặc định cho input type date (ngày cắt)
         $('#jqr-selectedDate').val(current_Date);
+        // $('.jqr-selectedDate').attr('min', current_Date);
     }
     currentDate()
     let selectedDate = $('#jqr-selectedDate').val();
@@ -168,7 +170,7 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
-        clearTime = setTimeout(() => timeSheetCallback(stylist), 10000);
+        clearTime = setTimeout(() => timeSheetCallback(stylist), 30000);
     }
 
     function timeSheetCallback(stylist) {
@@ -330,7 +332,7 @@ $(document).ready(function () {
                                         <div class="relative" id="datebookId">
                                             <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate">
+                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate" >
                                             </div>
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
@@ -619,10 +621,17 @@ $(document).ready(function () {
             if(bookingId){
                 updateBooking(bookingId)
             }else{
-                pushRequest();
-                blockTimeSheet();
+                blockTimeSheet().then(function (response) {
+                    if (response.success !== 'success') {
+                        alert('Giờ này đã được đặt vui lòng chọn giờ khác');
+                    } else {
+                        pushRequest();
+                    }
+                    console.log(checkTimeSheet);
+                }).catch(function (error) {
+                    console.error(error);
+                });
             }
-
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -671,24 +680,28 @@ $(document).ready(function () {
         });
     }
     function blockTimeSheet() {
-        let arrayTimeSheet = {
-            user_id: stylist,
-            timesheet_id: time,
-            work_day_id: date_Id,
-        };
-        $.ajax({
-            url: urlWorkDayTime,
-            method: 'POST',
-            data: arrayTimeSheet,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (error) {
-                console.error(error);
-            }
+        return new Promise(function (resolve, reject) {
+            let arrayTimeSheet = {
+                user_id: stylist,
+                timesheet_id: time,
+                work_day_id: date_Id,
+            };
+            $.ajax({
+                url: urlWorkDayTime,
+                method: 'POST',
+                data: arrayTimeSheet,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    // console.log(response.success);
+                    resolve(response);
+                },
+                error: function (error) {
+                    // console.error(error);
+                    reject(error);
+                }
+            });
         });
     }
     function randomStylist() {
