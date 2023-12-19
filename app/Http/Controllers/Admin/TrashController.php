@@ -37,7 +37,7 @@ class TrashController extends Controller
             'name' => 'Name',
             'phone' => 'Phone Number'
         ];
-        return view('admin.trash.user');
+        return view('admin.trash.user',compact('columns'));
     }
     function Service(){
         $columns = [

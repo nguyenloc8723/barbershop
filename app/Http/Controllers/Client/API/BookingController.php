@@ -105,10 +105,14 @@ class BookingController extends Controller
             if ($value->user_id == $request->user_id &&
                 $value->timesheet_id == $request->timesheet_id &&
                 $value->work_day_id == $request->work_day_id){
-                $value->update(['is_block' => 0]);
+                if ($value->is_block == 0){
+                    return response()->json(['success'=>0]);
+                }else{
+                    $value->update(['is_block' => 0]);
+                    return response()->json(['success'=>'success']);
+                }
             }
         }
-        return response()->json(['success'=>'success']);
     }
     public function updateRequest(Request $request, $id)
     {
