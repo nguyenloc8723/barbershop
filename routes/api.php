@@ -48,12 +48,14 @@ Route::group([],function (){
     Route::post('post/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'store']);
     Route::get('edit/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'show']);
     Route::post('put/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'update']);
-    Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroy']);
+    Route::delete('delete/stylistTimeSheets/{id}',[ApiStylistTimeSheetsController::class, 'destroyAll']);
+    Route::post('deleteDetail/stylistTimeSheets',[ApiStylistTimeSheetsController::class, 'destroy']);
 
     Route::get('roleUser',[ApiUserController::class, 'roles']);
 //    Route::get('getPermission',[StylistPermissionController::class, 'getPermissions']);
 
     Route::get('roles',[ApiRoleController::class, 'index']);
+    Route::get('roles/overView',[ApiRoleController::class, 'overView']);
     Route::post('AddRoles',[ApiRoleController::class, 'store']);
     Route::get('getRoleDetail/{id}',[ApiRoleController::class, 'edit']);
     Route::post('updateRole/{id}',[ApiRoleController::class, 'update']);
@@ -97,12 +99,13 @@ Route::prefix('trash')->group(function (){
 Route::group([],function (){
     Route::get('getUserPhone/booking', [BookingController::class, 'getUserPhone']);
     Route::post('setUserPhone/booking', [BookingController::class, 'setUserPhone']);
-    Route::get('stylist/booking', [BookingController::class, 'index']);
+    Route::get('list/stylist/booking', [BookingController::class, 'index']);
     Route::get('timeSheet/booking/{id}', [BookingController::class, 'timeSheetDetail']);
     Route::get('stylistDetail/booking/{id}', [BookingController::class, 'stylistDetail']);
 
     Route::get('service/booking', [BookingController::class, 'loadService']);
     Route::post('pullRequest/booking', [BookingController::class, 'pullRequest']);
+    Route::post('updateRequest/booking/{id}', [BookingController::class, 'updateRequest']);
 
     Route::get('booking/success/{id}', [BookingController::class, 'bookingDone']);
     Route::get('booking/destroy/{id}', [BookingController::class, 'bookingDestroy']);
@@ -110,7 +113,9 @@ Route::group([],function (){
     Route::get('booking/success', [BookingController::class, 'bookingDone']);
     Route::get('booking/randomStylist', [BookingController::class, 'randomStylist']);
 
-    Route::get('booking/notification/{user_phone}', [BookingController::class, 'bookingNotification']);
+    Route::get('booking/notification/{id}', [BookingController::class, 'bookingNotification']);
+    Route::get('date/booking', [BookingController::class, 'bookingDate']);
+    Route::post('workDay/booking', [BookingController::class, 'blockWorkDay']);
 });
 Route::get('/dailySales', [ApiDashboardController::class, 'dailySales']);
 Route::get('/dataSixMonths', [ApiDashboardController::class, 'dataSixMonths']);
@@ -118,4 +123,7 @@ Route::get('/monthlyRevenue', [ApiDashboardController::class, 'monthlyRevenue'])
 Route::get('/latestStylist', [ApiDashboardController::class, 'latestStylist']);
 Route::get('/latestBooking', [ApiDashboardController::class, 'latestBooking']);
 
+Route::group([],function (){
+    Route::get('service/booking_blade', [\App\Http\Controllers\Admin\BookingController::class, 'loadService']);
+});
 

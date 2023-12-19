@@ -11,6 +11,7 @@
     <link href="{{asset('be/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('be/assets/libs/selectize/css/selectize.bootstrap3.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('be/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" type="text/css" />
+
 @endsection
 @section('content')
     <div class="row">
@@ -31,32 +32,17 @@
             </div>
         </div>
     </div>
+    <div id="jquery-list" class="col-12">
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap text-center align-content-sm-center">
-                        <thead>
-                            <tr>
-                                @foreach($columns as $key => $column)
-                                    <th class="text-center">{{$column}}</th>
-                                @endforeach
-                                <th>Action Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="jquery-list">
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="modal fade show jquery-main-modal" tabIndex="-1" aria-hidden="true">
         @include('admin.stylistTimeSheets.create')
     </div>
+    <div class="modal fade show js-img" style="background: rgba(0,0,0,0.5);" tabIndex="-1" aria-hidden="true">
 
+    </div>
 @endsection
 
 @section('script')

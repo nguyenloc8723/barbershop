@@ -59,21 +59,20 @@
         <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="{{ route('index') }}">Trang chủ </a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Giới thiệu </a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('services') }}">Dịch vụ</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('portfolio') }}">Kiểu tóc</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('team') }}">Đội ngũ</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">Tin tức </a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('index') }}">Trang chủ </a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ route('about') }}">Giới thiệu </a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ route('services') }}">Dịch vụ</a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('portfolio') ? 'active' : '' }}" href="{{ route('portfolio') }}">Kiểu tóc</a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('team') ? 'active' : '' }}" href="{{ route('team') }}">Đội ngũ</a></li>
+                <li class="nav-item"><a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="{{ route('blog') }}">Tin tức </a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle {{ Request::is('contact')|| Request::is('pricing*')|| Request::is('faq*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown"
                        data-bs-auto-close="outside"
                        aria-expanded="false">Liên hệ <i class="ti-angle-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('contact') }}" class="dropdown-item"><span>Liên hệ </span></a></li>
                         <li><a href="{{ route('pricing') }}" class="dropdown-item"><span>Chính sách giá </span></a></li>
                         <li><a href="{{ route('faq') }}" class="dropdown-item"><span>Câu hỏi thường gặp</span></a></li>
-                        <li><a href="{{ route('404') }}" class="dropdown-item"><span>404</span></a></li>
                     </ul>
                 </li>
 
@@ -106,7 +105,7 @@
                             @endif
 
                             <li>
-                                <a class="dropdown-item " href="">
+                                <a class="dropdown-item " href="{{ route('client.show')}}">
                                     <i class="bx bx-cog me-2"></i>
                                     <span class="align-middle">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

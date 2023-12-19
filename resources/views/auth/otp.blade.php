@@ -5,7 +5,6 @@
             <h2>Xác minh mã OTP</h2>
             <p>Chúng tôi đã gửi mã xác minh tới bạn <span id="phoneNumber"></span></p>
             <label class="fxt-otp-label">Nhập mã OTP vào đây</label>
-            <div class="alert alert-danger" id="error1" style="display: none;"></div>
             <form onsubmit="return false;" method="post">
                 @csrf
                 <div class="fxt-transformY-50 fxt-transition-delay-1">
@@ -16,18 +15,25 @@
                 </div>
                 <div class="fxt-form-btn fxt-transformY-50 fxt-transition-delay-4">
                     <div class="text-center mb-3">
-                        <button type="button" class="fxt-btn-fill" onclick="verify()">Xác minh</button>
+                        <button type="button" class="fxt-btn-fill" onclick="verify('redirectPayment')">Xác minh</button>
+                    </div>
+                </div>
+
+                <div class="fxt-footer">
+                    <div class="fxt-transformY-50 fxt-transition-delay-9">
+                        <div id="sign-in-button"></div>
+                        <div class="fxt-resend-wrap">Không nhận được mã OTP?
+                            <button type="button" id="resendOTPButton" class="" onclick="resendOTP()" disabled>Gửi
+                                lại
+                            </button>
+                        <div id="countdown"  ></div>
+                        </div>
+
                     </div>
                 </div>
             </form>
         </div>
-        <div class="fxt-footer">
-            <div class="fxt-transformY-50 fxt-transition-delay-9">
-                <p class="fxt-resend-wrap">Không nhận được mã OTP?
-                    <button id="closePopupOTP" class="fxt-btn-resend" type="button" >Gửi lại</button>
-                </p>
-            </div>
-        </div>
+
     </div>
 </div>
 

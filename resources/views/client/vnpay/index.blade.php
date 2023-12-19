@@ -104,38 +104,23 @@
                 <input type="hidden" name="user_phone" value="{{$booking->user_phone}}">
                 <div class="form-group">
                     <label for="amount">Số tiền</label>
-                    <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="money" type="number" value="{{$booking->price}}" />
+                    <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="money" type="number" value="{{$booking->price}}" readonly/>
                 </div>
                 <div class="form-group">
-                    <div class="mb-3">
-                        <label for="" class="form-label">Nội dung chuyển khoản</label>
-                        <textarea class="form-control" name="description_payment" id="" maxlength="255" rows="10" col="30" oninput="checkLength(this)"></textarea>
-                        <div id="charCount"></div>
-                    </div>
+                    <label for="amount">Email</label><br>
+                    <div style="font-size: 10px; color: red;">Anh chị vui lòng nhập đúng địa chỉ email, nếu sai sảy ra lỗi chúng em sẽ không chịu trách nhiệm cho trường hợp này.</div>
+                    <input class="form-control" name="email" type="text" value="vietpham08062003@gmail.com"/>
                 </div>
                 <h4>Chọn phương thức thanh toán</h4>
                 <div class="form-group">
-                    <h5>Cách 1: Chuyển hướng sang Cổng VNPAY chọn phương thức thanh toán</h5>
-                    <input type="radio" Checked="True" id="bankCode" name="bankCode" value="">
-                    <label for="bankCode">Cổng thanh toán VNPAYQR</label><br>
+                    
 
-                    <h5>Cách 2: Tách phương thức tại site của đơn vị kết nối</h5>
-                    <input type="radio" id="bankCode" name="bankCode" value="VNPAYQR">
-                    <label for="bankCode">Thanh toán bằng ứng dụng hỗ trợ VNPAYQR</label><br>
-
-                    <input type="radio" id="bankCode" name="bankCode" value="VNBANK">
+                    <input type="radio" id="bankCode" name="bankCode" value="VNBANK" checked>
                     <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label><br>
-
-                    <input type="radio" id="bankCode" name="bankCode" value="INTCARD">
-                    <label for="bankCode">Thanh toán qua thẻ quốc tế</label><br>
 
                 </div>
                 <div class="form-group">
-                    <h5>Chọn ngôn ngữ giao diện thanh toán:</h5>
-                    <input type="radio" id="language" Checked="True" name="language" value="vn">
-                    <label for="language">Tiếng việt</label><br>
-                    <input type="radio" id="language" name="language" value="en">
-                    <label for="language">Tiếng anh</label><br>
+                    <input type="hidden" id="language" Checked="True" name="language" value="vn">
 
                 </div>
                 <button type="submit" class="btn btn-default" href>Xác nhận thanh toán</button>

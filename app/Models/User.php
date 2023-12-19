@@ -24,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         'phone_number',
         'name',
+        'email',
         'image',
         'excerpt',
         'user_type',
@@ -50,7 +51,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Timesheet::class, 'stylist_time_sheet');
     }
+    public function workDay()
+    {
+        return $this->belongsToMany(WorkDay::class, 'stylist_time_sheet');
+    }
     public function booking(){
-        return $this->hasMany(Booking::class);
+        return $this->hasOne(Booking::class);
     }
 }

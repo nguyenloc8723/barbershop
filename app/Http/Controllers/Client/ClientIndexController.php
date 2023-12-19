@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
@@ -8,13 +8,10 @@ use App\Models\Faq;
 use App\Models\Portfolio;
 use App\Models\Pricing;
 use App\Models\Service;
-use App\Models\Stylist;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ClientIndexController extends Controller
 {
-
     public function index()
     {
         $blogs = Blog::limit(5)->get();
@@ -22,12 +19,6 @@ class ClientIndexController extends Controller
         $data = Service::limit(8)->get();
         $model=Service::all();
         return view('client.display.index',compact('blogs','stylists','data','model'));
-//                return view('client.display.index',compact('stylists'));
-//        return view('client.display.index',[
-//            'blogs' => $blogs,
-//            'stylists' => $stylists,
-//            'data' => $data,
-//        ]);
     }
     public function about()
     {

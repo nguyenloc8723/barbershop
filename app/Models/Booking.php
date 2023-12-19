@@ -14,10 +14,12 @@ class Booking extends Model
 //    public $timestamps = false;
     protected $fillable = [
         'user_phone',
+        'user_id',
         'stylist_id',
         'timesheet_id',
         'price',
         'date',
+        'special_requirements',
         'is_consultant',
         'is_accept_take_a_photo',
         'status',
@@ -42,7 +44,7 @@ class Booking extends Model
 
     public function stylist()
     {
-        return $this->belongsTo(Stylist::class, 'stylist_id');
+        return $this->belongsTo(User::class, 'stylist_id');
     }
     public function reviews(){
         return $this->hasMany(Reviews::class, 'booking_id');
@@ -50,6 +52,6 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

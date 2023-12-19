@@ -15,6 +15,7 @@
 <script src="{{asset('client/js/datepicker.js')}}"></script>
 <script src="{{asset('client/js/smooth-scroll.min.js')}}"></script>
 <script src="{{asset('client/js/custom.js')}}"></script>
+<script src="{{asset('/js/jsClient/bookingfirebase.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -22,3 +23,4 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script type="text/javascript" src="{{asset('/js/jsClient/loginfirebase.js')}}"></script>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

@@ -1,15 +1,10 @@
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
-
         <!-- User box -->
         <div class="user-box text-center">
-
-            <img src="{{asset('be/assets/images/users/user-13.jpg')}}" alt="user-img" title="Mat Helme"
-                 class="rounded-circle img-thumbnail avatar-md">
             <div class="dropdown">
-                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"
-                   aria-expanded="false">6X pro :))</a>
+                <a href="{{route('route.dashboard')}}" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false">6XPRO + 1</a>
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
@@ -73,18 +68,49 @@
                 <li class="menu-title mt-2">Apps</li>
 
                 <li>
-                    <a href="{{route('route.calendar')}}">
-                        <i class="mdi mdi-calendar-blank-outline"></i>
-                        <span> Lịch </span>
+                    @if(\Gate::check('roles.indexStatistic'))
+                    <a href="#statical" data-bs-toggle="collapse">
+                        <i class="mdi mdi-book-open-page-variant-outline"></i>
+                        <span> Thống kê </span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thống kê </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+                    <div class="collapse" id="statical">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('route.statistical')}}">Đặt lịch</a>
+                            </li>
+                            <li>
+                                <a href="{{route('route.statistical.service')}}">Dịch vụ</a>
+                            </li>
+                            <li>
+                                <a href="{{route('route.statistical.revenue')}}">Doanh thu</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
-                        <i class="mdi mdi-account-multiple-plus-outline"></i>
-                        <span>Vai trò và quyền </span>
-                        <span class="menu-arrow"></span>
-                    </a>
+                    @if(\Gate::check('roles.indexRole'))
+                        <a href="#sidebarAuth" data-bs-toggle="collapse">
+                            <i class="mdi mdi-account-multiple-plus-outline"></i>
+                            <span>Vai trò và quyền </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-account-multiple-plus-outline"></i>
+                            <span>Vai trò và quyền </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+
                     <div class="collapse" id="sidebarAuth">
                         <ul class="nav-second-level">
                             <li>
@@ -105,58 +131,118 @@
                 </li>
 
                 <li>
-                    <a href="{{route('route.booking_blade')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span> Booking </span>
-                    </a>
+                    @if(\Gate::check('roles.indexBooking'))
+                        <a href="{{route('route.booking_blade')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Lịch đặt </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Lịch đặt </span>
+                        </a>
+                    @endif
+
+                </li>
+                <li>
+                    @if(\Gate::check('roles.indexMoney'))
+                        <a href="{{route('payment.index')}}">
+                            <i class="bi bi-credit-card-fill"></i>
+                            <span> Thanh toán online </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-credit-card-fill"></i>
+                            <span> Thanh toán online </span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-                    <a href="{{route('route.service')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span> Dịch vụ </span>
-                    </a>
+                    @if(\Gate::check('roles.indexService'))
+                        <a href="{{route('route.service')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Dịch vụ </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Dịch vụ </span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-                    <a href="{{route('category.index')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span>Danh mục dịch vụ</span>
-                    </a>
+                    @if(\Gate::check('roles.indexCategory'))
+                        <a href="{{route('category.index')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Danh mục dịch vụ</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Danh mục dịch vụ</span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-{{--                     <a href="{{route('timesheet.index')}}">--}}
-{{--                    <a href="{{route('timesheets.index')}}"> --}}
-                    <a href="{{route('route.stylistTimeSheets')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span>Lịch làm việc</span>
-                    </a>
-                    </a>
+                    @if(\Gate::check('roles.indexTimeSheet'))
+                        <a href="{{route('route.stylistTimeSheets')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Lịch làm việc</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Lịch làm việc</span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
-                    <a href="#sidebarTasks" data-bs-toggle="collapse">
-                        <i class="mdi mdi-clipboard-outline"></i>
-                        <span> Nhân viên </span>
-                        <span class="menu-arrow"></span>
-                    </a>
+                    @if(\Gate::check('roles.indexRole'))
+                        <a href="#sidebarTasks" data-bs-toggle="collapse">
+                            <i class="mdi mdi-clipboard-outline"></i>
+                            <span> Nhân viên </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-clipboard-outline"></i>
+                            <span> Nhân viên </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+
                     <div class="collapse" id="sidebarTasks">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{route('stylist.index')}}">Danh sách nhân viên</a>
                             </li>
                             <li>
-                                <a href="{{route('member.index')}}">Lịch làm việc</a>
+                                <a href="{{route('workDay.index')}}">Ngày làm việc</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <a href="{{route('route.user')}}">
-                        <i class="mdi mdi-briefcase-variant-outline"></i>
-                        <span> Người dùng </span>
-                    </a>
+                    @if(\Gate::check('roles.indexClient'))
+                        <a href="{{route('route.user')}}">
+                            <i class="mdi mdi-briefcase-variant-outline"></i>
+                            <span> Người dùng </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-briefcase-variant-outline"></i>
+                            <span> Người dùng </span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
                     <a href="{{route('route.result')}}">
@@ -165,18 +251,25 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('review.index')}}">
-                    <i class="bi bi-chat-square-quote"></i>
-                        <span> Reviews </span>
-                    </a>
+                    @if(\Gate::check('roles.indexReview'))
+                        <a href="{{route('review.index')}}">
+                            <i class="bi bi-chat-square-quote"></i>
+                            <span> Reviews </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-chat-square-quote"></i>
+                            <span> Reviews </span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
                     <a href="{{route('banner.index')}}">
-                    <i class="bi bi-images"></i>
+                        <i class="bi bi-images"></i>
                         <span> Setting Banner </span>
                     </a>
                 </li>
-
                 <li>
                     <a href="{{route('blogs.index')}}">
                         <i class="bi bi-chat-square-quote"></i>
@@ -189,9 +282,21 @@
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span>Thống kê</span>
                     </a>
-                </li>
+                    @if(\Gate::check('roles.indexMoney'))
+                        <a href="{{route('destroy.index')}}">
+                            <i class="bi bi-images"></i>
+                            <span>Thanh toán hủy lịch</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-images"></i>
+                            <span>Thanh toán hủy lịch</span>
+                        </a>
+                    @endif
 
+                </li>
                 <li>
+
                     <a href="{{route('faqs.index')}}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span> Câu hỏi thường gặp </span>
@@ -215,6 +320,21 @@
                         <span> Thùng rác </span>
                         <span class="menu-arrow"></span>
                     </a>
+
+                    @if(\Gate::check('roles.indexTruck'))
+                        <a href="#contacts" data-bs-toggle="collapse">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thùng rác </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thùng rác </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+
                     <div class="collapse" id="contacts">
                         <ul class="nav-second-level">
                             <li>
@@ -226,380 +346,9 @@
                             <li>
                                 <a href="{{route('trash.user')}}">User</a>
                             </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-
                         </ul>
                     </div>
                 </li>
-
-
-                {{--                <li class="menu-title mt-2">Custom</li>--}}
-
-
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarExpages" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-file-multiple-outline"></i>--}}
-                {{--                        <span> Extra Pages </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarExpages">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-starter.html">Starter</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-pricing.html">Pricing</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-timeline.html">Timeline</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-invoice.html">Invoice</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-faqs.html">FAQs</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-gallery.html">Gallery</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-404.html">Error 404</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-500.html">Error 500</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-maintenance.html">Maintenance</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="pages-coming-soon.html">Coming Soon</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarLayouts" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-dock-window"></i>--}}
-                {{--                        <span> Layouts </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarLayouts">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="layouts-horizontal.html">Horizontal</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="layouts-preloader.html">Preloader</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li class="menu-title mt-2">Components</li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarBaseui" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-briefcase-outline"></i>--}}
-                {{--                        <span> Base UI </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarBaseui">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-buttons.html">Buttons</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-cards.html">Cards</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-avatars.html">Avatars</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-tabs-accordions.html">Tabs & Accordions</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-modals.html">Modals</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-progress.html">Progress</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-notifications.html">Notifications</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-offcanvas.html">Offcanvas</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-placeholders.html">Placeholders</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-spinners.html">Spinners</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-images.html">Images</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-carousel.html">Carousel</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-video.html">Embed Video</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-dropdowns.html">Dropdowns</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-tooltips-popovers.html">Tooltips & Popovers</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-general.html">General UI</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-typography.html">Typography</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="ui-grid.html">Grid</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="widgets.html">--}}
-                {{--                        <i class="mdi mdi-gift-outline"></i>--}}
-                {{--                        <span> Widgets </span>--}}
-                {{--                    </a>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarExtendedui" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-layers-outline"></i>--}}
-                {{--                        <span class="badge bg-info float-end">Hot</span>--}}
-                {{--                        <span> Extended UI </span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarExtendedui">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-range-slider.html">Range Slider</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-sweet-alert.html">Sweet Alert</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-draggable-cards.html">Draggable Cards</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-tour.html">Tour Page</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-notification.html">Notification</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="extended-treeview.html">Tree View</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarIcons" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-shield-outline"></i>--}}
-                {{--                        <span> Icons </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarIcons">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="icons-feather.html">Feather Icons</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="icons-mdi.html">Material Design Icons</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="icons-dripicons.html">Dripicons</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="icons-font-awesome.html">Font Awesome 5</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="icons-themify.html">Themify</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarForms" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-texture"></i>--}}
-                {{--                        <span> Forms </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarForms">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-elements.html">General Elements</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-advanced.html">Advanced</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-validation.html">Validation</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-wizard.html">Wizard</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-quilljs.html">Quilljs Editor</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-pickers.html">Picker</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-file-uploads.html">File Uploads</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="forms-x-editable.html">X Editable</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarTables" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-table"></i>--}}
-                {{--                        <span> Tables </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarTables">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="tables-basic.html">Basic Tables</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="tables-datatables.html">Data Tables</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="tables-editable.html">Editable Tables</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="tables-responsive.html">Responsive Tables</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="tables-tablesaw.html">Tablesaw Tables</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarCharts" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-chart-donut-variant"></i>--}}
-                {{--                        <span> Charts </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarCharts">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="charts-flot.html">Flot Charts</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="charts-morris.html">Morris Charts</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="charts-chartjs.html">Chartjs Charts</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="charts-chartist.html">Chartist Charts</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="charts-sparklines.html">Sparkline Charts</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarMaps" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-map-outline"></i>--}}
-                {{--                        <span> Maps </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarMaps">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="maps-google.html">Google Maps</a>--}}
-                {{--                            </li>--}}
-                {{--                            <li>--}}
-                {{--                                <a href="maps-vector.html">Vector Maps</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                {{--                <li>--}}
-                {{--                    <a href="#sidebarMultilevel" data-bs-toggle="collapse">--}}
-                {{--                        <i class="mdi mdi-share-variant"></i>--}}
-                {{--                        <span> Multi Level </span>--}}
-                {{--                        <span class="menu-arrow"></span>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="collapse" id="sidebarMultilevel">--}}
-                {{--                        <ul class="nav-second-level">--}}
-                {{--                            <li>--}}
-                {{--                                <a href="#sidebarMultilevel2" data-bs-toggle="collapse">--}}
-                {{--                                    Second Level <span class="menu-arrow"></span>--}}
-                {{--                                </a>--}}
-                {{--                                <div class="collapse" id="sidebarMultilevel2">--}}
-                {{--                                    <ul class="nav-second-level">--}}
-                {{--                                        <li>--}}
-                {{--                                            <a href="javascript: void(0);">Item 1</a>--}}
-                {{--                                        </li>--}}
-                {{--                                        <li>--}}
-                {{--                                            <a href="javascript: void(0);">Item 2</a>--}}
-                {{--                                        </li>--}}
-                {{--                                    </ul>--}}
-                {{--                                </div>--}}
-                {{--                            </li>--}}
-
-                {{--                            <li>--}}
-                {{--                                <a href="#sidebarMultilevel3" data-bs-toggle="collapse">--}}
-                {{--                                    Third Level <span class="menu-arrow"></span>--}}
-                {{--                                </a>--}}
-                {{--                                <div class="collapse" id="sidebarMultilevel3">--}}
-                {{--                                    <ul class="nav-second-level">--}}
-                {{--                                        <li>--}}
-                {{--                                            <a href="javascript: void(0);">Item 1</a>--}}
-                {{--                                        </li>--}}
-                {{--                                        <li>--}}
-                {{--                                            <a href="#sidebarMultilevel4" data-bs-toggle="collapse">--}}
-                {{--                                                Item 2 <span class="menu-arrow"></span>--}}
-                {{--                                            </a>--}}
-                {{--                                            <div class="collapse" id="sidebarMultilevel4">--}}
-                {{--                                                <ul class="nav-second-level">--}}
-                {{--                                                    <li>--}}
-                {{--                                                        <a href="javascript: void(0);">Item 1</a>--}}
-                {{--                                                    </li>--}}
-                {{--                                                    <li>--}}
-                {{--                                                        <a href="javascript: void(0);">Item 2</a>--}}
-                {{--                                                    </li>--}}
-                {{--                                                </ul>--}}
-                {{--                                            </div>--}}
-                {{--                                        </li>--}}
-                {{--                                    </ul>--}}
-                {{--                                </div>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
             </ul>
 
         </div>

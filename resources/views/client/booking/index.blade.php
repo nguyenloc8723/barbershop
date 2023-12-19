@@ -2,10 +2,20 @@
 @section('style')
 <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
 <link rel="stylesheet" href="{{asset('client/css/booking.css')}}">
-
+<link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
+
+@if(@session('default'))
+<script>
+    swal( "Oops" ,  "Thanh toán thất bại!" ,  "error" )
+</script>
+@endif
+
 <div id="user_phone" data-user_phone="+84{{ request()->query('phone') }}"></div>
+
+<div id="user-info" data-user_id="{{(Auth::check()) ? Auth::id(): '0'}}"></div>
 <div class="fix-hed">
 
 </div>
@@ -95,8 +105,11 @@
                                     <div class="relative" id="datebookId">
                                         <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                            <input type="date" class="form-control" name="date">
+                                            <input type="date" class="form-control" name="date" id="jqr-selectedDate" min="<?php echo date('Y-m-d'); ?>">
                                         </div>
+
+
+
                                         <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                     </div>
                                 </div>
@@ -127,16 +140,22 @@
                             </div>
                         </div>
                         <div class="text-base">
-                        <div class="">
+                            <div class="">
                                 <p class="fw-bold fs-5"><i class="bi bi-credit-card"></i> Phương thức thanh toán</p>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="1">
-                                        <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="" id="" name="pttt" value="2">
-                                        <label class="form-check-label" for="radio2">Thanh toán online</label>
-                                    </div>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="1">
+                                    <label class="form-check-label" for="radio1">Thanh toán tại quầy</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="" id="" name="pttt" value="2" checked>
+                                    <label class="form-check-label" for="radio2">Thanh toán online</label>
+                                </div>
+                            </div>
+                            <div class="flex space-between is_height">
+                                <p class="fw-bold fs-5">Yêu cầu đặc biệt</p>
+                            </div>
+                            <div class="note__input">
+                                <textarea placeholder="VD: Tư vấn kiểu tóc..." class="ant-input" style="font-family: inherit; height: 35px;font-weight: 300;border-color: rgb(145, 118, 90);border-top: none;border-left: none;border-right: none;border-radius: 0;margin-bottom: 0;padding: 5px;"></textarea>
                             </div>
                             <div class="flex space-between is_height">
                                 <p class="fw-bold fs-5">Yêu cầu tư vấn</p>
@@ -159,7 +178,7 @@
                 </div>
                 <div class="new-affix-v2">
                     <div class="flex space-between text-center content-step time-line ">
-                        <div class="right button-next pointer btn-inactive" role="presentation">
+                        <div class="right button-next pointer btn-inactive jqr-completed" role="presentation">
                             <span>Hoàn tất</span>
                         </div>
                         <span class="sub-description">Cắt xong trả tiền, huỷ lịch không sao</span>
@@ -174,7 +193,4 @@
 @section('js')
 <script src="{{asset('be/assets/libs/mohithg-switchery/switchery.min.js')}}"></script>
 <script src="{{asset('js/jsClient/booking.js')}}"></script>
-<script>
-
-</script>
 @endsection

@@ -13,6 +13,10 @@ class ApiRoleController extends Controller
         $data = Role::all();
         return response()->json($data);
     }
+    public function overView(){
+        $data = Role::query()->with('users')->get();
+        return response()->json($data);
+    }
 
     public function store(Request $request){
         $model = new Role();
@@ -30,7 +34,6 @@ class ApiRoleController extends Controller
     }
 
     public function update(Request $request, string $id){
-        Log::info($request->all());
         $model = Role::query()->findOrFail($id);
         $model->fill($request->all());
         $model->save();

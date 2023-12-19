@@ -64,36 +64,7 @@ class AuthenticatedSessionController extends Controller
         }else{
             return response()->json(['user_type' => RouteServiceProvider::HOME_USER]);
         }
-//        /** @var  $user */
-//        $user = $request->user();
-//        if ($user->isAdmin()){
-//            return response()->json(['user_type' => RouteServiceProvider::HOME_ADMIN]);
-//        }elseif ($user->isSylist()){
-//            return response()->json(['user_type' => RouteServiceProvider::HOME_STYLIST]);
-//        }else{
-//            return response()->json(['user_type' => RouteServiceProvider::HOME_USER]);
-//        }
     }
-
-//    public function sendSms($receiverPhoneNumber)
-//    {
-//        $twilioSid = env('TWILIO_SID');
-//        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
-//        $client = new Client($twilioSid, $twilioAuthToken);
-//
-//        $message = $client->messages->create(
-//            $receiverPhoneNumber, // Số điện thoại người nhận
-//            [
-//                'from' => '+12392177433', // Số điện thoại Twilio của bạn
-//                'body' => 'Chào mừng em đến với nhà của bọn anh'
-//            ]
-//        );
-//
-//        // Xử lý kết quả nếu cần
-//    }
-
-// sms VN
-
 
     /**
      * Destroy an authenticated session.
@@ -108,8 +79,4 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-
-
-
-
 }

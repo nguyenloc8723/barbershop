@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking_service extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'booking_service';
     protected $fillable = [
         'id',

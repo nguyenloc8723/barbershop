@@ -3,19 +3,31 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminMail;
 use App\Models\Booking;
 use App\Models\payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailSend;
+use App\Models\Booking_service;
+use App\Models\Results;
+use App\Models\User;
+use Illuminate\Contracts\Queue\Queue as QueueQueue;
+use Illuminate\Queue\Queue as IlluminateQueueQueue;
+use Illuminate\Support\Facades\Queue;
 
 class paymentController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(Request $request, $user_phone)
     {
-        $user = auth()->user()->phone_number;
+        // $user = auth()->user()->phone_number;
 
-        $booking = Booking::where('user_phone', $user)->orderBy('created_at', 'desc')->first();
+        $url = "+84" . $user_phone; // Sử dụng đường dẫn URL động được truyền từ route.
+        // dd($url);
+        $booking = Booking::where('user_phone', $url)->orderBy('created_at', 'desc')->first();
         // dd($booking);
 
         return view('client.vnpay.index', compact('booking'));
@@ -26,12 +38,10 @@ class paymentController extends Controller
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('client.return.vnpay');
-        $vnp_TmnCode = "403UXSRZ"; //Mã website tại VNPAY
-        $vnp_HashSecret = "KRXTPRDDDVBRCWPRRBJXDVSOWGCSAICT"; //Chuỗi bí mật
+        $vnp_TmnCode = "TTVOYSZW"; //Mã website tại VNPAY
+        $vnp_HashSecret = "DHWPAHJHGIHXDUCOQWAOJSDMOBMIIUNW"; //Chuỗi bí mật
         $vnp_TxnRef = $_POST['booking_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $user_phone = $_POST['user_phone'];
-        $vnp_OrderInfo = $_POST['description_payment'];
-
+        $vnp_OrderInfo =  $_POST['email'];
         $vnp_OrderType = "Haircut payment";
         $vnp_Amount = $_POST['money'] * 100;
         $vnp_Locale =  $_POST['language'];
@@ -45,6 +55,7 @@ class paymentController extends Controller
             "vnp_Command" => "pay",
             "vnp_CreateDate" => date('YmdHis'),
             "vnp_CurrCode" => "VND",
+            // "vnp_Email" => $vnp_Email,
             "vnp_IpAddr" => $vnp_IpAddr,
             "vnp_Locale" => $vnp_Locale,
             "vnp_OrderInfo" => $vnp_OrderInfo,
@@ -60,7 +71,7 @@ class paymentController extends Controller
             $inputData['vnp_Bill_State'] = $vnp_Bill_State;
         }
 
-        //var_dump($inputData);
+        // var_dump($inputData);
         ksort($inputData);
         $query = "";
         $i = 0;
@@ -76,8 +87,9 @@ class paymentController extends Controller
         }
 
         $vnp_Url = $vnp_Url . "?" . $query;
+        // dd($vnp_Url);
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         $returnData = array(
@@ -85,13 +97,14 @@ class paymentController extends Controller
         );
         // dd($vnp_Url);
         header('Location: ' . $vnp_Url);
+        // dd(header('Location: ' . $vnp_Url));
         die();
     }
 
     public function return(Request $request)
     {
         // dd($request->all());
-        $vnp_HashSecret = "KRXTPRDDDVBRCWPRRBJXDVSOWGCSAICT";
+        $vnp_HashSecret = "DHWPAHJHGIHXDUCOQWAOJSDMOBMIIUNW";
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
         $inputData = $request->all();
 
@@ -120,32 +133,59 @@ class paymentController extends Controller
             if ($_GET['vnp_ResponseCode'] == '00') {
                 // echo "GD Thanh cong";
                 // dd($inputData);
-                
+
                 //kiểm tra db có dữ liệu chưa, nếu có rồi thì ko cho insert
                 $existingPayment = payment::query()
-                ->where('booking_id', $inputData['vnp_TxnRef'])
-                ->first();
+                    ->where('booking_id', $inputData['vnp_TxnRef'])
+                    ->first();
+
+                if (!$existingPayment) {
+                    payment::query()->create([
+                        "booking_id" => $inputData['vnp_TxnRef'],
+                        "money" => $inputData['vnp_Amount'] / 100,
+                        "email" => $inputData['vnp_OrderInfo'],
+                        "note" => "hihiih",
+                        "vnp_response_code" => $inputData['vnp_ResponseCode'],
+                        "code_vnpay" => $inputData['vnp_BankTranNo'],
+                        "code_bank" => $inputData['vnp_BankCode'],
+                        "time" => $inputData['vnp_PayDate'],
+                    ]);
+
+                    $mailData = [
+                        'title' => 'Mail from Webappfix',
+                        'body' => 'This is for testing email usign smtp',
+                    ];
+                    $combo = Booking_service::with('service')
+                        ->where('booking_id', $inputData['vnp_TxnRef'])
+                        ->get();
+                    $inputDatas = $inputData;
+                    $booking = Booking::with('timeSheet')->where('id', $inputData['vnp_TxnRef'])->first();
+                    $stylist = User::where('id', $booking->stylist_id)->first();
+                    // dd($stylist);
+                    // dd($mailData,$combo,$booking,$inputDatas);
+                    
+                        Mail::to($inputData['vnp_OrderInfo'])->queue(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
+                        
     
-            if (!$existingPayment) {
-                payment::query()->create([
-                    "booking_id" => $inputData['vnp_TxnRef'],
-                    "money" => $inputData['vnp_Amount'],
-                    "note" => $inputData['vnp_OrderInfo'],
-                    "vnp_response_code" => $inputData['vnp_ResponseCode'],
-                    "code_vnpay" => $inputData['vnp_BankTranNo'],
-                    "code_bank" => $inputData['vnp_BankCode'],
-                    "time" => $inputData['vnp_PayDate'],
-                ]);
-            }
-    
-            return view('client.vnpay.vnpay_return', compact('inputData'));
+                }
+
+                //mail gửi admin khi có người dùng thanh toán thành công
+                $payment = payment::orderBy('created_at', 'desc')->first();
+                    $payment = payment::find($payment->id); // Lấy lại đối tượng payment để đảm bảo thông tin mới nhất
+                    Mail::to('vietpvph28454@fpt.edu.vn')->queue(new AdminMail($payment));
+                
+
+                return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
+                $booking = Booking::where('id',$inputData['vnp_TxnRef'])->first();
                 Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
-                to_route('client.booking')->with('default', "Thanh toán thất bại");
+                return redirect()->route('client.booking', ['phone' => str_replace('+84', '',$booking->user_phone)])->with('default', "Thanh toán thất bại");
             }
         } else {
+            $booking = Booking::where('id',$inputData['vnp_TxnRef'])->first();
             Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
             echo "Chu ky khong hop le";
+            return redirect()->route('client.booking', ['phone' => str_replace('+84', '',$booking->user_phone)])->with('default', "Thanh toán thất bại");
         }
     }
 }
