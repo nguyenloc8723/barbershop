@@ -98,9 +98,12 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Cạo râu</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte miss morbine.</i></p> <a href="#0"
-                                                                                           class="button-2 mt-15">Appointment<span></span></a>
+                                <p><i>Với bàn tay khéo léo của đội ngũ nghệ nhân cạo râu tài năng, chúng tôi cam kết đưa
+                                        ra mỗi đường nét cạo râu không chỉ là một quá trình làm đẹp, mà còn là một tác
+                                        phẩm nghệ thuật tinh tế trên khuôn mặt của bạn. Khám phá sự thư thái và tự tin
+                                        mới qua từng cú dao lướt nhẹ, và hòa mình vào không khí lịch lãm tại không gian
+                                        của chúng tôi.</i></p> <a href="{{ route('index')}}" class="button-2 mt-15">Đặt
+                                    lịch ngay<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -118,9 +121,12 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Cắt tóc cho trẻ</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte miss morbine.</i></p> <a href="#0"
-                                                                                           class="button-2 mt-15">Appointment<span></span></a>
+                                <p><i>Hãy đưa con bạn đến và trải nghiệm không khí ấm cúng, nụ cười trẻ thơ, và sự sáng
+                                        tạo tại không gian chăm sóc tóc dành riêng cho trẻ em của chúng tôi. Chúng tôi
+                                        tin rằng mỗi bức ảnh và kí ức về mái tóc mới của bé sẽ là khoảnh khắc đáng nhớ
+                                        trên hành trình lớn lên của họ.</i></p> <a href="{{ route('index')}}"
+                                                                                   class="button-2 mt-15">Đặt lịch
+                                    ngay<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -138,10 +144,11 @@
                         <div class="square2">
                             <div class="square-container2">
                                 <h4>Đào tạo Barber</h4>
-                                <p><i>Lorem nisl miss nestibulum nec odio duru the aucan ula orci varius natoque enatau
-                                        manis dis arturient monte miss morbine.</i></p> <a href="#0"
-                                                                                           class="button-2 mt-15">Our
-                                    Team<span></span></a>
+                                <p><i>Đội ngũ giáo viên của chúng tôi không chỉ là những chuyên gia hàng đầu trong ngành
+                                        barbering, mà còn là những người có tâm huyết chia sẻ kiến thức và kinh nghiệm.
+                                        Chúng tôi cam kết hỗ trợ học viên không chỉ trên hành trình học tập, mà còn
+                                        trong việc phát triển sự sáng tạo và phong cách cá nhân.</i></p> <a
+                                    href="{{ route('team')}}" class="button-2 mt-15">Đội ngũ<span></span></a>
                             </div>
                         </div>
                     </div>
@@ -149,120 +156,6 @@
             </div>
         </div>
     </div>
-    <!-- Appointment Form -->
-    <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/20.jpg"
-             data-overlay-dark="6">
-            <div class="container">
-                <div class="row">
-                    <!-- Appointment call -->
-                    <div class="col-md-5 mb-30 mt-60">
-                        <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i
-                                class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất ở Hà Nội.</h5>
-                        <div class="reservations mb-10">
-                            <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
-                            <div class="text">
-                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886
-                                    742</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Appointment form -->
-                    <div class="col-md-5 offset-md-2">
-                        <div class="booking-box">
-                            <div class="head-box text-center">
-                                <h4>Đặt một cuộc hẹn</h4>
-                            </div>
-                            <div class="booking-inner clearfix">
-                                <form class="form1 clearfix">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Name</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Tên"
-                                                           required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Phone</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Số điện thoại"
-                                                           required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Ngày</label>
-                                                <div class="input1_inner">
-                                                    <input type="text" class="form-control input datepicker"
-                                                           placeholder="Ngày" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Thời gian</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Thời gian</option>
-                                                        <option value="1">10:00 am</option>
-                                                        <option value="2">11:00 am</option>
-                                                        <option value="3">12:00 pm</option>
-                                                        <option value="4">14:00 pm</option>
-                                                        <option value="5">16:00 pm</option>
-                                                        <option value="6">18:00 pm</option>
-                                                        <option value="7">20:00 pm</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Dịch vụ</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Dịch vụ</option>
-                                                        <option value="0">Hair Styling</option>
-                                                        <option value="1">Face Mask</option>
-                                                        <option value="2">Shaving</option>
-                                                        <option value="3">Beard Triming</option>
-                                                        <option value="4">Hair Wash</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Chọn Barber</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Chọn Barber</option>
-                                                        <option value="0">Philip</option>
-                                                        <option value="1">Stephen</option>
-                                                        <option value="2">Dennis</option>
-                                                        <option value="3">Helen</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Clients -->
     <section class="clients">
         <div class="container">

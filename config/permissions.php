@@ -60,5 +60,11 @@ return [
         'roles.createTruck' => 'Tạo mới',
         'roles.editTruck' => 'Cập nhật',
         'roles.deleteTruck' => 'Xóa',
+    ],
+    'Tài chính' => [
+        'roles.indexMoney' => 'chỉ xem',
+        'roles.createMoney' => 'Tạo mới',
+        'roles.editMoney' => 'Cập nhật',
+        'roles.deleteMoney' => 'Xóa',
     ]
 ];

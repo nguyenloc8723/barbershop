@@ -14,6 +14,7 @@ $(document).ready(function () {
     //
     let clearTime;
     let validateTimeSheet = true;
+    let checkTimeSheet = true;
     let date_Id = 0;
     let countPrice = 0;
     let is_consultant = 1;
@@ -40,6 +41,7 @@ $(document).ready(function () {
         var current_Date = new Date().toISOString().split('T')[0];
         // Đặt giá trị mặc định cho input type date (ngày cắt)
         $('#jqr-selectedDate').val(current_Date);
+        // $('.jqr-selectedDate').attr('min', current_Date);
     }
     currentDate()
     let selectedDate = $('#jqr-selectedDate').val();
@@ -168,7 +170,7 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
-        clearTime = setTimeout(() => timeSheetCallback(stylist), 10000);
+        clearTime = setTimeout(() => timeSheetCallback(stylist), 30000);
     }
 
     function timeSheetCallback(stylist) {
@@ -180,7 +182,23 @@ $(document).ready(function () {
 
     $(document).on('click', '.jqr-showAllService', function () {
         allService();
-        loadAllService()
+        loadAllService();
+        $('#searchInput').on('input', function () {
+            // Lấy giá trị từ ô tìm kiếm
+            let keyword = $(this).val().toLowerCase();
+
+            // Ẩn tất cả các dịch vụ
+            $('.list__item').hide();
+
+            // Hiển thị các dịch vụ thỏa mãn điều kiện tìm kiếm
+            $('.list__item').each(function () {
+                let serviceName = $(this).find('.service-name').text().toLowerCase();
+                console.log(serviceName);
+                if (serviceName.includes(keyword)) {
+                    $(this).show();
+                }
+            });
+        });
     })
 
     function allService() {
@@ -193,14 +211,14 @@ $(document).ready(function () {
                     <div class="body relative " style="background-color: #fff;">
                         <div class="floating-service"> </div>
                         <div class="booking-service">
-                            <div class="booking-service__input-wrap">
-                                    <span class="ant-input-affix-wrapper ant-input-affix-wrapper-lg booking-service__input">
-                                        <span class="ant-input-prefix">
-                                            <span role="img" aria-label="search" tabindex="-1" class="anticon anticon-search booking-service__input-icon">
+                            <div class="booking-service__input-wrap form-group">
+                                    <span class="input-group input-group-lg ant-input-affix-wrapper ant-input-affix-wrapper-lg booking-service__input">
+<!--                                        <span class="ant-input-prefix">-->
+<!--                                            <span role="img" aria-label="search" tabindex="-1" class="anticon anticon-search booking-service__input-icon">-->
 
-                                            </span>
-                                        </span>
-                                        <input placeholder="Tìm kiếm dịch vụ, nhóm dịch vụ" class="ant-input ant-input-lg" type="text" value spellcheck="false" data-ms-editor="true">
+<!--                                            </span>-->
+<!--                                        </span>-->
+                                        <input id="searchInput" placeholder="Tìm kiếm dịch vụ, nhóm dịch vụ" class="form-control form-control-lg ant-input ant-input-lg" type="text" value spellcheck="false" data-ms-editor="true">
                                     </span>
                             </div>
                             <div class="booking-service__group">
@@ -421,7 +439,7 @@ $(document).ready(function () {
             }
         });
     }
-
+    let serviceNamesArray = [];
     function loadAllService() {
         arrayIDService = [];
         $.ajax({
@@ -450,13 +468,14 @@ $(document).ready(function () {
                           `
                     for (let j = 0; j < count; j++) {
                         let formattedMoney = formatCurrency(+data[i].service[j].price);
+                        serviceNamesArray.push(data[i].service[j].name);
                         service += `
                                 <div class="list__item">
                                     <div class="item__media " role="presentation">
                                        <img src="/storage/${imgService[countImg].images[0].url}" alt>
 
                                     </div>
-                                    <div class="fs-6 fw-bold mx-2" role="presentation">${data[i].service[j].name}</div>
+                                    <div class="fs-6 fw-bold mx-2 service-name" role="presentation">${data[i].service[j].name}</div>
                                     <div class="mx-2 item__description" role="presentation">
                                         ${data[i].service[j].description}
                                     </div>
@@ -619,10 +638,17 @@ $(document).ready(function () {
             if(bookingId){
                 updateBooking(bookingId)
             }else{
-                pushRequest();
-                blockTimeSheet();
+                blockTimeSheet().then(function (response) {
+                    if (response.success !== 'success') {
+                        alert('Giờ này đã được đặt vui lòng chọn giờ khác');
+                    } else {
+                        pushRequest();
+                    }
+                    console.log(checkTimeSheet);
+                }).catch(function (error) {
+                    console.error(error);
+                });
             }
-
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -671,24 +697,28 @@ $(document).ready(function () {
         });
     }
     function blockTimeSheet() {
-        let arrayTimeSheet = {
-            user_id: stylist,
-            timesheet_id: time,
-            work_day_id: date_Id,
-        };
-        $.ajax({
-            url: urlWorkDayTime,
-            method: 'POST',
-            data: arrayTimeSheet,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (error) {
-                console.error(error);
-            }
+        return new Promise(function (resolve, reject) {
+            let arrayTimeSheet = {
+                user_id: stylist,
+                timesheet_id: time,
+                work_day_id: date_Id,
+            };
+            $.ajax({
+                url: urlWorkDayTime,
+                method: 'POST',
+                data: arrayTimeSheet,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    // console.log(response.success);
+                    resolve(response);
+                },
+                error: function (error) {
+                    // console.error(error);
+                    reject(error);
+                }
+            });
         });
     }
     function randomStylist() {
