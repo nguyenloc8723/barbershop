@@ -272,7 +272,7 @@
             </div>
         </div>
     </section>
-    <!-- Testimonials -->
+{{--    <!-- Testimonials -->--}}
     <section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg"
              data-overlay-dark="4">
         <div class="container">
@@ -348,7 +348,7 @@
             </div>
         </div>
     </section>
-    <!-- First Class Services -->
+{{--    <!-- First Class Services -->--}}
     <div class="first-class-services section-padding">
         <div class="container">
             <div class="row">
@@ -431,7 +431,7 @@
             </div>
         </div>
     </div>
-    <!-- Pricing -->
+{{--    <!-- Pricing -->--}}
     <section class="barber-pricing section-padding position-re">
         <div class="container">
             <div class="row">
@@ -460,7 +460,7 @@
             </div>
         </div>
     </section>
-    <!-- Team -->
+{{--    <!-- Team -->--}}
     <section class="team section-padding pb-0">
         <div class="container">
             <div class="row">
@@ -499,7 +499,7 @@
             </div>
         </div>
     </section>
-    <!-- Services - We Also Offer -->
+{{--    <!-- Services - We Also Offer -->--}}
     <section class="services-1 section-padding">
         <div class="container">
             <div class="row">
@@ -599,7 +599,7 @@
         </div>
     </section>
 
-    <!-- News -->
+{{--    <!-- News -->--}}
     <section class="news section-padding">
         <div class="container">
             <div class="row">
@@ -626,6 +626,7 @@
                                 </span>
                                 </div>
                             </div>
+                        @endforeach
                     </div>
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
@@ -652,7 +653,7 @@
             </div>
         </div>
     </section>
-    <!-- Clients -->
+{{--    <!-- Clients -->--}}
     <section class="clients">
         <div class="container">
             <div class="row">
