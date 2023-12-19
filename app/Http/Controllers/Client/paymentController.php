@@ -9,6 +9,7 @@ use App\Models\payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailSend;
 use App\Models\Booking_service;
@@ -17,6 +18,7 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\Queue as QueueQueue;
 use Illuminate\Queue\Queue as IlluminateQueueQueue;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Str;
 
 class paymentController extends Controller
 {
@@ -161,19 +163,19 @@ class paymentController extends Controller
                     $inputDatas = $inputData;
                     $booking = Booking::with('timeSheet')->where('id', $inputData['vnp_TxnRef'])->first();
                     $stylist = User::where('id', $booking->stylist_id)->first();
-                    // dd($stylist);
+//                     dd($booking->user_phone);
                     // dd($mailData,$combo,$booking,$inputDatas);
-                    
+
                         Mail::to($inputData['vnp_OrderInfo'])->queue(new MailSend($mailData, $combo, $booking, $inputDatas, $stylist));
-                        
-    
+                    $this->sendSms($booking->user_phone);
+
                 }
 
                 //mail gửi admin khi có người dùng thanh toán thành công
                 $payment = payment::orderBy('created_at', 'desc')->first();
                     $payment = payment::find($payment->id); // Lấy lại đối tượng payment để đảm bảo thông tin mới nhất
                     Mail::to('vietpvph28454@fpt.edu.vn')->queue(new AdminMail($payment));
-                
+
 
                 return view('client.vnpay.vnpay_return', compact('inputData'));
             } else {
@@ -186,6 +188,35 @@ class paymentController extends Controller
             Booking::withTrashed()->where('id', $inputData['vnp_TxnRef'])->forceDelete();
             echo "Chu ky khong hop le";
             return redirect()->route('client.booking', ['phone' => str_replace('+84', '',$booking->user_phone)])->with('default', "Thanh toán thất bại");
+        }
+    }
+    public function sendSms($phoneNumber)
+    {
+        if (Str::startsWith($phoneNumber, '+84')) {
+            // Nếu có, loại bỏ tiền tố "+84"
+            $phoneNumber = Str::substr($phoneNumber, 3);
+        }
+                $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
+                $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
+//        $APIKey = "CC51F14733C7A913F98530858AFDC7";
+//        $SecretKey = "79E1CE633349FD7FA5BB95D7C51F65";
+        $YourPhone = $phoneNumber;
+        $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
+
+        $SendContent = urlencode($Content);
+        $data = "http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&Brandname=Baotrixemay&SmsType=2";
+
+        $curl = curl_init($data);
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+
+        $obj = json_decode($result, true);
+        if ($obj['CodeResult'] == 100) {
+            Log::info("thành công ");
+        } else {
+            Log::info("lỗi  ");
         }
     }
 }

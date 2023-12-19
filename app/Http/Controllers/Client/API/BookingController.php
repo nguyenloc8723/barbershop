@@ -90,8 +90,11 @@ class BookingController extends Controller
         $service = Booking_service::with('service')->where('booking_id', $bookingDone_id)->get();
         $stylist = User::query()->where('id', $request->stylist_id)->first();
         Mail::to($stylist->email)->queue(new MailStylist($booking, $service));
-        //end send mail stylist
-        $this->sendSms($request->user_phone);
+        //end send mail stylis
+        if ($request->pttt == 1){
+            $this->sendSms($request->user_phone);
+        }
+
         return response()->json(['success' => $bookingDone_id]);
     }
 
@@ -146,7 +149,7 @@ class BookingController extends Controller
 
         Mail::to($stylist->email)->queue(new MailStylist($booking, $service));
         //end send mail stylist
-        $this->sendSms($request->user_phone);
+//        $this->sendSms($request->user_phone);
         return response()->json(['success' => $id]);
     }
 
@@ -229,10 +232,10 @@ class BookingController extends Controller
             // Nếu có, loại bỏ tiền tố "+84"
             $phoneNumber = Str::substr($phoneNumber, 3);
         }
-        //        $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
-        //        $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
-        $APIKey = "44A12426B71D5CDBD86F3EB12DD2F4";
-        $SecretKey = "3FDAB16BC3DBB1DD12814080488663";
+                $APIKey = "DA549A5A42CFAEA8824C0CE30C0DEF";
+                $SecretKey = "6302BDD6EE57AB25612AEBDC6CD87E";
+//        $APIKey = "CC51F14733C7A913F98530858AFDC7";
+//        $SecretKey = "79E1CE633349FD7FA5BB95D7C51F65";
         $YourPhone = $phoneNumber;
         $Content = "Cam on quy khach da su dung dich vu cua chung toi. Chuc quy khach mot ngay tot lanh!";
 
