@@ -44,7 +44,7 @@
                     <div class="v-middle">
                         <h5>Đẹp trai, Bản lĩnh, Tự tin</h5>
                         <h1>LỰA CHỌN CỦA PHÁI MẠNH<br>6X-PRO BARBER SHOP.</h1>
-                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5> 
+                        <h5>Trịnh Văn Bô,Nam Từ Liêm,Hà Nội. Liên hệ: 0865886742</h5>
                         <div class="home__form-input">
                             <div class="form-input__form flex mt-1">
                                 @if (Auth::check())
@@ -129,7 +129,7 @@
                 @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4">
                     <div class="item">
-                        <a href="services-page.html">
+                        <a href="{{route('services-page',$item)}}">
                             @if ($item->id == 1)
                             <span class="icon icon-icon-1-1"></span>
                         @elseif ($item->id == 2)
@@ -204,7 +204,7 @@
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     <div class="item">
                         <div class="position-re o-hidden">
-                            
+
                              <img src="client/img/services/2.jpg" alt="">
                          </div>
                         <div class="con">
@@ -456,14 +456,13 @@
                                </div>
                                <div class="team-content">
                                    <h3 class="team-title"><span>Barber</span></h3>
-                                   <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
-                                       vesatien arcuman ontese auctor ac aleuam aretra.</p>
+                                   <p class="team-text">{{$stylist->excerpt}}</p>
                                    <div class="social">
                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
                                            <a href="#"><i class="ti-instagram"></i></a></div>
                                    </div>
-                                   <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                                   <a href="{{route('team-details',$stylist->id)}}" class="button-1 mt-15">Team Details<span></span></a>
                                </div>
                                <div class="title-box">
                                    <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
@@ -472,7 +471,7 @@
                        @endforeach
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -491,7 +490,7 @@
                 @foreach($data->slice(0, 3) as $item)
                 <div class="col-md-4">
                     <div class="item">
-                        <a href="services-page.html">
+                        <a href="{{route('services-page',$item)}}">
                             @if ($item->id == 1)
                             <span class="icon icon-icon-1-1"></span>
                         @elseif ($item->id == 2)
@@ -515,7 +514,7 @@
                         @endif
                             <h5>{{$item->name}}</h5>
                             <p>{{$item->description}}</p>
-                            <div class="shape"> 
+                            <div class="shape">
                                 @if ($item->id == 1)
                                 <span class="icon icon-icon-1-1"></span>
                             @elseif ($item->id == 2)
@@ -536,12 +535,12 @@
                                 <span class="icon icon-icon-1-10"></span>
                             @else
                                 <span class="icon icon-icon-1-9"></span>
-                            @endif    
+                            @endif
                             </div>
                         </a>
                     </div>
                 </div>
-                @endforeach  
+                @endforeach
             </div>
         </div>
     </section>
@@ -554,20 +553,20 @@
                         <div class="section-subtitle">Tin tức mới nhất</div>
                         <div class="section-title white">Tin tức & Bài viết</div>
                     </div>
-                       
+
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
                         @foreach($blogs as $blog)
                         <div class="item">
                             <div class="position-re o-hidden"> <img src="{{ asset('storage/image/'.$blog->image)}} " style="height: 350px;width: 560px;" alt="">
                                 <div class="date">
-                                    <a href="post.html"> <span>Dec</span> <i>29</i> </a>
+                                    <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="blog.html">Chăm sóc tóc</a>
+                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
                                 </span>
-                                        <h5><a href="post.html">{{$blog->title}}</a></h5>
+                                        <h5><a href="{{route('detail.blog',$blog->id)}}">{{$blog->title}}</a></h5>
                                     </div>
                                 </div>
                             @endforeach

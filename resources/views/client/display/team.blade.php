@@ -22,20 +22,20 @@
                         <div class="team-img"><img src="{{asset('storage/'.$stylist->image)}}" style="height: 300px;width: 400px" alt="" class="w-100"></div>
                         <div class="team-content">
                             <h3 class="team-title">{{$stylist->name}}<span>Barber</span></h3>
-                            <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro vesatien arcuman ontese auctor ac aleuam aretra.</p>
+                            <p class="team-text">{{$stylist->excerpt}}</p>
                             <div class="social">
                                 <div class="full-width"> <a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-instagram"></i></a> </div>
-                            </div> <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
+                            </div> <a href="{{route('team-details',$stylist->id)}}" class="button-1 mt-15">Team Details<span></span></a>
                         </div>
                         <div class="title-box">
                             <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
                         </div>
                     </div>
-                    
+
                 </div>
                 @endforeach
             </div>
-           
+
         </div>
     </section>
     <!-- Appointment Form -->

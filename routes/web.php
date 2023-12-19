@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\BannerSettingCtl;
 use App\Http\Controllers\Admin\resultsController;
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\client\ClientTeamController;
 use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\BlogController;
@@ -101,6 +102,7 @@ Route::get('faq' , [App\Http\Controllers\client\ClientIndexController::class, 'f
 Route::get('pricing' , [App\Http\Controllers\client\ClientIndexController::class, 'pricing'])->name('pricing');
 Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
 Route::get('/team', [App\Http\Controllers\client\ClientIndexController::class, 'team'])->name('team');
+Route::get('team-details/{id}', [ClientTeamController::class, 'detailbarber'])->name('team-details');
 
 Route::get('contact', function () {
     return view('client.display.contact');
