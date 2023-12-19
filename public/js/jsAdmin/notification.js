@@ -92,6 +92,7 @@ $(document).ready(function () {
         e.preventDefault();
         // Lấy ID thông báo từ thuộc tính data-notification-id
         var notificationId = $(this).data('notification-id');
+        toastr['success']('Hủy lịch thành công. Thông báo sẽ tự động xóa khi tải lại trang');
         console.log(notificationId);
         // Gọi hàm deleteNotification và truyền notificationId vào đó
         deleteNotification.call(this, notificationId);
