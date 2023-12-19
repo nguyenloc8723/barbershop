@@ -8,9 +8,14 @@ $(document).ready(function () {
     const updateRequest = '/api/updateRequest/booking';
     const urlParams = new URLSearchParams(window.location.search);
     const bookingId = urlParams.get('booking_id');
-    //
+    const urlDate = '/api/date/booking';
+    const urlWorkDayTime = '/api/workDay/booking';
 
     //
+    let clearTime;
+    let validateTimeSheet = true;
+    let checkTimeSheet = true;
+    let date_Id = 0;
     let countPrice = 0;
     let is_consultant = 1;
     let is_accept_take_a_photo = 1;
@@ -31,6 +36,15 @@ $(document).ready(function () {
     $('.jqr-textBase').css({
 
     });
+    // Lấy ngày hiện tại
+    function currentDate(){
+        var current_Date = new Date().toISOString().split('T')[0];
+        // Đặt giá trị mặc định cho input type date (ngày cắt)
+        $('#jqr-selectedDate').val(current_Date);
+        // $('.jqr-selectedDate').attr('min', current_Date);
+    }
+    currentDate()
+    let selectedDate = $('#jqr-selectedDate').val();
     function formatCurrency(amount) {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     }
@@ -65,14 +79,13 @@ $(document).ready(function () {
         })
     }
     loadStylist();
-
     function messageSty(id) {
         $.ajax({
             url: stylistDetail + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('.jqr-messageStylist').html(`
                    <div class="stylist-selected">
                       <div class="stylist__top">
@@ -106,15 +119,23 @@ $(document).ready(function () {
             }
         });
     }
+    // console.log(selectedDate);
     function timeSheet(id) {
+        if (!validateTimeSheet) {
+            return;
+        }
+        let timeOut = id;
+        console.log(timeOut);
         $.ajax({
             url: showTimeSheet + '/' + id,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 let dataStylist = data.dataStylist;
                 let dataTimeSheet = data.dataTimeSheet;
+                let work_day = data.workDay;
+                let stylist_time_sheet = data.stylist_time_sheet;
                 $('.jqr-timesheet').html('');
                 let count = 0;
 
@@ -131,7 +152,9 @@ $(document).ready(function () {
                         if (index < dataTimeSheet.length) {
                             let unavailable = "unavailable";
                             for (let k = 0; k < dataStylist.time_sheet.length; k++) {
-                                if (dataStylist.time_sheet[k].id === dataTimeSheet[index].id) {
+                                if (dataStylist.time_sheet[k].id === dataTimeSheet[index].id &&
+                                    dataStylist.work_day[k].day === selectedDate &&
+                                    stylist_time_sheet[k].is_block === 1) {
                                     unavailable = "";
                                     break;
                                 }
@@ -147,9 +170,15 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
+        clearTime = setTimeout(() => timeSheetCallback(stylist), 30000);
     }
 
-
+    function timeSheetCallback(stylist) {
+        // Kiểm tra xem shouldRunTimeSheet có là true hay không trước khi gọi lại timeSheet
+        if (validateTimeSheet) {
+            timeSheet(stylist);
+        }
+    }
 
     $(document).on('click', '.jqr-showAllService', function () {
         allService();
@@ -319,7 +348,7 @@ $(document).ready(function () {
                                         <div class="relative" id="datebookId">
                                             <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                                <input type="date" class="form-control" name="date">
+                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate" >
                                             </div>
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
@@ -403,6 +432,7 @@ $(document).ready(function () {
                 });
                 loadStylist();
                 randomStylist();
+                currentDate();
             },
             error: function (error) {
                 console.error(error);
@@ -545,6 +575,7 @@ $(document).ready(function () {
         }
     })
     $(document).on('click', '.jqr-detail', function () {
+        validateTimeSheet = true;
         stylist = $(this).data('id');
         $('.jqr-messageStylist').css({
             'display': 'block',
@@ -559,6 +590,14 @@ $(document).ready(function () {
         messageSty(stylist);
         timeSheet(stylist);
     });
+
+    $(document).on('change','#jqr-selectedDate',function () {
+        // Lấy giá trị ngày được chọn
+        selectedDate = $(this).val();
+        timeSheet(stylist);
+        dateID();
+    });
+
     $(document).on('click', '.jqr-randomStylist', function () {
         $('.jqr-messageStylist').css({
             'display': 'block',
@@ -566,6 +605,9 @@ $(document).ready(function () {
         randomStylist();
     });
     $(document).on('click', '.box_time_item', function () {
+        clearTimeout(clearTime);
+        clearTime = null;
+        validateTimeSheet = false;
         time = $(this).data('id');
         $('.box_time_item').not('.unavailable').css({
             'background': '#fff',
@@ -596,9 +638,17 @@ $(document).ready(function () {
             if(bookingId){
                 updateBooking(bookingId)
             }else{
-                pushRequest();
+                blockTimeSheet().then(function (response) {
+                    if (response.success !== 'success') {
+                        alert('Giờ này đã được đặt vui lòng chọn giờ khác');
+                    } else {
+                        pushRequest();
+                    }
+                    console.log(checkTimeSheet);
+                }).catch(function (error) {
+                    console.error(error);
+                });
             }
-
         }
     });
     $(document).on('mouseenter', '.jqr-completed', function () {
@@ -629,17 +679,61 @@ $(document).ready(function () {
         }
     });
 
+    function dateID(){
+        $.ajax({
+            url: urlDate,
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                response.map(item => {
+                    if (item.day === selectedDate){
+                        date_Id = item.id;
+                    }
+                })
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+    function blockTimeSheet() {
+        return new Promise(function (resolve, reject) {
+            let arrayTimeSheet = {
+                user_id: stylist,
+                timesheet_id: time,
+                work_day_id: date_Id,
+            };
+            $.ajax({
+                url: urlWorkDayTime,
+                method: 'POST',
+                data: arrayTimeSheet,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                success: function (response) {
+                    // console.log(response.success);
+                    resolve(response);
+                },
+                error: function (error) {
+                    // console.error(error);
+                    reject(error);
+                }
+            });
+        });
+    }
     function randomStylist() {
         $.ajax({
             url: '/api/booking/randomStylist',
             method: 'GET',
             success: function (data) {
+
                 stylist = data.id;
                 messageSty(data.id);
                 $('.jqr-messageStylist').css({
                     'display': 'block',
                 });
                 timeSheet(data.id);
+                dateID();
             },
             error: function (error) {
                 console.error(error);

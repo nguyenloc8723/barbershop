@@ -1,7 +1,6 @@
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
-
         <!-- User box -->
         <div class="user-box text-center">
             <div class="dropdown">
@@ -69,11 +68,19 @@
                 <li class="menu-title mt-2">Apps</li>
 
                 <li>
+                    @if(\Gate::check('roles.indexStatistic'))
                     <a href="#statical" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>
                         <span> Thống kê </span>
                         <span class="menu-arrow"></span>
                     </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thống kê </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
                     <div class="collapse" id="statical">
                         <ul class="nav-second-level">
                             <li>
@@ -124,62 +131,118 @@
                 </li>
 
                 <li>
-                    <a href="{{route('route.booking_blade')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span> Lịch đặt </span>
-                    </a>
+                    @if(\Gate::check('roles.indexBooking'))
+                        <a href="{{route('route.booking_blade')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Lịch đặt </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Lịch đặt </span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
-                    <a href="{{route('payment.index')}}">
-                        <i class="bi bi-credit-card-fill"></i>
-                        <span> Thanh toán online </span>
-                    </a>
+                    @if(\Gate::check('roles.indexMoney'))
+                        <a href="{{route('payment.index')}}">
+                            <i class="bi bi-credit-card-fill"></i>
+                            <span> Thanh toán online </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-credit-card-fill"></i>
+                            <span> Thanh toán online </span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-                    <a href="{{route('route.service')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span> Dịch vụ </span>
-                    </a>
+                    @if(\Gate::check('roles.indexService'))
+                        <a href="{{route('route.service')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Dịch vụ </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span> Dịch vụ </span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-                    <a href="{{route('category.index')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span>Danh mục dịch vụ</span>
-                    </a>
+                    @if(\Gate::check('roles.indexCategory'))
+                        <a href="{{route('category.index')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Danh mục dịch vụ</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Danh mục dịch vụ</span>
+                        </a>
+                    @endif
+
                 </li>
 
                 <li>
-                    <a href="{{route('route.stylistTimeSheets')}}">
-                        <i class="mdi mdi-access-point-network"></i>
-                        <span>Lịch làm việc</span>
-                    </a>
-                    </a>
+                    @if(\Gate::check('roles.indexTimeSheet'))
+                        <a href="{{route('route.stylistTimeSheets')}}">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Lịch làm việc</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-access-point-network"></i>
+                            <span>Lịch làm việc</span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
-                    <a href="#sidebarTasks" data-bs-toggle="collapse">
-                        <i class="mdi mdi-clipboard-outline"></i>
-                        <span> Nhân viên </span>
-                        <span class="menu-arrow"></span>
-                    </a>
+                    @if(\Gate::check('roles.indexRole'))
+                        <a href="#sidebarTasks" data-bs-toggle="collapse">
+                            <i class="mdi mdi-clipboard-outline"></i>
+                            <span> Nhân viên </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-clipboard-outline"></i>
+                            <span> Nhân viên </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
+
                     <div class="collapse" id="sidebarTasks">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{route('stylist.index')}}">Danh sách nhân viên</a>
                             </li>
                             <li>
-                                <a href="{{route('member.index')}}">Lịch làm việc</a>
+                                <a href="{{route('workDay.index')}}">Ngày làm việc</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <a href="{{route('route.user')}}">
-                        <i class="mdi mdi-briefcase-variant-outline"></i>
-                        <span> Người dùng </span>
-                    </a>
+                    @if(\Gate::check('roles.indexClient'))
+                        <a href="{{route('route.user')}}">
+                            <i class="mdi mdi-briefcase-variant-outline"></i>
+                            <span> Người dùng </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-briefcase-variant-outline"></i>
+                            <span> Người dùng </span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
                     <a href="{{route('route.result')}}">
@@ -188,10 +251,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('review.index')}}">
-                        <i class="bi bi-chat-square-quote"></i>
-                        <span> Reviews </span>
-                    </a>
+                    @if(\Gate::check('roles.indexReview'))
+                        <a href="{{route('review.index')}}">
+                            <i class="bi bi-chat-square-quote"></i>
+                            <span> Reviews </span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-chat-square-quote"></i>
+                            <span> Reviews </span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
                     <a href="{{route('banner.index')}}">
@@ -200,17 +271,33 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('destroy.index')}}">
-                        <i class="bi bi-images"></i>
-                        <span>Thanh toán hủy lịch</span>
-                    </a>
+                    @if(\Gate::check('roles.indexMoney'))
+                        <a href="{{route('destroy.index')}}">
+                            <i class="bi bi-images"></i>
+                            <span>Thanh toán hủy lịch</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="bi bi-images"></i>
+                            <span>Thanh toán hủy lịch</span>
+                        </a>
+                    @endif
+
                 </li>
                 <li>
-                    <a href="#contacts" data-bs-toggle="collapse">
-                        <i class="mdi mdi-book-open-page-variant-outline"></i>
-                        <span> Thùng rác </span>
-                        <span class="menu-arrow"></span>
-                    </a>
+                    @if(\Gate::check('roles.indexTruck'))
+                        <a href="#contacts" data-bs-toggle="collapse">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thùng rác </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="alert('Bạn không có quyền truy cập')">
+                            <i class="mdi mdi-book-open-page-variant-outline"></i>
+                            <span> Thùng rác </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                    @endif
                     <div class="collapse" id="contacts">
                         <ul class="nav-second-level">
                             <li>
@@ -222,16 +309,6 @@
                             <li>
                                 <a href="{{route('trash.user')}}">User</a>
                             </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-                            <li>
-                                <a href="contacts-profile.html">Profile</a>
-                            </li>
-
                         </ul>
                     </div>
                 </li>

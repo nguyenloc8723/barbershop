@@ -113,7 +113,9 @@ Route::group([],function (){
     Route::get('booking/success', [BookingController::class, 'bookingDone']);
     Route::get('booking/randomStylist', [BookingController::class, 'randomStylist']);
 
-    Route::get('booking/notification/{user_phone}', [BookingController::class, 'bookingNotification']);
+    Route::get('booking/notification/{id}', [BookingController::class, 'bookingNotification']);
+    Route::get('date/booking', [BookingController::class, 'bookingDate']);
+    Route::post('workDay/booking', [BookingController::class, 'blockWorkDay']);
 });
 Route::get('/dailySales', [ApiDashboardController::class, 'dailySales']);
 Route::get('/dataSixMonths', [ApiDashboardController::class, 'dataSixMonths']);
