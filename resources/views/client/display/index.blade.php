@@ -4,6 +4,21 @@
     <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <style>
+        .section-body {
+            background: #14100c;
+            border-radius: 10px;
+        }
+
+        .body-content {
+            padding: 20px;
+        }
+        .body-content .content-item {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
 
         .body-content .content-item i {
             margin-right: 15px;
@@ -189,101 +204,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="services-1 section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-head text-center">
-                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
-                        <div class="section-title">Chúng tôi cũng cung cấp</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
-                        <div class="item">
-                            <a href="{{route('services-page', $item)}}">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <h5>{{$item->name}}</h5>
-                                <p>{{$item->description}}</p>
-                                <div class="shape">
-                                    @if ($item->id == 1)
-                                        <span class="icon icon-icon-1-1"></span>
-                                    @elseif ($item->id == 2)
-                                        <span class="icon icon-icon-1-2"></span>
-                                    @elseif ($item->id == 3)
-                                        <span class="icon icon-icon-1-3"></span>
-                                    @elseif ($item->id == 4)
-                                        <span class="icon icon-icon-1-4"></span>
-                                    @elseif ($item->id == 5)
-                                        <span class="icon icon-icon-1-6"></span>
-                                    @elseif ($item->id == 6)
-                                        <span class="icon icon-icon-1-8"></span>
-                                    @elseif ($item->id == 7)
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @elseif ($item->id == 8)
-                                        <span class="icon icon-icon-1-18"></span>
-                                    @elseif ($item->id == 9)
-                                        <span class="icon icon-icon-1-10"></span>
-                                    @else
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @endif
-                                    <h5>{{$item->name}}</h5>
-                                    <p>{{$item->description}}</p>
-                                    <div class="shape">
-                                        @if ($item->id == 1)
-                                            <span class="icon icon-icon-1-1"></span>
-                                        @elseif ($item->id == 2)
-                                            <span class="icon icon-icon-1-2"></span>
-                                        @elseif ($item->id == 3)
-                                            <span class="icon icon-icon-1-3"></span>
-                                        @elseif ($item->id == 4)
-                                            <span class="icon icon-icon-1-4"></span>
-                                        @elseif ($item->id == 5)
-                                            <span class="icon icon-icon-1-6"></span>
-                                        @elseif ($item->id == 6)
-                                            <span class="icon icon-icon-1-8"></span>
-                                        @elseif ($item->id == 7)
-                                            <span class="icon icon-icon-1-9"></span>
-                                        @elseif ($item->id == 8)
-                                            <span class="icon icon-icon-1-18"></span>
-                                        @elseif ($item->id == 9)
-                                            <span class="icon icon-icon-1-10"></span>
-                                        @else
-                                            <span class="icon icon-icon-1-9"></span>
-                                        @endif
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
             </div>
         </div>
     </section>
@@ -519,104 +439,6 @@
         </div>
     </section>
 {{--    <!-- Services - We Also Offer -->--}}
-    <section class="services-1 section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-head text-center">
-                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
-                        <div class="section-title">Chúng tôi cũng cung cấp</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="{{route('services-page',$item)}}">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <h5>{{$item->name}}</h5>
-                                <p>{{$item->description}}</p>
-                                <div class="shape">
-                                    @if ($item->id == 1)
-                                        <span class="icon icon-icon-1-1"></span>
-                                    @elseif ($item->id == 2)
-                                        <span class="icon icon-icon-1-2"></span>
-                                    @elseif ($item->id == 3)
-                                        <span class="icon icon-icon-1-3"></span>
-                                    @elseif ($item->id == 4)
-                                        <span class="icon icon-icon-1-4"></span>
-                                    @elseif ($item->id == 5)
-                                        <span class="icon icon-icon-1-6"></span>
-                                    @elseif ($item->id == 6)
-                                        <span class="icon icon-icon-1-8"></span>
-                                    @elseif ($item->id == 7)
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @elseif ($item->id == 8)
-                                        <span class="icon icon-icon-1-18"></span>
-                                    @elseif ($item->id == 9)
-                                        <span class="icon icon-icon-1-10"></span>
-                                    @else
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @endif
-                                    @foreach($stylists as $stylist)
-                                        <div class="team-card mb-30">
-                                            <div class="team-img"><img src="{{ asset('storage/'.$stylist->image)}}"
-                                                                       style="height: 300px;width: 400px;" alt=""
-                                                                       class="w-100">
-                                            </div>
-                                            <div class="team-content">
-                                                <h3 class="team-title"><span>Barber</span></h3>
-                                                <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in
-                                                    eduis euro
-                                                    vesatien arcuman ontese auctor ac aleuam aretra.</p>
-                                                <div class="social">
-                                                    <div class="full-width"><a
-                                                            href="https://www.facebook.com/profile.php?id=61551490673978"><i
-                                                                class="ti-linkedin"></i></a> <a
-                                                            href="https://www.facebook.com/profile.php?id=61551490673978"><i
-                                                                class="ti-facebook"></i></a> <a
-                                                            href="https://www.facebook.com/profile.php?id=61551490673978"><i
-                                                                class="ti-twitter"></i></a>
-                                                        <a href="https://www.facebook.com/profile.php?id=61551490673978"><i
-                                                                class="ti-instagram"></i></a></div>
-                                                </div>
-                                                <a href="team-details.html" class="button-1 mt-15">Team
-                                                    Details<span></span></a>
-                                            </div>
-                                            <div class="title-box">
-                                                <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
-                                            </div>
-                                        </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                @endforeach
-            </div>
-        </div>
-    </section>
 
 {{--    <!-- News -->--}}
     <section class="news section-padding">
