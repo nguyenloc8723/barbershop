@@ -57,7 +57,10 @@
             </div>
         </div>
     </div>
-
+</div>
+<script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
+<script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+<script src="{{asset('be/assets/js/pages/datatables.init.js')}}"></script>
     <script src="{{asset('be/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('be/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- third party js ends -->

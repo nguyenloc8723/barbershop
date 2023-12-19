@@ -2,6 +2,8 @@
 use App\Http\Controllers\Client\ClientBookingController;
 use App\Http\Controllers\Client\ClientIndexController;
 use App\Http\Controllers\Client\ClientServiceController;
+use App\Http\Controllers\client\ClientTeamController;
+use App\Http\Controllers\Client\PhoneAuthController;
 use App\Http\Controllers\Client\LichsucatController;
 use App\Http\Controllers\Client\ClientBlogController;
 use App\Http\Controllers\Admin\StylistController;
@@ -56,7 +58,19 @@ Route::get('/bill', function () {
     return view('client.email.bill');
 });
 // client route
-
+// Route::get('about', function () {
+//     return view('client.display.about');
+// })->name('about');
+//trang chu
+//Route::match(['GET', 'POST'], '/', [App\Http\Controllers\client\ClientIndexController::class, 'index']);
+Route::get('/' , [App\Http\Controllers\client\ClientIndexController::class, 'index'])->name('index');
+Route::get('about' , [App\Http\Controllers\client\ClientIndexController::class, 'about'])->name('about');
+Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
+Route::get('faq' , [App\Http\Controllers\client\ClientIndexController::class, 'faq'])->name('faq');
+Route::get('pricing' , [App\Http\Controllers\client\ClientIndexController::class, 'pricing'])->name('pricing');
+Route::get('portfolio' , [App\Http\Controllers\client\ClientIndexController::class, 'portfolio'])->name('portfolio');
+Route::get('/team', [App\Http\Controllers\client\ClientIndexController::class, 'team'])->name('team');
+Route::get('team-details/{id}', [ClientTeamController::class, 'detailbarber'])->name('team-details');
 Route::get('/' , [ClientIndexController::class, 'index'])->name('index');
 Route::get('about' , [ClientIndexController::class, 'about'])->name('about');
 Route::get('portfolio' , [ClientIndexController::class, 'portfolio'])->name('portfolio');

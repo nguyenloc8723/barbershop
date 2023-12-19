@@ -1,9 +1,8 @@
 @extends('client.layouts.layout')
-@section('style')
+
+@section('content')
     <link rel="stylesheet" href="{{asset('css/main.9e417c19.chunk.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-@endsection
-@section('content')
     <style>
         .section-body {
             background: #14100c;
@@ -13,7 +12,6 @@
         .body-content {
             padding: 20px;
         }
-
         .body-content .content-item {
             color: #fff;
             font-size: 16px;
@@ -68,14 +66,12 @@
                                                name="numberBooking" type="tel" class="my-input" value=""
                                                oninput="validatePhoneNumber(this)" required>
                                     </div>
-                                    {{--                                <a class="" data-booking-url="#">--}}
                                     <div class="form__button content-center-middle css_booking" role="presentation">
-                                        <button class="btn_booking" id="sendOTPButton2" type="button" onclick="sendOTP('numberBooking','button2');">
+                                        <button class="btn_booking" id="sendOTPButton2" type="button"
+                                                onclick="sendOTP('numberBooking','button2');">
                                             ĐẶT LỊCH NGAY
                                         </button>
                                     </div>
-
-                                    {{--                                </a>--}}
                                 @endif
                             </div>
 
@@ -143,7 +139,7 @@
             </div>
         </div>
     </section>
-    <!-- Our History -->
+
     <section class="about section-padding bg-darkbrown">
         <div class="container">
             <div class="row">
@@ -159,8 +155,9 @@
                             </div>
                             <p>Vượt qua giới hạn của tiệm tóc truyền thống, 6X-Pro tạo dựng không gian trải nghiệm hoàn
                                 toàn mới với trang thiết bị công nghệ hiện đại.</p>
-                            <div class="about-bottom"><img src="client/img/signature.svg" alt=""
-                                                           class="image about-signature">
+                            <div class="about-bottom">
+                                <img src="client/img/signature.svg" alt=""
+                                     class="image about-signature">
                                 <div class="about-name-wrapper">
                                     <div class="about-rol">Barber, Người sáng lập</div>
                                     <div class="about-name">Đinh Tuấn Anh</div>
@@ -183,64 +180,46 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="{{route('services-page', $item)}}">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <h5>{{$item->name}}</h5>
-                                <p>{{$item->description}}</p>
-                                <div class="shape">
-                                    @if ($item->id == 1)
-                                        <span class="icon icon-icon-1-1"></span>
-                                    @elseif ($item->id == 2)
-                                        <span class="icon icon-icon-1-2"></span>
-                                    @elseif ($item->id == 3)
-                                        <span class="icon icon-icon-1-3"></span>
-                                    @elseif ($item->id == 4)
-                                        <span class="icon icon-icon-1-4"></span>
-                                    @elseif ($item->id == 5)
-                                        <span class="icon icon-icon-1-6"></span>
-                                    @elseif ($item->id == 6)
-                                        <span class="icon icon-icon-1-8"></span>
-                                    @elseif ($item->id == 7)
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @elseif ($item->id == 8)
-                                        <span class="icon icon-icon-1-18"></span>
-                                    @elseif ($item->id == 9)
-                                        <span class="icon icon-icon-1-10"></span>
-                                    @else
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @endif
-                                </div>
-                            </a>
-                        </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/1">
+                            <span class="icon icon-icon-1-1"></span>
+                            <h5>Cắt Tóc</h5>
+                            <p>Stylist cắt tóc tạo kiểu (Không gội &amp; massage)</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-1"></span>
+                            </div>
+                        </a>
                     </div>
-                @endforeach
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/2">
+                            <span class="icon icon-icon-1-2"></span>
+                            <h5>SHINE CUT</h5>
+                            <p>Stylist cắt - xả - vuốt sáp tạo kiểu (Không gội &amp; massage)</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-2"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="item">
+                        <a href="http://fpt-barber-shop.test/services-page/3">
+                            <span class="icon icon-icon-1-3"></span>
+                            <h5>ShineCombo cắt gội 15 bước</h5>
+                            <p>Cắt Gội Massage 10 bước +5 trải nghiệm độc quyền Công nghệ xông mặt chuẩn SPA Tinh dầu thảo mộc thư giãn Công nghệ súng massage giảm đau nhức vai gáy Nâng cấp quy trình cắt (chỉn chu, trọn vẹn hơn) Đổi mới trải nghiệm gội riêng cho phái mạnh</p>
+                            <div class="shape">
+                                <span class="icon icon-icon-1-3"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Testimonials -->
+{{--    <!-- Testimonials -->--}}
     <section class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/6.jpg"
              data-overlay-dark="4">
         <div class="container">
@@ -320,7 +299,7 @@
             </div>
         </div>
     </section>
-    <!-- First Class Services -->
+{{--    <!-- First Class Services -->--}}
     <div class="first-class-services section-padding">
         <div class="container">
             <div class="row">
@@ -403,7 +382,7 @@
             </div>
         </div>
     </div>
-    <!-- Pricing -->
+{{--    <!-- Pricing -->--}}
     <section class="barber-pricing section-padding position-re">
         <div class="container">
             <div class="row">
@@ -432,7 +411,7 @@
             </div>
         </div>
     </section>
-    <!-- Team -->
+{{--    <!-- Team -->--}}
     <section class="team section-padding pb-0">
         <div class="container">
             <div class="row">
@@ -453,14 +432,13 @@
                                 </div>
                                 <div class="team-content">
                                     <h3 class="team-title"><span>Barber</span></h3>
-                                    <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
-                                        vesatien arcuman ontese auctor ac aleuam aretra.</p>
+                                    <p class="team-text">{{$stylist->excerpt}}</p>
                                     <div class="social">
-                                        <div class="full-width"><a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-linkedin"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i
-                                                    class="ti-facebook"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
-                                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i></a></div>
+                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
+                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
+                                            <a href="#"><i class="ti-instagram"></i></a></div>
                                     </div>
-                                    <a href="{{route('team')}}" class="button-1 mt-15">Team Details<span></span></a>
+                                    <a href="{{ url('/team-details/' . $stylist->id) }}" class="button-1 mt-15">Team Details<span></span></a>
                                 </div>
                                 <div class="title-box">
                                     <h3 class="mb-0">{{$stylist->name}}<span>Barber</span></h3>
@@ -469,12 +447,12 @@
                         @endforeach
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+{{--    <!-- Services - We Also Offer -->--}}
 
-    <!-- News -->
+{{--    <!-- News -->--}}
     <section class="news section-padding">
         <div class="container">
             <div class="row">
@@ -483,32 +461,31 @@
                         <div class="section-subtitle">Tin tức mới nhất</div>
                         <div class="section-title white">Tin tức & Bài viết</div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($blogs as $blog)
-                                <div class="item">
-                                    <div class="position-re o-hidden"><img
-                                            src="{{ asset('storage/image/'.$blog->image)}} "
-                                            style="height: 350px;width: 560px;" alt="">
-                                        <div class="date">
-                                                <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
-                                        </div>
-                                    </div>
-                                    <div class="con"> <span class="category">
-                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
-                                </span>
-                                        <h5><a href="{{route('detail.blog',$blog->id)}}">{{$blog->title}}</a></h5>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($blogs as $blog)
+                            <div class="item">
+                                <div class="position-re o-hidden"><img src="{{ asset('storage/image/'.$blog->image)}} "
+                                                                       style="height: 350px;width: 560px;" alt="">
+                                    <div class="date">
+                                        <a href="{{route('detail.blog',$blog->id)}}"> <span>Dec</span> <i>29</i> </a>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="con">
+                                <span class="category">
+                                    <a href="{{route('detail.blog',$blog->id)}}">Chăm sóc tóc</a>
+                                </span>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </section>
-    <!-- Clients -->
+{{--    <!-- Clients -->--}}
     <section class="clients">
         <div class="container">
             <div class="row">
@@ -534,7 +511,6 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('js')

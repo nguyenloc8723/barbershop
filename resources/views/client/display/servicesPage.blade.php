@@ -7,8 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
-                    <h5>Services Page</h5>
-                    <h1>Haircut</h1>
+                    <h5>Chi tiết dịch vụ</h5>
+                    <h1>Cắt tóc</h1>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                         <div class="sidebar-widget services">
                             <div class="widget-inner">
                                 <div class="sidebar-title">
-                                    <h4>All Services</h4>
+                                    <h4>Tất cả các dịch vụ</h4>
                                 </div>
                                 @foreach($data as $item)
                                 <ul>
@@ -83,8 +83,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head">
-                        <div class="section-subtitle">Our Services</div>
-                        <div class="section-title">Other Services</div>
+                        <div class="section-subtitle">Dịch vụ của chúng tôi</div>
+                        <div class="section-title">Các dịch vụ khác</div>
                     </div>
                 </div>
             </div>
