@@ -15,7 +15,7 @@ class ClientTeamController extends Controller
     }
     public function detailbarber(string $id){
         $detailbarber = User::query()->where('user_type', 'STYLIST')->findOrFail($id);
-        dd($detailbarber);
+//        dd($detailbarber);
         return view('client.display.team-details',compact('detailbarber'));
     }
 }

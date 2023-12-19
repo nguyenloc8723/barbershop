@@ -7,7 +7,6 @@
             <div class="row">
                 <div class="col-md-12 text-center caption mt-60">
                     <h5>Barber</h5>
-                    @dd($detailbarber);
                     <h1>{{$detailbarber->name}}</h1>
                 </div>
             </div>

@@ -178,12 +178,37 @@
                 </li>
 
                 <li>
+                    <a href="{{route('blogs.index')}}">
+                        <i class="bi bi-chat-square-quote"></i>
+                        <span> Tin tức </span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{route('route.statistical')}}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{route('faqs.index')}}">
+                        <i class="mdi mdi-briefcase-variant-outline"></i>
+                        <span> Câu hỏi thường gặp </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('pricings.index')}}">
+                        <i class="bi bi-chat-square-quote"></i>
+                        <span> Chính sách giá </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('portfolios.index')}}">
+                        <i class="bi bi-images"></i>
+                        <span> Kiểu tóc </span>
+                    </a>
+                </li>
                 <li>
                     <a href="#contacts" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant-outline"></i>

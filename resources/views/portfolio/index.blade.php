@@ -43,24 +43,24 @@
                     <thead>
                         <tr class="">
                           <th>id</th>
-                          <th>image</th> 
+                          <th>image</th>
                           <th>action</th>
                         </tr>
                     </thead>
                     <tbody id="jquery-list">
-                      
+
                     @foreach ($portfolios as $portfolio)
                     <tr>
                     <td>{{ $portfolio->id }}</td>
-                    <td><img style="height: 200px; width: 150px;" src="{{ asset('storage/image/'.$portfolio->image)}}" alt=""></td>                    
+                    <td><img style="height: 200px; width: 150px;" src="{{ asset('storage/image/'.$portfolio->image)}}" alt=""></td>
             <td><button type="button" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{{route('portfolios.edit',$portfolio->id)}}">Sửa portfolio</a></button>
             <form action="{{route('portfolios.destroy',$portfolio->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Xoá</button>
+                <button type="submit" class="btn btn-danger">Xoá portfolio</button>
                 </form>
         </td>
-                    
+
                 </tr>
                 @endforeach
                     </tbody>
