@@ -33,7 +33,7 @@
                                 <img src="{{ asset('storage/image/'.$item->image)}}" style="height: 380px;width: 500px" alt="">
                             </div>
                         </div>
-                    </a>       
+                    </a>
                 </div>
                 @endforeach
                 <!-- 2 columns -->
@@ -44,8 +44,8 @@
                             <div class="gallery-img">
                                 <img src="{{ asset('storage/image/'.$item->image)}}" alt="" style="width: 700px;height: 500px;">
                             </div>
-                        </div>                     
-                    </a>                  
+                        </div>
+                    </a>
                 </div>
                 @endforeach
                 <!-- 3 columns -->
@@ -56,8 +56,8 @@
                             <div class="gallery-img">
                                 <img src="{{ asset('storage/image/'.$item->image)}}" style="height: 380px;width: 400px" alt="">
                             </div>
-                        </div>              
-                    </a>          
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="vid-area mb-30">
-                        <div class="vid-icon"> <img src="client/img/slider/16.jpg" alt="YouTube">
+                        <div class="vid-icon"> <img src="client/img/slider/16994304259.jpg" alt="YouTube">
                             <a class="video-gallery-button vid" href="https://youtu.be/e2x0UXVU2yg"> <span class="video-gallery-polygon">
                                     <i class="ti-control-play"></i>
                                 </span> </a>

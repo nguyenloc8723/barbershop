@@ -143,46 +143,6 @@
             </div>
         </div>
     </section>
-    <!-- Services Box -->
-    <section class="services-box section-padding pt-0">
-        <div class="container">
-            <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="services-page.html">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <div class="cont">
-                                    <h5>{{$item->name}}</h5>
-                                    <p>{{$item->description}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
     <!-- Our History -->
     <section class="about section-padding bg-darkbrown">
         <div class="container">
@@ -212,27 +172,45 @@
             </div>
         </div>
     </section>
-    <!-- Services -->
-    <section class="barber-services section-padding">
+    <section class="services-1 section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-head text-center">
-                        <div class="section-subtitle">NHỮNG GÌ CHÚNG TÔI ĐANG CUNG CẤP</div>
-                        <div class="section-title">Dịch vụ cắt tóc</div>
+                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
+                        <div class="section-title">Chúng tôi cũng cung cấp</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
+                    <div class="col-md-4">
                         <div class="item">
-                            <div class="position-re o-hidden">
-
-                                <img src="client/img/services/2.jpg" alt="">
-                            </div>
-                            <div class="con">
-                                <div class="">
+                            <a href="services-page.html">
+                                @if ($item->id == 1)
+                                    <span class="icon icon-icon-1-1"></span>
+                                @elseif ($item->id == 2)
+                                    <span class="icon icon-icon-1-2"></span>
+                                @elseif ($item->id == 3)
+                                    <span class="icon icon-icon-1-3"></span>
+                                @elseif ($item->id == 4)
+                                    <span class="icon icon-icon-1-4"></span>
+                                @elseif ($item->id == 5)
+                                    <span class="icon icon-icon-1-6"></span>
+                                @elseif ($item->id == 6)
+                                    <span class="icon icon-icon-1-8"></span>
+                                @elseif ($item->id == 7)
+                                    <span class="icon icon-icon-1-9"></span>
+                                @elseif ($item->id == 8)
+                                    <span class="icon icon-icon-1-18"></span>
+                                @elseif ($item->id == 9)
+                                    <span class="icon icon-icon-1-10"></span>
+                                @else
+                                    <span class="icon icon-icon-1-9"></span>
+                                @endif
+                                <h5>{{$item->name}}</h5>
+                                <p>{{$item->description}}</p>
+                                <div class="shape">
                                     @if ($item->id == 1)
                                         <span class="icon icon-icon-1-1"></span>
                                     @elseif ($item->id == 2)
@@ -255,15 +233,7 @@
                                         <span class="icon icon-icon-1-9"></span>
                                     @endif
                                 </div>
-                                <h5>{{$item->name}}</h5>
-                                <div class="line"></div>
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <div class="permalink">{{$item->description}}</div>
-                                        <h6>{{number_format($item->price, 0, ".", ".")}}đ</h6>
-                                    </div>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -429,26 +399,6 @@
             </div>
         </div>
     </div>
-    <!-- Video -->
-    <section class="section-padding video-wrapper video bg-img bg-fixed" data-overlay-dark="4"
-             data-background="client/img/slider/5.jpg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="section-head text-center">
-                        <div class="section-title white">Xem video quảng cáo tiệm cắt tóc của chúng tôi</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <a class="vid" href="https://youtu.be/e2x0UXVU2yg">
-                        <div class="vid-butn"><span class="icon"><i class="ti-control-play"></i></span></div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Pricing -->
     <section class="barber-pricing section-padding position-re">
         <div class="container">
@@ -502,9 +452,9 @@
                                     <p class="team-text">Nulla quis efficitur lacus sulvinar suere ausue in eduis euro
                                         vesatien arcuman ontese auctor ac aleuam aretra.</p>
                                     <div class="social">
-                                        <div class="full-width"><a href="#"><i class="ti-linkedin"></i></a> <a href="#"><i
-                                                    class="ti-facebook"></i></a> <a href="#"><i class="ti-twitter"></i></a>
-                                            <a href="#"><i class="ti-instagram"></i></a></div>
+                                        <div class="full-width"><a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-linkedin"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i
+                                                    class="ti-facebook"></i></a> <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-twitter"></i></a>
+                                            <a href="https://www.facebook.com/profile.php?id=61551490673978"><i class="ti-instagram"></i></a></div>
                                     </div>
                                     <a href="team-details.html" class="button-1 mt-15">Team Details<span></span></a>
                                 </div>
@@ -519,75 +469,7 @@
             </div>
         </div>
     </section>
-    <!-- Services - We Also Offer -->
-    <section class="services-1 section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-head text-center">
-                        <div class="section-subtitle">Các dịch vụ của chúng tôi</div>
-                        <div class="section-title">Chúng tôi cũng cung cấp</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($data->slice(0, 3) as $item)
-                    <div class="col-md-4">
-                        <div class="item">
-                            <a href="services-page.html">
-                                @if ($item->id == 1)
-                                    <span class="icon icon-icon-1-1"></span>
-                                @elseif ($item->id == 2)
-                                    <span class="icon icon-icon-1-2"></span>
-                                @elseif ($item->id == 3)
-                                    <span class="icon icon-icon-1-3"></span>
-                                @elseif ($item->id == 4)
-                                    <span class="icon icon-icon-1-4"></span>
-                                @elseif ($item->id == 5)
-                                    <span class="icon icon-icon-1-6"></span>
-                                @elseif ($item->id == 6)
-                                    <span class="icon icon-icon-1-8"></span>
-                                @elseif ($item->id == 7)
-                                    <span class="icon icon-icon-1-9"></span>
-                                @elseif ($item->id == 8)
-                                    <span class="icon icon-icon-1-18"></span>
-                                @elseif ($item->id == 9)
-                                    <span class="icon icon-icon-1-10"></span>
-                                @else
-                                    <span class="icon icon-icon-1-9"></span>
-                                @endif
-                                <h5>{{$item->name}}</h5>
-                                <p>{{$item->description}}</p>
-                                <div class="shape">
-                                    @if ($item->id == 1)
-                                        <span class="icon icon-icon-1-1"></span>
-                                    @elseif ($item->id == 2)
-                                        <span class="icon icon-icon-1-2"></span>
-                                    @elseif ($item->id == 3)
-                                        <span class="icon icon-icon-1-3"></span>
-                                    @elseif ($item->id == 4)
-                                        <span class="icon icon-icon-1-4"></span>
-                                    @elseif ($item->id == 5)
-                                        <span class="icon icon-icon-1-6"></span>
-                                    @elseif ($item->id == 6)
-                                        <span class="icon icon-icon-1-8"></span>
-                                    @elseif ($item->id == 7)
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @elseif ($item->id == 8)
-                                        <span class="icon icon-icon-1-18"></span>
-                                    @elseif ($item->id == 9)
-                                        <span class="icon icon-icon-1-10"></span>
-                                    @else
-                                        <span class="icon icon-icon-1-9"></span>
-                                    @endif
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+
     <!-- News -->
     <section class="news section-padding">
         <div class="container">
@@ -621,119 +503,6 @@
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-    <!-- Appointment Form -->
-    <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="client/img/slider/20.jpg"
-             data-overlay-dark="6">
-            <div class="container">
-                <div class="row">
-                    <!-- Appointment call -->
-                    <div class="col-md-5 mb-30 mt-60">
-                        <p class="mb-0"><i class="star-rating"></i><i class="star-rating"></i><i
-                                class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></p>
-                        <h5>Chúng tôi là những thợ cắt tóc giỏi nhất tại Hà Nội</h5>
-                        <div class="reservations mb-10">
-                            <div class="icon color-1"><span class="icon-icon-1-1"></span></div>
-                            <div class="text">
-                                <p class="color-1">Liên hệ</p> <a class="color-1" href="tel:855-100-4444">0865 886
-                                    742</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Appointment form -->
-                    <div class="col-md-5 offset-md-2">
-                        <div class="booking-box">
-                            <div class="head-box text-center">
-                                <h4>Đặt một cuộc hẹn</h4>
-                            </div>
-                            <div class="booking-inner clearfix">
-                                <form class="form1 clearfix">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Tên</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input" placeholder="Tên"
-                                                           required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Số điện thoại</label>
-                                                <div class="input2_inner">
-                                                    <input type="text" class="form-control input"
-                                                           placeholder="Số điện thoại" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input1_wrapper">
-                                                <label>Ngày</label>
-                                                <div class="input1_inner">
-                                                    <input type="text" class="form-control input datepicker"
-                                                           placeholder="Ngày" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Thời gian</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Thời gian</option>
-                                                        <option value="1">10:00 am</option>
-                                                        <option value="2">11:00 am</option>
-                                                        <option value="3">12:00 pm</option>
-                                                        <option value="4">14:00 pm</option>
-                                                        <option value="5">16:00 pm</option>
-                                                        <option value="6">18:00 pm</option>
-                                                        <option value="7">20:00 pm</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Dịch vụ</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Dịch vụ</option>
-                                                        <option value="0">Tạo kiểu</option>
-                                                        <option value="1">Chăm sóc mặt</option>
-                                                        <option value="2">Cạo râu</option>
-                                                        <option value="3">Cắt tỉa râu</option>
-                                                        <option value="4">Gội đầu</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select1_wrapper">
-                                                <label>Chọn Barber</label>
-                                                <div class="select1_inner">
-                                                    <select class="select2 select" style="width: 100%">
-                                                        <option value="0">Chọn Barber</option>
-                                                        <option value="0">Philip</option>
-                                                        <option value="1">Stephen</option>
-                                                        <option value="2">Dennis</option>
-                                                        <option value="3">Helen</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn-form1-submit mt-15">Đặt lịch hẹn</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- Clients -->
