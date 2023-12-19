@@ -16,4 +16,10 @@ class WorkDay extends Model
     public function workDay(){
         return $this->belongsToMany(WorkDay::class, 'stylist_time_sheet');
     }
+    public function timeSheet(){
+        return $this->belongsToMany(Timesheet::class, 'stylist_time_sheet');
+    }
+    public function stylist() {
+        return $this->belongsTo(User::class, 'stylist_time_sheet');
+    }
 }

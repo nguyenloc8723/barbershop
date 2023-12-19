@@ -56,12 +56,7 @@ Route::get('/bill', function () {
     return view('client.email.bill');
 });
 // client route
-Route::get('/', function () {
-    return view('client.display.index');
-})->name('index');
-Route::get('404', function () {
-    return view('client.display.404');
-})->name('404');
+
 Route::get('/' , [ClientIndexController::class, 'index'])->name('index');
 Route::get('about' , [ClientIndexController::class, 'about'])->name('about');
 Route::get('portfolio' , [ClientIndexController::class, 'portfolio'])->name('portfolio');

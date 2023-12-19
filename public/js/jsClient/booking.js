@@ -182,7 +182,23 @@ $(document).ready(function () {
 
     $(document).on('click', '.jqr-showAllService', function () {
         allService();
-        loadAllService()
+        loadAllService();
+        $('#searchInput').on('input', function () {
+            // Lấy giá trị từ ô tìm kiếm
+            let keyword = $(this).val().toLowerCase();
+
+            // Ẩn tất cả các dịch vụ
+            $('.list__item').hide();
+
+            // Hiển thị các dịch vụ thỏa mãn điều kiện tìm kiếm
+            $('.list__item').each(function () {
+                let serviceName = $(this).find('.service-name').text().toLowerCase();
+                console.log(serviceName);
+                if (serviceName.includes(keyword)) {
+                    $(this).show();
+                }
+            });
+        });
     })
 
     function allService() {
@@ -195,14 +211,14 @@ $(document).ready(function () {
                     <div class="body relative " style="background-color: #fff;">
                         <div class="floating-service"> </div>
                         <div class="booking-service">
-                            <div class="booking-service__input-wrap">
-                                    <span class="ant-input-affix-wrapper ant-input-affix-wrapper-lg booking-service__input">
-                                        <span class="ant-input-prefix">
-                                            <span role="img" aria-label="search" tabindex="-1" class="anticon anticon-search booking-service__input-icon">
+                            <div class="booking-service__input-wrap form-group">
+                                    <span class="input-group input-group-lg ant-input-affix-wrapper ant-input-affix-wrapper-lg booking-service__input">
+<!--                                        <span class="ant-input-prefix">-->
+<!--                                            <span role="img" aria-label="search" tabindex="-1" class="anticon anticon-search booking-service__input-icon">-->
 
-                                            </span>
-                                        </span>
-                                        <input placeholder="Tìm kiếm dịch vụ, nhóm dịch vụ" class="ant-input ant-input-lg" type="text" value spellcheck="false" data-ms-editor="true">
+<!--                                            </span>-->
+<!--                                        </span>-->
+                                        <input id="searchInput" placeholder="Tìm kiếm dịch vụ, nhóm dịch vụ" class="form-control form-control-lg ant-input ant-input-lg" type="text" value spellcheck="false" data-ms-editor="true">
                                     </span>
                             </div>
                             <div class="booking-service__group">
@@ -332,7 +348,7 @@ $(document).ready(function () {
                                         <div class="relative" id="datebookId">
                                             <div class="cursor-pointer flex item-center h-11 rounded px-2.5 " aria-hidden="true">
 
-                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate" >
+                                                <input type="date" class="form-control" name="date" id="jqr-selectedDate" min="<?php echo date('Y-m-d'); ?>">
                                             </div>
                                             <div class="filter drop-shadow bg-white absolute top-11 w-full z-20 opacity-0 "></div>
                                         </div>
@@ -423,7 +439,7 @@ $(document).ready(function () {
             }
         });
     }
-
+    let serviceNamesArray = [];
     function loadAllService() {
         arrayIDService = [];
         $.ajax({
@@ -452,13 +468,14 @@ $(document).ready(function () {
                           `
                     for (let j = 0; j < count; j++) {
                         let formattedMoney = formatCurrency(+data[i].service[j].price);
+                        serviceNamesArray.push(data[i].service[j].name);
                         service += `
                                 <div class="list__item">
                                     <div class="item__media " role="presentation">
                                        <img src="/storage/${imgService[countImg].images[0].url}" alt>
 
                                     </div>
-                                    <div class="fs-6 fw-bold mx-2" role="presentation">${data[i].service[j].name}</div>
+                                    <div class="fs-6 fw-bold mx-2 service-name" role="presentation">${data[i].service[j].name}</div>
                                     <div class="mx-2 item__description" role="presentation">
                                         ${data[i].service[j].description}
                                     </div>
