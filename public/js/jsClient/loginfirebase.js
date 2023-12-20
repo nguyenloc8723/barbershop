@@ -10,13 +10,21 @@ var firebaseConfig = {
     // measurementId: "G-0195R4LR4V"
 
 
-    apiKey: "AIzaSyCJ8pbe36jbzUmVQK_pFOZlPKXRW6JNoG8",
-    authDomain: "test2-5f15d.firebaseapp.com",
-    projectId: "test2-5f15d",
-    storageBucket: "test2-5f15d.appspot.com",
-    messagingSenderId: "660182456617",
-    appId: "1:660182456617:web:89d3c4ddf2b96307efff38",
-    measurementId: "G-31DTR2L4VF"
+    // apiKey: "AIzaSyCJ8pbe36jbzUmVQK_pFOZlPKXRW6JNoG8",
+    // authDomain: "test2-5f15d.firebaseapp.com",
+    // projectId: "test2-5f15d",
+    // storageBucket: "test2-5f15d.appspot.com",
+    // messagingSenderId: "660182456617",
+    // appId: "1:660182456617:web:89d3c4ddf2b96307efff38",
+    // measurementId: "G-31DTR2L4VF"
+
+    apiKey: "AIzaSyDWw1M2vGssId2KkE1CFMieno7UmqPzRac",
+    authDomain: "xprofirebase.firebaseapp.com",
+    projectId: "xprofirebase",
+    storageBucket: "xprofirebase.appspot.com",
+    messagingSenderId: "813572774795",
+    appId: "1:813572774795:web:2a311130989aeee025ad8e",
+    measurementId: "G-RL25ZKX4XH"
 };
 firebase.initializeApp(firebaseConfig);
 
